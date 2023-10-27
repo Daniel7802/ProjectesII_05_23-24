@@ -4,70 +4,92 @@ using UnityEngine;
 
 public class BoomerangThrow : MonoBehaviour
 {
-
-    //private PlayerController playerControllerScript;
-    [SerializeField]
-    GameObject player;
-
-    //private Vector2 boomerangPosition;
-    private bool coroutineAllowed;
+    private Rigidbody2D _physics;
+    private TargetJoint2D _targetJoint;
 
     [SerializeField]
-    private float speedModifier;
+    GameObject source;
 
-    private float tParam;
-    
+    private bool wantsToThrow;
+
+    [SerializeField]
+    private float throwDuration;
+    private float currentLerpValue;
+
+
+    public bool IsFlying = false;
+
+    Vector2 p0, p1, p2, p3, p4;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        tParam = 0f;
-        speedModifier = 10f;
+        _physics = GetComponent<Rigidbody2D>();
+        _targetJoint = GetComponent<TargetJoint2D>();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
-        StartCoroutine(ThrowBoomerang());
-       
+        wantsToThrow |= Input.GetMouseButtonDown(0) && !IsFlying;
     }
-    private IEnumerator ThrowBoomerang()
+    private void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
+        if(wantsToThrow && !IsFlying)
         {
-            
-            Vector2 p0 = player.transform.position;
-            Vector2 p2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //Vector2 p2 = playerControllerScript.aimPoint;            
-            Vector2 p1 = new Vector2((p0.x + p2.x) / 2, (p0.y + p2.y) / 2);
-            
-            while (tParam < 1)
-            {
-                tParam += Time.deltaTime * speedModifier;
+            currentLerpValue = 0f;
+            wantsToThrow = false;
+            ThrowBoomerang();
+        }
 
-                transform.position = Mathf.Pow(1 - tParam, 2) * p0 + 2 * (1 - tParam) * tParam * p1 + Mathf.Pow(tParam, 2) * p2;
+        p0 = source.transform.position;
 
-                //transform.position = objectToMovePosition;
-                yield return new WaitForEndOfFrame();
-            }
+        if (IsFlying)
+        {
+            currentLerpValue = Mathf.Min(currentLerpValue + Time.fixedDeltaTime, throwDuration);
 
-            tParam = 0f;
+            float factor = currentLerpValue / throwDuration;
 
-            while (tParam < 1)
-            {
-                tParam += Time.deltaTime * speedModifier;
+            factor = -Mathf.Abs(-1 + factor * 2) + 1;
+            Vector3 sourceToTarget = p2 - p0;
 
-                transform.position = Mathf.Pow(1 - tParam, 2) * p2 + 2 * (1 - tParam) * tParam * p1 + Mathf.Pow(tParam, 2) * p0;
+            if (factor <= 0.5f)
+                p1 = Vector3.Cross(sourceToTarget, Vector3.forward).normalized * 3f + source.transform.position + sourceToTarget * 0.75f;
+            else
+                p1 = Vector3.Cross(Vector3.forward, sourceToTarget).normalized * 3f + source.transform.position + sourceToTarget * 0.75f;
 
-                //transform.position = objectToMovePosition;
-                yield return new WaitForEndOfFrame();
-            }
-            tParam = 0f;
 
-        }       
 
+            p3 = Vector3.Lerp(p0, p1, factor);
+            p4 = Vector3.Lerp(p1, p2, factor);
+
+            Vector3 finalPos = Vector3.Lerp(p3, p4, factor);
+
+            _targetJoint.anchor = Vector3.zero;
+            _targetJoint.target = finalPos;
+
+            IsFlying = currentLerpValue < throwDuration;
+        }
+        else
+        {
+            _targetJoint.target = (Vector3)p0;
+        }
     }
-    
+    void ThrowBoomerang()
+    {
+        p2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        IsFlying = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(p0, 0.1f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(p1, 0.1f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(p2, 0.1f);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawSphere(p3, 0.1f);
+        Gizmos.DrawSphere(p4, 0.1f);
+    }
 }
 
