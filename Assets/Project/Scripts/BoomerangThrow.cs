@@ -13,13 +13,16 @@ public class BoomerangThrow : MonoBehaviour
     private bool wantsToThrow;
 
     [SerializeField]
-    private float throwDuration;
+    private float throwDuration = 0.5f;
     private float currentLerpValue;
+
+    [SerializeField]
+    private float distancia;
 
 
     public bool IsFlying = false;
 
-    Vector2 p0, p1, p2, p3, p4;
+    Vector2 p0,p1, p2;
 
     // Start is called before the first frame update
     void Awake()
@@ -33,35 +36,29 @@ public class BoomerangThrow : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(wantsToThrow && !IsFlying)
+        p0 = source.transform.position;
+
+        if (wantsToThrow && !IsFlying)
         {
             currentLerpValue = 0f;
             wantsToThrow = false;
             ThrowBoomerang();
         }
 
-        p0 = source.transform.position;
+
 
         if (IsFlying)
         {
             currentLerpValue = Mathf.Min(currentLerpValue + Time.fixedDeltaTime, throwDuration);
-
+           
             float factor = currentLerpValue / throwDuration;
 
             factor = -Mathf.Abs(-1 + factor * 2) + 1;
-            Vector3 sourceToTarget = p2 - p0;
-
-            if (factor <= 0.5f)
-                p1 = Vector3.Cross(sourceToTarget, Vector3.forward).normalized * 3f + source.transform.position + sourceToTarget * 0.75f;
+            if (factor > 0.6)
+                _targetJoint.maxForce = 20;
             else
-                p1 = Vector3.Cross(Vector3.forward, sourceToTarget).normalized * 3f + source.transform.position + sourceToTarget * 0.75f;
-
-
-
-            p3 = Vector3.Lerp(p0, p1, factor);
-            p4 = Vector3.Lerp(p1, p2, factor);
-
-            Vector3 finalPos = Vector3.Lerp(p3, p4, factor);
+                _targetJoint.maxForce = 4000;
+            Vector3 finalPos = Vector3.Lerp(p0, p1, factor);
 
             _targetJoint.anchor = Vector3.zero;
             _targetJoint.target = finalPos;
@@ -75,21 +72,31 @@ public class BoomerangThrow : MonoBehaviour
     }
     void ThrowBoomerang()
     {
-        p2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        IsFlying = true;
+        Vector2 playerPosition; // 5,5
+        Vector2 pointerPosition; // 7,7
+        int multiplier; // 2
+        float time;
+
+        p0 = transform.position; // 5,5
+        Vector2 pointerPos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition).normalized; // 1,1
+        p1 = (Vector2)transform.position + (pointerPos * distancia);
+
+
+        //Vector3.Lerp(p0, p1, time);
+        //var auxPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //var auxVector = new Vector2(auxPoint.x - transform.position.x, auxPoint.y - transform.position.y);
+        //p2 = auxVector.normalized * distancia;
+        //Debug.Log(p0 + " " + auxPoint);
+        //IsFlying = true;
+        ////Debug.Log(p2);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(p0, 0.1f);
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(p1, 0.1f);
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(p2, 0.1f);
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawSphere(p3, 0.1f);
-        Gizmos.DrawSphere(p4, 0.1f);
     }
 }
 
