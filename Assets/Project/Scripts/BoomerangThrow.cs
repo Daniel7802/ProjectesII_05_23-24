@@ -22,7 +22,7 @@ public class BoomerangThrow : MonoBehaviour
 
     public bool IsFlying = false;
 
-    Vector2 p0,p1, p2;
+    Vector2 p0, p2;
 
     // Start is called before the first frame update
     void Awake()
@@ -44,9 +44,6 @@ public class BoomerangThrow : MonoBehaviour
             wantsToThrow = false;
             ThrowBoomerang();
         }
-
-
-
         if (IsFlying)
         {
             currentLerpValue = Mathf.Min(currentLerpValue + Time.fixedDeltaTime, throwDuration);
@@ -58,7 +55,7 @@ public class BoomerangThrow : MonoBehaviour
                 _targetJoint.maxForce = 20;
             else
                 _targetJoint.maxForce = 4000;
-            Vector3 finalPos = Vector3.Lerp(p0, p1, factor);
+            Vector3 finalPos = Vector3.Lerp(p0, p2, factor);
 
             _targetJoint.anchor = Vector3.zero;
             _targetJoint.target = finalPos;
@@ -71,24 +68,16 @@ public class BoomerangThrow : MonoBehaviour
         }
     }
     void ThrowBoomerang()
-    {
-        Vector2 playerPosition; // 5,5
-        Vector2 pointerPosition; // 7,7
-        int multiplier; // 2
-        float time;
+    {     
 
-        p0 = transform.position; // 5,5
-        Vector2 pointerPos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition).normalized; // 1,1
-        p1 = (Vector2)transform.position + (pointerPos * distancia);
-
-
-        //Vector3.Lerp(p0, p1, time);
-        //var auxPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //var auxVector = new Vector2(auxPoint.x - transform.position.x, auxPoint.y - transform.position.y);
-        //p2 = auxVector.normalized * distancia;
-        //Debug.Log(p0 + " " + auxPoint);
-        //IsFlying = true;
-        ////Debug.Log(p2);
+        p0 = transform.position; // 5,5  
+        var auxPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var auxVector = (Vector2)auxPoint-p0;
+        auxVector.Normalize();
+        p2 = (auxVector) * distancia + (Vector2)transform.position;
+        Debug.Log(p0 + " " + auxPoint);
+        IsFlying = true;
+        Debug.Log(p2);
     }
 
     private void OnDrawGizmos()
