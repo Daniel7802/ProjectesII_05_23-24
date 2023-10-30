@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float timer = 10;
     private bool startTimer = false;
+    private bool rollCoolDown = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         moveX = Input.GetAxisRaw("Horizontal");
         moveY = Input.GetAxisRaw("Vertical");
 
-        if(Input.GetKeyDown(KeyCode.Space) && !isRolling)
+        if(Input.GetKeyDown(KeyCode.Space) && !isRolling && !rollCoolDown)
         {
             isRolling = true;
             startTimer = true;
@@ -74,8 +75,20 @@ public class PlayerMovement : MonoBehaviour
                 {
                     startTimer = false;
                     isRolling = false;
-                    timer = 10;
+                    rollCoolDown = true;
                 }
+            }
+        }
+
+        if (rollCoolDown)
+        {
+            timer++;
+
+            if (timer >= 30)
+            {
+                isRolling = false;
+                rollCoolDown = false;
+                timer = 10;
             }
         }
     }
