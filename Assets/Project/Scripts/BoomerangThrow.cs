@@ -4,70 +4,119 @@ using UnityEngine;
 
 public class BoomerangThrow : MonoBehaviour
 {
-
-    //private PlayerController playerControllerScript;
-    [SerializeField]
-    GameObject player;
-
-    //private Vector2 boomerangPosition;
-    private bool coroutineAllowed;
+    private Rigidbody2D _physics;
+    private TargetJoint2D _targetJoint;
 
     [SerializeField]
-    private float speedModifier;
+    GameObject source;
 
-    private float tParam;
-    
+
+    private bool wantsToThrow;
+
+    [SerializeField]
+    float timer = 3.0f;
+
+    [SerializeField]
+    private float throwDuration = 0.5f;
+    private float currentLerpValue;
+    [SerializeField]
+    private float rotationSpeed;
+
+    [SerializeField]
+    private float distancia;
+
+    [SerializeField]
+    private bool coming = false;
+
+    public bool IsFlying = false;
+
+    [SerializeField]
+    Vector2 p0, p2;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        tParam = 0f;
-        speedModifier = 10f;
+        _physics = GetComponent<Rigidbody2D>();
+        _targetJoint = GetComponent<TargetJoint2D>();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
-        StartCoroutine(ThrowBoomerang());
-       
+        wantsToThrow |= Input.GetMouseButtonDown(0) && !IsFlying;
+        //TimerBoomerang();
     }
-    private IEnumerator ThrowBoomerang()
+    private void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!IsFlying)
         {
-            
-            Vector2 p0 = player.transform.position;
-            Vector2 p2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //Vector2 p2 = playerControllerScript.aimPoint;            
-            Vector2 p1 = new Vector2((p0.x + p2.x) / 2, (p0.y + p2.y) / 2);
-            
-            while (tParam < 1)
+            p0 = source.transform.position;
+        }
+        if (wantsToThrow && !IsFlying)
+        {
+            currentLerpValue = 0f;
+            wantsToThrow = false;
+            ThrowBoomerang();
+        }
+        if (IsFlying )
+        {
+            transform.Rotate(0f, 0f, rotationSpeed, Space.Self);
+            if(coming)
+                p0 = source.transform.position;
+            timer = 3.0f;
+            currentLerpValue = Mathf.Min(currentLerpValue + Time.fixedDeltaTime, throwDuration);
+           
+            float factor = currentLerpValue / throwDuration;
+
+            factor = -Mathf.Abs(-1 + factor * 2) + 1;
+
+            if (factor >= 0.8f)
             {
-                tParam += Time.deltaTime * speedModifier;
-
-                transform.position = Mathf.Pow(1 - tParam, 2) * p0 + 2 * (1 - tParam) * tParam * p1 + Mathf.Pow(tParam, 2) * p2;
-
-                //transform.position = objectToMovePosition;
-                yield return new WaitForEndOfFrame();
+                coming = true;
             }
+            Vector3 finalPos = Vector3.Lerp(p0, p2, factor);
 
-            tParam = 0f;
+            _targetJoint.anchor = Vector3.zero;
+            _targetJoint.target = finalPos;
 
-            while (tParam < 1)
-            {
-                tParam += Time.deltaTime * speedModifier;
-
-                transform.position = Mathf.Pow(1 - tParam, 2) * p2 + 2 * (1 - tParam) * tParam * p1 + Mathf.Pow(tParam, 2) * p0;
-
-                //transform.position = objectToMovePosition;
-                yield return new WaitForEndOfFrame();
-            }
-            tParam = 0f;
-
-        }       
-
+            IsFlying = currentLerpValue < throwDuration;
+        }
+        else
+        {
+            _targetJoint.target = (Vector3)p0;
+        }
     }
-    
+    void ThrowBoomerang()
+    {     
+
+        p0 = transform.position; // 5,5     
+        var auxPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var auxVector = (Vector2)auxPoint-p0;
+        auxVector.Normalize();
+        var auxVector2 = (auxVector) * distancia + (Vector2)transform.position;
+        if (Vector2.Distance(transform.position, auxVector2) <= Vector2.Distance(transform.position, auxPoint))
+            p2 = auxVector2;
+        else
+            p2 = auxPoint;
+        Debug.Log(p0 + " " + auxPoint);
+        IsFlying = true;
+        Debug.Log(p2);
+    }
+
+    //void TimerBoomerang()
+    //{
+    //    if (staticPoint && timer >= 0.5f)
+    //    {
+    //        timer -= Time.deltaTime;
+
+    //    }
+    //    else
+    //        staticPoint = false;    
+    //}
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(p0, 0.1f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(p2, 0.1f);
+    }
 }
 
