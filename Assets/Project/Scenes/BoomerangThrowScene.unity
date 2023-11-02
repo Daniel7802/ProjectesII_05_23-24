@@ -269,6 +269,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1873218008487236336, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: timer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1873218008487236336, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1087137780}
@@ -281,12 +285,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1873218008487236336, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: distancia
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1873218008487236336, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: rotationSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1873218008487236336, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
       propertyPath: speedModifier
       value: 2.35
       objectReference: {fileID: 0}
     - target: {fileID: 1873218008487236336, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
       propertyPath: throwDuration
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3561228533609804501, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
       propertyPath: m_Color.b
