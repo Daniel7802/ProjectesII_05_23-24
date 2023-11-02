@@ -15,6 +15,16 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 movementVector;
 
+    [SerializeField]
+    private bool isRolling;
+
+    [SerializeField]
+    private float ImpulseForce;
+
+    private float timer = 10;
+    private bool startTimer = false;
+    private bool rollCoolDown = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +39,12 @@ public class PlayerMovement : MonoBehaviour
         moveX = Input.GetAxisRaw("Horizontal");
         moveY = Input.GetAxisRaw("Vertical");
 
+        if(Input.GetKeyDown(KeyCode.Space) && !isRolling && !rollCoolDown)
+        {
+            isRolling = true;
+            startTimer = true;
+        }
+
         movementVector = new Vector2(moveX, moveY).normalized;
 
         playerAnimator.SetFloat("Horizontal", moveX);
@@ -39,7 +55,41 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         // Fisicas
-        playerRb.AddForce(Vector2.right.normalized * moveX * speed, ForceMode2D.Force);
-        playerRb.AddForce(Vector2.up.normalized * moveY * speed, ForceMode2D.Force);
+        if(!isRolling)
+        {
+            playerRb.AddForce(Vector2.right.normalized * moveX * speed, ForceMode2D.Force);
+            playerRb.AddForce(Vector2.up.normalized * moveY * speed, ForceMode2D.Force);
+        }
+
+        // Roll
+        if (isRolling)
+        {
+            Vector2 rollVector = new Vector2(playerRb.velocity.x, playerRb.velocity.y);
+            playerRb.AddForce(rollVector.normalized * ImpulseForce, ForceMode2D.Impulse);
+
+            if (startTimer)
+            {
+                timer--;
+
+                if(timer < 0)
+                {
+                    startTimer = false;
+                    isRolling = false;
+                    rollCoolDown = true;
+                }
+            }
+        }
+
+        if (rollCoolDown)
+        {
+            timer++;
+
+            if (timer >= 30)
+            {
+                isRolling = false;
+                rollCoolDown = false;
+                timer = 10;
+            }
+        }
     }
 }
