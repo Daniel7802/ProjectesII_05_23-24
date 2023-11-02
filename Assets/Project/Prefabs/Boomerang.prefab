@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5861067415722836045}
   - component: {fileID: 3561228533609804501}
   - component: {fileID: 7803316278292647208}
-  - component: {fileID: -885296822840196419}
+  - component: {fileID: 1873218008487236336}
   m_Layer: 0
   m_Name: Boomerang
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 6782286693457160291}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.39, y: 0.45, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,9 +74,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 229595d6a79c7034fb2b569a57c110b7, type: 3}
-  m_Color: {r: 0.5, g: 0.17805839, b: 0.11084905, a: 1}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: 08835fe7bebdb8a4bbddbc6b02751f1b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -113,7 +113,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-885296822840196419
+--- !u!114 &1873218008487236336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,14 +122,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6782286693457160291}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100dec09faa604f42ae9c871d22fafe3, type: 3}
+  m_Script: {fileID: 11500000, guid: 59af0f8f6961a1d468b40f7dbc9b82a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  speed: 3
-  rigidbody: {fileID: 7803316278292647208}
-  rigidbodyPlayer: {fileID: 3394837053072197383, guid: 5d9aa4a56e788e041922ee242bf64f63, type: 3}
-  vectorMove: {x: 0, y: 0}
-  _aimPoint: {x: 0, y: 0}
-  _startPoint: {x: 0, y: 0}
-  comeBack: 0
+  source: {fileID: 0}
+  timer: 3
+  throwDuration: 0.5
+  rotationSpeed: 0
+  distancia: 0
+  coming: 0
+  IsFlying: 0
+  p0: {x: 0, y: 0}
+  p2: {x: 0, y: 0}
