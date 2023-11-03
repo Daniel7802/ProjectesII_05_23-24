@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class BoomerangThrow : MonoBehaviour
 {
+
     private Rigidbody2D _physics;
     private TargetJoint2D _targetJoint;
 
-    [SerializeField]
-    GameObject source;
 
 
     private bool wantsToThrow;
@@ -19,9 +18,9 @@ public class BoomerangThrow : MonoBehaviour
     [SerializeField]
     private float throwDuration = 0.5f;
     private float currentLerpValue;
+
     [SerializeField]
     private float rotationSpeed;
-
     [SerializeField]
     private float distancia;
 
