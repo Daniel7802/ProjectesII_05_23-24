@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5861067415722836045}
   - component: {fileID: 3561228533609804501}
   - component: {fileID: 7803316278292647208}
-  - component: {fileID: 1873218008487236336}
   - component: {fileID: 8607442498127366287}
+  - component: {fileID: -7931797812106944533}
   m_Layer: 0
   m_Name: Boomerang
   m_TagString: Untagged
@@ -114,27 +114,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1873218008487236336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6782286693457160291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59af0f8f6961a1d468b40f7dbc9b82a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 0}
-  timer: 3
-  throwDuration: 1
-  rotationSpeed: 30
-  distancia: 6
-  coming: 0
-  IsFlying: 0
-  p0: {x: 0, y: 0}
-  p2: {x: 0, y: 0}
 --- !u!257 &8607442498127366287
 TargetJoint2D:
   m_ObjectHideFlags: 0
@@ -155,3 +134,27 @@ TargetJoint2D:
   m_MaxForce: 8000
   m_DampingRatio: 1
   m_Frequency: 5
+--- !u!114 &-7931797812106944533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6782286693457160291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeffbe0c4d0334b4e8c8a6aace66d131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 416834808553754793, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
+  timer: 0
+  throwDuration: 0
+  distance: 0
+  rotationSpeed: 0
+  coming: 0
+  isFlying: 0
+  p0: {x: 0, y: 0}
+  p2: {x: 0, y: 0}
+  pHit: {x: 0, y: 0}
+  pAim: {x: 0, y: 0}
+  vectorDirection: {x: 0, y: 0}

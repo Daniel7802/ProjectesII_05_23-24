@@ -8,7 +8,8 @@ public class BoomerangThrow : MonoBehaviour
     private Rigidbody2D _physics;
     private TargetJoint2D _targetJoint;
 
-
+    [SerializeField]
+    GameObject source; //Player
 
     private bool wantsToThrow;
 
@@ -45,10 +46,7 @@ public class BoomerangThrow : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!IsFlying)
-        {
-            p0 = source.transform.position;
-        }
+       
         if (wantsToThrow && !IsFlying)
         {
             currentLerpValue = 0f;

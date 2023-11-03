@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class NormalBoomerang : Boomerang
 {               
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+        distance = 6;
+        throwDuration = 1f;
         ThrowBoomerang();
     }
-    private void FixedUpdate()
-    {
-        BoomerangMovement();
-    }
+
 }

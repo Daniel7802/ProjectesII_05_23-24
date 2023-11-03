@@ -23,9 +23,8 @@ public class BoomerangManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && _canThrow)
         {
            GameObject actualBoomerang = Instantiate(boomerang, throwPos.position, Quaternion.identity);
-            actualBoomerang.GetComponent<Boomerang>()._aimPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
-            actualBoomerang.GetComponent<Boomerang>().rigidbody.position = throwPos.position;
-            actualBoomerang.GetComponent<Boomerang>()._startPoint = throwPos.position;
+            actualBoomerang.GetComponent<Boomerang>().source = this.gameObject;
+            actualBoomerang.GetComponent<Boomerang>().pAim = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
             _canThrow = false;
         }                
     }

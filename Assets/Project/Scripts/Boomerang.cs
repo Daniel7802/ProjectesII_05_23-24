@@ -7,18 +7,18 @@ public class Boomerang : MonoBehaviour
 {
     private TargetJoint2D _targetJoint;
 
-    [SerializeField]
-    GameObject source; //Player
+    public GameObject source { get; set; } //Player
 
     [SerializeField]
-    float timer, throwDuration, distance, rotationSpeed;
+    protected float timer, throwDuration, distance, rotationSpeed;
     float currentLerpValue;
 
     [SerializeField]
     private bool coming, isFlying;
 
     [SerializeField]
-    Vector2 p0, p2, pAim, pHit;
+    Vector2 p0, p2, pHit;
+    public Vector2 pAim;
 
     [SerializeField]
     Vector2 vectorDirection;
@@ -29,23 +29,20 @@ public class Boomerang : MonoBehaviour
         _targetJoint = GetComponent<TargetJoint2D>();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         timer = 3.0f;
-        throwDuration = 0.5f;   
         coming = false;
         isFlying = false;  
         rotationSpeed = 30;
         currentLerpValue = 0f;
     }
-
-    public virtual void BoomerangMovement()
+    protected virtual void FixedUpdate()
     {
-        if (!isFlying)
-        {
-            p0 = source.transform.position;
-        }
-       
+        BoomerangMovement();
+    }
+    public virtual void BoomerangMovement()
+    {              
         if (isFlying)
         {
             transform.Rotate(0f, 0f, rotationSpeed, Space.Self);
@@ -78,7 +75,7 @@ public class Boomerang : MonoBehaviour
     public virtual void ThrowBoomerang()
     {
         //PAim lo tiene que asignar el boomerangManager, a partir de ahi se calcula todo
-        p0 = transform.position; // 5,5     
+        p0 = source.transform.position; // 5,5     
         vectorDirection = (Vector2)pAim - p0;
         vectorDirection.Normalize();
         pHit = (vectorDirection) * distance + (Vector2)transform.position;
@@ -91,5 +88,11 @@ public class Boomerang : MonoBehaviour
         Debug.Log(p0 + " " + vectorDirection);
         isFlying = true;
         Debug.Log(p2);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(pAim, 0.3f);
     }
 }
