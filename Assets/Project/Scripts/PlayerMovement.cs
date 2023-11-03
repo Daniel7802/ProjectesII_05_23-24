@@ -57,8 +57,7 @@ public class PlayerMovement : MonoBehaviour
         // Fisicas
         if(!isRolling)
         {
-            playerRb.AddForce(Vector2.right.normalized * moveX * speed, ForceMode2D.Force);
-            playerRb.AddForce(Vector2.up.normalized * moveY * speed, ForceMode2D.Force);
+            playerRb.AddForce(movementVector * speed, ForceMode2D.Force);
         }
 
         // Roll
