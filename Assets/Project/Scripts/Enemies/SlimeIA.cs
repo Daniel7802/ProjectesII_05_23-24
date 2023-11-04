@@ -10,20 +10,25 @@ public class SlimeIA : Enemy
 
     private float jumpTimer = 0;
     public float jumpForce;
+    public float jumpForceMultiplier;
     public float waitToJumpSeconds;
-    
-    bool setNewDest = false; 
+    private float chasingJumpForce;
 
+    bool setNewDest = false;
 
+    private void Start()
+    {
+        chasingJumpForce = jumpForce*jumpForceMultiplier;
+    }
     public override void Movement()
     {
         Vector2 directionVector = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
         Vector2 impulseForce = directionVector.normalized * jumpForce;
-        
+
         jumpTimer += Time.deltaTime;
         if (jumpTimer > waitToJumpSeconds)
         {
-            rb2D.AddForce(impulseForce,ForceMode2D.Impulse);
+            rb2D.AddForce(impulseForce, ForceMode2D.Impulse);
             setNewDest = true;
             jumpTimer = 0;
         }
@@ -44,18 +49,11 @@ public class SlimeIA : Enemy
 
     public override void Chasing()
     {
+        jumpForce = chasingJumpForce;
         target = player.transform.position;
         spriteRenderer.color = Color.red;
+        
         Movement();
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, startChasingRange);
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(target, 0.4f);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(roamingRandomPoint, 0.4f);
-    }
 }

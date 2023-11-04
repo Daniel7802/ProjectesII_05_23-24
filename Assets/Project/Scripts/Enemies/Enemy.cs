@@ -22,22 +22,36 @@ public class Enemy : MonoBehaviour
 
     //CHASING    
     public float startChasingRange;
+    public float stopChasingRange;
 
     public float knockbackForce;
+
+    protected bool isRoaming = true;
 
 
     void Update()
     {
         FlipX();
         distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer < startChasingRange)
+
+        if(distanceToPlayer < startChasingRange) 
         {
-            Chasing();
+            isRoaming = false;
         }
-        else
+        else if(distanceToPlayer > stopChasingRange)
+        {
+            isRoaming = true;   
+        }
+        if(isRoaming)
         {
             Roaming();
         }
+        else
+        {
+            Chasing();
+        }
+        
+
     }
     public virtual void Movement()
     {
@@ -81,4 +95,16 @@ public class Enemy : MonoBehaviour
         }
 
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, startChasingRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, stopChasingRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(target, 0.4f);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(roamingRandomPoint, 0.4f);
+    }
 }
+
