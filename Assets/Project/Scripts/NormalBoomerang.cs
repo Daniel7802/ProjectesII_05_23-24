@@ -4,20 +4,13 @@ using UnityEngine;
 
 
 public class NormalBoomerang : Boomerang
-{
-    public NormalBoomerang(float d, float s) : base(d, s) { }      
-        
-    protected override void ActionBoomerang()
+{               
+    protected override void Start()
     {
-        throw new System.NotImplementedException();
+        base.Start();
+        distance = 6;
+        throwDuration = 1f;
+        ThrowBoomerang();
     }
 
-    private void Start()
-    {
-    }
-    private void FixedUpdate()
-    {
-        Movement();
-        //detectComeback();
-    }
 }
