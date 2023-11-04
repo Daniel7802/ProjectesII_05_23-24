@@ -5,6 +5,8 @@ using UnityEngine;
 public class BoomerangThrow : MonoBehaviour
 {
     private TargetJoint2D _targetJoint;
+    private SpriteRenderer _spriteRenderer;
+    private BoxCollider2D _boxCollider;
 
     [SerializeField]
     GameObject source; //Player
@@ -23,8 +25,8 @@ public class BoomerangThrow : MonoBehaviour
     
 
     [SerializeField]
-    private bool coming, wantsToThrow, isFlying, going, mouseHold, rightMouse;
-
+    private bool coming, wantsToThrow,  going, mouseHold, rightMouse;
+    public bool isFlying;
 
     [SerializeField]
     Vector2 p0, p2, pAux, vectorDirection, vectorObjective;
@@ -40,12 +42,18 @@ public class BoomerangThrow : MonoBehaviour
     void Awake()
     {
         _targetJoint = GetComponent<TargetJoint2D>();
-    }
+        _boxCollider = GetComponent<BoxCollider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();   
+    }   
     private void Update()
     {
         MouseManager();
-        if(mouseHold && distance <= maxDistance)
+        if(mouseHold)
         {
+            _boxCollider.enabled = true;
+            _spriteRenderer.enabled = true;
+            transform.position = source.transform.position;
+            if(distance <= maxDistance)
             distance += Time.deltaTime * 4;
         }
         if (Input.GetMouseButtonDown(1))
@@ -54,45 +62,7 @@ public class BoomerangThrow : MonoBehaviour
         }
     }
     private void FixedUpdate()
-    {
-    /*    if(!isFlying)
-        {
-            p0 = source.transform.position;
-        }
-       
-        if (wantsToThrow && !isFlying)
-        {
-            currentLerpValue = 0f;
-            wantsToThrow = false;
-            ThrowBoomerang();
-        }
-        if (isFlying )
-        {
-            transform.Rotate(0f, 0f, rotationSpeed, Space.Self);
-            if(coming)
-                p0 = source.transform.position;
-            timer = 3.0f;
-            currentLerpValue = Mathf.Min(currentLerpValue + Time.fixedDeltaTime, throwDuration);
-           
-            float factor = currentLerpValue / throwDuration;
-
-            factor = -Mathf.Abs(-1 + factor * 2) + 1;
-
-            if (factor >= 0.8f)
-            {
-                coming = true;
-            }
-            Vector3 finalPos = Vector3.Lerp(p0, p2, factor);
-
-            _targetJoint.anchor = Vector3.zero;
-            _targetJoint.target = finalPos;
-
-            isFlying = currentLerpValue < throwDuration;
-        }
-        else
-        {
-            _targetJoint.target = (Vector3)p0;
-        }*/
+    {    
         if(!isFlying)
         {
             p0 = source.transform.position;
@@ -123,12 +93,7 @@ public class BoomerangThrow : MonoBehaviour
 
             else if(coming)
             {
-                Coming();
-                isFlying = false;
-                coming = false;
-                going = false;
-                timer = maxTimer;
-                distance = minDistance;
+                Coming();              
             }
         }
     }
@@ -156,21 +121,12 @@ public class BoomerangThrow : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0) && !isFlying)
         {
+            _boxCollider.gameObject.SetActive(true);
+            _spriteRenderer.gameObject.SetActive(true);
             wantsToThrow = true;
             mouseHold = false;
         }
-    }
-
-    //void TimerBoomerang()
-    //{
-    //    if (staticPoint && timer >= 0.5f)
-    //    {
-    //        timer -= Time.deltaTime;
-
-    //    }
-    //    else
-    //        staticPoint = false;    
-    //}
+    }    
 
     void Going()
     {       
@@ -195,7 +151,21 @@ public class BoomerangThrow : MonoBehaviour
         _targetJoint.anchor = Vector3.zero;
         _targetJoint.target = comingPosition;
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player") && coming)
+        {
+            isFlying = false;
+            coming = false;
+            going = false;
+            timer = maxTimer;
+            distance = minDistance;
+            _boxCollider.enabled = false;
+            _spriteRenderer.enabled = false;
+            
+        }
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
