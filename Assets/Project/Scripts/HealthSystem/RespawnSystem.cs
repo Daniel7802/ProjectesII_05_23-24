@@ -8,12 +8,14 @@ public class RespawnSystem : MonoBehaviour
     // Start is called before the first frame update
     
    public Vector2 checkpointPos1;
+    PlayerHealthSystem _healthSystem;
 
 
 
     private void Start()
     {
         checkpointPos1 = transform.position;    
+        _healthSystem = GetComponent<PlayerHealthSystem>();   
     }
     public void UpdateCheckPoint(Vector2 pos)
     {
@@ -23,8 +25,9 @@ public class RespawnSystem : MonoBehaviour
     {
         Invoke("Respawn", 1f);
     }
-  public void  Respawn()
-    {       
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+  public void  Respawn()    
+    {
+        transform.position = checkpointPos1;
+        _healthSystem.RespawnHeal();
     }
 }

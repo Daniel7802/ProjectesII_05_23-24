@@ -6,7 +6,7 @@ public class HealthSystem : MonoBehaviour
 {
 
    [SerializeField]
-   private int MaxHealth, health;
+   protected int MaxHealth, health;
    DeadSystem ds;
 
     public virtual void Awake()

@@ -16,6 +16,11 @@ public class PlayerHealthSystem : HealthSystem
 
     }
 
+    public void RespawnHeal()
+    {
+        health = MaxHealth;
+    }
+
     public override void DeadState ()
     {
         _respawnSystem.OnDeath();
