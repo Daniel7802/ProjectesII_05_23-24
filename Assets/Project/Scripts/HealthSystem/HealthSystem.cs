@@ -9,7 +9,7 @@ public class HealthSystem : MonoBehaviour
    private int MaxHealth, health;
    DeadSystem ds;
 
-    public void Awake()
+    public virtual void Awake()
     {
         ds = GetComponent<DeadSystem>();
     }
@@ -28,7 +28,7 @@ public class HealthSystem : MonoBehaviour
         }
    }
 
-    public void DeadState() 
+    public virtual void DeadState() 
     {
         ds.Dead();
     }
