@@ -46,7 +46,7 @@ public class BoomerangThrow : MonoBehaviour
         MouseManager();
         if(mouseHold && distance <= maxDistance)
         {
-            distance += Time.deltaTime * 3;
+            distance += Time.deltaTime * 4;
         }
         if (Input.GetMouseButtonDown(1))
         {
