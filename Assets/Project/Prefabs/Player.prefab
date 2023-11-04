@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 9145842343681718827}
   - component: {fileID: 2147911285255576}
   - component: {fileID: 2036063889959427783}
-  - component: {fileID: 3632557088409462552}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -35,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3124599053576833423
 SpriteRenderer:
@@ -187,18 +186,3 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.8, y: 0.95}
   m_Direction: 0
---- !u!114 &3632557088409462552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416834808553754793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b238d53b80715a4c97af4733ae9a402, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _canThrow: 0
-  boomerang: {fileID: 6782286693457160291, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
-  throwPos: {fileID: 930333622301758238}

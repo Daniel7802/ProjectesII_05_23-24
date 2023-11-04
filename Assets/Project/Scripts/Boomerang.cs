@@ -7,14 +7,15 @@ public class Boomerang : MonoBehaviour
 {
     private TargetJoint2D _targetJoint;
 
-    public GameObject source { get; set; } //Player
+    [SerializeField]
+    public GameObject source; //Player
 
     [SerializeField]
     protected float timer, throwDuration, distance, rotationSpeed;
     float currentLerpValue;
 
     [SerializeField]
-    private bool coming, isFlying;
+    private bool coming, isFlying, wantsToThrow;
 
     [SerializeField]
     Vector2 p0, p2, pHit;
@@ -31,15 +32,25 @@ public class Boomerang : MonoBehaviour
 
     protected virtual void Start()
     {
+        wantsToThrow = true;    
         timer = 3.0f;
         coming = false;
         isFlying = false;  
         rotationSpeed = 30;
         currentLerpValue = 0f;
     }
+
+
     protected virtual void FixedUpdate()
     {
-        BoomerangMovement();
+        wantsToThrow |= Input.GetMouseButtonDown(0) && !isFlying;
+        if (wantsToThrow && !isFlying)
+        {
+            currentLerpValue = 0f;
+            wantsToThrow = false;
+            BoomerangMovement();
+
+        }
     }
     public virtual void BoomerangMovement()
     {              
