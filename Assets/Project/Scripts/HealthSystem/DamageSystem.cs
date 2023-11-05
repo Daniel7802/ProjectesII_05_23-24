@@ -10,7 +10,7 @@ public class DamageSystem : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<HealthSystem>(out HealthSystem hs))
         {
-            if(!collision.gameObject.CompareTag("Player"))
+            //if(!collision.gameObject.CompareTag("Player"))
             hs.GetDamage(dmg);
         }
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
@@ -18,8 +18,5 @@ public class DamageSystem : MonoBehaviour
             Vector2 dir = new Vector2(enemy.transform.position.x - transform.position.x,enemy.transform.position.y-transform.position.y);
             enemy.KnockBack(dir);
         }
-
-        
     }
-
 }
