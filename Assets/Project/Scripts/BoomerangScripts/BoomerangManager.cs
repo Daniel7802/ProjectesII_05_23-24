@@ -1,33 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoomerangManager : MonoBehaviour
 {
     [SerializeField]
-    private bool _canThrow;
-
-    public GameObject boomerang;
-
+    GameObject _boomerang;
     [SerializeField]
-    private Transform throwPos;
-
-
-    void Start()
+    BoomerangThrow _boomerangThrow;
+        
+    private void Update()
     {
-        _canThrow = true;
-    }
-
-    void Update()
-    {          
-        if (Input.GetMouseButtonDown(0) && _canThrow)
+        if (Input.GetMouseButtonDown(0) && !_boomerangThrow.isFlying)
         {
-           GameObject actualBoomerang = Instantiate(boomerang, throwPos.position, Quaternion.identity);
-            actualBoomerang.GetComponent<Boomerang>().source = this.gameObject;
-            actualBoomerang.GetComponent<Boomerang>().pAim = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
-            _canThrow = false;
-        }                
+            _boomerang.SetActive(true);
+        }
     }
-
-   
 }

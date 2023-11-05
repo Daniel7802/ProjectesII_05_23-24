@@ -10,6 +10,7 @@ public class DamageSystem : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<HealthSystem>(out HealthSystem hs))
         {
+            if(!collision.gameObject.CompareTag("Player"))
             hs.GetDamage(dmg);
         }
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy))

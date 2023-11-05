@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3897944622222715238
 SpriteRenderer:
@@ -152,17 +152,17 @@ MonoBehaviour:
   source: {fileID: 0}
   maxTimer: 3
   timer: 0
-  rotationSpeed: 30
+  rotationSpeed: 25
   minDistance: 0
   maxDistance: 0
   distance: 20
   throwDuration: 1
   coming: 0
   wantsToThrow: 0
-  isFlying: 0
   going: 0
   mouseHold: 0
   rightMouse: 1
+  isFlying: 0
   p0: {x: 0, y: 0}
   p2: {x: 0, y: 0}
   pAux: {x: 0, y: 0}
@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73ab9022abd20a45856f8dedfe21125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dmg: 0
 --- !u!61 &2209296374895112534
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -237,3 +238,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73ab9022abd20a45856f8dedfe21125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dmg: 2

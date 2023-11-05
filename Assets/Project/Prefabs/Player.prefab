@@ -14,9 +14,11 @@ GameObject:
   - component: {fileID: 9145842343681718827}
   - component: {fileID: 2147911285255576}
   - component: {fileID: 2036063889959427783}
+  - component: {fileID: 7490800426209183852}
+  - component: {fileID: 1911137432474511315}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3124599053576833423
 SpriteRenderer:
@@ -186,3 +188,30 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0063331723, y: -0.24832648}
   m_Size: {x: 0.15800667, y: 0.15800667}
   m_Direction: 0
+--- !u!114 &7490800426209183852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416834808553754793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b7b6fac41b9a8b4180350f680997b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 5
+  health: 0
+--- !u!114 &1911137432474511315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416834808553754793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a352d1a841b2c748a4724282a2f0140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpointPos1: {x: 0, y: 0}
