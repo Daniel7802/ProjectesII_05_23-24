@@ -291,6 +291,54 @@ PrefabInstance:
       propertyPath: source
       value: 
       objectReference: {fileID: 323870368}
+    - target: {fileID: 1808350131506932154, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808350131506932154, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: ShapeModule.type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808350131506932154, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808350131506932154, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808350131506932154, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808350131506932154, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808350131506932154, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808350131506932154, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808350131506932154, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808350131506932154, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808350131506932154, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: InitialModule.startSpeed.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4643297507367795129, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 6657343719683139223, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
       propertyPath: m_Name
       value: Boomerang
