@@ -11,6 +11,10 @@ public class BoomerangThrow : MonoBehaviour
     [SerializeField]
     GameObject source; //Player
 
+    [SerializeField]
+    private ParticleSystem _particleSystem;
+    private ParticleSystem.EmissionModule _missionModule;
+
 
     [SerializeField]
     float maxTimer = 3.0f;
@@ -25,7 +29,7 @@ public class BoomerangThrow : MonoBehaviour
     
 
     [SerializeField]
-    private bool coming, wantsToThrow,  going, mouseHold, rightMouse;
+    private bool coming, wantsToThrow,  going, mouseHold, rightMouse, canThrow;
     public bool isFlying;
 
     [SerializeField]
@@ -37,18 +41,20 @@ public class BoomerangThrow : MonoBehaviour
         distance = minDistance;
         maxDistance = 8f;
         going = false;
+        canThrow = true;
     }
 
     void Awake()
     {
         _targetJoint = GetComponent<TargetJoint2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();   
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _missionModule = _particleSystem.emission;
     }   
     private void Update()
     {
         MouseManager();
-        if(mouseHold)
+        if(mouseHold) 
         {
             _boxCollider.enabled = true;
             _spriteRenderer.enabled = true;
@@ -62,13 +68,8 @@ public class BoomerangThrow : MonoBehaviour
         }
     }
     private void FixedUpdate()
-    {    
-        if(!isFlying)
-        {
-            p0 = source.transform.position;
-            _targetJoint.target = (Vector3)p0;
-        }
-        if(wantsToThrow && !going)
+    {            
+        if(wantsToThrow && !isFlying && canThrow)
         {
            ThrowBoomerang();
             timer = maxTimer;
@@ -82,23 +83,33 @@ public class BoomerangThrow : MonoBehaviour
             transform.Rotate(0f, 0f, rotationSpeed, Space.Self);
             if (going)
             {
+                _missionModule.rateOverTime = 200;
                 Going();
                 going = false;
             }
 
             else if(!going && !coming)
             {
+                _missionModule.rateOverTime = 20;
                 Staying();
             }
 
             else if(coming)
             {
+                _missionModule.rateOverTime = 200;
                 Coming();              
             }
+        }
+        else
+        {
+            _missionModule.rateOverTime = 0;
+            p0 = source.transform.position;
+            _targetJoint.target = (Vector3)p0;
         }
     }
     void ThrowBoomerang()
     {
+        canThrow = false;
         rightMouse = false;
         p0 = transform.position; // 5,5         
         pAux = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -115,16 +126,16 @@ public class BoomerangThrow : MonoBehaviour
     }
     private void MouseManager()
     {
-        if (Input.GetMouseButtonDown(0) && !isFlying)
+        if (Input.GetMouseButtonDown(0) && !isFlying && canThrow)
         {
             mouseHold = true;            
         }
-        if (Input.GetMouseButtonUp(0) && !isFlying)
+        if (Input.GetMouseButtonUp(0) && !isFlying && canThrow && mouseHold)
         {
             _boxCollider.gameObject.SetActive(true);
             _spriteRenderer.gameObject.SetActive(true);
-            wantsToThrow = true;
             mouseHold = false;
+            wantsToThrow = true;
         }
     }    
 
@@ -144,6 +155,7 @@ public class BoomerangThrow : MonoBehaviour
         else
             coming = true;
     }
+
     void Coming ()
     {
         p0 = source.transform.position;
@@ -155,7 +167,7 @@ public class BoomerangThrow : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player") && coming)
-        {
+        {   
             isFlying = false;
             coming = false;
             going = false;
@@ -163,7 +175,7 @@ public class BoomerangThrow : MonoBehaviour
             distance = minDistance;
             _boxCollider.enabled = false;
             _spriteRenderer.enabled = false;
-            
+            canThrow = true;
         }
     }
     private void OnDrawGizmos()
