@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
 
     //ROAMING       
     protected Vector2 roamingRandomPoint;
-    protected float maxRoamingPointDistance = 2;
+    protected float maxRoamingPointDistance = 5;
 
     //CHASING    
     public float startChasingRange;
@@ -27,32 +27,9 @@ public class Enemy : MonoBehaviour
     public float knockbackForce;
 
     protected bool isRoaming = true;
+    protected bool isChasing = false;
 
-
-    void Update()
-    {
-        FlipX();
-        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-
-        if(distanceToPlayer < startChasingRange) 
-        {
-            isRoaming = false;
-        }
-        else if(distanceToPlayer > stopChasingRange)
-        {
-            isRoaming = true;   
-        }
-        if(isRoaming)
-        {
-            Roaming();
-        }
-        else
-        {
-            Chasing();
-        }
-        
-
-    }
+  
     public virtual void Movement()
     {
 
@@ -74,7 +51,7 @@ public class Enemy : MonoBehaviour
         Vector2 kbForce = dir.normalized * knockbackForce;
         rb2D.AddForce(kbForce, ForceMode2D.Impulse);
     }
-    
+
     public void SetNewRoamingDestination()
     {
         roamingRandomPoint = new Vector2(
@@ -82,7 +59,7 @@ public class Enemy : MonoBehaviour
             UnityEngine.Random.Range(-maxRoamingPointDistance, maxRoamingPointDistance)
             );
     }
-    
+
     public void FlipX()
     {
         if (target.x > transform.position.x)
@@ -95,16 +72,18 @@ public class Enemy : MonoBehaviour
         }
 
     }
-    private void OnDrawGizmos()
+    public virtual void OnDrawGizmos()
     {
+        
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, startChasingRange);
-        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, startChasingRange);     
         Gizmos.DrawWireSphere(transform.position, stopChasingRange);
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(target, 0.4f);
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(roamingRandomPoint, 0.4f);
     }
+
+
 }
 

@@ -1,29 +1,52 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+
 
 public class SlimeIA : Enemy
 {
 
     private float jumpTimer = 0;
-    public float jumpForce;
+    public float moveForce;
     public float jumpForceMultiplier;
     public float waitToJumpSeconds;
     private float chasingJumpForce;
 
     bool setNewDest = false;
+    void Update()
+    {
+        FlipX();
+        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
+        if (distanceToPlayer < startChasingRange)
+        {
+            isRoaming = false;
+        }
+        else if (distanceToPlayer > stopChasingRange)
+        {
+            isRoaming = true;
+        }
+
+        if (isRoaming)
+        {
+            Roaming();
+        }
+        else
+        {
+            Chasing();
+        }
+
+
+    }
     private void Start()
     {
-        chasingJumpForce = jumpForce*jumpForceMultiplier;
+        chasingJumpForce = moveForce*jumpForceMultiplier;
     }
     public override void Movement()
     {
         Vector2 directionVector = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
-        Vector2 impulseForce = directionVector.normalized * jumpForce;
+        Vector2 impulseForce = directionVector.normalized * moveForce;
 
         jumpTimer += Time.deltaTime;
         if (jumpTimer > waitToJumpSeconds)
@@ -49,11 +72,13 @@ public class SlimeIA : Enemy
 
     public override void Chasing()
     {
-        jumpForce = chasingJumpForce;
+        moveForce = chasingJumpForce;
         target = player.transform.position;
         spriteRenderer.color = Color.red;
         
         Movement();
     }
+
+    
 
 }
