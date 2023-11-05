@@ -7,6 +7,7 @@ public class BoomerangThrow : MonoBehaviour
     private TargetJoint2D _targetJoint;
     private SpriteRenderer _spriteRenderer;
     private BoxCollider2D _boxCollider;
+    private TrailRenderer _trailRenderer;
 
     [SerializeField]
     GameObject source; //Player
@@ -19,10 +20,9 @@ public class BoomerangThrow : MonoBehaviour
     [SerializeField]
     float maxTimer = 3.0f;
     [SerializeField]
-    float timer;
-
+    float timer, timerTrail;
+    float maxTimerTrail = 0.1f;
    
-    private float currentLerpValue;
 
     [SerializeField]
     private float rotationSpeed,minDistance,maxDistance, distance, throwDuration;
@@ -42,6 +42,7 @@ public class BoomerangThrow : MonoBehaviour
         maxDistance = 8f;
         going = false;
         canThrow = true;
+        timerTrail = maxTimerTrail;
     }
 
     void Awake()
@@ -50,6 +51,7 @@ public class BoomerangThrow : MonoBehaviour
         _boxCollider = GetComponent<BoxCollider2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _missionModule = _particleSystem.emission;
+        _trailRenderer = GetComponent<TrailRenderer>();
     }   
     private void Update()
     {
@@ -72,6 +74,7 @@ public class BoomerangThrow : MonoBehaviour
         if(wantsToThrow && !isFlying && canThrow)
         {
            ThrowBoomerang();
+            timerTrail = maxTimerTrail;
             timer = maxTimer;
             wantsToThrow = false;
             going = true;
@@ -80,6 +83,9 @@ public class BoomerangThrow : MonoBehaviour
 
         if (isFlying)
         {
+            _trailRenderer.startWidth = 0.37f;
+
+            _trailRenderer.enabled = true;
             transform.Rotate(0f, 0f, rotationSpeed, Space.Self);
             if (going)
             {
@@ -105,6 +111,8 @@ public class BoomerangThrow : MonoBehaviour
             _missionModule.rateOverTime = 0;
             p0 = source.transform.position;
             _targetJoint.target = (Vector3)p0;
+            StayTrailRenderer();
+            
         }
     }
     void ThrowBoomerang()
@@ -115,11 +123,8 @@ public class BoomerangThrow : MonoBehaviour
         pAux = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         vectorDirection = (Vector2)pAux-p0;
         vectorDirection.Normalize();
-       vectorObjective = (vectorDirection) * distance + (Vector2)transform.position;
-        //if (Vector2.Distance(transform.position, vectorObjective) <= Vector2.Distance(transform.position, pAux))
-            p2 = vectorObjective;
-       // else
-        //    p2 = pAux;
+        vectorObjective = (vectorDirection) * distance + (Vector2)transform.position;
+        p2 = vectorObjective;
         Debug.Log(p0 + " " + pAux);
         isFlying = true;
         Debug.Log(p2);
@@ -154,6 +159,15 @@ public class BoomerangThrow : MonoBehaviour
         }
         else
             coming = true;
+    }
+    void StayTrailRenderer()
+    {
+        if (timerTrail >= 0f)
+        {
+            timerTrail -= Time.deltaTime;
+        }
+        else
+            _trailRenderer.startWidth = 0;
     }
 
     void Coming ()
