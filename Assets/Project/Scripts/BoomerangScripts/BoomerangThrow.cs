@@ -8,6 +8,7 @@ public class BoomerangThrow : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private BoxCollider2D _boxCollider;
     private TrailRenderer _trailRenderer;
+    private LineRenderer _lineRenderer;
 
     [SerializeField]
     GameObject source; //Player
@@ -47,6 +48,7 @@ public class BoomerangThrow : MonoBehaviour
 
     void Awake()
     {
+        _lineRenderer = GetComponent<LineRenderer>();       
         _targetJoint = GetComponent<TargetJoint2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -55,6 +57,8 @@ public class BoomerangThrow : MonoBehaviour
     }   
     private void Update()
     {
+        CalculateThrow();
+        ShowTrayectoryLine();
         MouseManager();
         if(mouseHold) 
         {
@@ -115,16 +119,20 @@ public class BoomerangThrow : MonoBehaviour
             
         }
     }
+    void CalculateThrow()
+    {
+        p0 = transform.position; // 5,5         
+        pAux = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        vectorDirection = (Vector2)pAux - p0;
+        vectorDirection.Normalize();
+        vectorObjective = (vectorDirection) * distance + (Vector2)transform.position;
+        p2 = vectorObjective;
+    }
     void ThrowBoomerang()
     {
         canThrow = false;
         rightMouse = false;
-        p0 = transform.position; // 5,5         
-        pAux = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        vectorDirection = (Vector2)pAux-p0;
-        vectorDirection.Normalize();
-        vectorObjective = (vectorDirection) * distance + (Vector2)transform.position;
-        p2 = vectorObjective;
+        
         Debug.Log(p0 + " " + pAux);
         isFlying = true;
         Debug.Log(p2);
@@ -144,6 +152,20 @@ public class BoomerangThrow : MonoBehaviour
         }
     }    
 
+    void ShowTrayectoryLine()
+    {
+        if (mouseHold)
+        {
+            
+            _lineRenderer.enabled = true;
+            _lineRenderer.positionCount = 2;
+            _lineRenderer.SetPosition(0, transform.position);
+            _lineRenderer.SetPosition(1, vectorObjective);
+        }
+        else
+            _lineRenderer.enabled = false;
+
+    }
     void Going()
     {       
         Vector3 finalPos = Vector3.Lerp(p0, p2, throwDuration);
