@@ -31,7 +31,7 @@ public class BoomerangThrow : MonoBehaviour
 
     [SerializeField]
     private bool coming, wantsToThrow,  going, mouseHold, rightMouse, canThrow;
-    public bool isFlying;
+    public bool isFlying, isFire;
 
     [SerializeField]
     Vector2 p0, p2, pAux, vectorDirection, vectorObjective;
@@ -44,6 +44,7 @@ public class BoomerangThrow : MonoBehaviour
         going = false;
         canThrow = true;
         timerTrail = maxTimerTrail;
+        isFire = false;
     }
 
     void Awake()
@@ -212,6 +213,15 @@ public class BoomerangThrow : MonoBehaviour
             _boxCollider.enabled = false;
             _spriteRenderer.enabled = false;
             canThrow = true;
+            isFire = false;
+        }
+
+        if(collision.gameObject.TryGetComponent<Torch>(out Torch torch))
+        {
+            if (torch.torchActive)
+                isFire = true;    
+            else if (!torch.torchActive && isFire)
+                torch.torchActive = true;
         }
     }
     private void OnDrawGizmos()
