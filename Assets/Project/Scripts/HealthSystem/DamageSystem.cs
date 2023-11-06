@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DamageSystem : MonoBehaviour
@@ -11,6 +12,12 @@ public class DamageSystem : MonoBehaviour
         if (collision.gameObject.TryGetComponent<HealthSystem>(out HealthSystem hs))
         {
             hs.GetDamage(dmg);
+
+            if(collision.gameObject.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs) && collision.tag.Equals("Player") && this.tag != "Boomerang")
+            {
+                phs.deleteHeart(phs.counter);
+                phs.counter++;
+            }
         }
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
         {

@@ -10,8 +10,6 @@ public class RespawnSystem : MonoBehaviour
    public Vector2 checkpointPos1;
     PlayerHealthSystem _healthSystem;
 
-
-
     private void Start()
     {
         checkpointPos1 = transform.position;    
@@ -23,7 +21,7 @@ public class RespawnSystem : MonoBehaviour
     }
     public void OnDeath ()   
     {
-        Invoke("Respawn", 1f);
+        Invoke("Respawn", 0f);
     }
   public void  Respawn()    
     {
