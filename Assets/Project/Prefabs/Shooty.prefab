@@ -173,15 +173,16 @@ MonoBehaviour:
   stopChasingRange: 11.5
   knockbackForce: 20
   moveForce: 2
-  roamingMoveForce: 2
+  roamingMoveForce: 3
   timeToStop: 6
   timeStoped: 1
   newDestTime: 3
   chasingForceMultiplier: 2
+  aimingTime: 1
   enemyBullet: {fileID: 8740438523283609490, guid: 192ecb6623fbab7438f6bb9073b6799d, type: 3}
-  bulletPerSecond: 1
   startShootingRange: 8
   stopShootingRange: 9
+  reloadingTime: 1
 --- !u!114 &1524458598854764256
 MonoBehaviour:
   m_ObjectHideFlags: 0

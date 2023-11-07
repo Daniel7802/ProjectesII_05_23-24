@@ -28,17 +28,17 @@ public class ShootyIA : Enemy
     //aiming
     private LineRenderer lineRenderer;
     private float lineTimer = 0f;
+    public float aimingTime = 1f;
 
     //shooting
     public GameObject enemyBullet;
     private AudioSource source;
-
-    private float shootTimer = 0;
-    public float bulletPerSecond = 1f;
-    float bulletFrequency;
-
     public float startShootingRange;
     public float stopShootingRange;
+    
+    //reloading
+    private float reloadingTimer = 0;
+    public float reloadingTime = 1f;
 
     private void Awake()
     {
@@ -48,7 +48,7 @@ public class ShootyIA : Enemy
     private void Start()
     {
         chasingMoveForce = moveForce * chasingForceMultiplier;
-        bulletFrequency = 1f / bulletPerSecond;
+       
     }
     private void Update()
     {
@@ -58,45 +58,68 @@ public class ShootyIA : Enemy
         switch (currentState)
         {
             case 0:
-                Roaming();
+
                 if (distanceToPlayer < startChasingRange)
                 {
                     currentState = 1;
                 }
+                else
+                {
+                    Roaming();
+                }
                 break;
+
             case 1:
-                Chasing();
+
                 if (distanceToPlayer > stopChasingRange)
                 {
                     currentState = 0;
                 }
-                if (distanceToPlayer < startShootingRange)
+                else if (distanceToPlayer < startShootingRange)
                 {
                     currentState = 2;
-                    //lineTimer = 0f;
+                }
+                else
+                {
+                    Chasing();
                 }
                 break;
 
             case 2:
-                Aiming();
-
-                break;
-
-            case 3:
-
-                Shooting();
-                if (distanceToPlayer < startShootingRange)
+                if (lineTimer < aimingTime)
                 {
-
-                    currentState = 2;
-
+                    Aiming();                    
+                    lineTimer += Time.deltaTime;
                 }
                 else
                 {
-                    currentState = 1;
+                    lineRenderer.enabled = false;
+                    currentState = 3;
                 }
-
                 break;
+
+            case 3:                
+                Shooting();
+                reloadingTimer = 0;
+                currentState = 4;
+                break;
+
+            case 4:
+                lineTimer = 0;
+                reloadingTimer += Time.deltaTime;
+                if (reloadingTimer > reloadingTime)
+                {
+                    if (distanceToPlayer < startShootingRange)
+                    {                        
+                        currentState = 2;
+                    }
+                    else
+                    {
+                        currentState = 1;
+                    }
+                }
+                break;
+
         }
 
     }
@@ -150,41 +173,19 @@ public class ShootyIA : Enemy
 
     public override void Chasing()
     {
-        //lineRenderer.enabled = false;
         moveForce = chasingMoveForce;
         target = player.transform.position;
         spriteRenderer.color = Color.red;
-
         Movement();
     }
     void Aiming()
     {
-        if (lineTimer < 2)
-        {
-            ShowTrayectoryLine();
-            lineTimer += Time.deltaTime;
-        }
-        else
-        {
-            lineRenderer.enabled = false;
-            currentState = 3;
-        }
+        ShowTrayectoryLine();
     }
     void Shooting()
     {
         target = player.transform.position;
-
-        if (shootTimer == 0)
-        {
-            ShootOneBullet();
-
-        }
-        shootTimer += Time.deltaTime;
-        if (shootTimer > bulletFrequency)
-        {
-
-            shootTimer = 0;
-        }
+        ShootOneBullet(); 
     }
     void ShootOneBullet()
     {
@@ -201,6 +202,8 @@ public class ShootyIA : Enemy
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, player.transform.position);
+      
+
     }
     public override void OnDrawGizmos()
     {
