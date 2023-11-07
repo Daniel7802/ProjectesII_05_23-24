@@ -7,18 +7,23 @@ public class DestructionEvent : MonoBehaviour
     [SerializeField]
     private GameObject _dropObject;
 
-    Renderer _renderer;
+    SpriteRenderer _renderer;
     Collider2D _collider2D;
 
+    Vector3 _position;
     private void Awake()
     {
-        _renderer = GetComponent<Renderer>();
+        _renderer = GetComponent<SpriteRenderer>();
         _collider2D = GetComponent<Collider2D>();
     }
-    public void Destroy()
+    private void Update()
     {
+        _position = transform.position;   
+    }
+    public void DestroyItem()
+    {
+        Instantiate(_dropObject,_position, Quaternion.identity);
         _renderer.enabled = false;
         _collider2D.enabled = false;        
-        Instantiate(_dropObject);
     }
 }
