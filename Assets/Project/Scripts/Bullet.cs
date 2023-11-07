@@ -6,7 +6,8 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 20f;
 
-    [SerializeField] private Rigidbody2D rb2D;
+    [SerializeField] private Rigidbody2D rb2D;   
+
 
     private void FixedUpdate()
     {

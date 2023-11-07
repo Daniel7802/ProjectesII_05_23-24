@@ -22,7 +22,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8870839314884930740
 Transform:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ MonoBehaviour:
   startChasingRange: 4
   stopChasingRange: 8
   knockbackForce: 20
-  jumpForce: 20
+  moveForce: 4
   jumpForceMultiplier: 2
   waitToJumpSeconds: 1.5
 --- !u!114 &5632528206900676268
@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73ab9022abd20a45856f8dedfe21125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dmg: 0
 --- !u!114 &2707491842313605938
 MonoBehaviour:
   m_ObjectHideFlags: 0

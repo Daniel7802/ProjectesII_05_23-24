@@ -25,15 +25,26 @@ public class ShootyIA : Enemy
     public float chasingForceMultiplier;
     private float chasingMoveForce;
 
+    //aiming
+    private LineRenderer lineRenderer;
+    private float lineTimer = 0f;
+
     //shooting
     public GameObject enemyBullet;
+    private AudioSource source;
+
+    private float shootTimer = 0;
     public float bulletPerSecond = 1f;
     float bulletFrequency;
-    private bool isShoting = false;
+
     public float startShootingRange;
     public float stopShootingRange;
-    private float shootingTimer = 0;
 
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>();
+        lineRenderer = GetComponent<LineRenderer>();
+    }
     private void Start()
     {
         chasingMoveForce = moveForce * chasingForceMultiplier;
@@ -44,46 +55,49 @@ public class ShootyIA : Enemy
         FlipX();
         distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
-        if (distanceToPlayer < startChasingRange)
+        switch (currentState)
         {
-            isRoaming = false;
-            isChasing = true;
-            if (distanceToPlayer < startShootingRange)
-            {
-                isRoaming = false;
-                isChasing = false;
-                isShoting = true;
+            case 0:
+                Roaming();
+                if (distanceToPlayer < startChasingRange)
+                {
+                    currentState = 1;
+                }
+                break;
+            case 1:
+                Chasing();
+                if (distanceToPlayer > stopChasingRange)
+                {
+                    currentState = 0;
+                }
+                if (distanceToPlayer < startShootingRange)
+                {
+                    currentState = 2;
+                    //lineTimer = 0f;
+                }
+                break;
 
-            }
-            if (distanceToPlayer > stopShootingRange)
-            {
+            case 2:
+                Aiming();
 
-                isShoting = false;
-                isRoaming = false;
-                isChasing = true;
-            }
+                break;
+
+            case 3:
+
+                Shooting();
+                if (distanceToPlayer < startShootingRange)
+                {
+
+                    currentState = 2;
+
+                }
+                else
+                {
+                    currentState = 1;
+                }
+
+                break;
         }
-        else if (distanceToPlayer > stopChasingRange)
-        {
-            isRoaming = true;
-            isChasing = false;
-        }
-
-        if (isRoaming)
-        {
-            Roaming();
-        }
-        else if (isChasing)
-        {
-            Chasing();
-        }
-        else if (isShoting)
-        {
-            Shooting();
-        }
-
-
-
 
     }
     public override void Movement()
@@ -136,27 +150,57 @@ public class ShootyIA : Enemy
 
     public override void Chasing()
     {
+        //lineRenderer.enabled = false;
         moveForce = chasingMoveForce;
         target = player.transform.position;
         spriteRenderer.color = Color.red;
 
         Movement();
     }
+    void Aiming()
+    {
+        if (lineTimer < 2)
+        {
+            ShowTrayectoryLine();
+            lineTimer += Time.deltaTime;
+        }
+        else
+        {
+            lineRenderer.enabled = false;
+            currentState = 3;
+        }
+    }
     void Shooting()
     {
-        shootingTimer += Time.deltaTime;
-        if (shootingTimer > bulletFrequency)
+        target = player.transform.position;
+
+        if (shootTimer == 0)
         {
             ShootOneBullet();
-            shootingTimer = 0;
+
+        }
+        shootTimer += Time.deltaTime;
+        if (shootTimer > bulletFrequency)
+        {
+
+            shootTimer = 0;
         }
     }
     void ShootOneBullet()
     {
+        source.PlayOneShot(source.clip);
         Vector2 dir = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
         GameObject bullet = Instantiate(enemyBullet);
         bullet.transform.position = transform.position;
         bullet.transform.right = dir;
+    }
+
+    void ShowTrayectoryLine()
+    {
+        lineRenderer.enabled = true;
+        lineRenderer.positionCount = 2;
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, player.transform.position);
     }
     public override void OnDrawGizmos()
     {

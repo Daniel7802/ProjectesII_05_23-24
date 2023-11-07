@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     //public Animator animator;
 
+    protected int currentState = 0;
+
     protected float distanceToPlayer;
 
     protected Vector2 target;
