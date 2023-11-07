@@ -6,44 +6,51 @@ using UnityEngine;
 
 public class SlimeIA : Enemy
 {
-
-    private float jumpTimer = 0;
-    private float moveForce;
-    public float roamingForce;
-    public float jumpForceMultiplier;
+    //movement   
     public float waitToJumpSeconds;
-    private float chasingJumpForce;
+    private float jumpTimer = 0f;
+    private float moveForce;
 
+    //roaming
+    public float roamingForce;
     bool setNewDest = false;
+
+    //chasing    
+    public float chasingJumpForce;
+
     void Update()
     {
         FlipX();
         distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
-        if (distanceToPlayer < startChasingRange)
+        switch (currentState)
         {
-            isRoaming = false;
+            case 0:
+                
+                if (distanceToPlayer < startChasingRange)
+                {
+                    currentState = 1;
+                }
+                else
+                {
+                    Roaming();
+                }
+                break;
+            case 1:
+                
+                if (distanceToPlayer > stopChasingRange)
+                {
+                    currentState = 0;
+                }
+                else
+                {
+                    Chasing();
+                }
+                break;           
+        
         }
-        else if (distanceToPlayer > stopChasingRange)
-        {
-            isRoaming = true;
-        }
-
-        if (isRoaming)
-        {
-            Roaming();
-        }
-        else
-        {
-            Chasing();
-        }
-
-
     }
-    private void Start()
-    {
-        chasingJumpForce = moveForce*jumpForceMultiplier;
-    }
+   
     public override void Movement()
     {
         Vector2 directionVector = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
@@ -52,6 +59,7 @@ public class SlimeIA : Enemy
         jumpTimer += Time.deltaTime;
         if (jumpTimer > waitToJumpSeconds)
         {
+            //animator.SetBool("jump", true);
             rb2D.AddForce(impulseForce, ForceMode2D.Impulse);
             setNewDest = true;
             jumpTimer = 0;
@@ -71,16 +79,12 @@ public class SlimeIA : Enemy
         }
     }
 
-
     public override void Chasing()
     {
         moveForce = chasingJumpForce;
         target = player.transform.position;
         spriteRenderer.color = Color.red;
-        
         Movement();
     }
-
-    
 
 }

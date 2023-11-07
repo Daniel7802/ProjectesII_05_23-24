@@ -123,6 +123,32 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &366854993 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1768630766616490778, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
+  m_PrefabInstance: {fileID: 2260891466756585582}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &366855002
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366854993}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3da26ce5563fc2b49aa58f411edcf380, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &634856725
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,11 +304,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.32
+      value: -12.94
       objectReference: {fileID: 0}
     - target: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.45
+      value: -0.24
       objectReference: {fileID: 0}
     - target: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: m_LocalPosition.z
@@ -407,10 +433,34 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2090466368601933057, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
+      propertyPath: m_LinearDrag
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5409575842966737851, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1890830395}
+    - target: {fileID: 5409575842966737851, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 366855002}
+    - target: {fileID: 5409575842966737851, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
+      propertyPath: roamingForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5409575842966737851, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
+      propertyPath: chasingJumpForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5409575842966737851, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
+      propertyPath: stopChasingRange
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5409575842966737851, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
+      propertyPath: waitToJumpSeconds
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5593360346023233113, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -458,7 +508,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1768630766616490778, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 366855002}
   m_SourcePrefab: {fileID: 100100000, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
 --- !u!1001 &9113109995791950954
 PrefabInstance:

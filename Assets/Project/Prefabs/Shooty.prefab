@@ -18,13 +18,14 @@ GameObject:
   - component: {fileID: 2516475505422947278}
   - component: {fileID: 8543429425438343230}
   - component: {fileID: 2775488161986300458}
+  - component: {fileID: 4428147445117597524}
   m_Layer: 0
   m_Name: Shooty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5855127542648345499
 Transform:
   m_ObjectHideFlags: 0
@@ -38,7 +39,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1473685859198301395
 SpriteRenderer:
@@ -169,16 +170,16 @@ MonoBehaviour:
   player: {fileID: 0}
   rb2D: {fileID: 2447013554959318574}
   spriteRenderer: {fileID: 1473685859198301395}
+  animator: {fileID: 4428147445117597524}
   startChasingRange: 10
   stopChasingRange: 11.5
   knockbackForce: 20
-  moveForce: 2
   roamingMoveForce: 3
   timeToStop: 6
   timeStoped: 1
   newDestTime: 3
-  chasingForceMultiplier: 2
-  aimingTime: 1
+  chasingMoveForce: 6
+  aimingTime: 0.8
   enemyBullet: {fileID: 8740438523283609490, guid: 192ecb6623fbab7438f6bb9073b6799d, type: 3}
   startShootingRange: 8
   stopShootingRange: 9
@@ -421,3 +422,24 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!95 &4428147445117597524
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2285647051765586022}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c70a513490ddd564f8243b7e345a3644, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
