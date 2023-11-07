@@ -62,9 +62,7 @@ public class BoomerangThrow : MonoBehaviour
         ShowTrayectoryLine();
         MouseManager();
         if(mouseHold) 
-        {
-            _boxCollider.enabled = true;
-            _spriteRenderer.enabled = true;
+        {            
             transform.position = source.transform.position;
             if(distance <= maxDistance)
             distance += Time.deltaTime * 4;
@@ -88,6 +86,8 @@ public class BoomerangThrow : MonoBehaviour
 
         if (isFlying)
         {
+            _boxCollider.enabled = true;
+            _spriteRenderer.enabled = true;
             _trailRenderer.startWidth = 0.37f;
 
             _trailRenderer.enabled = true;
@@ -226,6 +226,15 @@ public class BoomerangThrow : MonoBehaviour
                 isFire = true;    
             else if (!torch.torchActive && isFire)
                 torch.torchActive = true;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag.Equals("Wall"))
+        {
+            coming = true;
+            going = false;     
         }
     }
     private void OnDrawGizmos()
