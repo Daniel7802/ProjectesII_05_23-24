@@ -10,10 +10,9 @@ public class ShootyIA : Enemy
 
     //roaming
     public float roamingMoveForce;
-
     private bool isStoped = false;
-    private float timerToStop = 0;
-    private float timerStoped = 0;
+    private float timerToStop = 0f;
+    private float timerStoped = 0f;
     public float timeToStop;
     public float timeStoped;
 
@@ -21,14 +20,13 @@ public class ShootyIA : Enemy
     public float newDestTime;
     private float newDestTimer = 0f;
 
-    //chasing
-    public float chasingForceMultiplier;
-    private float chasingMoveForce;
+    //chasing   
+    public float chasingMoveForce;
 
     //aiming
     private LineRenderer lineRenderer;
     private float lineTimer = 0f;
-    public float aimingTime = 1f;
+    public float aimingTime;
 
     //shooting
     public GameObject enemyBullet;
@@ -37,19 +35,15 @@ public class ShootyIA : Enemy
     public float stopShootingRange;
     
     //reloading
-    private float reloadingTimer = 0;
-    public float reloadingTime = 1f;
+    private float reloadingTimer = 0f;
+    public float reloadingTime;
 
     private void Awake()
     {
         source = GetComponent<AudioSource>();
         lineRenderer = GetComponent<LineRenderer>();
     }
-    private void Start()
-    {
-        chasingMoveForce = moveForce * chasingForceMultiplier;
-       
-    }
+    
     private void Update()
     {
         FlipX();
@@ -88,6 +82,7 @@ public class ShootyIA : Enemy
             case 2:
                 if (lineTimer < aimingTime)
                 {
+                    animator.SetBool("walk", false);
                     Aiming();                    
                     lineTimer += Time.deltaTime;
                 }
@@ -125,6 +120,8 @@ public class ShootyIA : Enemy
     }
     public override void Movement()
     {
+        animator.SetBool("walk", true);
+        
         Vector2 directionVector = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
         Vector2 impulseForce = directionVector.normalized * moveForce;
 
@@ -145,7 +142,8 @@ public class ShootyIA : Enemy
                 setNewDest = true;
                 newDestTimer = 0;
             }
-            if (transform.position.x == target.x && transform.position.y == target.y)
+            
+            if (Vector2.Distance(transform.position,target)<1)
             {
                 setNewDest = true;
             }
@@ -155,6 +153,7 @@ public class ShootyIA : Enemy
         if (timerToStop > timeToStop)
         {
             isStoped = true;
+            animator.SetBool("walk", false);
             timerStoped += Time.deltaTime;
             if (timerStoped > timeStoped)
             {

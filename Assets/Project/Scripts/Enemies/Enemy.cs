@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     public GameObject player;
     public Rigidbody2D rb2D;
     public SpriteRenderer spriteRenderer;
-    //public Animator animator;
+    public Animator animator;
 
     protected int currentState = 0;
 
@@ -27,10 +27,6 @@ public class Enemy : MonoBehaviour
     public float stopChasingRange;
 
     public float knockbackForce;
-
-    protected bool isRoaming = true;
-    protected bool isChasing = false;
-
   
     public virtual void Movement()
     {
