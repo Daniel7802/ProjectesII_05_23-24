@@ -4843,10 +4843,10 @@ GameObject:
   - component: {fileID: 834128419509678674}
   - component: {fileID: 5571366169532171668}
   - component: {fileID: 2209296374895112534}
-  - component: {fileID: 5931159806163958650}
   - component: {fileID: 3102325548376885726}
   - component: {fileID: 1166704588033831266}
   - component: {fileID: 2884717200038956989}
+  - component: {fileID: 1774424976278825640}
   m_Layer: 0
   m_Name: Boomerang
   m_TagString: Untagged
@@ -4868,7 +4868,7 @@ Transform:
   m_Children:
   - {fileID: 1594947951844908562}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3897944622222715238
 SpriteRenderer:
@@ -4964,7 +4964,7 @@ TargetJoint2D:
   m_BreakTorque: Infinity
   m_BreakAction: 3
   m_Anchor: {x: 0, y: 0}
-  m_Target: {x: -5.39, y: 0.44999996}
+  m_Target: {x: -17.626698, y: -3.8809655}
   m_AutoConfigureTarget: 0
   m_MaxForce: 8000
   m_DampingRatio: 1
@@ -5062,19 +5062,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8418608, y: 0.94814813}
   m_EdgeRadius: 0
---- !u!114 &5931159806163958650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6657343719683139223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c73ab9022abd20a45856f8dedfe21125, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dmg: 0
 --- !u!96 &3102325548376885726
 TrailRenderer:
   serializedVersion: 3
@@ -5313,3 +5300,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1774424976278825640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6657343719683139223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986b05acc8a940b468467d51f73abeaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 1
