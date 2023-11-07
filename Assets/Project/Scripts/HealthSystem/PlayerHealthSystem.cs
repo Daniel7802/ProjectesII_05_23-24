@@ -4,25 +4,47 @@ using UnityEngine;
 
 public class PlayerHealthSystem : HealthSystem
 {
+    [SerializeField]
+    GameObject[] hearts;
+
+    public int counter;
+
     RespawnSystem _respawnSystem;
     // Start is called before the first frame update
     public override void Awake()
     {
         base.Awake();
         _respawnSystem = GetComponent<RespawnSystem>(); 
+        counter = 0;
     }
+
     public void Heal()
     {
-
+        addHeart(counter);
     }
 
     public void RespawnHeal()
     {
         health = MaxHealth;
+        counter = 0;
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            hearts[i].SetActive(true);
+        }
     }
 
     public override void DeadState ()
     {
         _respawnSystem.OnDeath();
+    }
+
+    public void deleteHeart(int index)
+    {
+        hearts[index].SetActive(false);
+    }
+    public void addHeart(int index)
+    {
+        hearts[index].SetActive(true);
+        counter--;
     }
 }
