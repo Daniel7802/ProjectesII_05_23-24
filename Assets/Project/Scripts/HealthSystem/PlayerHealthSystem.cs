@@ -9,6 +9,9 @@ public class PlayerHealthSystem : HealthSystem
 
     public int counter;
 
+    public bool isInvincible = false;
+    private float timer = 1f;
+
     RespawnSystem _respawnSystem;
     // Start is called before the first frame update
     public override void Awake()
@@ -16,6 +19,22 @@ public class PlayerHealthSystem : HealthSystem
         base.Awake();
         _respawnSystem = GetComponent<RespawnSystem>(); 
         counter = 0;
+    }
+
+    public void Update()
+    {
+        if(isInvincible)
+        {
+            timer -= Time.deltaTime;
+
+            if(timer <= 0)
+            {
+                timer = 1f;
+                isInvincible = false;
+            }
+        }
+
+        Debug.Log(isInvincible);
     }
 
     public void Heal()
@@ -31,6 +50,11 @@ public class PlayerHealthSystem : HealthSystem
         {
             hearts[i].SetActive(true);
         }
+    }
+
+    public void turnInvincible()
+    {
+        isInvincible = true;
     }
 
     public override void DeadState ()
