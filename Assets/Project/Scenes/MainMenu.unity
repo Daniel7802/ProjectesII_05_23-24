@@ -1696,6 +1696,39 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c296a5b02a2e47d4b8af58e275b232e2, type: 3}
+--- !u!114 &3635239335102319489 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1497057929137144167, guid: c296a5b02a2e47d4b8af58e275b232e2, type: 3}
+  m_PrefabInstance: {fileID: 3635239335102319488}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3635239335102319490 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1086733926113957262, guid: c296a5b02a2e47d4b8af58e275b232e2, type: 3}
+  m_PrefabInstance: {fileID: 3635239335102319488}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3635239335102319491 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1874208313063032313, guid: c296a5b02a2e47d4b8af58e275b232e2, type: 3}
+  m_PrefabInstance: {fileID: 3635239335102319488}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6260237159631333037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1821,10 +1854,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7222401274568205909, guid: 47371ae262d0a1144bce7dd9c6b40795, type: 3}
-      propertyPath: GameScene
-      value: TilemapTest
-      objectReference: {fileID: 0}
+    - target: {fileID: 6202113185682732350, guid: 47371ae262d0a1144bce7dd9c6b40795, type: 3}
+      propertyPath: SFXSlider
+      value: 
+      objectReference: {fileID: 3635239335102319489}
+    - target: {fileID: 6202113185682732350, guid: 47371ae262d0a1144bce7dd9c6b40795, type: 3}
+      propertyPath: musicSlider
+      value: 
+      objectReference: {fileID: 3635239335102319490}
+    - target: {fileID: 6202113185682732350, guid: 47371ae262d0a1144bce7dd9c6b40795, type: 3}
+      propertyPath: masterSlider
+      value: 
+      objectReference: {fileID: 3635239335102319491}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
