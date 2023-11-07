@@ -18,7 +18,7 @@ public class HealthSystem : MonoBehaviour
         health = MaxHealth;
     }
     public void GetDamage( int amount)
-   {
+    {
         health -=amount;
 
         if(health <= 0)
@@ -26,7 +26,7 @@ public class HealthSystem : MonoBehaviour
             health = 0;
             DeadState();
         }
-   }
+    }
 
     public virtual void DeadState() 
     {
