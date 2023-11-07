@@ -8,7 +8,8 @@ public class SlimeIA : Enemy
 {
 
     private float jumpTimer = 0;
-    public float moveForce;
+    private float moveForce;
+    public float roamingForce;
     public float jumpForceMultiplier;
     public float waitToJumpSeconds;
     private float chasingJumpForce;
@@ -59,6 +60,7 @@ public class SlimeIA : Enemy
 
     public override void Roaming()
     {
+        moveForce = roamingForce;
         target = roamingRandomPoint;
         spriteRenderer.color = Color.white;
         Movement();

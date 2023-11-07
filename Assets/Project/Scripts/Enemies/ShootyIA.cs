@@ -6,7 +6,7 @@ using static Unity.VisualScripting.Member;
 public class ShootyIA : Enemy
 {
 
-    public float moveForce;
+    private float moveForce;
 
     //roaming
     public float roamingMoveForce;
