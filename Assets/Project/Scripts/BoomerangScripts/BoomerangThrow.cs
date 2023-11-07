@@ -168,7 +168,7 @@ public class BoomerangThrow : MonoBehaviour
 
     }
     void Going()
-    {       
+    {
         Vector3 finalPos = Vector3.Lerp(p0, p2, throwDuration);
         _targetJoint.anchor = Vector3.zero;
         _targetJoint.target = finalPos;
@@ -176,8 +176,12 @@ public class BoomerangThrow : MonoBehaviour
 
     void Staying()
     {
-        if (timer >= 0f && rightMouse == false)
+        going = false;
+        if (timer >= 0f)
         {
+            if(timer < maxTimer -0.2f && rightMouse == true)
+                coming  = true;
+
             timer -= Time.deltaTime;           
         }
         else
