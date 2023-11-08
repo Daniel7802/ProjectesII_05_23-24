@@ -10,6 +10,7 @@ public class SlimeIA : Enemy
     public float waitToJumpSeconds;
     private float jumpTimer = 0f;
     private float moveForce;
+    float velocityMagnitudeToLand = 1f;
 
     //roaming
     public float roamingForce;
@@ -26,7 +27,7 @@ public class SlimeIA : Enemy
         switch (currentState)
         {
             case 0:
-                
+
                 if (distanceToPlayer < startChasingRange)
                 {
                     currentState = 1;
@@ -37,7 +38,7 @@ public class SlimeIA : Enemy
                 }
                 break;
             case 1:
-                
+
                 if (distanceToPlayer > stopChasingRange)
                 {
                     currentState = 0;
@@ -46,11 +47,22 @@ public class SlimeIA : Enemy
                 {
                     Chasing();
                 }
-                break;           
-        
+                break;
+
         }
+        
+        if ((rb2D.velocity.magnitude<velocityMagnitudeToLand))
+        {
+            animator.SetBool("jump", false);
+
+        }
+        else
+        {
+            animator.SetBool("jump", true);
+        }
+        
     }
-   
+
     public override void Movement()
     {
         Vector2 directionVector = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
@@ -59,7 +71,7 @@ public class SlimeIA : Enemy
         jumpTimer += Time.deltaTime;
         if (jumpTimer > waitToJumpSeconds)
         {
-            //animator.SetBool("jump", true);
+
             rb2D.AddForce(impulseForce, ForceMode2D.Impulse);
             setNewDest = true;
             jumpTimer = 0;
