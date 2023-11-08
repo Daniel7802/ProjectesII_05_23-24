@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class CollectableSystem : MonoBehaviour
 {
-    public GameObject player;
+    public GameObject target;
     private Rigidbody2D rb2D;
     protected float distanceToPlayer;
     public float speed;
+    [SerializeField]
+    bool distance;
 
     public float collectingRange = 3f;
     private void Start()
@@ -16,22 +18,23 @@ public class CollectableSystem : MonoBehaviour
     }
     private void Update()
     {
-        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        distanceToPlayer = Vector2.Distance(transform.position, target.transform.position);
         if (distanceToPlayer < collectingRange)
         {
-            Vector2 directionVector = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
+            distance = true;
+            Vector2 directionVector = new Vector2(target.transform.position.x - transform.position.x, target.transform.position.y - transform.position.y);
             Vector2 impulseForce = directionVector.normalized * speed;
 
             rb2D.AddForce(impulseForce);
         }
-        
-        
+
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
@@ -40,4 +43,9 @@ public class CollectableSystem : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, collectingRange);
     }
-}
+
+    public void SetTargetPosition(GameObject gm)
+    {
+        target = gm;
+    }
+   }
