@@ -12,7 +12,7 @@ public class BoomerangThrow : MonoBehaviour
     private AudioSource _audioSource;
 
     public AudioClip goingSound;
-    
+
 
     [SerializeField]
     GameObject source; //Player
@@ -78,7 +78,7 @@ public class BoomerangThrow : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             rightMouse = true;
-            if(isFlying&&!going) { _audioSource.PlayOneShot(goingSound); }
+            if (isFlying && !going) { _audioSource.PlayOneShot(goingSound); }
         }
     }
     private void FixedUpdate()
@@ -199,7 +199,7 @@ public class BoomerangThrow : MonoBehaviour
             _audioSource.PlayOneShot(goingSound);
             coming = true;
         }
-           
+
     }
     void StayTrailRenderer()
     {
@@ -213,7 +213,7 @@ public class BoomerangThrow : MonoBehaviour
 
     void Coming()
     {
-       
+
         p0 = source.transform.position;
         Vector2 comingPosition = Vector2.Lerp(p2, p0, throwDuration);
         _targetJoint.anchor = Vector3.zero;
@@ -256,7 +256,7 @@ public class BoomerangThrow : MonoBehaviour
             coming = true;
             going = false;
         }
-        
+
 
     }
     private void OnDrawGizmos()
