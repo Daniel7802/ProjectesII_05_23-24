@@ -33,13 +33,11 @@ public class PlayerHealthSystem : HealthSystem
                 isInvincible = false;
             }
         }
-
-        Debug.Log(isInvincible);
     }
 
     public void Heal()
     {
-        addHeart(counter);
+        addHeart();
     }
 
     public void RespawnHeal()
@@ -66,9 +64,9 @@ public class PlayerHealthSystem : HealthSystem
     {
         hearts[index].SetActive(false);
     }
-    public void addHeart(int index)
+    public void addHeart()
     {
-        hearts[index].SetActive(true);
         counter--;
+        hearts[counter].SetActive(true);
     }
 }

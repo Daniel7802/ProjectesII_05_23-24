@@ -23,8 +23,7 @@ public class DestructionEvent : MonoBehaviour
         _position = transform.position;   
     }
     public void DestroyItem()
-    {
-        
+    { 
         GameObject heart = Instantiate(_dropObject,_position, Quaternion.identity);
         heart.GetComponent<CollectableSystem>().SetTargetPosition(player);
 
