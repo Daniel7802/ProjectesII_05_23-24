@@ -10,6 +10,8 @@ public class DestructionEvent : MonoBehaviour
     SpriteRenderer _renderer;
     Collider2D _collider2D;
 
+    public GameObject player;
+
     Vector3 _position;
     private void Awake()
     {
@@ -22,7 +24,10 @@ public class DestructionEvent : MonoBehaviour
     }
     public void DestroyItem()
     {
-        Instantiate(_dropObject,_position, Quaternion.identity);
+        
+        GameObject heart = Instantiate(_dropObject,_position, Quaternion.identity);
+        heart.GetComponent<CollectableSystem>().SetTargetPosition(player);
+
         _renderer.enabled = false;
         _collider2D.enabled = false;        
     }
