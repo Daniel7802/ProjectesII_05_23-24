@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float speed = 10f;
 
+    [SerializeField]
+    BoomerangThrow _boomerangThrow;
+
     private Rigidbody2D playerRb;
     private Animator playerAnimator;
 
@@ -26,7 +29,9 @@ public class PlayerMovement : MonoBehaviour
     private bool rollCoolDown = false;
 
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+    }
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
@@ -40,7 +45,16 @@ public class PlayerMovement : MonoBehaviour
         moveX = Input.GetAxisRaw("Horizontal");
         moveY = Input.GetAxisRaw("Vertical");
 
-        if(Input.GetKeyDown(KeyCode.Space) && !isRolling && !rollCoolDown)
+        if(_boomerangThrow.mouseHold)
+        {
+            speed = 60f;
+        }
+        else
+        {
+            speed = 90f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && !isRolling && !rollCoolDown && !_boomerangThrow.mouseHold)
         {
             isRolling = true;
             startTimer = true;

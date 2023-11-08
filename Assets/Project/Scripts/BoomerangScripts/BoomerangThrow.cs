@@ -10,12 +10,13 @@ public class BoomerangThrow : MonoBehaviour
     private TrailRenderer _trailRenderer;
     private LineRenderer _lineRenderer;
 
+
     [SerializeField]
     GameObject source; //Player
 
     [SerializeField]
-    private ParticleSystem _particleSystem;
-    private ParticleSystem.EmissionModule _missionModule;
+    private ParticleSystem _particleSystemFire;
+    private ParticleSystem.EmissionModule _missionModuleFire;
 
 
     [SerializeField]
@@ -30,8 +31,8 @@ public class BoomerangThrow : MonoBehaviour
     
 
     [SerializeField]
-    private bool coming, wantsToThrow,  going, mouseHold, rightMouse, canThrow;
-    public bool isFlying, isFire;
+    private bool coming, wantsToThrow,  going,  rightMouse, canThrow;
+    public bool isFlying, isFire, mouseHold;
 
     [SerializeField]
     Vector2 p0, p2, pAux, vectorDirection, vectorObjective;
@@ -53,11 +54,23 @@ public class BoomerangThrow : MonoBehaviour
         _targetJoint = GetComponent<TargetJoint2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _missionModule = _particleSystem.emission;
         _trailRenderer = GetComponent<TrailRenderer>();
+
+        _particleSystemFire = GetComponent<ParticleSystem>();
+
+        _missionModuleFire = _particleSystemFire.emission;
     }   
     private void Update()
     {
+
+        if(isFire)
+        {
+            _missionModuleFire.enabled = true;
+        }
+        else
+            _missionModuleFire.enabled = false;
+
+    
         CalculateThrow();
         ShowTrayectoryLine();
         MouseManager();
@@ -65,7 +78,7 @@ public class BoomerangThrow : MonoBehaviour
         {            
             transform.position = source.transform.position;
             if(distance <= maxDistance)
-            distance += Time.deltaTime * 4;
+            distance += Time.deltaTime * 6;
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -94,26 +107,22 @@ public class BoomerangThrow : MonoBehaviour
             transform.Rotate(0f, 0f, rotationSpeed, Space.Self);
             if (going)
             {
-                _missionModule.rateOverTime = 200;
                 Going();
                 going = false;
             }
 
             else if(!going && !coming)
             {
-                _missionModule.rateOverTime = 20;
                 Staying();
             }
 
             else if(coming)
             {
-                _missionModule.rateOverTime = 200;
                 Coming();              
             }
         }
         else
         {
-            _missionModule.rateOverTime = 0;
             p0 = source.transform.position;
             _targetJoint.target = (Vector3)p0;
             StayTrailRenderer();
@@ -207,7 +216,13 @@ public class BoomerangThrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player") && coming)
+
+        if (collision.gameObject.tag.Equals("Wall"))
+        {
+            coming = true;
+            going = false;
+        }
+        if (collision.gameObject.CompareTag("Player") && coming)
         {   
             isFlying = false;
             coming = false;
@@ -229,14 +244,7 @@ public class BoomerangThrow : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag.Equals("Wall"))
-        {
-            coming = true;
-            going = false;     
-        }
-    }
+   
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
