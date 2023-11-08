@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4428147445117597524}
   m_Layer: 9
   m_Name: Shooty
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +39,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1473685859198301395
 SpriteRenderer:
@@ -183,7 +183,8 @@ MonoBehaviour:
   enemyBullet: {fileID: 8740438523283609490, guid: 192ecb6623fbab7438f6bb9073b6799d, type: 3}
   startShootingRange: 8
   stopShootingRange: 9
-  reloadingTime: 1
+  shootSound: {fileID: 8300000, guid: 9a8ba0a603f613a4eabbbc651df3e370, type: 3}
+  reloadingTime: 1.5
 --- !u!114 &1524458598854764256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +233,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fd30b0726e3b62848ac6617d0441922f, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

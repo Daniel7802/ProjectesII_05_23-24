@@ -13,11 +13,14 @@ public class PlayerHealthSystem : HealthSystem
     private float timer = 1f;
 
     RespawnSystem _respawnSystem;
+    AudioSource _audioSource;
+    public AudioClip hitSound;
     // Start is called before the first frame update
     public override void Awake()
     {
         base.Awake();
-        _respawnSystem = GetComponent<RespawnSystem>(); 
+        _respawnSystem = GetComponent<RespawnSystem>();
+        _audioSource = GetComponent<AudioSource>();
         counter = 0;
     }
 
@@ -56,13 +59,15 @@ public class PlayerHealthSystem : HealthSystem
     }
 
     public override void DeadState ()
-    {
+    {       
         _respawnSystem.OnDeath();
     }
 
     public void deleteHeart(int index)
     {
+        
         hearts[index].SetActive(false);
+        _audioSource.PlayOneShot(hitSound);
     }
     public void addHeart()
     {

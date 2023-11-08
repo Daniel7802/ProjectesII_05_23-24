@@ -5,17 +5,16 @@ using static Unity.VisualScripting.Member;
 
 public class ShootyIA : Enemy
 {
-
+    private AudioSource audioSource;
     private float moveForce;
 
     //roaming
     public float roamingMoveForce;
     private bool isStoped = false;
     private float timerToStop = 0f;
-    private float timerStoped = 0f;
     public float timeToStop;
+    private float timerStoped = 0f;    
     public float timeStoped;
-
     private bool setNewDest = false;
     public float newDestTime;
     private float newDestTimer = 0f;
@@ -29,10 +28,10 @@ public class ShootyIA : Enemy
     public float aimingTime;
 
     //shooting
-    public GameObject enemyBullet;
-    private AudioSource source;
+    public GameObject enemyBullet;  
     public float startShootingRange;
     public float stopShootingRange;
+    public AudioClip shootSound;
     
     //reloading
     private float reloadingTimer = 0f;
@@ -40,7 +39,7 @@ public class ShootyIA : Enemy
 
     private void Awake()
     {
-        source = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         lineRenderer = GetComponent<LineRenderer>();
     }
     
@@ -189,7 +188,7 @@ public class ShootyIA : Enemy
     }
     void ShootOneBullet()
     {
-        source.PlayOneShot(source.clip);
+        audioSource.PlayOneShot(shootSound,0.5f);
         Vector2 dir = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
         GameObject bullet = Instantiate(enemyBullet);
         bullet.transform.position = transform.position;

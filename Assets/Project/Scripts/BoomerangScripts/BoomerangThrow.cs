@@ -9,6 +9,9 @@ public class BoomerangThrow : MonoBehaviour
     private BoxCollider2D _boxCollider;
     private TrailRenderer _trailRenderer;
     private LineRenderer _lineRenderer;
+    private AudioSource _audioSource;
+
+    public AudioClip goingSound;
 
 
     [SerializeField]
@@ -24,11 +27,11 @@ public class BoomerangThrow : MonoBehaviour
     [SerializeField]
     float timer, timerTrail;
     float maxTimerTrail = 0.1f;
-   
+
 
     [SerializeField]
-    private float rotationSpeed,minDistance,maxDistance, distance, throwDuration;
-    
+    private float rotationSpeed, minDistance, maxDistance, distance, throwDuration;
+
 
     [SerializeField]
     private bool coming, wantsToThrow,  going,  rightMouse, canThrow;
@@ -36,6 +39,9 @@ public class BoomerangThrow : MonoBehaviour
 
     [SerializeField]
     Vector2 p0, p2, pAux, vectorDirection, vectorObjective;
+
+    [SerializeField]
+    AudioClip enemyHitSound;
 
     private void Start()
     {
@@ -50,7 +56,7 @@ public class BoomerangThrow : MonoBehaviour
 
     void Awake()
     {
-        _lineRenderer = GetComponent<LineRenderer>();       
+        _lineRenderer = GetComponent<LineRenderer>();
         _targetJoint = GetComponent<TargetJoint2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -59,7 +65,9 @@ public class BoomerangThrow : MonoBehaviour
         _particleSystemFire = GetComponent<ParticleSystem>();
 
         _missionModuleFire = _particleSystemFire.emission;
-    }   
+      
+        _audioSource = GetComponent<AudioSource>();
+    }
     private void Update()
     {
 
@@ -74,8 +82,8 @@ public class BoomerangThrow : MonoBehaviour
         CalculateThrow();
         ShowTrayectoryLine();
         MouseManager();
-        if(mouseHold) 
-        {            
+        if (mouseHold)
+        {
             transform.position = source.transform.position;
             if(distance <= maxDistance)
             distance += Time.deltaTime * 6;
@@ -83,13 +91,14 @@ public class BoomerangThrow : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             rightMouse = true;
+            if (isFlying && !going) { _audioSource.PlayOneShot(goingSound); }
         }
     }
     private void FixedUpdate()
-    {            
-        if(wantsToThrow && !isFlying && canThrow)
+    {
+        if (wantsToThrow && !isFlying && canThrow)
         {
-           ThrowBoomerang();
+            ThrowBoomerang();
             timerTrail = maxTimerTrail;
             timer = maxTimer;
             wantsToThrow = false;
@@ -111,12 +120,12 @@ public class BoomerangThrow : MonoBehaviour
                 going = false;
             }
 
-            else if(!going && !coming)
+            else if (!going && !coming)
             {
                 Staying();
             }
 
-            else if(coming)
+            else if (coming)
             {
                 Coming();              
             }
@@ -126,7 +135,7 @@ public class BoomerangThrow : MonoBehaviour
             p0 = source.transform.position;
             _targetJoint.target = (Vector3)p0;
             StayTrailRenderer();
-            
+
         }
     }
     void CalculateThrow()
@@ -140,9 +149,10 @@ public class BoomerangThrow : MonoBehaviour
     }
     void ThrowBoomerang()
     {
+        _audioSource.PlayOneShot(goingSound);
         canThrow = false;
         rightMouse = false;
-        
+
         Debug.Log(p0 + " " + pAux);
         isFlying = true;
         Debug.Log(p2);
@@ -151,7 +161,7 @@ public class BoomerangThrow : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !isFlying && canThrow)
         {
-            mouseHold = true;            
+            mouseHold = true;
         }
         if (Input.GetMouseButtonUp(0) && !isFlying && canThrow && mouseHold)
         {
@@ -160,13 +170,13 @@ public class BoomerangThrow : MonoBehaviour
             mouseHold = false;
             wantsToThrow = true;
         }
-    }    
+    }
 
     void ShowTrayectoryLine()
     {
         if (mouseHold)
         {
-            
+
             _lineRenderer.enabled = true;
             _lineRenderer.positionCount = 2;
             _lineRenderer.SetPosition(0, transform.position);
@@ -188,13 +198,17 @@ public class BoomerangThrow : MonoBehaviour
         going = false;
         if (timer >= 0f)
         {
-            if(timer < maxTimer -0.2f && rightMouse == true)
-                coming  = true;
+            if (timer < maxTimer - 0.2f && rightMouse == true)
+                coming = true;
 
-            timer -= Time.deltaTime;           
+            timer -= Time.deltaTime;
         }
         else
+        {
+            _audioSource.PlayOneShot(goingSound);
             coming = true;
+        }
+
     }
     void StayTrailRenderer()
     {
@@ -206,8 +220,9 @@ public class BoomerangThrow : MonoBehaviour
             _trailRenderer.startWidth = 0;
     }
 
-    void Coming ()
+    void Coming()
     {
+
         p0 = source.transform.position;
         Vector2 comingPosition = Vector2.Lerp(p2, p0, throwDuration);
         _targetJoint.anchor = Vector3.zero;
@@ -235,16 +250,30 @@ public class BoomerangThrow : MonoBehaviour
             isFire = false;
         }
 
-        if(collision.gameObject.TryGetComponent<Torch>(out Torch torch))
+        if (collision.gameObject.TryGetComponent<Torch>(out Torch torch))
         {
             if (torch.torchActive)
-                isFire = true;    
+                isFire = true;
             else if (!torch.torchActive && isFire)
                 torch.torchActive = true;
         }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            _audioSource.PlayOneShot(enemyHitSound);
+        }
     }
 
-   
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Wall"))
+        {
+            _audioSource.PlayOneShot(goingSound);
+            coming = true;
+            going = false;
+        }
+
+
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
