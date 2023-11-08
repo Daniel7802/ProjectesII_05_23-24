@@ -30,8 +30,8 @@ public class BoomerangThrow : MonoBehaviour
     
 
     [SerializeField]
-    private bool coming, wantsToThrow,  going, mouseHold, rightMouse, canThrow;
-    public bool isFlying, isFire;
+    private bool coming, wantsToThrow,  going,  rightMouse, canThrow;
+    public bool isFlying, isFire, mouseHold;
 
     [SerializeField]
     Vector2 p0, p2, pAux, vectorDirection, vectorObjective;
@@ -65,7 +65,7 @@ public class BoomerangThrow : MonoBehaviour
         {            
             transform.position = source.transform.position;
             if(distance <= maxDistance)
-            distance += Time.deltaTime * 4;
+            distance += Time.deltaTime * 6;
         }
         if (Input.GetMouseButtonDown(1))
         {
