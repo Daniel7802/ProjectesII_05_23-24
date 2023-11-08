@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3926750697306554632}
   - component: {fileID: 4402026988791592155}
   - component: {fileID: 4466706744112173282}
+  - component: {fileID: 9135118707840236033}
   m_Layer: 10
   m_Name: slime
   m_TagString: Untagged
@@ -167,11 +168,11 @@ MonoBehaviour:
   player: {fileID: 0}
   rb2D: {fileID: 2090466368601933057}
   spriteRenderer: {fileID: 1110482731424247854}
-  animator: {fileID: 0}
+  animator: {fileID: 9135118707840236033}
   startChasingRange: 7
-  stopChasingRange: 8
+  stopChasingRange: 9
   knockbackForce: 10
-  waitToJumpSeconds: 1.2
+  waitToJumpSeconds: 2
   roamingForce: 5
   chasingJumpForce: 10
 --- !u!114 &3926750697306554632
@@ -213,3 +214,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af76eb6b91e8574ba3c2d33b4ff7972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &9135118707840236033
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768630766616490778}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3da26ce5563fc2b49aa58f411edcf380, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

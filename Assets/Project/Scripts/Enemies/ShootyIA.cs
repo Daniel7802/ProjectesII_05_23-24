@@ -179,6 +179,7 @@ public class ShootyIA : Enemy
     }
     void Aiming()
     {
+        target = player.transform.position;
         ShowTrayectoryLine();
     }
     void Shooting()
