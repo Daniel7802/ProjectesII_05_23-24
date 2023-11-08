@@ -25,14 +25,19 @@ public class CollectableSystem : MonoBehaviour
 
             rb2D.AddForce(impulseForce);
         }
-
-
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             Destroy(gameObject);
+
+            if(collision.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs))
+            {
+                if(phs.counter > 0)
+                phs.Heal();
+            }
         }
     }
 
@@ -46,4 +51,5 @@ public class CollectableSystem : MonoBehaviour
     {
         target = gm;
     }
+
    }

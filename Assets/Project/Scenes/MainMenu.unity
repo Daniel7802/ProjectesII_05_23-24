@@ -1737,6 +1737,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 746948269}
     m_Modifications:
+    - target: {fileID: 81772035460790287, guid: 28ce4e8a1fa1eb14c9caefc2b0baa97e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1058598214833920353, guid: 28ce4e8a1fa1eb14c9caefc2b0baa97e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1792,6 +1796,22 @@ PrefabInstance:
     - target: {fileID: 3888955140149293809, guid: 28ce4e8a1fa1eb14c9caefc2b0baa97e, type: 3}
       propertyPath: m_Name
       value: SettingsMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888955140149293809, guid: 28ce4e8a1fa1eb14c9caefc2b0baa97e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4158576271598496200, guid: 28ce4e8a1fa1eb14c9caefc2b0baa97e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425039649732563569, guid: 28ce4e8a1fa1eb14c9caefc2b0baa97e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8575095300843851220, guid: 28ce4e8a1fa1eb14c9caefc2b0baa97e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -41
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

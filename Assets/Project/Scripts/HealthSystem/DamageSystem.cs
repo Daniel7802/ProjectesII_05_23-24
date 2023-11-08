@@ -18,7 +18,7 @@ public class DamageSystem : MonoBehaviour
 
             if(collision.gameObject.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs) && collision.tag.Equals("Player") && this.tag != "Boomerang")
             {
-                if(phs.isInvincible == false)
+                if(phs.isInvincible == false && phs.counter < 5)
                 {
                     phs.deleteHeart(phs.counter);
                     phs.counter++;
