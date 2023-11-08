@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class SlimeIA : Enemy
 {
-    //movement   
-    public float waitToJumpSeconds;
-    private float jumpTimer = 0f;
+    private AudioSource audioSource;
+    public AudioClip slimeJumpSound;
+    //movement    
+    public float waitingTime = 2f;
+    private float waitingTimer = 0;
     private float moveForce;
-    float velocityMagnitudeToLand = 1f;
+    private float velocityMagnitudeToLand = 1f;
 
     //roaming
     public float roamingForce;
@@ -18,6 +20,11 @@ public class SlimeIA : Enemy
 
     //chasing    
     public float chasingJumpForce;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -50,17 +57,16 @@ public class SlimeIA : Enemy
                 break;
 
         }
-        
-        if ((rb2D.velocity.magnitude<velocityMagnitudeToLand))
+
+        if ((rb2D.velocity.magnitude < velocityMagnitudeToLand))
         {
             animator.SetBool("jump", false);
-
         }
         else
         {
             animator.SetBool("jump", true);
         }
-        
+
     }
 
     public override void Movement()
@@ -68,13 +74,13 @@ public class SlimeIA : Enemy
         Vector2 directionVector = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
         Vector2 impulseForce = directionVector.normalized * moveForce;
 
-        jumpTimer += Time.deltaTime;
-        if (jumpTimer > waitToJumpSeconds)
+        waitingTimer += Time.deltaTime;
+        if (waitingTimer >= waitingTime)
         {
-
+            audioSource.PlayOneShot(slimeJumpSound, 0.5f);
             rb2D.AddForce(impulseForce, ForceMode2D.Impulse);
             setNewDest = true;
-            jumpTimer = 0;
+            waitingTimer = 0;
         }
     }
 
