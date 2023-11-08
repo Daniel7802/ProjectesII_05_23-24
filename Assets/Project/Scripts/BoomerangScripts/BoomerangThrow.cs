@@ -11,6 +11,9 @@ public class BoomerangThrow : MonoBehaviour
     private LineRenderer _lineRenderer;
     private AudioSource _audioSource;
 
+    public AudioClip goingSound;
+    
+
     [SerializeField]
     GameObject source; //Player
 
@@ -75,6 +78,7 @@ public class BoomerangThrow : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             rightMouse = true;
+            if(isFlying&&!going) { _audioSource.PlayOneShot(goingSound); }
         }
     }
     private void FixedUpdate()
@@ -136,6 +140,7 @@ public class BoomerangThrow : MonoBehaviour
     }
     void ThrowBoomerang()
     {
+        _audioSource.PlayOneShot(goingSound);
         canThrow = false;
         rightMouse = false;
 
@@ -190,7 +195,11 @@ public class BoomerangThrow : MonoBehaviour
             timer -= Time.deltaTime;
         }
         else
+        {
+            _audioSource.PlayOneShot(goingSound);
             coming = true;
+        }
+           
     }
     void StayTrailRenderer()
     {
@@ -204,6 +213,7 @@ public class BoomerangThrow : MonoBehaviour
 
     void Coming()
     {
+       
         p0 = source.transform.position;
         Vector2 comingPosition = Vector2.Lerp(p2, p0, throwDuration);
         _targetJoint.anchor = Vector3.zero;
@@ -242,6 +252,7 @@ public class BoomerangThrow : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Wall"))
         {
+            _audioSource.PlayOneShot(goingSound);
             coming = true;
             going = false;
         }

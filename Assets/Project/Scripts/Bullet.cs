@@ -8,7 +8,6 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rb2D;   
 
-
     private void FixedUpdate()
     {
         rb2D.velocity = transform.right * speed;
@@ -17,6 +16,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            
             Destroy(this.gameObject);
         }
     }
