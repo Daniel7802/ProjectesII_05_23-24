@@ -9,7 +9,6 @@ public class CollectableSystem : MonoBehaviour
     protected float distanceToPlayer;
     public float speed;
     [SerializeField]
-    bool distance;
 
     public float collectingRange = 3f;
     private void Start()
@@ -21,7 +20,6 @@ public class CollectableSystem : MonoBehaviour
         distanceToPlayer = Vector2.Distance(transform.position, target.transform.position);
         if (distanceToPlayer < collectingRange)
         {
-            distance = true;
             Vector2 directionVector = new Vector2(target.transform.position.x - transform.position.x, target.transform.position.y - transform.position.y);
             Vector2 impulseForce = directionVector.normalized * speed;
 
