@@ -26,6 +26,10 @@ public class PlayerHealthSystem : HealthSystem
 
     public void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            health = 100;
+        }
         if(isInvincible)
         {
             timer -= Time.deltaTime;
@@ -40,6 +44,9 @@ public class PlayerHealthSystem : HealthSystem
 
     public void Heal()
     {
+        if (health < MaxHealth)
+            health++;
+
         addHeart();
     }
 
