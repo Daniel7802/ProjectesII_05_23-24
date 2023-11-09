@@ -6,6 +6,9 @@ public class MecanismPressure : MonoBehaviour
 {
     [SerializeField]
     public bool activate;
+
+    private bool playerOn;
+
     void Start()
     {
         activate = false;   
@@ -19,7 +22,12 @@ public class MecanismPressure : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-     if(collision.CompareTag("Player") || collision.CompareTag("Boomerang"))
+        if(collision.CompareTag("Player") && playerOn == false)
+        {
+            playerOn = true;
+        }
+
+        if(collision.CompareTag("Player") || collision.CompareTag("Boomerang"))
         {
             activate = true;
         }
@@ -28,7 +36,15 @@ public class MecanismPressure : MonoBehaviour
     {
         if(collision.CompareTag("Player") || collision.CompareTag("Boomerang"))
         {
-            activate = false;
+            if(!playerOn)
+            {
+                activate = false;
+            }
+        }
+
+        if(collision.CompareTag("Player") && playerOn == true)
+        {
+            playerOn = false;
         }
     }
 }

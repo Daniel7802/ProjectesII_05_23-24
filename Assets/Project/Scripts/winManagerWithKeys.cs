@@ -6,6 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class winManagerWithKeys : KeyManagers
 {
+    [SerializeField]
+    GameObject[] keysHUD;
+
+    private KeyManagers km;
+
+    private void Start()
+    {
+        km = GetComponent<KeyManagers>();
+    }
+
     public override void Update()
     {
         for (int i = 0; i < key.Length; i++)
@@ -16,6 +26,11 @@ public class winManagerWithKeys : KeyManagers
         if (activeMechanisme)
         {
             SceneManager.LoadScene("MainMenu");
+        }
+
+        for(int i = 0; i < km.counter; i++)
+        {
+            keysHUD[i].SetActive(true);
         }
     }
 }

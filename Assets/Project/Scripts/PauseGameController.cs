@@ -10,6 +10,8 @@ public class PauseGameController : MonoBehaviour
 
     public GameObject[] allMenus;
 
+    public bool isPaused;
+
     private void Update()
     {
         PauseInteraction();
@@ -24,6 +26,7 @@ public class PauseGameController : MonoBehaviour
                 Time.timeScale = 0.0f;
                 pauseMenuCanvas.SetActive(true);
                 pauseMenu.SetActive(true);
+                isPaused = true;
             }
             else if (Time.timeScale == 0.0f)
             {
@@ -35,6 +38,8 @@ public class PauseGameController : MonoBehaviour
                 {
                     allMenus[i].SetActive(false);
                 }
+
+                isPaused = false;
             }
         }
     }

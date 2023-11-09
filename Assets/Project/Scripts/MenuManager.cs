@@ -8,9 +8,14 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private string GameScene;
 
+    public GameObject pauseManager;
+
+    private PauseGameController pg;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
+        pg = pauseManager.GetComponent<PauseGameController>();
     }
 
     public void StartGame()
@@ -27,6 +32,7 @@ public class MenuManager : MonoBehaviour
     public void ResumeGame()
     {
         Time.timeScale = 1.0f;
+        pg.isPaused = false;
     }
 
     public void CloseGame()
