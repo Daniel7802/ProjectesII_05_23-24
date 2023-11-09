@@ -28,81 +28,88 @@ public class PlayerMovement : MonoBehaviour
     private bool startTimer = false;
     private bool rollCoolDown = false;
 
+    private PauseGameController pg;
+    [SerializeField]
+    GameObject pauseManager;
 
-    private void Awake()
-    {
-    }
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
+        pg = pauseManager.GetComponent<PauseGameController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Inputs
-        moveX = Input.GetAxisRaw("Horizontal");
-        moveY = Input.GetAxisRaw("Vertical");
-
-        if(_boomerangThrow.mouseHold)
+        if(!pg.isPaused)
         {
-            speed = 60f;
-        }
-        else
-        {
-            speed = 90f;
-        }
+            // Inputs
+            moveX = Input.GetAxisRaw("Horizontal");
+            moveY = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.Space) && !isRolling && !rollCoolDown && !_boomerangThrow.mouseHold && (moveX != 0 || moveY != 0))
-        {
-            isRolling = true;
-            startTimer = true;
+            if (_boomerangThrow.mouseHold)
+            {
+                speed = 60f;
+            }
+            else
+            {
+                speed = 90f;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && !isRolling && !rollCoolDown && !_boomerangThrow.mouseHold && (moveX != 0 || moveY != 0))
+            {
+                isRolling = true;
+                startTimer = true;
+            }
+
+            movementVector = new Vector2(moveX, moveY).normalized;
+
+            playerAnimator.SetFloat("Horizontal", moveX);
+            playerAnimator.SetFloat("Vertical", moveY);
+            playerAnimator.SetFloat("Speed", movementVector.sqrMagnitude);
         }
-
-        movementVector = new Vector2(moveX, moveY).normalized;
-
-        playerAnimator.SetFloat("Horizontal", moveX);
-        playerAnimator.SetFloat("Vertical", moveY);
-        playerAnimator.SetFloat("Speed", movementVector.sqrMagnitude);
     }
 
     private void FixedUpdate()
     {
-        // Fisicas
-        if(!isRolling)
+        if(!pg.isPaused)
         {
-            playerRb.AddForce(movementVector * speed, ForceMode2D.Force);
-        }
-
-        // Roll
-        if (isRolling)
-        {
-            Vector2 rollVector = new Vector2(playerRb.velocity.x, playerRb.velocity.y);
-            playerRb.AddForce(rollVector.normalized * ImpulseForce, ForceMode2D.Impulse);
-
-            if (startTimer)
+            // Fisicas
+            if (!isRolling)
             {
-                timer--;
+                playerRb.AddForce(movementVector * speed, ForceMode2D.Force);
+            }
 
-                if(timer < 0)
+            // Roll
+            if (isRolling)
+            {
+                Vector2 rollVector = new Vector2(playerRb.velocity.x, playerRb.velocity.y);
+                playerRb.AddForce(rollVector.normalized * ImpulseForce, ForceMode2D.Impulse);
+
+                if (startTimer)
                 {
-                    startTimer = false;
-                    isRolling = false;
-                    rollCoolDown = true;
+                    timer--;
+
+                    if (timer < 0)
+                    {
+                        startTimer = false;
+                        isRolling = false;
+                        rollCoolDown = true;
+                    }
                 }
             }
-        }
 
-        if (rollCoolDown)
-        {
-            timer++;
-
-            if (timer >= 30)
+            if (rollCoolDown)
             {
-                isRolling = false;
-                rollCoolDown = false;
-                timer = 10;
+                timer++;
+
+                if (timer >= 30)
+                {
+                    isRolling = false;
+                    rollCoolDown = false;
+                    timer = 10;
+                }
             }
         }
     }

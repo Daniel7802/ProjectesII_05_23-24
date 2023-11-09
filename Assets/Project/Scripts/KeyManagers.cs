@@ -10,6 +10,8 @@ public class KeyManagers : MonoBehaviour
     [SerializeField]
     public bool activeMechanisme;
 
+    public int counter = 0;
+
    public virtual void Update()
     {
         for (int i = 0; i < key.Length; i++)
@@ -19,9 +21,8 @@ public class KeyManagers : MonoBehaviour
 
         if (activeMechanisme)
         {
+            counter++;
             Destroy(gameObject);
         }
     }
-
-   
 }
