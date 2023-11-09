@@ -53,8 +53,8 @@ public class Enemy : MonoBehaviour
     public void SetNewRoamingDestination()
     {
         roamingRandomPoint = new Vector2(
-            UnityEngine.Random.Range(-maxRoamingPointDistance, maxRoamingPointDistance),
-            UnityEngine.Random.Range(-maxRoamingPointDistance, maxRoamingPointDistance)
+            UnityEngine.Random.Range(-maxRoamingPointDistance, maxRoamingPointDistance)*2,
+            UnityEngine.Random.Range(-maxRoamingPointDistance, maxRoamingPointDistance)*2
             );
     }
 
