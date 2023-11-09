@@ -257,7 +257,7 @@ public class BoomerangThrow : MonoBehaviour
             else if (!torch.torchActive && isFire)
                 torch.torchActive = true;
         }
-        if (collision.gameObject.CompareTag("Enemy")&&!canThrow)
+        if (collision.gameObject.CompareTag("Enemy")&&_spriteRenderer.enabled)
         {
             _audioSource.PlayOneShot(enemyHitSound);
         }

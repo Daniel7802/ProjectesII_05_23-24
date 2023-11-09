@@ -73774,6 +73774,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7490800426209183852, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f582776eb44ecdc44bf289d689dd73b3, type: 3}
+    - target: {fileID: 7490800426209183852, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
       objectReference: {fileID: 1038373331}
@@ -73793,6 +73797,14 @@ PrefabInstance:
       propertyPath: hearts.Array.data[4]
       value: 
       objectReference: {fileID: 1241887538}
+    - target: {fileID: 9145842343681718827, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
+      propertyPath: rollSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d9c0fd0bec9dd264d95ced13d2cd8a98, type: 3}
+    - target: {fileID: 9145842343681718827, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 1499896094}
     - target: {fileID: 9145842343681718827, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: _boomerangThrow
       value: 
@@ -73841,6 +73853,7 @@ MonoBehaviour:
   - {fileID: 1015282953}
   - {fileID: 1248908477}
   - {fileID: 2093987624}
+  isPaused: 0
 --- !u!4 &1499896096
 Transform:
   m_ObjectHideFlags: 0
