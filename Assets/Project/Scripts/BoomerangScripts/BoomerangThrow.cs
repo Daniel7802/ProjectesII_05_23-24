@@ -250,7 +250,7 @@ public class BoomerangThrow : MonoBehaviour
             isFire = false;
         }
 
-        if (collision.gameObject.TryGetComponent<Torch>(out Torch torch))
+        if (collision.gameObject.TryGetComponent<Torch>(out Torch torch) && isFlying)
         {
             if (torch.torchActive)
                 isFire = true;
