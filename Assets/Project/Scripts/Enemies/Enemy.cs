@@ -20,14 +20,14 @@ public class Enemy : MonoBehaviour
 
     //ROAMING       
     protected Vector2 roamingRandomPoint;
-    protected float maxRoamingPointDistance = 5;
+    protected float maxRoamingPointDistance = 2;
 
     //CHASING    
     public float startChasingRange;
     public float stopChasingRange;
 
     public float knockbackForce;
-  
+
     public virtual void Movement()
     {
 
@@ -35,13 +35,13 @@ public class Enemy : MonoBehaviour
 
     public virtual void Roaming()
     {
-        
+
 
     }
 
     public virtual void Chasing()
     {
-        
+
     }
 
     public void KnockBack(Vector2 dir)
@@ -53,8 +53,8 @@ public class Enemy : MonoBehaviour
     public void SetNewRoamingDestination()
     {
         roamingRandomPoint = new Vector2(
-            UnityEngine.Random.Range(-maxRoamingPointDistance, maxRoamingPointDistance)*2,
-            UnityEngine.Random.Range(-maxRoamingPointDistance, maxRoamingPointDistance)*2
+            UnityEngine.Random.Range(transform.position.x - maxRoamingPointDistance, transform.position.x + maxRoamingPointDistance),
+            UnityEngine.Random.Range(transform.position.y - maxRoamingPointDistance, transform.position.y + maxRoamingPointDistance)
             );
     }
 
@@ -72,9 +72,9 @@ public class Enemy : MonoBehaviour
     }
     public virtual void OnDrawGizmos()
     {
-        
+
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, startChasingRange);     
+        Gizmos.DrawWireSphere(transform.position, startChasingRange);
         Gizmos.DrawWireSphere(transform.position, stopChasingRange);
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(target, 0.4f);
