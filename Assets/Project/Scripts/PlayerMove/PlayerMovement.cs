@@ -31,12 +31,16 @@ public class PlayerMovement : MonoBehaviour
     private PauseGameController pg;
     [SerializeField]
     GameObject pauseManager;
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip rollSound;
 
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         pg = pauseManager.GetComponent<PauseGameController>();
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -59,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) && !isRolling && !rollCoolDown && !_boomerangThrow.mouseHold && (moveX != 0 || moveY != 0))
             {
+                audioSource.PlayOneShot(rollSound);
                 isRolling = true;
                 startTimer = true;
             }

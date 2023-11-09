@@ -77,7 +77,8 @@ public class SlimeIA : Enemy
         waitingTimer += Time.deltaTime;
         if (waitingTimer >= waitingTime)
         {
-            audioSource.PlayOneShot(slimeJumpSound, 0.5f);
+            if (distanceToPlayer < 6)
+                audioSource.PlayOneShot(slimeJumpSound, 0.5f);
             rb2D.AddForce(impulseForce, ForceMode2D.Impulse);
             setNewDest = true;
             waitingTimer = 0;
@@ -103,6 +104,14 @@ public class SlimeIA : Enemy
         target = player.transform.position;
         spriteRenderer.color = Color.red;
         Movement();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Wall"))
+        {
+            setNewDest = true;
+        }
     }
 
 }

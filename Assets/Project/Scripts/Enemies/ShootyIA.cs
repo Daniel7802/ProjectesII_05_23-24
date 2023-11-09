@@ -210,7 +210,13 @@ public class ShootyIA : Enemy
         bullet.transform.right = dir;
     }
 
-  
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Wall"))
+        {
+            setNewDest = true;
+        }
+    }
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();

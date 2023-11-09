@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
 
     //ROAMING       
     protected Vector2 roamingRandomPoint;
-    protected float maxRoamingPointDistance = 2;
+    protected float maxRoamingPointDistance = 4;
 
     //CHASING    
     public float startChasingRange;
@@ -68,8 +68,9 @@ public class Enemy : MonoBehaviour
         {
             spriteRenderer.flipX = true;
         }
-
     }
+
+   
     public virtual void OnDrawGizmos()
     {
 

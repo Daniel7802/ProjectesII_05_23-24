@@ -67,7 +67,7 @@ public class PlayerHealthSystem : HealthSystem
     {
         
         hearts[index].SetActive(false);
-        _audioSource.PlayOneShot(hitSound);
+        _audioSource.PlayOneShot(hitSound,0.4f);
     }
     public void addHeart()
     {
