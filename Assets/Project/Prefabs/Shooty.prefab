@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 8341986832147713556}
   - component: {fileID: 1524458598854764256}
   - component: {fileID: 8411318322013947151}
-  - component: {fileID: 2516475505422947278}
   - component: {fileID: 8543429425438343230}
   - component: {fileID: 2775488161986300458}
   - component: {fileID: 4428147445117597524}
@@ -39,7 +38,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1473685859198301395
 SpriteRenderer:
@@ -185,6 +184,7 @@ MonoBehaviour:
   stopShootingRange: 9
   shootSound: {fileID: 8300000, guid: 9a8ba0a603f613a4eabbbc651df3e370, type: 3}
   reloadingTime: 1.5
+  reloadingSound: {fileID: 8300000, guid: 29ed6299a89ad8744a16a6fc2a6a2ff4, type: 3}
 --- !u!114 &1524458598854764256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,18 +200,6 @@ MonoBehaviour:
   MaxHealth: 10
   health: 0
 --- !u!114 &8411318322013947151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2285647051765586022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8af76eb6b91e8574ba3c2d33b4ff7972, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2516475505422947278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Unity.VisualScripting.Member;
 
@@ -32,10 +33,11 @@ public class ShootyIA : Enemy
     public float startShootingRange;
     public float stopShootingRange;
     public AudioClip shootSound;
-    
-    //reloading
+
+    //reloading   
     private float reloadingTimer = 0f;
     public float reloadingTime;
+    public AudioClip reloadingSound;
 
     private void Awake()
     {
@@ -99,10 +101,14 @@ public class ShootyIA : Enemy
                 break;
 
             case 4:
+                target = player.transform.position;
                 lineTimer = 0;
+                if (reloadingTimer == 0f)
+                    audioSource.PlayOneShot(reloadingSound, 0.1f);
                 reloadingTimer += Time.deltaTime;
+               
                 if (reloadingTimer > reloadingTime)
-                {
+                {                    
                     if (distanceToPlayer < startShootingRange)
                     {                        
                         currentState = 2;
@@ -176,11 +182,20 @@ public class ShootyIA : Enemy
         spriteRenderer.color = Color.red;
         Movement();
     }
+
     void Aiming()
     {
         target = player.transform.position;
         ShowTrayectoryLine();
     }
+    void ShowTrayectoryLine()
+    {
+        lineRenderer.enabled = true;
+        lineRenderer.positionCount = 2;
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, player.transform.position);
+    }
+
     void Shooting()
     {
         target = player.transform.position;
@@ -195,15 +210,7 @@ public class ShootyIA : Enemy
         bullet.transform.right = dir;
     }
 
-    void ShowTrayectoryLine()
-    {
-        lineRenderer.enabled = true;
-        lineRenderer.positionCount = 2;
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, player.transform.position);
-      
-
-    }
+  
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
