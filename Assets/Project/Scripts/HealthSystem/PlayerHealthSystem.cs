@@ -40,6 +40,9 @@ public class PlayerHealthSystem : HealthSystem
 
     public void Heal()
     {
+        if (health < MaxHealth)
+            health++;
+
         addHeart();
     }
 
