@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
             speed = 90f;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !isRolling && !rollCoolDown && !_boomerangThrow.mouseHold)
+        if (Input.GetKeyDown(KeyCode.Space) && !isRolling && !rollCoolDown && !_boomerangThrow.mouseHold && (moveX != 0 || moveY != 0))
         {
             isRolling = true;
             startTimer = true;
