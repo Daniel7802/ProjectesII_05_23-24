@@ -8,11 +8,13 @@ public class winManagerWithKeys : KeyManagers
     [SerializeField]
     GameObject[] keysHUD;
 
-    private KeyManagers km;
+    [SerializeField]
+    GameObject keyManager;
+
+    public int counter = 0;
 
     private void Start()
     {
-        km = GetComponent<KeyManagers>();
     }
 
     public override void Update()
@@ -27,7 +29,7 @@ public class winManagerWithKeys : KeyManagers
             SceneManager.LoadScene("MainMenu");
         }
 
-        for(int i = 0; i < km.counter; i++)
+        for(int i = 0; i < counter; i++)
         {
             keysHUD[i].SetActive(true);
         }
