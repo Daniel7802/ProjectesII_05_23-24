@@ -56,6 +56,7 @@ public class ShootyIA : Enemy
 
                 if (distanceToPlayer < startChasingRange)
                 {
+                    
                     currentState = 1;
                 }
                 else

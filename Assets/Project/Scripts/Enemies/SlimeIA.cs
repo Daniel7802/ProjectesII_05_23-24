@@ -21,6 +21,9 @@ public class SlimeIA : Enemy
     //chasing    
     public float chasingJumpForce;
 
+    //damaged
+    
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -37,6 +40,7 @@ public class SlimeIA : Enemy
 
                 if (distanceToPlayer < startChasingRange)
                 {
+                    
                     currentState = 1;
                 }
                 else
