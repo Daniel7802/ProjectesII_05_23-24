@@ -4849,7 +4849,6 @@ GameObject:
   - component: {fileID: 7114509794649575709}
   - component: {fileID: 4410226332653286438}
   - component: {fileID: 6706558307910412307}
-  - component: {fileID: 5571366169532171668}
   - component: {fileID: 5881626925338010726}
   m_Layer: 0
   m_Name: Boomerang
@@ -4872,7 +4871,7 @@ Transform:
   m_Children:
   - {fileID: 1594947951844908562}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3897944622222715238
 SpriteRenderer:
@@ -4996,11 +4995,12 @@ MonoBehaviour:
   maxDistance: 0
   distance: 20
   throwDuration: 1
-  coming: 0
   wantsToThrow: 0
-  going: 0
   rightMouse: 1
   canThrow: 0
+  going: 0
+  coming: 0
+  knockback: 0
   isFlying: 0
   isFire: 0
   mouseHold: 0
@@ -10146,19 +10146,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8418608, y: 0.94814813}
   m_EdgeRadius: 0
---- !u!114 &5571366169532171668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6657343719683139223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c73ab9022abd20a45856f8dedfe21125, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dmg: 0
 --- !u!82 &5881626925338010726
 AudioSource:
   m_ObjectHideFlags: 0
