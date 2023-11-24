@@ -8,8 +8,11 @@ public class BoomerangThrow : MonoBehaviour
     private TargetJoint2D _targetJoint;
     private SpriteRenderer _spriteRenderer;
     [SerializeField]
-    private BoxCollider2D _boxCollider;
     private CircleCollider2D _circleCollider;
+
+    [SerializeField]
+    public CircleCollider2D _principalCircleCollider;
+
 
 
     private TrailRenderer _trailRenderer;
@@ -70,7 +73,6 @@ public class BoomerangThrow : MonoBehaviour
     {
         _lineRenderer = GetComponent<LineRenderer>();
         _targetJoint = GetComponent<TargetJoint2D>();
-        _boxCollider = GetComponent<BoxCollider2D>();
         _circleCollider = GetComponent<CircleCollider2D>(); 
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _trailRenderer = GetComponent<TrailRenderer>();
@@ -121,7 +123,7 @@ public class BoomerangThrow : MonoBehaviour
 
         if (isFlying)
         {
-            _boxCollider.enabled = true;
+           _principalCircleCollider.enabled = true;
             _spriteRenderer.enabled = true;
             _trailRenderer.startWidth = 0.37f;
 
@@ -163,7 +165,7 @@ public class BoomerangThrow : MonoBehaviour
 
     void AttackArea()
     {
-        _boxCollider.enabled = false;
+        _principalCircleCollider.enabled = false;
         knockback = true;
         _circleCollider.enabled = true;
         _particleSystemAttack.Play();
@@ -196,7 +198,7 @@ public class BoomerangThrow : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0) && !isFlying && canThrow && mouseHold)
         {
-            _boxCollider.gameObject.SetActive(true);
+            _principalCircleCollider.gameObject.SetActive(true);
             _spriteRenderer.gameObject.SetActive(true);
             mouseHold = false;
             wantsToThrow = true;
@@ -256,7 +258,7 @@ public class BoomerangThrow : MonoBehaviour
     void Coming()
     {
         _circleCollider.enabled = false;
-        _boxCollider.enabled = true;
+        _principalCircleCollider.enabled = true;
         p0 = source.transform.position;
         Vector2 comingPosition = Vector2.Lerp(p2, p0, throwDuration);
         _targetJoint.anchor = Vector3.zero;
@@ -278,7 +280,7 @@ public class BoomerangThrow : MonoBehaviour
             going = false;
             timer = maxTimer;
             distance = minDistance;
-            _boxCollider.enabled = false;
+            _principalCircleCollider.enabled = false;
             _spriteRenderer.enabled = false;
             canThrow = true;
             isFire = false;

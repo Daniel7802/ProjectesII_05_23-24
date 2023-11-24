@@ -135,6 +135,34 @@ PrefabInstance:
       propertyPath: source
       value: 
       objectReference: {fileID: 483001772}
+    - target: {fileID: 834128419509678674, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: _circleCollider
+      value: 
+      objectReference: {fileID: 1018597013}
+    - target: {fileID: 834128419509678674, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: _principalCircleCollider
+      value: 
+      objectReference: {fileID: 1018597011}
+    - target: {fileID: 1474864576467928120, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2209296374895112534, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613450144279430501, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613450144279430501, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3897944622222715238, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6657343719683139223, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
       propertyPath: m_Name
       value: Boomerang
@@ -997,10 +1025,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 89447548352023463, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
+      propertyPath: MaxHealth
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1768630766616490778, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
       propertyPath: m_Name
       value: slime
       objectReference: {fileID: 0}
+    - target: {fileID: 2415428209152163155, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 483001772}
     - target: {fileID: 3926750697306554632, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
       propertyPath: MaxHealth
       value: 20
@@ -1009,6 +1045,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 483001772}
+    - target: {fileID: 5409575842966737851, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
+      propertyPath: roamingForce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5409575842966737851, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
+      propertyPath: chasingJumpForce
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5593360346023233113, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1170,6 +1214,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59af0f8f6961a1d468b40f7dbc9b82a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &1018597011 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 3613450144279430501, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+  m_PrefabInstance: {fileID: 21805877}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1018597013 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1474864576467928120, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+  m_PrefabInstance: {fileID: 21805877}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1177956812
 PrefabInstance:
   m_ObjectHideFlags: 0
