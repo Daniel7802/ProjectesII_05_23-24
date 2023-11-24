@@ -26,6 +26,9 @@ public class BoomerangThrow : MonoBehaviour
     private ParticleSystem _particleSystemFire;
     private ParticleSystem.EmissionModule _missionModuleFire;
 
+    [SerializeField]
+    private ParticleSystem _particleSystemAttack;
+    private ParticleSystem.EmissionModule _missionModuleAttack;
 
     [SerializeField]
     float maxTimer = 3.0f, maxTimerAttack = 0.01f;
@@ -73,7 +76,7 @@ public class BoomerangThrow : MonoBehaviour
         _trailRenderer = GetComponent<TrailRenderer>();
 
         _particleSystemFire = GetComponent<ParticleSystem>();
-
+        _missionModuleAttack = _particleSystemAttack.emission;
         _missionModuleFire = _particleSystemFire.emission;
       
         _audioSource = GetComponent<AudioSource>();
@@ -160,14 +163,16 @@ public class BoomerangThrow : MonoBehaviour
 
     void AttackArea()
     {
-        coming = true;
         _boxCollider.enabled = false;
         _circleCollider.enabled = true;
-
+        _particleSystemAttack.Play();
         if (attackTimer >= 0.0f)
             attackTimer -= Time.deltaTime;
         else
-        Coming();
+        {
+            _particleSystemAttack.Stop();
+            Coming();
+        }
     }
 
     void ThrowBoomerang()
@@ -233,6 +238,7 @@ public class BoomerangThrow : MonoBehaviour
         {
             _audioSource.PlayOneShot(goingSound);
             coming = true;
+
         }
 
     }
