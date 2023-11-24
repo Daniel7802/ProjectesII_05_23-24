@@ -164,6 +164,7 @@ public class BoomerangThrow : MonoBehaviour
     void AttackArea()
     {
         _boxCollider.enabled = false;
+        knockback = true;
         _circleCollider.enabled = true;
         _particleSystemAttack.Play();
         if (attackTimer >= 0.0f)
