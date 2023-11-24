@@ -41,6 +41,7 @@ public class ShootyIA : Enemy
 
     private void Awake()
     {
+        
         audioSource = GetComponent<AudioSource>();
         lineRenderer = GetComponent<LineRenderer>();
     }
@@ -56,6 +57,7 @@ public class ShootyIA : Enemy
 
                 if (distanceToPlayer < startChasingRange)
                 {
+                    
                     currentState = 1;
                 }
                 else

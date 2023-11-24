@@ -5,30 +5,66 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
 
-   [SerializeField]
-   protected int MaxHealth, health;
-   DeadSystem ds;
+    [SerializeField]
+    protected int MaxHealth, health;
+    protected DeadSystem ds;
+
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] Material defaultMaterial;
+    [SerializeField] Material damagedMaterial;
+    private float damagedTimer = 0.0f;
+    [SerializeField] private float damagedTime = 0.125f;
+    private bool isDamaged;
 
     public virtual void Awake()
     {
         ds = GetComponent<DeadSystem>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
     }
-    public void Start()
+    public virtual void Start()
     {
         health = MaxHealth;
     }
-    public void GetDamage( int amount)
+    public void Update()
     {
-        health -=amount;
+        if (isDamaged)
+        {
+            damagedTimer += Time.deltaTime;
+            if (damagedTimer < damagedTime)
+            {
+                spriteRenderer.material = damagedMaterial;
+            }
+            else
+            {
+                damagedTimer = 0.0f;
+                isDamaged = false;
+            }
+        }
+        else
+        {
+            spriteRenderer.material = defaultMaterial;
+        }
+    }
+    public void GetDamage(int amount)
+    {
+        health -= amount;
 
-        if(health <= 0)
+        if (health <= 0)
         {
             health = 0;
             DeadState();
         }
+       
+
+        if (this.gameObject.CompareTag("Enemy"))
+        {
+            isDamaged = true;
+
+        }
     }
 
-    public virtual void DeadState() 
+    public virtual void DeadState()
     {
         ds.Dead();
     }

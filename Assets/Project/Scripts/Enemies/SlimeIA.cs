@@ -13,6 +13,7 @@ public class SlimeIA : Enemy
     private float waitingTimer = 0;
     private float moveForce;
     private float velocityMagnitudeToLand = 1f;
+    private float distanceAudio = 8f;
 
     //roaming
     public float roamingForce;
@@ -21,22 +22,35 @@ public class SlimeIA : Enemy
     //chasing    
     public float chasingJumpForce;
 
+    //damaged
+    
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        rb2D = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        
+    }
+    private void Start()
+    {
+        currentState = 0;
+        target = roamingRandomPoint;
     }
 
     void Update()
     {
         FlipX();
         distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-
+        
         switch (currentState)
         {
             case 0:
 
                 if (distanceToPlayer < startChasingRange)
                 {
+                    
                     currentState = 1;
                 }
                 else
@@ -77,7 +91,7 @@ public class SlimeIA : Enemy
         waitingTimer += Time.deltaTime;
         if (waitingTimer >= waitingTime)
         {
-            if (distanceToPlayer < 6)
+            if (distanceToPlayer < distanceAudio)
                 audioSource.PlayOneShot(slimeJumpSound, 0.5f);
             rb2D.AddForce(impulseForce, ForceMode2D.Impulse);
             setNewDest = true;
@@ -89,7 +103,7 @@ public class SlimeIA : Enemy
     {
         moveForce = roamingForce;
         target = roamingRandomPoint;
-        spriteRenderer.color = Color.white;
+        //spriteRenderer.color = Color.white;
         Movement();
         if (setNewDest)
         {
@@ -102,7 +116,7 @@ public class SlimeIA : Enemy
     {
         moveForce = chasingJumpForce;
         target = player.transform.position;
-        spriteRenderer.color = Color.red;
+        //spriteRenderer.color = Color.red;
         Movement();
     }
 
