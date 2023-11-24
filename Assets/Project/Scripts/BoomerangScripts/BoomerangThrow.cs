@@ -160,7 +160,7 @@ public class BoomerangThrow : MonoBehaviour
 
     void AttackArea()
     {
-        coming = false;
+        coming = true;
         _boxCollider.enabled = false;
         _circleCollider.enabled = true;
 
