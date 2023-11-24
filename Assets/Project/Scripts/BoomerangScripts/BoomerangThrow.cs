@@ -20,7 +20,7 @@ public class BoomerangThrow : MonoBehaviour
     private AudioSource _audioSource;
 
     public AudioClip goingSound;
-
+    public bool areaDmg;
 
     [SerializeField]
     GameObject source; //Player
@@ -58,6 +58,7 @@ public class BoomerangThrow : MonoBehaviour
 
     private void Start()
     {
+        areaDmg = false;
         minDistance = 2.8f;
         distance = minDistance;
         maxDistance = 8f;
@@ -165,6 +166,7 @@ public class BoomerangThrow : MonoBehaviour
 
     void AttackArea()
     {
+        areaDmg = true;
         _principalCircleCollider.enabled = false;
         knockback = true;
         _circleCollider.enabled = true;
@@ -173,6 +175,7 @@ public class BoomerangThrow : MonoBehaviour
             attackTimer -= Time.deltaTime;
         else
         {
+            areaDmg = false;
             _particleSystemAttack.Stop();
             Coming();
         }

@@ -189,6 +189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 5
   health: 0
+  getHit: 0
+  canGetDamageMaxTimer: 0.5
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
   damagedTime: 0.12

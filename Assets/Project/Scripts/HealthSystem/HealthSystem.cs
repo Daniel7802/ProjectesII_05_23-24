@@ -10,11 +10,11 @@ public class HealthSystem : MonoBehaviour
     protected DeadSystem ds;
 
     [SerializeField]
-    private bool getHit;   
+    public bool getHit;   
 
 
     private float canGetDamageTimer = 0.0f;
-    [SerializeField] private float canGetDamageMaxTimer = 0.125f;
+    [SerializeField] private float canGetDamageMaxTimer;
 
     private SpriteRenderer spriteRenderer;
     [SerializeField] Material defaultMaterial;
@@ -61,13 +61,14 @@ public class HealthSystem : MonoBehaviour
             {
                 GetDamage(1);
                 canGetDamageTimer = 0.0f;
-                canGetDamageTimer += Time.deltaTime;
             }
-            else
-            {
-                canGetDamageTimer = canGetDamageMaxTimer;
-            }           
-        }       
+                canGetDamageTimer += Time.deltaTime;
+
+        }
+        else
+        {
+            canGetDamageTimer = canGetDamageMaxTimer;
+        }
     }
 
     public void GetDamage(int amount)
