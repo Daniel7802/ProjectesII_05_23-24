@@ -45,7 +45,11 @@ public class ShootyIA : Enemy
         audioSource = GetComponent<AudioSource>();
         lineRenderer = GetComponent<LineRenderer>();
     }
-    
+    public override void Start() 
+    {
+        base.Start();
+    }
+
     private void Update()
     {
         FlipX();

@@ -29,6 +29,12 @@ public class Enemy : MonoBehaviour
 
     public float knockbackForce;
 
+    public virtual void Start()
+    {
+        rb2D = GetComponent<Rigidbody2D>(); 
+        spriteRenderer = GetComponent<SpriteRenderer>();    
+        animator = GetComponent<Animator>();    
+    }
     public virtual void Movement()
     {
 
