@@ -38,7 +38,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1110482731424247854
 SpriteRenderer:
@@ -173,8 +173,8 @@ MonoBehaviour:
   knockbackForce: 3
   slimeJumpSound: {fileID: 8300000, guid: a9adc3be9c93df54abdf66972003f3c7, type: 3}
   waitingTime: 1.5
-  roamingForce: 6
-  chasingJumpForce: 12
+  roamingForce: 0
+  chasingJumpForce: 0
 --- !u!114 &4402026988791592155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,8 +317,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91d7381e81c5d14bbc733e08e61b575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 5
+  MaxHealth: 20
   health: 0
+  getHit: 0
+  canGetDamageMaxTimer: 0.5
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
   damagedTime: 0.125
@@ -335,3 +337,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miniSlime: {fileID: 2998486167879767135, guid: 912d7c1f80c6eb543be00acfd391a535, type: 3}
+  player: {fileID: 0}
