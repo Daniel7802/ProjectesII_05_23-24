@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6238226914675135810}
   - component: {fileID: 9160680943280425905}
   - component: {fileID: 6208089742085827678}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MiniSlime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2998486167879767135}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 416834808553754793, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
+  currentState: 0
   startChasingRange: 7
   stopChasingRange: 9
   knockbackForce: 3
