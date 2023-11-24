@@ -8,11 +8,12 @@ using Unity.VisualScripting;
 public class Enemy : MonoBehaviour
 {
     public GameObject player;
-    public Rigidbody2D rb2D;
-    public SpriteRenderer spriteRenderer;
-    public Animator animator;
+    protected Rigidbody2D rb2D;
+    protected SpriteRenderer spriteRenderer;
+    protected Animator animator;
 
-    protected int currentState = 0;
+    [SerializeField]
+    public int currentState = 0;
 
     protected float distanceToPlayer;
 

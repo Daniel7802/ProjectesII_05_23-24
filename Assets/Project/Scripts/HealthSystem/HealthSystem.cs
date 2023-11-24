@@ -5,11 +5,11 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
 
-   [SerializeField]
-   protected int MaxHealth, health;
-   DeadSystem ds;
+    [SerializeField]
+    protected int MaxHealth, health;
+    protected DeadSystem ds;
 
-    private SpriteRenderer spriteRenderer;    
+    private SpriteRenderer spriteRenderer;
     [SerializeField] Material defaultMaterial;
     [SerializeField] Material damagedMaterial;
     private float damagedTimer = 0.0f;
@@ -19,10 +19,10 @@ public class HealthSystem : MonoBehaviour
     public virtual void Awake()
     {
         ds = GetComponent<DeadSystem>();
-        spriteRenderer = GetComponent<SpriteRenderer>();       
-       
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
     }
-    public void Start()
+    public virtual void Start()
     {
         health = MaxHealth;
     }
@@ -32,7 +32,7 @@ public class HealthSystem : MonoBehaviour
         {
             damagedTimer += Time.deltaTime;
             if (damagedTimer < damagedTime)
-            {                
+            {
                 spriteRenderer.material = damagedMaterial;
             }
             else
@@ -46,24 +46,25 @@ public class HealthSystem : MonoBehaviour
             spriteRenderer.material = defaultMaterial;
         }
     }
-    public void GetDamage( int amount)
-    {        
-        health -=amount;
+    public void GetDamage(int amount)
+    {
+        health -= amount;
 
-        if(health <= 0)
+        if (health <= 0)
         {
             health = 0;
             DeadState();
         }
+       
 
         if (this.gameObject.CompareTag("Enemy"))
         {
             isDamaged = true;
-                     
+
         }
     }
 
-    public virtual void DeadState() 
+    public virtual void DeadState()
     {
         ds.Dead();
     }

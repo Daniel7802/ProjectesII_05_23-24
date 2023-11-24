@@ -41,6 +41,7 @@ public class ShootyIA : Enemy
 
     private void Awake()
     {
+        
         audioSource = GetComponent<AudioSource>();
         lineRenderer = GetComponent<LineRenderer>();
     }

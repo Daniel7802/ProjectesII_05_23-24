@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeadSystem : MonoBehaviour
 {
-  public void Dead()
+  public virtual void Dead()
     {
         Destroy(gameObject);
     }
