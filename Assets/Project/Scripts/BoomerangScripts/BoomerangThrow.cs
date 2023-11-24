@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoomerangThrow : MonoBehaviour
 {
     private TargetJoint2D _targetJoint;
     private SpriteRenderer _spriteRenderer;
+    [SerializeField]
     private BoxCollider2D _boxCollider;
+    private CircleCollider2D _circleCollider;
+
+
     private TrailRenderer _trailRenderer;
     private LineRenderer _lineRenderer;
     private AudioSource _audioSource;
@@ -21,11 +26,14 @@ public class BoomerangThrow : MonoBehaviour
     private ParticleSystem _particleSystemFire;
     private ParticleSystem.EmissionModule _missionModuleFire;
 
+    [SerializeField]
+    private ParticleSystem _particleSystemAttack;
+    private ParticleSystem.EmissionModule _missionModuleAttack;
 
     [SerializeField]
-    float maxTimer = 3.0f;
+    float maxTimer = 3.0f, maxTimerAttack = 0.01f;
     [SerializeField]
-    float timer, timerTrail;
+    float timer, timerTrail, attackTimer;
     float maxTimerTrail = 0.1f;
 
 
@@ -34,7 +42,9 @@ public class BoomerangThrow : MonoBehaviour
 
 
     [SerializeField]
-    private bool coming, wantsToThrow,  going,  rightMouse, canThrow;
+    private bool wantsToThrow, rightMouse, canThrow;
+    [SerializeField]
+    public bool going, coming, knockback;
     public bool isFlying, isFire, mouseHold;
 
     [SerializeField]
@@ -52,6 +62,8 @@ public class BoomerangThrow : MonoBehaviour
         canThrow = true;
         timerTrail = maxTimerTrail;
         isFire = false;
+        _circleCollider.enabled = false;
+        attackTimer = maxTimerAttack;
     }
 
     void Awake()
@@ -59,11 +71,12 @@ public class BoomerangThrow : MonoBehaviour
         _lineRenderer = GetComponent<LineRenderer>();
         _targetJoint = GetComponent<TargetJoint2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
+        _circleCollider = GetComponent<CircleCollider2D>(); 
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _trailRenderer = GetComponent<TrailRenderer>();
 
         _particleSystemFire = GetComponent<ParticleSystem>();
-
+        _missionModuleAttack = _particleSystemAttack.emission;
         _missionModuleFire = _particleSystemFire.emission;
       
         _audioSource = GetComponent<AudioSource>();
@@ -127,7 +140,7 @@ public class BoomerangThrow : MonoBehaviour
 
             else if (coming)
             {
-                Coming();              
+                AttackArea();              
             }
         }
         else
@@ -147,8 +160,25 @@ public class BoomerangThrow : MonoBehaviour
         vectorObjective = (vectorDirection) * distance + (Vector2)transform.position;
         p2 = vectorObjective;
     }
+
+    void AttackArea()
+    {
+        _boxCollider.enabled = false;
+        _circleCollider.enabled = true;
+        _particleSystemAttack.Play();
+        if (attackTimer >= 0.0f)
+            attackTimer -= Time.deltaTime;
+        else
+        {
+            _particleSystemAttack.Stop();
+            Coming();
+        }
+    }
+
     void ThrowBoomerang()
     {
+        knockback = true;
+        going = true;
         _audioSource.PlayOneShot(goingSound);
         canThrow = false;
         rightMouse = false;
@@ -194,10 +224,11 @@ public class BoomerangThrow : MonoBehaviour
     }
 
     void Staying()
-    {
-        going = false;
+    {      
         if (timer >= 0f)
         {
+            if (timer <= 1.80f)
+                knockback = false;
             if (timer < maxTimer - 0.2f && rightMouse == true)
                 coming = true;
 
@@ -207,6 +238,7 @@ public class BoomerangThrow : MonoBehaviour
         {
             _audioSource.PlayOneShot(goingSound);
             coming = true;
+
         }
 
     }
@@ -222,7 +254,8 @@ public class BoomerangThrow : MonoBehaviour
 
     void Coming()
     {
-
+        _circleCollider.enabled = false;
+        _boxCollider.enabled = true;
         p0 = source.transform.position;
         Vector2 comingPosition = Vector2.Lerp(p2, p0, throwDuration);
         _targetJoint.anchor = Vector3.zero;
@@ -248,6 +281,7 @@ public class BoomerangThrow : MonoBehaviour
             _spriteRenderer.enabled = false;
             canThrow = true;
             isFire = false;
+            attackTimer = maxTimerAttack;
         }
 
         if (collision.gameObject.TryGetComponent<Torch>(out Torch torch) && isFlying)

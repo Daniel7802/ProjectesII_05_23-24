@@ -49,6 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 1
   health: 0
+  defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
+  damagedTime: 0.125
 --- !u!114 &885982983123898079
 MonoBehaviour:
   m_ObjectHideFlags: 0
