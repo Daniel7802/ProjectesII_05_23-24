@@ -38,7 +38,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1473685859198301395
 SpriteRenderer:
@@ -105,7 +105,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 4
-  m_LinearDrag: 10
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -167,9 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  rb2D: {fileID: 2447013554959318574}
-  spriteRenderer: {fileID: 1473685859198301395}
-  animator: {fileID: 4428147445117597524}
+  currentState: 0
   startChasingRange: 10
   stopChasingRange: 11.5
   knockbackForce: 20
@@ -177,7 +175,7 @@ MonoBehaviour:
   timeToStop: 6
   timeStoped: 1
   newDestTime: 3
-  chasingMoveForce: 6
+  chasingMoveForce: 8
   aimingTime: 0.8
   enemyBullet: {fileID: 8740438523283609490, guid: 192ecb6623fbab7438f6bb9073b6799d, type: 3}
   startShootingRange: 8
@@ -199,6 +197,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 10
   health: 0
+  defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
+  damagedTime: 0.125
 --- !u!114 &8411318322013947151
 MonoBehaviour:
   m_ObjectHideFlags: 0
