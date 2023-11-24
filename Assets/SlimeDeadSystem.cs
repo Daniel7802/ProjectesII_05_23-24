@@ -6,6 +6,8 @@ public class SlimeDeadSystem : DeadSystem
 {
     [SerializeField] GameObject miniSlime;
     bool miniSlimesSpawned = false;
+    public GameObject player;
+
 
 
     public override void Dead()
@@ -20,6 +22,7 @@ public class SlimeDeadSystem : DeadSystem
         {
             GameObject slime = Instantiate(miniSlime);
             slime.transform.position = transform.position;
+            slime.GetComponent<SlimeIA>().player = player;
             miniSlimesSpawned = true;
         }
        
