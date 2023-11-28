@@ -6,27 +6,27 @@ using static Unity.VisualScripting.Member;
 
 public class ShootyIA : Enemy
 {
-    private AudioSource audioSource;
+    
     private float moveForce;
 
     //roaming
-    public float roamingMoveForce;
+    public float roamingMoveForce = 3f;
     private bool isStoped = false;
     private float timerToStop = 0f;
-    public float timeToStop;
+    public float timeToStop = 6f;
     private float timerStoped = 0f;    
-    public float timeStoped;
+    public float timeStoped = 1f;
     private bool setNewDest = false;
-    public float newDestTime;
+    public float newDestTime = 3f;
     private float newDestTimer = 0f;
 
     //chasing   
-    public float chasingMoveForce;
+    public float chasingMoveForce = 8f;
 
     //aiming
     private LineRenderer lineRenderer;
     private float lineTimer = 0f;
-    public float aimingTime;
+    public float aimingTime = 0.8f;
 
     //shooting
     public GameObject enemyBullet;  
@@ -38,16 +38,12 @@ public class ShootyIA : Enemy
     private float reloadingTimer = 0f;
     public float reloadingTime;
     public AudioClip reloadingSound;
-
-    private void Awake()
-    {
-        
-        audioSource = GetComponent<AudioSource>();
-        lineRenderer = GetComponent<LineRenderer>();
-    }
+   
     public override void Start() 
     {
         base.Start();
+        currentState = 0;
+        lineRenderer = GetComponent<LineRenderer>();
     }
 
     private void Update()
@@ -143,7 +139,7 @@ public class ShootyIA : Enemy
     {
         moveForce = roamingMoveForce;
         target = roamingRandomPoint;
-        spriteRenderer.color = Color.white;
+      
         if (!isStoped)
         {
             Movement();
@@ -185,7 +181,7 @@ public class ShootyIA : Enemy
     {
         moveForce = chasingMoveForce;
         target = player.transform.position;
-        spriteRenderer.color = Color.red;
+      
         Movement();
     }
 

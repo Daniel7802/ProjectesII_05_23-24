@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     protected Rigidbody2D rb2D;
     protected SpriteRenderer spriteRenderer;
     protected Animator animator;
+    protected AudioSource audioSource;
 
     [SerializeField]
     public int currentState = 0;
@@ -33,7 +34,8 @@ public class Enemy : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>(); 
         spriteRenderer = GetComponent<SpriteRenderer>();    
-        animator = GetComponent<Animator>();    
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
     public virtual void Movement()
     {

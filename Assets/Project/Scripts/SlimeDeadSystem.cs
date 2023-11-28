@@ -16,7 +16,7 @@ public class SlimeDeadSystem : DeadSystem
     }
     void SpawnMiniSlimes()
     {
-        //Vector2 dir = new Vector2(0, 3);
+        
         if(!miniSlimesSpawned)
         {
             CalculateVectors();
@@ -34,17 +34,6 @@ public class SlimeDeadSystem : DeadSystem
             slime2.GetComponent<Enemy>().knockbackForce = 5;
             miniSlimesSpawned = true;
         }
-       
-
-       
-       // Vector2 spawnForce = dir.normalized * miniSlimeSpawnForce;
-       // rb2D.AddForce(spawnForce, ForceMode2D.Impulse);            
-
-       // dir = new Vector2(0, -3);
-       // GameObject slime2 = Instantiate(miniSlime);
-       // Vector2 spawnForce2 = dir.normalized * miniSlimeSpawnForce;
-       //rb2D.AddForce(spawnForce2, ForceMode2D.Impulse);
-
     }
 
     void CalculateVectors()
