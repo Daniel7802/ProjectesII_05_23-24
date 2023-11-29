@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.UIElements;
 
 public class BreachIA : Enemy
 {
@@ -20,12 +21,14 @@ public class BreachIA : Enemy
     private float newDestTimer = 0f;
 
     //attack
-    private CircleCollider2D circleCollider;
+    public GameObject breachWave;
+    private float waveTimer = 0f;
+    private float waveTime = 3f;
     public override void Start()
     {
         base.Start();
         currentState = 0;
-        circleCollider = GetComponent<CircleCollider2D>();
+       
     }
 
 
@@ -115,7 +118,17 @@ public class BreachIA : Enemy
 
     private void Attack()
     {
-        circleCollider.radius+=1;
+        waveTimer += Time.deltaTime;
+        if(waveTimer > waveTime) 
+        {
+            GameObject wave = Instantiate(breachWave);
+            wave.transform.position= new Vector2(transform.position.x,transform.position.y-0.5f);
+            waveTimer = 0f;
+
+        }
+        
         
     }
+
+   
 }
