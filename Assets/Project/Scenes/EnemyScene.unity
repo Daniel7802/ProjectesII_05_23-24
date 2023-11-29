@@ -2449,12 +2449,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1278510400485372152, guid: 372dac3c4d440774ea016515767365b8, type: 3}
+      propertyPath: rock
+      value: 
+      objectReference: {fileID: 5918291682886025228, guid: 625787a78b261ad4cbbb2f3e93f22b9a, type: 3}
+    - target: {fileID: 1278510400485372152, guid: 372dac3c4d440774ea016515767365b8, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1890830395}
+    - target: {fileID: 1278510400485372152, guid: 372dac3c4d440774ea016515767365b8, type: 3}
+      propertyPath: rockSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278510400485372152, guid: 372dac3c4d440774ea016515767365b8, type: 3}
+      propertyPath: numberOfRocks
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278510400485372152, guid: 372dac3c4d440774ea016515767365b8, type: 3}
+      propertyPath: timeToDestroyRocks
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5976512225692700462, guid: 372dac3c4d440774ea016515767365b8, type: 3}
       propertyPath: m_Name
       value: Breach
+      objectReference: {fileID: 0}
+    - target: {fileID: 5976512225692700462, guid: 372dac3c4d440774ea016515767365b8, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

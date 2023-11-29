@@ -21,9 +21,14 @@ public class BreachIA : Enemy
     private float newDestTimer = 0f;
 
     //attack
-    public GameObject breachWave;
+    public GameObject rock;
+    public float rockSpeed = 1f;
+    public float radius = 5f;
+    public float numberOfRocks = 10f;
+    public float timeToDestroyRocks = 2f;
     private float waveTimer = 0f;
-    private float waveTime = 3f;
+    private float waveTime = 3.5f;
+
     public override void Start()
     {
         base.Start();
@@ -118,12 +123,25 @@ public class BreachIA : Enemy
 
     private void Attack()
     {
+        float nextAngle = 2 * Mathf.PI / numberOfRocks;
+        float angle = 0f;
         waveTimer += Time.deltaTime;
-        if(waveTimer > waveTime) 
+        if(waveTimer > waveTime)
         {
-            GameObject wave = Instantiate(breachWave);
-            wave.transform.position= new Vector2(transform.position.x,transform.position.y-0.5f);
-            waveTimer = 0f;
+            for (int i = 0; i < numberOfRocks; i++)
+            {
+                float x = Mathf.Cos(angle) * radius;
+                float y = Mathf.Sin(angle) * radius;
+
+                var obj = Instantiate(rock, transform.position, Quaternion.identity);
+                var rb = obj.GetComponent<Rigidbody2D>();
+                
+                rb.velocity = new Vector2(x, y) * rockSpeed;
+                angle += nextAngle;
+
+                Destroy(obj,timeToDestroyRocks);
+                waveTimer = 0f;
+            }
 
         }
         
