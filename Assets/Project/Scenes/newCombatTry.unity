@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boomerang
       objectReference: {fileID: 0}
+    - target: {fileID: 6657343719683139223, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6942920568467783688, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -854,6 +858,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dacce62cae95e544db58cbbfac38e27d, type: 3}
+--- !u!1001 &848298688
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 834128419509678674, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 483001772}
+    - target: {fileID: 6657343719683139223, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
+      propertyPath: m_Name
+      value: ShadowBoomeran
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942920568467783688, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942920568467783688, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942920568467783688, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942920568467783688, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942920568467783688, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942920568467783688, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942920568467783688, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942920568467783688, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942920568467783688, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942920568467783688, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942920568467783688, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
 --- !u!1 &855569731
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,6 +1066,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 89447548352023463, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
+      propertyPath: MaxHealth
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 1768630766616490778, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
       propertyPath: m_Name
       value: slime
@@ -1010,7 +1083,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 483001772}
     - target: {fileID: 5409575842966737851, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
+      propertyPath: roamingForce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5409575842966737851, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
       propertyPath: knockbackForce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5409575842966737851, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
+      propertyPath: chasingJumpForce
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5593360346023233113, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
@@ -1163,17 +1244,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c296a5b02a2e47d4b8af58e275b232e2, type: 3}
---- !u!114 &1018597008 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 834128419509678674, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
-  m_PrefabInstance: {fileID: 21805877}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59af0f8f6961a1d468b40f7dbc9b82a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1177956812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1302,7 +1372,7 @@ PrefabInstance:
     - target: {fileID: 9145842343681718827, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: _boomerangThrow
       value: 
-      objectReference: {fileID: 1018597008}
+      objectReference: {fileID: 1580528927}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1551,6 +1621,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1580528927 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 834128419509678674, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
+  m_PrefabInstance: {fileID: 848298688}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59af0f8f6961a1d468b40f7dbc9b82a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1613723294
 GameObject:
   m_ObjectHideFlags: 0
