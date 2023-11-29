@@ -56,7 +56,7 @@ public class BoomerangThrow : MonoBehaviour
     [SerializeField]
     AudioClip enemyHitSound;
 
-    private void Start()
+    public virtual void Start()
     {
         areaDmg = false;
         minDistance = 2.8f;
