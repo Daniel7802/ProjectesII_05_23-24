@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1911137432474511315}
   - component: {fileID: 7705353077493281783}
   - component: {fileID: 9111823346249048263}
+  - component: {fileID: 1774810771542259340}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -132,7 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 90
-  _boomerangThrow: {fileID: 2018746890, guid: 1ee6112d8914c5d4b9a4ea6d7362873e, type: 2}
+  maxSpeed: 90
+  playerRb: {fileID: 0}
   isRolling: 0
   ImpulseForce: 5
   pauseManager: {fileID: 0}
@@ -207,6 +209,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 5
   health: 0
+  getHit: 0
+  canGetDamageMaxTimer: 0
   defaultMaterial: {fileID: 0}
   damagedMaterial: {fileID: 0}
   damagedTime: 0.125
@@ -373,3 +377,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1774810771542259340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416834808553754793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b238d53b80715a4c97af4733ae9a402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boomerang: {fileID: 0}
+  _shadowBoomerang: {fileID: 0}

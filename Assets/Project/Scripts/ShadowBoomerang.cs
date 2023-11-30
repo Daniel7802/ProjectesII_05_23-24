@@ -5,11 +5,28 @@ using UnityEngine;
 public class ShadowBoomerang : BoomerangThrow
 {
     // Start is called before the first frame update
+    PlayerMovement _playerMovement;
 
     public override void  Start()
     {
-        base.Start();
+        base.Start();   
+        _playerMovement = source.GetComponent<PlayerMovement>();
     }
-    // Update is called once per frame
+
+    new private void Update()
+    {
+        base.Update();
+        Teleport();
+    }
+    
+    void Teleport ()
+    {
+        if(isFlying && Input.GetMouseButtonDown(0))
+        {
+            _playerMovement.playerRb.MovePosition(transform.position);
+            coming = true;
+        }
+
+    }
     
 }

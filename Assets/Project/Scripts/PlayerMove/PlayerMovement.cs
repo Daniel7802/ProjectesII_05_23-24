@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 10f;
     public float maxSpeed = 90f;
 
-    private Rigidbody2D playerRb;
+    public Rigidbody2D playerRb;
     private Animator playerAnimator;
 
     private float moveX;

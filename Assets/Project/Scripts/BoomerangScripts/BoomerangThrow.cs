@@ -23,7 +23,7 @@ public class BoomerangThrow : MonoBehaviour
     public bool areaDmg;
 
     [SerializeField]
-    GameObject source; //Player
+   protected GameObject source; //Player
 
     [SerializeField]
     private ParticleSystem _particleSystemFire;
