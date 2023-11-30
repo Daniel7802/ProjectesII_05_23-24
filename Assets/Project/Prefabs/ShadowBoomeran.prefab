@@ -4839,8 +4839,6 @@ GameObject:
   - component: {fileID: 6942920568467783688}
   - component: {fileID: 3897944622222715238}
   - component: {fileID: 6986239586954907415}
-  - component: {fileID: 8361430021241332328}
-  - component: {fileID: 834128419509678674}
   - component: {fileID: 3102325548376885726}
   - component: {fileID: 1166704588033831266}
   - component: {fileID: 2884717200038956989}
@@ -4851,6 +4849,8 @@ GameObject:
   - component: {fileID: 1474864576467928120}
   - component: {fileID: 7756416710183487902}
   - component: {fileID: 3613450144279430501}
+  - component: {fileID: 5970343758627233069}
+  - component: {fileID: 5666166676430979260}
   m_Layer: 0
   m_Name: ShadowBoomeran
   m_TagString: Boomerang
@@ -4954,70 +4954,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!257 &8361430021241332328
-TargetJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6657343719683139223}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 1
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_Anchor: {x: 0, y: 0}
-  m_Target: {x: -17.626698, y: -3.8809655}
-  m_AutoConfigureTarget: 0
-  m_MaxForce: 8000
-  m_DampingRatio: 1
-  m_Frequency: 5
---- !u!114 &834128419509678674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6657343719683139223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59af0f8f6961a1d468b40f7dbc9b82a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _circleCollider: {fileID: 1474864576467928120}
-  _principalCircleCollider: {fileID: 3613450144279430501}
-  goingSound: {fileID: 8300000, guid: 0cf4ebdb3a4a05b47bb59aee3b292c12, type: 3}
-  areaDmg: 0
-  source: {fileID: 0}
-  _particleSystemFire: {fileID: 7114509794649575709}
-  _particleSystemAttack: {fileID: 881911583700022119}
-  maxTimer: 2
-  maxTimerAttack: 0.05
-  timer: 0
-  timerTrail: 0
-  attackTimer: 0
-  rotationSpeed: 25
-  minDistance: 0
-  maxDistance: 0
-  distance: 20
-  throwDuration: 1
-  wantsToThrow: 0
-  rightMouse: 1
-  canThrow: 0
-  going: 0
-  coming: 0
-  knockback: 0
-  isFlying: 0
-  isFire: 0
-  mouseHold: 0
-  p0: {x: 0, y: 0}
-  p2: {x: 0, y: 0}
-  pAux: {x: 0, y: 0}
-  vectorDirection: {x: 0, y: 0}
-  vectorObjective: {x: 0, y: 0}
-  enemyHitSound: {fileID: 8300000, guid: 243831b253368bc40b4e9a4ca743e590, type: 3}
 --- !u!96 &3102325548376885726
 TrailRenderer:
   serializedVersion: 3
@@ -10326,6 +10262,70 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.62
+--- !u!114 &5970343758627233069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6657343719683139223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b0ec6df1a51cf844b244861b87b6493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _circleCollider: {fileID: 1474864576467928120}
+  _principalCircleCollider: {fileID: 3613450144279430501}
+  goingSound: {fileID: 8300000, guid: 0cf4ebdb3a4a05b47bb59aee3b292c12, type: 3}
+  areaDmg: 0
+  source: {fileID: 0}
+  _particleSystemFire: {fileID: 1808350131506932154}
+  _particleSystemAttack: {fileID: 881911583700022119}
+  maxTimer: 2
+  maxTimerAttack: 0.05
+  timer: 0
+  timerTrail: 0
+  attackTimer: 0
+  rotationSpeed: 25
+  minDistance: 0
+  maxDistance: 0
+  distance: 0
+  throwDuration: 1
+  wantsToThrow: 0
+  rightMouse: 0
+  canThrow: 0
+  going: 0
+  coming: 0
+  knockback: 0
+  isFlying: 0
+  isFire: 0
+  mouseHold: 0
+  p0: {x: 0, y: 0}
+  p2: {x: 0, y: 0}
+  pAux: {x: 0, y: 0}
+  vectorDirection: {x: 0, y: 0}
+  vectorObjective: {x: 0, y: 0}
+  enemyHitSound: {fileID: 8300000, guid: 243831b253368bc40b4e9a4ca743e590, type: 3}
+--- !u!257 &5666166676430979260
+TargetJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6657343719683139223}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 1
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 3
+  m_Anchor: {x: 0, y: 0}
+  m_Target: {x: -17.626698, y: -3.8809655}
+  m_AutoConfigureTarget: 0
+  m_MaxForce: 8000
+  m_DampingRatio: 1
+  m_Frequency: 5
 --- !u!1001 &1501143432825182155
 PrefabInstance:
   m_ObjectHideFlags: 0
