@@ -5,10 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 10f;
-
-    [SerializeField]
-    BoomerangThrow _boomerangThrow;
+    public float speed = 10f;
+    public float maxSpeed = 90f;
 
     private Rigidbody2D playerRb;
     private Animator playerAnimator;
@@ -50,18 +48,9 @@ public class PlayerMovement : MonoBehaviour
         {
             // Inputs
             moveX = Input.GetAxisRaw("Horizontal");
-            moveY = Input.GetAxisRaw("Vertical");
+            moveY = Input.GetAxisRaw("Vertical");           
 
-            if (_boomerangThrow.mouseHold)
-            {
-                speed = 60f;
-            }
-            else
-            {
-                speed = 90f;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space) && !isRolling && !rollCoolDown && !_boomerangThrow.mouseHold && (moveX != 0 || moveY != 0))
+            if (Input.GetKeyDown(KeyCode.Space) && !isRolling && !rollCoolDown && (moveX != 0 || moveY != 0))
             {
                 audioSource.PlayOneShot(rollSound);
                 isRolling = true;
