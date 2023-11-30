@@ -22,18 +22,17 @@ public class BreachIA : Enemy
 
     //attack
     public GameObject rock;
-    public float rockSpeed = 1f;
-    public float radius = 5f;
-    public float numberOfRocks = 10f;
-    public float timeToDestroyRocks = 2f;
-    private float waveTimer = 0f;
-    private float waveTime = 3.5f;
+    public ParticleSystem wave;
+    public float attackCoolDown = 3f;
+    private float attackTimer = 0f;
+
+
 
     public override void Start()
     {
         base.Start();
         currentState = 0;
-       
+
     }
 
 
@@ -43,7 +42,7 @@ public class BreachIA : Enemy
         distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
         switch (currentState)
         {
-            case 0:
+            case 0://roaming
                 if (distanceToPlayer < startChasingRange)
                 {
 
@@ -54,17 +53,29 @@ public class BreachIA : Enemy
                     Roaming();
                 }
                 break;
-                
-            case 1:
+
+            case 1://attack
                 if (distanceToPlayer > stopChasingRange)
                 {
+
                     currentState = 0;
+
                 }
                 else
                 {
-                    Attack();
+                    
+                    if (attackTimer ==0)
+                    {
+                        Attack();
+
+                    }
+                    attackTimer += Time.deltaTime;
+                    if(attackTimer>attackCoolDown)
+                    {
+                        attackTimer = 0f;
+                    }
                 }
-                
+
                 break;
         }
     }
@@ -83,7 +94,7 @@ public class BreachIA : Enemy
     {
         moveForce = roamingMoveForce;
         target = roamingRandomPoint;
-      
+
         if (!isStoped)
         {
             Movement();
@@ -104,7 +115,7 @@ public class BreachIA : Enemy
         if (timerToStop > timeToStop)
         {
             isStoped = true;
-           
+
             timerStoped += Time.deltaTime;
             if (timerStoped > timeStoped)
             {
@@ -123,30 +134,17 @@ public class BreachIA : Enemy
 
     private void Attack()
     {
-        float nextAngle = 2 * Mathf.PI / numberOfRocks;
-        float angle = 0f;
-        waveTimer += Time.deltaTime;
-        if(waveTimer > waveTime)
-        {
-            for (int i = 0; i < numberOfRocks; i++)
-            {
-                float x = Mathf.Cos(angle) * radius;
-                float y = Mathf.Sin(angle) * radius;
+        wave.transform.position = transform.position;
+        wave.Play();
 
-                var obj = Instantiate(rock, transform.position, Quaternion.identity);
-                var rb = obj.GetComponent<Rigidbody2D>();
-                
-                rb.velocity = new Vector2(x, y) * rockSpeed;
-                angle += nextAngle;
 
-                Destroy(obj,timeToDestroyRocks);
-                waveTimer = 0f;
-            }
 
-        }
-        
-        
+
+
+
+
+
     }
 
-   
+
 }
