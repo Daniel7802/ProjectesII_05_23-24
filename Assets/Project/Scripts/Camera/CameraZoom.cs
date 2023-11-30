@@ -25,7 +25,7 @@ public class CameraZoom : MonoBehaviour
 
     private float movementTimer = 0.50f;
 
-    private float cameraOffset = 0.09f;
+    private float cameraOffset = 0.02f;
 
     [SerializeField]
     private GameObject boomerang;
