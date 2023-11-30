@@ -70,7 +70,7 @@ public class BoomerangThrow : MonoBehaviour
         attackTimer = maxTimerAttack;
     }
 
-    void Awake()
+    protected void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
         _targetJoint = GetComponent<TargetJoint2D>();
@@ -84,7 +84,7 @@ public class BoomerangThrow : MonoBehaviour
       
         _audioSource = GetComponent<AudioSource>();
     }
-    private void Update()
+    protected void Update()
     {
 
         if(isFire)
@@ -110,7 +110,7 @@ public class BoomerangThrow : MonoBehaviour
             if (isFlying && !going) { _audioSource.PlayOneShot(goingSound); }
         }
     }
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         if (wantsToThrow && !isFlying && canThrow)
         {
@@ -154,7 +154,7 @@ public class BoomerangThrow : MonoBehaviour
 
         }
     }
-    void CalculateThrow()
+    protected void CalculateThrow()
     {
         p0 = transform.position; // 5,5         
         pAux = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -164,7 +164,7 @@ public class BoomerangThrow : MonoBehaviour
         p2 = vectorObjective;
     }
 
-    void AttackArea()
+    protected void AttackArea()
     {
         areaDmg = true;
         _principalCircleCollider.enabled = false;
@@ -181,7 +181,7 @@ public class BoomerangThrow : MonoBehaviour
         }
     }
 
-    void ThrowBoomerang()
+    protected void ThrowBoomerang()
     {
         knockback = true;
         going = true;
@@ -193,7 +193,7 @@ public class BoomerangThrow : MonoBehaviour
         isFlying = true;
         Debug.Log(p2);
     }
-    private void MouseManager()
+    protected void MouseManager()
     {
         if (Input.GetMouseButtonDown(0) && !isFlying && canThrow)
         {
@@ -208,7 +208,7 @@ public class BoomerangThrow : MonoBehaviour
         }
     }
 
-    void ShowTrayectoryLine()
+    protected void ShowTrayectoryLine()
     {
         if (mouseHold)
         {
@@ -222,14 +222,14 @@ public class BoomerangThrow : MonoBehaviour
             _lineRenderer.enabled = false;
 
     }
-    void Going()
+    protected void Going()
     {
         Vector3 finalPos = Vector3.Lerp(p0, p2, throwDuration);
         _targetJoint.anchor = Vector3.zero;
         _targetJoint.target = finalPos;
     }
 
-    void Staying()
+    protected void Staying()
     {      
         if (timer >= 0f)
         {
@@ -248,7 +248,7 @@ public class BoomerangThrow : MonoBehaviour
         }
 
     }
-    void StayTrailRenderer()
+    protected void StayTrailRenderer()
     {
         if (timerTrail >= 0f)
         {
@@ -258,7 +258,7 @@ public class BoomerangThrow : MonoBehaviour
             _trailRenderer.startWidth = 0;
     }
 
-    void Coming()
+    protected void Coming()
     {
         _circleCollider.enabled = false;
         _principalCircleCollider.enabled = true;
@@ -268,7 +268,7 @@ public class BoomerangThrow : MonoBehaviour
         _targetJoint.target = comingPosition;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (collision.gameObject.tag.Equals("Wall"))
@@ -303,7 +303,7 @@ public class BoomerangThrow : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag.Equals("Wall"))
         {
@@ -314,7 +314,7 @@ public class BoomerangThrow : MonoBehaviour
 
 
     }
-    private void OnDrawGizmos()
+    protected void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(p0, 0.1f);

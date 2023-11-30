@@ -8,11 +8,8 @@ public class ShadowBoomerang : BoomerangThrow
 
     public override void  Start()
     {
-       base.Start();
+        base.Start();
     }
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
