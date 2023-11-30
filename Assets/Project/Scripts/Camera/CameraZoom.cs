@@ -25,12 +25,17 @@ public class CameraZoom : MonoBehaviour
 
     private float movementTimer = 0.50f;
 
-    private float cameraOffset = 0.02f;
+    private float cameraOffset = 0.03f;
 
     [SerializeField]
     private GameObject boomerang;
 
+    [SerializeField]
+    private GameObject shadowBoomerang;
+
     private BoomerangThrow bt;
+
+    private BoomerangThrow sbt;
 
     // CAMERA FOLLOW VARIABLES
     private Vector3 offset = new Vector3(0f, 0f, -10f);
@@ -45,13 +50,14 @@ public class CameraZoom : MonoBehaviour
         startZoom = cam.orthographicSize;
         zoom = startZoom;
         bt = boomerang.GetComponent<BoomerangThrow>();
+        sbt = shadowBoomerang.GetComponent<BoomerangThrow>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // CAMERA ZOOM CODE
-        if(bt.mouseHold)
+        if(bt.mouseHold || sbt.mouseHold)
         {
             startTimer -= Time.deltaTime;
 
@@ -70,7 +76,7 @@ public class CameraZoom : MonoBehaviour
                 }
             }
         }
-        else if(!bt.mouseHold)
+        else if(!bt.mouseHold || !sbt.mouseHold)
         {
             zoom += 1 * zoomMultiplier * 5 * Time.deltaTime;
             zoom = Mathf.Clamp(zoom, minZoom, maxZoom);
@@ -83,7 +89,7 @@ public class CameraZoom : MonoBehaviour
         playerPosition = cameraTarget.transform.position;
 
         //CAMERA FOLLOW CODE
-        if(!bt.mouseHold)
+        if(!bt.mouseHold && !sbt.mouseHold)
         {
             Vector3 targetPosition = cameraTarget.position + offset;
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref cameraVelocity, smoothTimeGo);
