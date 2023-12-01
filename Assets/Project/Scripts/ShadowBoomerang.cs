@@ -85,12 +85,7 @@ public class ShadowBoomerang : BoomerangThrow
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Enemy") && !coming && !going)
-        {
-            Vector2 blackHoleForce = transform.position - collision.transform.position;
-            blackHoleForce.Normalize();
-            collision.attachedRigidbody.AddForce(blackHoleForce);
-        }
+      
         if (collision.gameObject.CompareTag("Player") && coming)
         {
             makeEffect = true;
@@ -98,5 +93,15 @@ public class ShadowBoomerang : BoomerangThrow
         }
             base.OnTriggerEnter2D(collision);
       
+    }
+    protected void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") && !coming && !going)
+        {
+            Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
+            Vector2 blackHoleForce = transform.position - collision.transform.position;
+            blackHoleForce.Normalize();
+            rb.AddForce(blackHoleForce);
+        }
     }
 }
