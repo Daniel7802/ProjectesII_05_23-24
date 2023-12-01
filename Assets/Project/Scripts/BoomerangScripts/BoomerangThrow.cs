@@ -269,7 +269,7 @@ public class BoomerangThrow : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag.Equals("Wall"))
+        if (collision.gameObject.tag.Equals("Wall") || collision.gameObject.tag.Equals("ShadowWall"))
         {
             coming = true;
             going = false;
@@ -300,7 +300,7 @@ public class BoomerangThrow : MonoBehaviour
 
     protected void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Wall"))
+        if (collision.gameObject.tag.Equals("Wall") || collision.gameObject.tag.Equals("ShadowWall"))
         {
             _audioSource.PlayOneShot(goingSound);
             coming = true;
