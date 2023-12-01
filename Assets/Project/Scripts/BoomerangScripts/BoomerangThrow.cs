@@ -229,7 +229,7 @@ public class BoomerangThrow : MonoBehaviour
         _targetJoint.target = finalPos;
     }
 
-    protected void Staying()
+    protected virtual void Staying()
     {      
         if (timer >= 0f)
         {
@@ -268,7 +268,7 @@ public class BoomerangThrow : MonoBehaviour
         _targetJoint.target = comingPosition;
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (collision.gameObject.tag.Equals("Wall"))
