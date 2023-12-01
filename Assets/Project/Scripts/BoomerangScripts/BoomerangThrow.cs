@@ -8,7 +8,7 @@ public class BoomerangThrow : MonoBehaviour
     private TargetJoint2D _targetJoint;
     private SpriteRenderer _spriteRenderer;
     [SerializeField]
-    private CircleCollider2D _circleCollider;
+    protected CircleCollider2D _circleCollider;
 
     [SerializeField]
     public CircleCollider2D _principalCircleCollider;

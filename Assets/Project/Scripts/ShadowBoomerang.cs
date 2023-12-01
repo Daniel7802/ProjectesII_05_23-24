@@ -56,6 +56,7 @@ public class ShadowBoomerang : BoomerangThrow
             {
                 if (makeEffect)
                 {
+                    _circleCollider.enabled = true;
                     _particleBlackHole.Play();
                     makeEffect = false;
                 }
@@ -84,6 +85,12 @@ public class ShadowBoomerang : BoomerangThrow
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.gameObject.CompareTag("Enemy") && !coming && !going)
+        {
+            Vector2 blackHoleForce = transform.position - collision.transform.position;
+            blackHoleForce.Normalize();
+            collision.attachedRigidbody.AddForce(blackHoleForce);
+        }
         if (collision.gameObject.CompareTag("Player") && coming)
         {
             makeEffect = true;
