@@ -53,8 +53,7 @@ public class BoomerangThrow : MonoBehaviour
     [SerializeField]
     Vector2 p0, p2, pAux, vectorDirection, vectorObjective;
 
-    [SerializeField]
-    AudioClip enemyHitSound;
+  
 
     public virtual void Start()
     {
@@ -297,10 +296,7 @@ public class BoomerangThrow : MonoBehaviour
             else if (!torch.torchActive && isFire)
                 torch.torchActive = true;
         }
-        if (collision.gameObject.CompareTag("Enemy")&&_spriteRenderer.enabled)
-        {
-            _audioSource.PlayOneShot(enemyHitSound);
-        }
+        
     }
 
     protected void OnCollisionEnter2D(Collision2D collision)

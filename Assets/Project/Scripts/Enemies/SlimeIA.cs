@@ -5,8 +5,7 @@ using UnityEngine;
 
 
 public class SlimeIA : Enemy
-{
-    private AudioSource audioSource;
+{    
     public AudioClip slimeJumpSound;
     //movement    
     private float waitingTime;
@@ -32,21 +31,10 @@ public class SlimeIA : Enemy
     //chasing    
     public float chasingJumpForce = 15;
 
-    //damaged
-
-
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-        rb2D = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-
-    }
     private void Start()
     {
-        currentState = 0;
-        target = roamingRandomPoint;
+        base.Start();
+        currentState = 0;      
         SetNewWaitingTime();
     }
 

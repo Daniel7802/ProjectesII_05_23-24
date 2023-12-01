@@ -10,23 +10,28 @@ public class HealthSystem : MonoBehaviour
     protected DeadSystem ds;
 
     [SerializeField]
-    public bool getHit;   
+    public bool getHit;
+
+    private AudioSource _audioSource;
+    [SerializeField] private AudioClip damageSound;
+    
 
 
     private float canGetDamageTimer = 0.0f;
     [SerializeField] private float canGetDamageMaxTimer;
 
-    private SpriteRenderer spriteRenderer;
-    [SerializeField] Material defaultMaterial;
-    [SerializeField] Material damagedMaterial;
-    private float damagedTimer = 0.0f;
-    [SerializeField] private float damagedTime = 0.125f;
-    private bool isDamaged;
+    protected SpriteRenderer spriteRenderer;
+    [SerializeField]protected Material defaultMaterial;
+    [SerializeField]protected Material damagedMaterial;
+    protected float damagedTimer = 0.0f;
+    [SerializeField] protected float damagedTime = 0.125f;
+    protected bool isDamaged;
 
     public virtual void Awake()
     {
         ds = GetComponent<DeadSystem>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        _audioSource = GetComponent<AudioSource>();
 
     }
     public virtual void Start()
@@ -73,6 +78,7 @@ public class HealthSystem : MonoBehaviour
 
     public void GetDamage(int amount)
     {
+        _audioSource.PlayOneShot(damageSound);
         health -= amount;
 
         if (health <= 0)
