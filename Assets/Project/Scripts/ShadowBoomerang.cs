@@ -13,6 +13,8 @@ public class ShadowBoomerang : BoomerangThrow
     PlayerMovement _playerMovement;
     [SerializeField]
     bool makeEffect = true;
+
+    [SerializeField]private float  blackHoleForce = 30;
     public override void  Start()
     {
         base.Start();   
@@ -96,12 +98,12 @@ public class ShadowBoomerang : BoomerangThrow
     }
     protected void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && !coming && !going)
+        if (collision.gameObject.CompareTag("Enemy") )
         {
             Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
-            Vector2 blackHoleForce = transform.position - collision.transform.position;
-            blackHoleForce.Normalize();
-            rb.AddForce(blackHoleForce);
+            Vector2 blackHoleForceDirection = transform.position - collision.transform.position;
+            Vector2 blackHoleForceVector = blackHoleForceDirection.normalized * blackHoleForce;         
+            rb.AddForce(blackHoleForceVector);
         }
     }
 }
