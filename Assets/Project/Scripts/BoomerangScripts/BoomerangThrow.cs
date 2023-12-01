@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BoomerangThrow : MonoBehaviour
 {
+    bool cancelled = false;
     private TargetJoint2D _targetJoint;
     private SpriteRenderer _spriteRenderer;
     [SerializeField]
@@ -269,13 +270,14 @@ public class BoomerangThrow : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag.Equals("Wall") || collision.gameObject.tag.Equals("ShadowWall"))
+        if (collision.gameObject.tag.Equals("Wall") && !areaDmg || collision.gameObject.tag.Equals("ShadowWall") && !areaDmg)
         {
-            coming = true;
-            going = false;
+            cancelled = true;
+            Coming();
         }
-        if (collision.gameObject.CompareTag("Player") && coming)
-        {   
+        if (collision.gameObject.CompareTag("Player") && (coming ||cancelled) )
+        {
+            cancelled = false;  
             isFlying = false;
             coming = false;
             going = false;

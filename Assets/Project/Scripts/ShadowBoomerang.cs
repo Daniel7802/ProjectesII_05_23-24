@@ -17,6 +17,7 @@ public class ShadowBoomerang : BoomerangThrow
     [SerializeField]private float  blackHoleForce = 30;
     public override void  Start()
     {
+       
         base.Start();   
         _playerMovement = source.GetComponent<PlayerMovement>();
         _particleBlackHole = _particleBlackHoleGO.GetComponent<ParticleSystem>();
@@ -29,7 +30,6 @@ public class ShadowBoomerang : BoomerangThrow
         if(!coming && isFlying) 
         {
             _particleBlackHoleGO.transform.position = transform.position;
-
         }
 
     }
@@ -59,6 +59,7 @@ public class ShadowBoomerang : BoomerangThrow
                 if (makeEffect)
                 {
                     _circleCollider.enabled = true;
+                    areaDmg = true;
                     _particleBlackHole.Play();
                     makeEffect = false;
                 }
@@ -68,7 +69,7 @@ public class ShadowBoomerang : BoomerangThrow
             {
                 coming = true;
                 _particleBlackHole.Stop();
-
+                areaDmg = false;
             }
 
             timer -= Time.deltaTime;
