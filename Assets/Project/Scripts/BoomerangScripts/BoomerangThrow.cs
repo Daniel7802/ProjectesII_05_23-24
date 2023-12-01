@@ -8,7 +8,7 @@ public class BoomerangThrow : MonoBehaviour
     private TargetJoint2D _targetJoint;
     private SpriteRenderer _spriteRenderer;
     [SerializeField]
-    private CircleCollider2D _circleCollider;
+    protected CircleCollider2D _circleCollider;
 
     [SerializeField]
     public CircleCollider2D _principalCircleCollider;
@@ -17,7 +17,7 @@ public class BoomerangThrow : MonoBehaviour
 
     private TrailRenderer _trailRenderer;
     private LineRenderer _lineRenderer;
-    private AudioSource _audioSource;
+    protected AudioSource _audioSource;
 
     public AudioClip goingSound;
     public bool areaDmg;
@@ -34,10 +34,10 @@ public class BoomerangThrow : MonoBehaviour
     private ParticleSystem.EmissionModule _missionModuleAttack;
 
     [SerializeField]
-    float maxTimer = 3.0f, maxTimerAttack = 0.01f;
+   protected float maxTimer = 3.0f, maxTimerAttack = 0.01f;
     [SerializeField]
-    float timer, timerTrail, attackTimer;
-    float maxTimerTrail = 0.1f;
+    protected float timer, timerTrail, attackTimer;
+    protected float maxTimerTrail = 0.1f;
 
 
     [SerializeField]
@@ -45,7 +45,7 @@ public class BoomerangThrow : MonoBehaviour
 
 
     [SerializeField]
-    private bool wantsToThrow, rightMouse, canThrow;
+    protected bool wantsToThrow, rightMouse, canThrow;
     [SerializeField]
     public bool going, coming, knockback;
     public bool isFlying, isFire, mouseHold;
@@ -126,7 +126,6 @@ public class BoomerangThrow : MonoBehaviour
            _principalCircleCollider.enabled = true;
             _spriteRenderer.enabled = true;
             _trailRenderer.startWidth = 0.37f;
-
             _trailRenderer.enabled = true;
             transform.Rotate(0f, 0f, rotationSpeed, Space.Self);
             if (going)
@@ -228,7 +227,7 @@ public class BoomerangThrow : MonoBehaviour
         _targetJoint.target = finalPos;
     }
 
-    protected void Staying()
+    protected virtual void Staying()
     {      
         if (timer >= 0f)
         {
@@ -257,7 +256,7 @@ public class BoomerangThrow : MonoBehaviour
             _trailRenderer.startWidth = 0;
     }
 
-    protected void Coming()
+    protected virtual void Coming()
     {
         _circleCollider.enabled = false;
         _principalCircleCollider.enabled = true;
@@ -267,7 +266,7 @@ public class BoomerangThrow : MonoBehaviour
         _targetJoint.target = comingPosition;
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (collision.gameObject.tag.Equals("Wall"))
