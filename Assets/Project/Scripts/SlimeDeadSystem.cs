@@ -11,8 +11,9 @@ public class SlimeDeadSystem : DeadSystem
 
     public override void Dead()
     {
-        SpawnMiniSlimes();
         base.Dead();
+        SpawnMiniSlimes();
+        
     }
     void SpawnMiniSlimes()
     {
@@ -30,8 +31,8 @@ public class SlimeDeadSystem : DeadSystem
             slime.GetComponent<Enemy>().KnockBack(vectorSlime1);
             slime2.GetComponent<Enemy>().KnockBack(vectorSlime2);
 
-            slime.GetComponent<Enemy>().knockbackForce = 5;
-            slime2.GetComponent<Enemy>().knockbackForce = 5;
+            //slime.GetComponent<Enemy>().knockbackForce = 5;
+            //slime2.GetComponent<Enemy>().knockbackForce = 5;
             miniSlimesSpawned = true;
         }
     }

@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
     protected Animator animator;
     protected AudioSource audioSource;
+  
 
     [SerializeField]
     public int currentState = 0;
@@ -32,8 +33,8 @@ public class Enemy : MonoBehaviour
 
     public virtual void Start()
     {
-        rb2D = GetComponent<Rigidbody2D>(); 
-        spriteRenderer = GetComponent<SpriteRenderer>();    
+        rb2D = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -79,7 +80,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-   
+
     public virtual void OnDrawGizmos()
     {
 
@@ -91,7 +92,6 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(roamingRandomPoint, 0.4f);
     }
-
-
+    
 }
 
