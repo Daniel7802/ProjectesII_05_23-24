@@ -21,7 +21,7 @@ public class BreachIA : Enemy
     private float newDestTimer = 0f;
 
     //attack
-    public GameObject rock;
+  
     public ParticleSystem wave;
     public float attackCoolDown = 3f;
     private float attackTimer = 0f;
@@ -59,6 +59,7 @@ public class BreachIA : Enemy
                 {
 
                     currentState = 0;
+                    attackTimer = 0f;
 
                 }
                 else
@@ -134,16 +135,9 @@ public class BreachIA : Enemy
 
     private void Attack()
     {
+        target = player.transform.position;
         wave.transform.position = transform.position;
         wave.Play();
-
-
-
-
-
-
-
-
     }
 
 

@@ -7,8 +7,8 @@ public class BreachWave : MonoBehaviour
    
     private CircleCollider2D circleCollider2D;
     private ParticleSystem particleSystem1;
-    [SerializeField] private float speed = 50f;
-    [SerializeField] private float maxRadius = 30f;
+    [SerializeField] private float colliderRadiusMultiplier = 6f;
+ 
 
     private Rigidbody2D rb2D;
 
@@ -20,20 +20,13 @@ public class BreachWave : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (particleSystem1)
-        {
-            circleCollider2D.radius += speed;
-
-        }
+        if (particleSystem1.IsAlive() && particleSystem1.particleCount > 0)
+            circleCollider2D.radius = particleSystem1.time * colliderRadiusMultiplier;
         else
-        {
-            circleCollider2D.radius = 0.001f;
-        }
+            circleCollider2D.radius = 0;
+        
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-    }
+   
 }
