@@ -20,7 +20,7 @@ public class CameraTarget : MonoBehaviour
     {
         if (manager._boomerangThrow.mouseHold)
         {
-            if(distance <= 3)
+            if(distance <= 2)
             distance += 0.01f;
             CalculateTarger();
         }
