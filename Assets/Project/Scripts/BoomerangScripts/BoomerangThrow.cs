@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class BoomerangThrow : MonoBehaviour
 {
+    bool cancelled = false;
     private TargetJoint2D _targetJoint;
     private SpriteRenderer _spriteRenderer;
     [SerializeField]
-    private CircleCollider2D _circleCollider;
+    protected CircleCollider2D _circleCollider;
 
     [SerializeField]
     public CircleCollider2D _principalCircleCollider;
@@ -17,7 +18,7 @@ public class BoomerangThrow : MonoBehaviour
 
     private TrailRenderer _trailRenderer;
     private LineRenderer _lineRenderer;
-    private AudioSource _audioSource;
+    protected AudioSource _audioSource;
 
     public AudioClip goingSound;
     public bool areaDmg;
@@ -34,10 +35,10 @@ public class BoomerangThrow : MonoBehaviour
     private ParticleSystem.EmissionModule _missionModuleAttack;
 
     [SerializeField]
-    float maxTimer = 3.0f, maxTimerAttack = 0.01f;
+   protected float maxTimer = 3.0f, maxTimerAttack = 0.01f;
     [SerializeField]
-    float timer, timerTrail, attackTimer;
-    float maxTimerTrail = 0.1f;
+    protected float timer, timerTrail, attackTimer;
+    protected float maxTimerTrail = 0.1f;
 
 
     [SerializeField]
@@ -45,7 +46,7 @@ public class BoomerangThrow : MonoBehaviour
 
 
     [SerializeField]
-    private bool wantsToThrow, rightMouse, canThrow;
+    protected bool wantsToThrow, rightMouse, canThrow;
     [SerializeField]
     public bool going, coming, knockback;
     public bool isFlying, isFire, mouseHold;
@@ -53,8 +54,7 @@ public class BoomerangThrow : MonoBehaviour
     [SerializeField]
     Vector2 p0, p2, pAux, vectorDirection, vectorObjective;
 
-    [SerializeField]
-    AudioClip enemyHitSound;
+  
 
     public virtual void Start()
     {
@@ -127,7 +127,6 @@ public class BoomerangThrow : MonoBehaviour
            _principalCircleCollider.enabled = true;
             _spriteRenderer.enabled = true;
             _trailRenderer.startWidth = 0.37f;
-
             _trailRenderer.enabled = true;
             transform.Rotate(0f, 0f, rotationSpeed, Space.Self);
             if (going)
@@ -229,7 +228,7 @@ public class BoomerangThrow : MonoBehaviour
         _targetJoint.target = finalPos;
     }
 
-    protected void Staying()
+    protected virtual void Staying()
     {      
         if (timer >= 0f)
         {
@@ -258,7 +257,7 @@ public class BoomerangThrow : MonoBehaviour
             _trailRenderer.startWidth = 0;
     }
 
-    protected void Coming()
+    protected virtual void Coming()
     {
         _circleCollider.enabled = false;
         _principalCircleCollider.enabled = true;
@@ -268,16 +267,17 @@ public class BoomerangThrow : MonoBehaviour
         _targetJoint.target = comingPosition;
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag.Equals("Wall"))
+        if (collision.gameObject.tag.Equals("Wall") && !areaDmg || collision.gameObject.tag.Equals("ShadowWall") && !areaDmg)
         {
-            coming = true;
-            going = false;
+            cancelled = true;
+            Coming();
         }
-        if (collision.gameObject.CompareTag("Player") && coming)
-        {   
+        if (collision.gameObject.CompareTag("Player") && (coming ||cancelled) )
+        {
+            cancelled = false;  
             isFlying = false;
             coming = false;
             going = false;
@@ -297,15 +297,12 @@ public class BoomerangThrow : MonoBehaviour
             else if (!torch.torchActive && isFire)
                 torch.torchActive = true;
         }
-        if (collision.gameObject.CompareTag("Enemy")&&_spriteRenderer.enabled)
-        {
-            _audioSource.PlayOneShot(enemyHitSound);
-        }
+        
     }
 
     protected void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Wall"))
+        if (collision.gameObject.tag.Equals("Wall") || collision.gameObject.tag.Equals("ShadowWall"))
         {
             _audioSource.PlayOneShot(goingSound);
             coming = true;

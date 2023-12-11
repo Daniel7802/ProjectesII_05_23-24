@@ -8,7 +8,13 @@ public class BoomerangHUDManager : MonoBehaviour
     GameObject boomerang;
 
     [SerializeField]
+    GameObject shadowBoomerang;
+
+    [SerializeField]
     GameObject boomerangImage;
+
+    [SerializeField]
+    GameObject shadowBoomerangImage;
 
     private BoomerangThrow bt;
 
@@ -21,13 +27,22 @@ public class BoomerangHUDManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!bt.isFlying)
+        if(boomerang.activeInHierarchy)
         {
             boomerangImage.SetActive(true);
         }
         else
         {
             boomerangImage.SetActive(false);
+        }
+
+        if(shadowBoomerang.activeInHierarchy)
+        {
+            shadowBoomerangImage.SetActive(true);
+        }
+        else
+        {
+            shadowBoomerangImage.SetActive(false);
         }
     }
 }

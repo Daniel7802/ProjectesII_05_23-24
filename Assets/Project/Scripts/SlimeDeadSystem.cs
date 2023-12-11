@@ -11,12 +11,13 @@ public class SlimeDeadSystem : DeadSystem
 
     public override void Dead()
     {
-        SpawnMiniSlimes();
         base.Dead();
+        SpawnMiniSlimes();
+        
     }
     void SpawnMiniSlimes()
     {
-        //Vector2 dir = new Vector2(0, 3);
+        
         if(!miniSlimesSpawned)
         {
             CalculateVectors();
@@ -30,21 +31,10 @@ public class SlimeDeadSystem : DeadSystem
             slime.GetComponent<Enemy>().KnockBack(vectorSlime1);
             slime2.GetComponent<Enemy>().KnockBack(vectorSlime2);
 
-            slime.GetComponent<Enemy>().knockbackForce = 5;
-            slime2.GetComponent<Enemy>().knockbackForce = 5;
+            //slime.GetComponent<Enemy>().knockbackForce = 5;
+            //slime2.GetComponent<Enemy>().knockbackForce = 5;
             miniSlimesSpawned = true;
         }
-       
-
-       
-       // Vector2 spawnForce = dir.normalized * miniSlimeSpawnForce;
-       // rb2D.AddForce(spawnForce, ForceMode2D.Impulse);            
-
-       // dir = new Vector2(0, -3);
-       // GameObject slime2 = Instantiate(miniSlime);
-       // Vector2 spawnForce2 = dir.normalized * miniSlimeSpawnForce;
-       //rb2D.AddForce(spawnForce2, ForceMode2D.Impulse);
-
     }
 
     void CalculateVectors()

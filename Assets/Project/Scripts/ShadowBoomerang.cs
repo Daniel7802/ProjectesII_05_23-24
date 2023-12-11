@@ -5,20 +5,35 @@ using UnityEngine;
 public class ShadowBoomerang : BoomerangThrow
 {
     // Start is called before the first frame update
-    PlayerMovement _playerMovement;
+    [SerializeField]
+    private ParticleSystem _particleBlackHole;
 
+    [SerializeField]
+    private GameObject _particleBlackHoleGO;
+    PlayerMovement _playerMovement;
+    [SerializeField]
+    bool makeEffect = true;
+
+    [SerializeField]private float  blackHoleForce = 30;
     public override void  Start()
     {
+       
         base.Start();   
         _playerMovement = source.GetComponent<PlayerMovement>();
+        _particleBlackHole = _particleBlackHoleGO.GetComponent<ParticleSystem>();
     }
 
     new private void Update()
     {
         base.Update();
         Teleport();
+        if(!coming && isFlying) 
+        {
+            _particleBlackHoleGO.transform.position = transform.position;
+        }
+
     }
-    
+
     void Teleport ()
     {
         if(isFlying && Input.GetMouseButtonDown(0))
@@ -26,7 +41,70 @@ public class ShadowBoomerang : BoomerangThrow
             _playerMovement.playerRb.MovePosition(transform.position);
             coming = true;
         }
-
     }
-    
+    protected override void Staying()
+    {
+        
+
+        if (timer >= 0f)
+        {
+            if (timer <= 1.80f)
+            {
+                knockback = false;
+               
+            }
+
+            if (timer <= 1.5f)
+            {
+                if (makeEffect)
+                {
+                    _circleCollider.enabled = true;
+                    areaDmg = true;
+                    _particleBlackHole.Play();
+                    makeEffect = false;
+                }
+            }
+
+            if (timer < maxTimer - 0.2f && rightMouse == true)
+            {
+                coming = true;
+                _particleBlackHole.Stop();
+                areaDmg = false;
+            }
+
+            timer -= Time.deltaTime;
+        }
+        else
+        {
+            _particleBlackHole.Stop();
+            _audioSource.PlayOneShot(goingSound);
+            coming = true;
+        }
+    }
+    protected override void Coming()
+    {
+        base.Coming();
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+      
+        if (collision.gameObject.CompareTag("Player") && coming)
+        {
+            makeEffect = true;
+            _particleBlackHole.Stop();
+        }
+            base.OnTriggerEnter2D(collision);
+      
+    }
+    protected void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") )
+        {
+            Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
+            Vector2 blackHoleForceDirection = transform.position - collision.transform.position;
+            Vector2 blackHoleForceVector = blackHoleForceDirection.normalized * blackHoleForce;         
+            rb.AddForce(blackHoleForceVector);
+        }
+    }
 }
