@@ -18,7 +18,7 @@ public class BoomerangManager : MonoBehaviour
 
     GameObject actualBoomerang;
 
-    BoomerangThrow _boomerangThrow;
+    public BoomerangThrow _boomerangThrow;
 
     float prepareLaunchSpeed = 60.0f;
 

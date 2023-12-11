@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class CameraZoom : MonoBehaviour
@@ -20,12 +21,12 @@ public class CameraZoom : MonoBehaviour
     private float smoothTimeReturn = 1f;
 
     private Vector2 clickDirection;
-    private Vector2 playerPosition;
+    private Vector2 playerPosition, finalPoint;
     private Vector2 cameraMovementVector;
 
     private float movementTimer = 0.50f;
 
-    private float cameraOffset = 0.03f;
+    private float cameraOffset = 2f;
 
     [SerializeField]
     private GameObject boomerang;
@@ -56,8 +57,17 @@ public class CameraZoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        clickDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        playerPosition = cameraTarget.transform.position;
+
+        cameraMovementVector = clickDirection - playerPosition;
+        cameraMovementVector.Normalize();
+
+        finalPoint = (cameraMovementVector * cameraOffset) + playerPosition;
+
         // CAMERA ZOOM CODE
-        if(bt.mouseHold || sbt.mouseHold)
+        if (bt.mouseHold || sbt.mouseHold)
         {
             startTimer -= Time.deltaTime;
 
@@ -68,13 +78,12 @@ public class CameraZoom : MonoBehaviour
                     zoom -= 1 * zoomMultiplier * Time.deltaTime;
                     zoom = Mathf.Clamp(zoom, minZoom, maxZoom);
                     cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, zoom, ref velocity, smoothTimeGo);
-                    cameraMovementVector = clickDirection - playerPosition;
-                    cameraMovementVector.Normalize();
-                    Vector3 distance = cameraMovementVector * cameraOffset;
-                    transform.position += distance;
                     movementTimer -= Time.deltaTime;
                 }
             }
+
+            Vector3 vel = new Vector3(0, 0, transform.position.z);
+            transform.position = Vector3.SmoothDamp(transform.position, finalPoint, ref vel, 0.03f);
         }
         else if(!bt.mouseHold || !sbt.mouseHold)
         {
@@ -82,19 +91,25 @@ public class CameraZoom : MonoBehaviour
             zoom = Mathf.Clamp(zoom, minZoom, maxZoom);
             cam.orthographicSize = Mathf.SmoothDamp(zoom, startZoom, ref velocity, smoothTimeReturn);
             startTimer = 0.25f;
-            //cam.orthographicSize = startZoom;
+           //cam.orthographicSize = startZoom;
         }
 
-        clickDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        playerPosition = cameraTarget.transform.position;
-
         //CAMERA FOLLOW CODE
-        if(!bt.mouseHold && !sbt.mouseHold)
+        if (!bt.mouseHold && !sbt.mouseHold)
         {
             Vector3 targetPosition = cameraTarget.position + offset;
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref cameraVelocity, smoothTimeGo);
 
             movementTimer = 0.5f;
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawSphere(clickDirection, 0.1f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(playerPosition, 2.1f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(finalPoint, 2.1f);
     }
 }
