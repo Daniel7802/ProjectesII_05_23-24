@@ -5,8 +5,10 @@ using UnityEngine;
 public class BreachWave : MonoBehaviour    
 {
    
-    private CircleCollider2D circleCollider2D;
-    private ParticleSystem particleSystem1;
+    [SerializeField] private CircleCollider2D outerCircleCollider2D;
+    [SerializeField] private CircleCollider2D innerCircleCollider2D;
+    private ParticleSystem ring;
+    ParticleSystem.ShapeModule ringShape;
     [SerializeField] private float colliderRadiusMultiplier = 6f;
  
 
@@ -14,18 +16,15 @@ public class BreachWave : MonoBehaviour
 
     private void Start()
     {
-        circleCollider2D = GetComponent<CircleCollider2D>();
-        particleSystem1 = GetComponent<ParticleSystem>();
+        
+        ring = GetComponent<ParticleSystem>();
+        ringShape = ring.GetComponent<ParticleSystem>().shape;
     }
 
     private void FixedUpdate()
-    {
-        if (particleSystem1.IsAlive() && particleSystem1.particleCount > 0)
-            circleCollider2D.radius = particleSystem1.time * colliderRadiusMultiplier;
-        else
-            circleCollider2D.radius = 0;
-        
-
+    {       
+        outerCircleCollider2D.radius = ringShape.radius;
+        innerCircleCollider2D.radius = ringShape.radius - 0.5f;
     }
 
    

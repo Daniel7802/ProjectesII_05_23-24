@@ -21,10 +21,12 @@ public class BreachIA : Enemy
     private float newDestTimer = 0f;
 
     //attack
-  
-    public ParticleSystem wave;
-    public float attackCoolDown = 3f;
-    private float attackTimer = 0f;
+
+    public ParticleSystem ring;
+    ParticleSystem.ShapeModule ringShape;
+
+    public float ringCoolDownTime = 3f;
+    private float ringTimer = 0f;
 
 
 
@@ -32,6 +34,8 @@ public class BreachIA : Enemy
     {
         base.Start();
         currentState = 0;
+        ringShape = ring.GetComponent<ParticleSystem>().shape;
+        ringShape.radius = 0;
 
     }
 
@@ -59,24 +63,18 @@ public class BreachIA : Enemy
                 {
 
                     currentState = 0;
-                    attackTimer = 0f;
+                    ringTimer = 0f;
+                    ringShape.radius = 0;
+                    ring.Stop();
 
                 }
                 else
                 {
-                    
-                    if (attackTimer ==0)
-                    {
-                        Attack();
-
-                    }
-                    attackTimer += Time.deltaTime;
-                    if(attackTimer>attackCoolDown)
-                    {
-                        attackTimer = 0f;
-                    }
+                    Attack();
                 }
-
+                break;
+            case 2:
+                RingCoolDown();
                 break;
         }
     }
@@ -131,13 +129,39 @@ public class BreachIA : Enemy
             SetNewRoamingDestination();
             setNewDest = false;
         }
+       
     }
 
     private void Attack()
     {
         target = player.transform.position;
-        wave.transform.position = transform.position;
-        wave.Play();
+        ring.transform.position =new Vector2(transform.position.x,transform.position.y-0.5f);
+        ring.Play();
+
+        if (ringShape.radius < 5)
+        {
+            ringShape.radius += 0.01f;
+        }
+        else
+        {
+            ring.Stop();
+            currentState = 2;
+            ringShape.radius = 0;
+        }
+    }
+
+    private void RingCoolDown()
+    {
+        target = player.transform.position;
+        if (ringTimer < ringCoolDownTime)
+        {
+            ringTimer += Time.deltaTime;
+        }
+        else
+        {
+            currentState = 1;
+            ringTimer = 0;
+        }
     }
 
 
