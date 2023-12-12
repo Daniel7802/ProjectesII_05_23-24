@@ -8,8 +8,6 @@ public class BoomerangThrow : MonoBehaviour
     bool cancelled = false;
     private TargetJoint2D _targetJoint;
     private SpriteRenderer _spriteRenderer;
-    [SerializeField]
-    protected CircleCollider2D _circleCollider;
 
     [SerializeField]
     public CircleCollider2D _principalCircleCollider;
@@ -21,7 +19,6 @@ public class BoomerangThrow : MonoBehaviour
     protected AudioSource _audioSource;
 
     public AudioClip goingSound;
-    public bool areaDmg;
 
     [SerializeField]
    protected GameObject source; //Player
@@ -30,9 +27,7 @@ public class BoomerangThrow : MonoBehaviour
     private ParticleSystem _particleSystemFire;
     private ParticleSystem.EmissionModule _missionModuleFire;
 
-    [SerializeField]
-    private ParticleSystem _particleSystemAttack;
-    private ParticleSystem.EmissionModule _missionModuleAttack;
+   
 
     [SerializeField]
    protected float maxTimer = 3.0f, maxTimerAttack = 0.01f;
@@ -58,7 +53,6 @@ public class BoomerangThrow : MonoBehaviour
 
     public virtual void Start()
     {
-        areaDmg = false;
         minDistance = 2.8f;
         distance = minDistance;
         maxDistance = 8f;
@@ -66,7 +60,6 @@ public class BoomerangThrow : MonoBehaviour
         canThrow = true;
         timerTrail = maxTimerTrail;
         isFire = false;
-        _circleCollider.enabled = false;
         attackTimer = maxTimerAttack;
     }
 
@@ -74,12 +67,10 @@ public class BoomerangThrow : MonoBehaviour
     {
         _lineRenderer = GetComponent<LineRenderer>();
         _targetJoint = GetComponent<TargetJoint2D>();
-        _circleCollider = GetComponent<CircleCollider2D>(); 
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _trailRenderer = GetComponent<TrailRenderer>();
 
         _particleSystemFire = GetComponent<ParticleSystem>();
-        _missionModuleAttack = _particleSystemAttack.emission;
         _missionModuleFire = _particleSystemFire.emission;
       
         _audioSource = GetComponent<AudioSource>();
@@ -142,7 +133,7 @@ public class BoomerangThrow : MonoBehaviour
 
             else if (coming)
             {
-                AttackArea();              
+                Coming();          
             }
         }
         else
@@ -161,24 +152,7 @@ public class BoomerangThrow : MonoBehaviour
         vectorDirection.Normalize();
         vectorObjective = (vectorDirection) * distance + (Vector2)transform.position;
         p2 = vectorObjective;
-    }
-
-    protected void AttackArea()
-    {
-        areaDmg = true;
-        _principalCircleCollider.enabled = false;
-        knockback = true;
-        _circleCollider.enabled = true;
-        _particleSystemAttack.Play();
-        if (attackTimer >= 0.0f)
-            attackTimer -= Time.deltaTime;
-        else
-        {
-            areaDmg = false;
-            _particleSystemAttack.Stop();
-            Coming();
-        }
-    }
+    }   
 
     protected void ThrowBoomerang()
     {
@@ -259,7 +233,6 @@ public class BoomerangThrow : MonoBehaviour
 
     protected virtual void Coming()
     {
-        _circleCollider.enabled = false;
         _principalCircleCollider.enabled = true;
         p0 = source.transform.position;
         Vector2 comingPosition = Vector2.Lerp(p2, p0, throwDuration);
@@ -270,7 +243,7 @@ public class BoomerangThrow : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag.Equals("Wall") && !areaDmg || collision.gameObject.tag.Equals("ShadowWall") && !areaDmg)
+        if (collision.gameObject.tag.Equals("Wall")  || collision.gameObject.tag.Equals("ShadowWall"))
         {
             cancelled = true;
             Coming();

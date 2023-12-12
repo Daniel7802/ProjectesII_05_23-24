@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,17 +7,20 @@ using UnityEngine;
 public class BoomerangManager : MonoBehaviour
 {
     PlayerMovement _playerMovement;
-
+    [SerializeField]
+    CinemachineTargetGroup m_TargetGroup;
     [SerializeField]
     GameObject _boomerang;
     [SerializeField]
     GameObject _shadowBoomerang;
+
+ 
     //[SerializeField]
     //GameObject _iceBoomerang;
     //[SerializeField]
     //GameObject _rootBoomerang;
 
-    GameObject actualBoomerang;
+   GameObject actualBoomerang;
 
     public BoomerangThrow _boomerangThrow;
 
@@ -24,10 +28,17 @@ public class BoomerangManager : MonoBehaviour
 
 
     private void Awake()
-    {       
+    {
+       
         _playerMovement = GetComponent<PlayerMovement>();   
         actualBoomerang = _boomerang;
         _boomerangThrow = actualBoomerang.GetComponent<BoomerangThrow>();
+       
+    }
+
+    private void Start()
+    {
+        m_TargetGroup.AddMember(actualBoomerang.transform, 0.55f, 5);
     }
     private void Update()
     {
@@ -52,6 +63,7 @@ public class BoomerangManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
+                m_TargetGroup.RemoveMember(actualBoomerang.transform);
                 if (actualBoomerang == _boomerang)
                 {
                     actualBoomerang.SetActive(false);
@@ -66,7 +78,7 @@ public class BoomerangManager : MonoBehaviour
 
                     actualBoomerang.SetActive(true);
                 }
-
+                m_TargetGroup.AddMember(actualBoomerang.transform, 0.55f, 5);
                 _boomerangThrow = actualBoomerang.GetComponent<BoomerangThrow>();
             }
         } 
