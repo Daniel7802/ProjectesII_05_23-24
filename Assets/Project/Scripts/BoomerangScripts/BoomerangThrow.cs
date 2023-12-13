@@ -91,9 +91,12 @@ public class BoomerangThrow : MonoBehaviour
         MouseManager();
         if (mouseHold)
         {
-            transform.position = source.transform.position;
-            if(distance <= maxDistance)
+            Vector2 vectorOffset = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            vectorOffset.Normalize();
+            transform.position = (vectorOffset) * 0.05f + (Vector2)transform.position;
+            if (distance <= maxDistance)
             distance += Time.deltaTime * 6;
+
         }
         if (Input.GetMouseButtonDown(1))
         {
