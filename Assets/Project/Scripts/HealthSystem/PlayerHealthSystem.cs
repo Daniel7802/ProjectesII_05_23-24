@@ -13,14 +13,14 @@ public class PlayerHealthSystem : HealthSystem
     private float timer = 1f;
 
     RespawnSystem _respawnSystem;
-    AudioSource _audioSource;
+   
    
     // Start is called before the first frame update
     public override void Awake()
     {
         base.Awake();
         _respawnSystem = GetComponent<RespawnSystem>();
-        _audioSource = GetComponent<AudioSource>();
+    
         counter = 0;
     }
 
