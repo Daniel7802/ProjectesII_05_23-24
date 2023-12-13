@@ -7,7 +7,8 @@ public class ShadowBoomerang : BoomerangThrow
     // Start is called before the first frame update
     [SerializeField]
     private ParticleSystem _particleBlackHole;
-
+    [SerializeField]
+    CircleCollider2D _circleCollider;
     [SerializeField]
     private GameObject _particleBlackHoleGO;
     PlayerMovement _playerMovement;
@@ -21,6 +22,7 @@ public class ShadowBoomerang : BoomerangThrow
         base.Start();   
         _playerMovement = source.GetComponent<PlayerMovement>();
         _particleBlackHole = _particleBlackHoleGO.GetComponent<ParticleSystem>();
+        _circleCollider.enabled = false;
     }
 
     new private void Update()
@@ -30,8 +32,7 @@ public class ShadowBoomerang : BoomerangThrow
         if(!coming && isFlying) 
         {
             _particleBlackHoleGO.transform.position = transform.position;
-        }
-
+        }        
     }
 
     void Teleport ()
@@ -59,7 +60,6 @@ public class ShadowBoomerang : BoomerangThrow
                 if (makeEffect)
                 {
                     _circleCollider.enabled = true;
-                    areaDmg = true;
                     _particleBlackHole.Play();
                     makeEffect = false;
                 }
@@ -69,7 +69,6 @@ public class ShadowBoomerang : BoomerangThrow
             {
                 coming = true;
                 _particleBlackHole.Stop();
-                areaDmg = false;
             }
 
             timer -= Time.deltaTime;
@@ -84,6 +83,7 @@ public class ShadowBoomerang : BoomerangThrow
     protected override void Coming()
     {
         base.Coming();
+        _circleCollider.enabled = false;
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

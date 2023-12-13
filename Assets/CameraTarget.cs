@@ -7,7 +7,6 @@ using UnityEngine;
 public class CameraTarget : MonoBehaviour
 {
     [SerializeField] BoomerangManager manager;
-    [SerializeField] Camera cam;
     [SerializeField] Transform player;
     [SerializeField] float threshold;
 
@@ -21,7 +20,7 @@ public class CameraTarget : MonoBehaviour
         if (manager._boomerangThrow.mouseHold)
         {
             if(distance <= 2)
-            distance += 0.01f;
+            distance += 0.008f;
             CalculateTarger();
         }
         else
