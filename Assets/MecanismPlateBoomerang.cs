@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MecanismPressure : MonoBehaviour
+public class MecanismPlateBoomerang : MonoBehaviour
 {
     [SerializeField]
     public bool activate;
@@ -11,30 +11,30 @@ public class MecanismPressure : MonoBehaviour
 
     void Start()
     {
-        activate = false;   
+        activate = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
-    {     
-        if(collision.CompareTag("Boomerang"))
+    {
+        if (collision.CompareTag("Player"))
         {
             activate = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.CompareTag("Boomerang"))
+        if (collision.CompareTag("Player"))
         {
-            if(!playerOn)
+            if (!playerOn)
             {
                 activate = false;
             }
-        }       
+        }
     }
 }
