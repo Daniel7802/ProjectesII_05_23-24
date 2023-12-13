@@ -149,6 +149,7 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
+<<<<<<< HEAD
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
@@ -157,6 +158,12 @@ MonoBehaviour:
 --- !u!114 &7
 =======
   controlID: 18992
+=======
+  m_MinSize: {x: 300, y: 100}
+  m_MaxSize: {x: 24288, y: 16192}
+  vertical: 0
+  controlID: 50
+>>>>>>> central-zone
 --- !u!114 &6
 >>>>>>> CameraAndBoomerangFixs
 MonoBehaviour:
@@ -179,6 +186,7 @@ MonoBehaviour:
     y: 0
 <<<<<<< HEAD
     width: 1427
+<<<<<<< HEAD
 =======
     width: 1426
 >>>>>>> CameraAndBoomerangFixs
@@ -191,6 +199,13 @@ MonoBehaviour:
 --- !u!114 &8
 =======
   controlID: 18880
+=======
+    height: 947
+  m_MinSize: {x: 200, y: 100}
+  m_MaxSize: {x: 16192, y: 16192}
+  vertical: 1
+  controlID: 51
+>>>>>>> central-zone
 --- !u!114 &7
 >>>>>>> CameraAndBoomerangFixs
 MonoBehaviour:
@@ -215,6 +230,7 @@ MonoBehaviour:
 <<<<<<< HEAD
     width: 1427
     height: 571
+<<<<<<< HEAD
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
@@ -227,6 +243,12 @@ MonoBehaviour:
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
   controlID: 18881
+=======
+  m_MinSize: {x: 200, y: 50}
+  m_MaxSize: {x: 16192, y: 8096}
+  vertical: 0
+  controlID: 52
+>>>>>>> central-zone
 --- !u!114 &8
 >>>>>>> CameraAndBoomerangFixs
 MonoBehaviour:
@@ -246,12 +268,17 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 377
     height: 571
 =======
     width: 376
     height: 665
 >>>>>>> CameraAndBoomerangFixs
+=======
+    width: 530
+    height: 571
+>>>>>>> central-zone
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
@@ -277,12 +304,17 @@ MonoBehaviour:
     x: 376
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 657
     height: 571
 =======
     width: 131
     height: 665
 >>>>>>> CameraAndBoomerangFixs
+=======
+    width: 897
+    height: 571
+>>>>>>> central-zone
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 18}
@@ -336,12 +368,16 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> central-zone
     y: 571
     width: 1427
     height: 376
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
+<<<<<<< HEAD
   controlID: 151
 =======
     y: 665
@@ -353,6 +389,10 @@ MonoBehaviour:
   controlID: 18956
 >>>>>>> CameraAndBoomerangFixs
 --- !u!114 &12
+=======
+  controlID: 120
+--- !u!114 &11
+>>>>>>> central-zone
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -369,12 +409,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 475
 <<<<<<< HEAD
     height: 376
 =======
     height: 282
 >>>>>>> CameraAndBoomerangFixs
+=======
+    width: 676
+    height: 376
+>>>>>>> central-zone
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
   m_ActualView: {fileID: 19}
@@ -397,10 +442,16 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 475
     y: 0
 <<<<<<< HEAD
     width: 952
+=======
+    x: 676
+    y: 0
+    width: 751
+>>>>>>> central-zone
     height: 376
   m_MinSize: {x: 102, y: 121}
   m_MaxSize: {x: 4002, y: 4021}
@@ -426,7 +477,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: InspectorWindow
+  m_Name: GridPaintPaletteWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -435,15 +486,21 @@ MonoBehaviour:
     y: 0
 <<<<<<< HEAD
     width: 493
+<<<<<<< HEAD
 =======
     width: 494
 >>>>>>> CameraAndBoomerangFixs
     height: 947
   m_MinSize: {x: 276, y: 71}
+=======
+    height: 947
+  m_MinSize: {x: 241, y: 221}
+>>>>>>> central-zone
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 21}
+  m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 21}
+<<<<<<< HEAD
   - {fileID: 22}
   m_Selected: 0
   m_LastSelected: 1
@@ -611,6 +668,12 @@ MonoBehaviour:
     m_CurrentSortingName: TransformSorting
   m_WindowGUID: 4c969a2b90040154d917609493e03593
 --- !u!114 &17
+=======
+  - {fileID: 15}
+  m_Selected: 1
+  m_LastSelected: 0
+--- !u!114 &14
+>>>>>>> central-zone
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -792,7 +855,45 @@ MonoBehaviour:
   m_ShowReferencedBuses: 1
   m_ShowBusConnections: 0
   m_ShowBusConnectionsOfSelection: 0
+<<<<<<< HEAD
 --- !u!114 &18
+=======
+--- !u!114 &15
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f683d99f24875748a6656966ca9cea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 240, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Tile Palette
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 1427
+    y: 73
+    width: 492
+    height: 926
+  m_SerializedDataModeController:
+    m_DataMode: 0
+    m_PreferredDataMode: 0
+    m_SupportedDataModes: 
+    isAutomatic: 1
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+    m_OverlaysVisible: 1
+--- !u!114 &16
+>>>>>>> central-zone
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -815,12 +916,17 @@ MonoBehaviour:
     x: 376
     y: 73
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 655
     height: 550
 =======
     width: 129
     height: 644
 >>>>>>> CameraAndBoomerangFixs
+=======
+    width: 895
+    height: 550
+>>>>>>> central-zone
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1249,6 +1355,7 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_Position:
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Target: {x: -14.326775, y: -12.494477, z: 0.7224345}
     speed: 2
     m_Value: {x: -14.46214, y: -12.126185, z: 0.7160443}
@@ -1257,6 +1364,11 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -20.37589, y: 5.2422743, z: 1.2846636}
 >>>>>>> CameraAndBoomerangFixs
+=======
+    m_Target: {x: 0.6581204, y: -3.8256137, z: 0.16469434}
+    speed: 2
+    m_Value: {x: 0.6581204, y: -3.8256137, z: 0.16469434}
+>>>>>>> central-zone
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1292,13 +1404,13 @@ MonoBehaviour:
       m_Size: {x: 1, y: 1}
     zGrid:
       m_Fade:
-        m_Target: 1
+        m_Target: 0
         speed: 2
-        m_Value: 1
+        m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
-    m_ShowGrid: 1
+    m_ShowGrid: 0
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
@@ -1306,6 +1418,7 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< HEAD
 <<<<<<< HEAD
     m_Target: 13.561482
     speed: 2
@@ -1315,6 +1428,11 @@ MonoBehaviour:
     speed: 2
     m_Value: 9.762381
 >>>>>>> CameraAndBoomerangFixs
+=======
+    m_Target: 19.705465
+    speed: 2
+    m_Value: 19.705465
+>>>>>>> central-zone
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1362,7 +1480,11 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 73
+<<<<<<< HEAD
     width: 376
+=======
+    width: 529
+>>>>>>> central-zone
     height: 550
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1377,9 +1499,15 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
       m_SelectedIDs: aa7f0000
       m_LastClickedID: 32682
       m_ExpandedIDs: 5a75fdfff0ecffffdcefffff76f8ffff72faffff28750000ce7d0000
+=======
+      m_SelectedIDs: 2cab0000
+      m_LastClickedID: 43820
+      m_ExpandedIDs: a2fee3fffceee6ffd0f2e6ffe0f8e6ff9e67eeff206aeeff126deeffb46feeff1274eeff3875eeffbe77eeffb47aeeff6e7ceeff467feefff47feeffd6faffff3a9400001ca80000
+>>>>>>> central-zone
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1428,7 +1556,11 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1034
     y: 73
+<<<<<<< HEAD
     width: 391
+=======
+    width: 895
+>>>>>>> central-zone
     height: 550
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1446,7 +1578,11 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
+<<<<<<< HEAD
   m_TargetSize: {x: 391, y: 529}
+=======
+  m_TargetSize: {x: 895, y: 529}
+>>>>>>> central-zone
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -1461,8 +1597,13 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
+<<<<<<< HEAD
     m_HBaseRangeMin: -195.5
     m_HBaseRangeMax: 195.5
+=======
+    m_HBaseRangeMin: -447.5
+    m_HBaseRangeMax: 447.5
+>>>>>>> central-zone
     m_VBaseRangeMin: -264.5
     m_VBaseRangeMax: 264.5
     m_HAllowExceedBaseRangeMin: 1
@@ -1482,16 +1623,24 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
+<<<<<<< HEAD
       width: 391
       height: 529
     m_Scale: {x: 1, y: 1}
     m_Translation: {x: 195.5, y: 264.5}
+=======
+      width: 895
+      height: 529
+    m_Scale: {x: 1, y: 1}
+    m_Translation: {x: 447.5, y: 264.5}
+>>>>>>> central-zone
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
+<<<<<<< HEAD
       x: -195.5
       y: -264.5
       width: 391
@@ -1499,6 +1648,15 @@ MonoBehaviour:
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 391, y: 550}
+=======
+      x: -447.5
+      y: -264.5
+      width: 895
+      height: 529
+    m_MinimalGUI: 1
+  m_defaultScale: 1
+  m_LastWindowPixelSize: {x: 895, y: 550}
+>>>>>>> central-zone
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -1528,6 +1686,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     y: 644
     width: 474
     height: 355
@@ -1536,6 +1695,11 @@ MonoBehaviour:
     width: 474
     height: 261
 >>>>>>> CameraAndBoomerangFixs
+=======
+    y: 644
+    width: 675
+    height: 355
+>>>>>>> central-zone
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1557,7 +1721,11 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets
+=======
+    - Assets/Project/Scenes/Zones
+>>>>>>> central-zone
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1565,6 +1733,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
+<<<<<<< HEAD
   - Assets
   m_LastFoldersGridSize: -1
 <<<<<<< HEAD
@@ -1586,6 +1755,18 @@ MonoBehaviour:
     m_LastClickedID: 31590
     m_ExpandedIDs: 00000000667b0000687b00006a7b00006c7b00006e7b000000ca9a3b
 >>>>>>> CameraAndBoomerangFixs
+=======
+  - Assets/Project/Scenes/Zones
+  m_LastFoldersGridSize: -1
+  m_LastProjectPath: C:\Users\dani2\Documents\GitHub\ProjectesII_05_23-24
+  m_LockTracker:
+    m_IsLocked: 0
+  m_FolderTreeState:
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 94890000
+    m_LastClickedID: 35220
+    m_ExpandedIDs: 00000000f67b0000f87b0000fa7b0000fc7b0000027c00008e7d000000ca9a3b
+>>>>>>> central-zone
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1614,10 +1795,14 @@ MonoBehaviour:
     m_SelectedIDs: 
     m_LastClickedID: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_ExpandedIDs: 000000005a7b00005c7b00005e7b0000607b0000627b0000647b0000667b0000
 =======
     m_ExpandedIDs: 00000000667b0000687b00006a7b00006c7b00006e7b000000ca9a3b
 >>>>>>> CameraAndBoomerangFixs
+=======
+    m_ExpandedIDs: 00000000f67b0000f87b0000fa7b0000fc7b0000fe7b0000007c0000027c0000
+>>>>>>> central-zone
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1644,8 +1829,13 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
+<<<<<<< HEAD
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300004072000000000000a2720000d83400006e700000fc9e000050ecffff
+=======
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: c62300004072000000000000a2720000d83400006e700000fc9e000050ecffff26850000e29100006a7800000c790000
+>>>>>>> central-zone
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1672,7 +1862,7 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
-  m_DirectoriesAreaWidth: 284
+  m_DirectoriesAreaWidth: 218
 --- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1693,6 +1883,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 475
 <<<<<<< HEAD
     y: 644
@@ -1703,6 +1894,12 @@ MonoBehaviour:
     width: 949
     height: 261
 >>>>>>> CameraAndBoomerangFixs
+=======
+    x: 676
+    y: 644
+    width: 749
+    height: 355
+>>>>>>> central-zone
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1737,9 +1934,12 @@ MonoBehaviour:
     y: 73
 <<<<<<< HEAD
     width: 492
+<<<<<<< HEAD
 =======
     width: 493
 >>>>>>> CameraAndBoomerangFixs
+=======
+>>>>>>> central-zone
     height: 926
   m_SerializedDataModeController:
     m_DataMode: 0
