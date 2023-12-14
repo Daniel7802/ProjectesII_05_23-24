@@ -21,7 +21,7 @@ public class BoomerangThrow : MonoBehaviour
     public AudioClip goingSound;
 
     [SerializeField]
-   protected GameObject source; //Player
+    protected GameObject source; //Player
 
     [SerializeField]
     private ParticleSystem _particleSystemFire;
@@ -253,7 +253,7 @@ public class BoomerangThrow : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Player") && (coming ||cancelled) )
         {
-            cancelled = false;  
+            cancelled = false;
             isFlying = false;
             coming = false;
             going = false;
@@ -295,4 +295,3 @@ public class BoomerangThrow : MonoBehaviour
         Gizmos.DrawSphere(p2, 0.1f);
     }
 }
-
