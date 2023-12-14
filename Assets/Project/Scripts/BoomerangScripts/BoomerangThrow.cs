@@ -191,7 +191,7 @@ public class BoomerangThrow : MonoBehaviour
 
             _lineRenderer.enabled = true;
             _lineRenderer.positionCount = 2;
-            _lineRenderer.SetPosition(0, transform.position);
+            _lineRenderer.SetPosition(0, source.transform.position);
             _lineRenderer.SetPosition(1, vectorObjective);
         }
         else
