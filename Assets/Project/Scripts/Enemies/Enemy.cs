@@ -79,6 +79,16 @@ public class Enemy : MonoBehaviour
             spriteRenderer.flipX = true;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Boomerang"))
+        {
+            Vector2 dir = transform.position - collision.transform.position;
+            KnockBack(dir);
+        }
+    }
+
+    
 
 
     public virtual void OnDrawGizmos()
