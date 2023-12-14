@@ -12,7 +12,7 @@ public class SlimeDeadSystem : DeadSystem
     public override void Dead()
     {
         base.Dead();
-        SpawnMiniSlimes();
+        SpawnMiniSlimes();        
         
     }
     void SpawnMiniSlimes()
@@ -26,13 +26,10 @@ public class SlimeDeadSystem : DeadSystem
             GameObject slime2 = Instantiate(miniSlime, vector, Quaternion.identity);
             slime.GetComponent<SlimeIA>().player = player;
             slime2.GetComponent<SlimeIA>().player = player;
-            slime.GetComponent<Enemy>().knockbackForce = 10;
-            slime2.GetComponent<Enemy>().knockbackForce = 10;
+            slime.GetComponent<Enemy>().knockbackForce = 30;
+            slime2.GetComponent<Enemy>().knockbackForce = 30;
             slime.GetComponent<Enemy>().KnockBack(vectorSlime1);
-            slime2.GetComponent<Enemy>().KnockBack(vectorSlime2);
-
-            //slime.GetComponent<Enemy>().knockbackForce = 5;
-            //slime2.GetComponent<Enemy>().knockbackForce = 5;
+            slime2.GetComponent<Enemy>().KnockBack(vectorSlime2);          
             miniSlimesSpawned = true;
         }
     }

@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed64f5323153afc42920335d0660d844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 416834808553754793, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
+  player: {fileID: 0}
   currentState: 0
   startChasingRange: 7
   stopChasingRange: 9
@@ -189,6 +189,7 @@ MonoBehaviour:
   MaxHealth: 2
   health: 0
   getHit: 0
+  damageSound: {fileID: 8300000, guid: 243831b253368bc40b4e9a4ca743e590, type: 3}
   canGetDamageMaxTimer: 0.5
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
