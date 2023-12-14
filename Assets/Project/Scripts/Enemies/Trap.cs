@@ -19,7 +19,7 @@ public class Trap : MonoBehaviour
     private AudioSource _audioSource;
     [SerializeField] private AudioClip shootSound;
 
-   [SerializeField] private float reloadingTime = 3f;
+    [SerializeField] private float reloadingTime = 3f;
     private float reloadingTimer = 0f;
 
     private void Start()
@@ -72,7 +72,7 @@ public class Trap : MonoBehaviour
                 direction = -transform.right;
                 break;
         }
-        _audioSource.PlayOneShot(shootSound, 0.5f);
+        _audioSource.PlayOneShot(shootSound, 0.1f);
         GameObject bullet = Instantiate(trapBullet);
         bullet.transform.position = transform.position;
         bullet.transform.right = direction;
