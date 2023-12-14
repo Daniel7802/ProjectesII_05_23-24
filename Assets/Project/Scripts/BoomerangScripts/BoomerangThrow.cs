@@ -53,6 +53,7 @@ public class BoomerangThrow : MonoBehaviour
 
     public virtual void Start()
     {
+        _particleSystemFire.Play();
         minDistance = 2.8f;
         distance = minDistance;
         maxDistance = 8f;
@@ -191,7 +192,7 @@ public class BoomerangThrow : MonoBehaviour
 
             _lineRenderer.enabled = true;
             _lineRenderer.positionCount = 2;
-            _lineRenderer.SetPosition(0, transform.position);
+            _lineRenderer.SetPosition(0, source.transform.position);
             _lineRenderer.SetPosition(1, vectorObjective);
         }
         else
