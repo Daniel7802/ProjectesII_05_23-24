@@ -4,15 +4,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoomerangThrow : MonoBehaviour
-{
-    bool cancelled = false;
+{    
     private TargetJoint2D _targetJoint;
     private SpriteRenderer _spriteRenderer;
 
     [SerializeField]
     public CircleCollider2D _principalCircleCollider;
-
-
 
     private TrailRenderer _trailRenderer;
     private LineRenderer _lineRenderer;
@@ -23,32 +20,21 @@ public class BoomerangThrow : MonoBehaviour
     [SerializeField]
     protected GameObject source; //Player
 
-    [SerializeField]
     private ParticleSystem _particleSystemFire;
     private ParticleSystem.EmissionModule _missionModuleFire;
 
-   
-
-    [SerializeField]
-   protected float maxTimer = 3.0f, maxTimerAttack = 0.01f;
-    [SerializeField]
+    private float rotationSpeed, minDistance, maxDistance, distance, throwDuration;
+    protected float maxTimer = 3.0f, maxTimerAttack = 0.01f;
     protected float timer, timerTrail, attackTimer;
     protected float maxTimerTrail = 0.1f;
 
 
-    [SerializeField]
-    private float rotationSpeed, minDistance, maxDistance, distance, throwDuration;
-
-
-    [SerializeField]
+    bool cancelled;
     protected bool wantsToThrow, rightMouse, canThrow;
-    [SerializeField]
     public bool going, coming, knockback;
     public bool isFlying, isFire, mouseHold;
 
-    [SerializeField]
-    Vector2 p0, p2, pAux, vectorDirection, vectorObjective;
-  
+    Vector2 p0, p2, pAux, vectorDirection, vectorObjective;  
 
     
     protected void Awake()
@@ -56,24 +42,30 @@ public class BoomerangThrow : MonoBehaviour
         _lineRenderer = GetComponent<LineRenderer>();
         _targetJoint = GetComponent<TargetJoint2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _trailRenderer = GetComponent<TrailRenderer>();
-
+        _trailRenderer = GetComponent<TrailRenderer>();       
+        _particleSystemFire = GetComponent<ParticleSystem>();
+        _audioSource = GetComponent<AudioSource>(); 
         _particleSystemFire = GetComponent<ParticleSystem>();
         _missionModuleFire = _particleSystemFire.emission;
-      
-        _audioSource = GetComponent<AudioSource>();
     }
     public virtual void Start()
     {
-        _particleSystemFire.Play();
+        rotationSpeed = 25;
+        maxTimer = 2;
+        maxTimerAttack = 0.05f;
+        distance = 20;
+        throwDuration = 1;
         minDistance = 2.8f;
-        distance = minDistance;
         maxDistance = 8f;
+        timerTrail = maxTimerTrail;
+        attackTimer = maxTimerAttack;
+        distance = minDistance;
+
+        cancelled = false;
         going = false;
         canThrow = true;
-        timerTrail = maxTimerTrail;
         isFire = false;
-        attackTimer = maxTimerAttack;
+        _particleSystemFire.Play();
     }
 
     protected void Update()
