@@ -48,9 +48,21 @@ public class BoomerangThrow : MonoBehaviour
 
     [SerializeField]
     Vector2 p0, p2, pAux, vectorDirection, vectorObjective;
-
   
 
+    
+    protected void Awake()
+    {
+        _lineRenderer = GetComponent<LineRenderer>();
+        _targetJoint = GetComponent<TargetJoint2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _trailRenderer = GetComponent<TrailRenderer>();
+
+        _particleSystemFire = GetComponent<ParticleSystem>();
+        _missionModuleFire = _particleSystemFire.emission;
+      
+        _audioSource = GetComponent<AudioSource>();
+    }
     public virtual void Start()
     {
         _particleSystemFire.Play();
@@ -64,18 +76,6 @@ public class BoomerangThrow : MonoBehaviour
         attackTimer = maxTimerAttack;
     }
 
-    protected void Awake()
-    {
-        _lineRenderer = GetComponent<LineRenderer>();
-        _targetJoint = GetComponent<TargetJoint2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _trailRenderer = GetComponent<TrailRenderer>();
-
-        _particleSystemFire = GetComponent<ParticleSystem>();
-        _missionModuleFire = _particleSystemFire.emission;
-      
-        _audioSource = GetComponent<AudioSource>();
-    }
     protected void Update()
     {
 
@@ -121,8 +121,8 @@ public class BoomerangThrow : MonoBehaviour
         {
            _principalCircleCollider.enabled = true;
             _spriteRenderer.enabled = true;
-            _trailRenderer.startWidth = 0.37f;
             _trailRenderer.enabled = true;
+
             transform.Rotate(0f, 0f, rotationSpeed, Space.Self);
             if (going)
             {
@@ -145,7 +145,6 @@ public class BoomerangThrow : MonoBehaviour
             p0 = source.transform.position;
             _targetJoint.target = (Vector3)p0;
             StayTrailRenderer();
-
         }
     }
     protected void CalculateThrow()
@@ -232,7 +231,7 @@ public class BoomerangThrow : MonoBehaviour
             timerTrail -= Time.deltaTime;
         }
         else
-            _trailRenderer.startWidth = 0;
+            _trailRenderer.enabled = false; 
     }
 
     protected virtual void Coming()
