@@ -11,8 +11,7 @@ public class Enemy : MonoBehaviour
     protected Rigidbody2D rb2D;
     protected SpriteRenderer spriteRenderer;
     protected Animator animator;
-    protected AudioSource audioSource;
-  
+    protected AudioSource audioSource;  
 
     [SerializeField]
     public int currentState = 0;
