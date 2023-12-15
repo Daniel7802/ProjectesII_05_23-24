@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6238226914675135810}
   - component: {fileID: 9160680943280425905}
   - component: {fileID: 6208089742085827678}
+  - component: {fileID: 3601362020241894199}
   m_Layer: 10
   m_Name: MiniSlime
   m_TagString: Enemy
@@ -186,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91d7381e81c5d14bbc733e08e61b575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 2
+  MaxHealth: 1
   health: 0
   getHit: 0
   damageSound: {fileID: 8300000, guid: 243831b253368bc40b4e9a4ca743e590, type: 3}
@@ -336,3 +337,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3601362020241894199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2998486167879767135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2049c3badedfb0d4b85ef939d4501b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invTime: 1
