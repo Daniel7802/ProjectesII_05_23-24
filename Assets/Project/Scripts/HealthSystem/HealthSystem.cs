@@ -14,8 +14,9 @@ public class HealthSystem : MonoBehaviour
 
     private AudioSource _audioSource;
     [SerializeField] private AudioClip damageSound;
-    
 
+    private bool invincible = false;
+  
 
     private float canGetDamageTimer = 0.0f;
     [SerializeField] private float canGetDamageMaxTimer;
@@ -60,7 +61,7 @@ public class HealthSystem : MonoBehaviour
             spriteRenderer.material = defaultMaterial;
         }
 
-        if(getHit)
+        if(getHit && !invincible)
         {
             if (canGetDamageTimer >= canGetDamageMaxTimer)
             {
@@ -93,6 +94,16 @@ public class HealthSystem : MonoBehaviour
             isDamaged = true;
 
         }
+    }
+    public void TurnInvencible(bool inv)
+    {        
+        
+        invincible = inv;
+    }
+
+    public bool GetInvincible()
+    {
+        return invincible;
     }
 
     public virtual void DeadState()

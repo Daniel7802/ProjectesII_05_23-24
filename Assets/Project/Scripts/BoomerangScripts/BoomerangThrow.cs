@@ -4,15 +4,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoomerangThrow : MonoBehaviour
-{
-    bool cancelled = false;
+{    
     private TargetJoint2D _targetJoint;
     private SpriteRenderer _spriteRenderer;
 
     [SerializeField]
     public CircleCollider2D _principalCircleCollider;
-
-
 
     private TrailRenderer _trailRenderer;
     private LineRenderer _lineRenderer;
@@ -21,61 +18,56 @@ public class BoomerangThrow : MonoBehaviour
     public AudioClip goingSound;
 
     [SerializeField]
-   protected GameObject source; //Player
+    protected GameObject source; //Player
 
-    [SerializeField]
     private ParticleSystem _particleSystemFire;
     private ParticleSystem.EmissionModule _missionModuleFire;
 
-   
-
-    [SerializeField]
-   protected float maxTimer = 3.0f, maxTimerAttack = 0.01f;
-    [SerializeField]
+    private float rotationSpeed, minDistance, maxDistance, distance, throwDuration;
+    protected float maxTimer = 3.0f, maxTimerAttack = 0.01f;
     protected float timer, timerTrail, attackTimer;
     protected float maxTimerTrail = 0.1f;
 
 
-    [SerializeField]
-    private float rotationSpeed, minDistance, maxDistance, distance, throwDuration;
-
-
-    [SerializeField]
+    bool cancelled;
     protected bool wantsToThrow, rightMouse, canThrow;
-    [SerializeField]
     public bool going, coming, knockback;
     public bool isFlying, isFire, mouseHold;
 
-    [SerializeField]
-    Vector2 p0, p2, pAux, vectorDirection, vectorObjective;
+    Vector2 p0, p2, pAux, vectorDirection, vectorObjective;  
 
-  
-
-    public virtual void Start()
-    {
-        _particleSystemFire.Play();
-        minDistance = 2.8f;
-        distance = minDistance;
-        maxDistance = 8f;
-        going = false;
-        canThrow = true;
-        timerTrail = maxTimerTrail;
-        isFire = false;
-        attackTimer = maxTimerAttack;
-    }
-
+    
     protected void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
         _targetJoint = GetComponent<TargetJoint2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _trailRenderer = GetComponent<TrailRenderer>();
-
+        _trailRenderer = GetComponent<TrailRenderer>();       
+        _particleSystemFire = GetComponent<ParticleSystem>();
+        _audioSource = GetComponent<AudioSource>(); 
         _particleSystemFire = GetComponent<ParticleSystem>();
         _missionModuleFire = _particleSystemFire.emission;
-      
-        _audioSource = GetComponent<AudioSource>();
     }
+    public virtual void Start()
+    {
+        rotationSpeed = 25;
+        maxTimer = 2;
+        maxTimerAttack = 0.05f;
+        distance = 20;
+        throwDuration = 1;
+        minDistance = 2.8f;
+        maxDistance = 8f;
+        timerTrail = maxTimerTrail;
+        attackTimer = maxTimerAttack;
+        distance = minDistance;
+
+        cancelled = false;
+        going = false;
+        canThrow = true;
+        isFire = false;
+        _particleSystemFire.Play();
+    }
+
     protected void Update()
     {
 
@@ -121,8 +113,8 @@ public class BoomerangThrow : MonoBehaviour
         {
            _principalCircleCollider.enabled = true;
             _spriteRenderer.enabled = true;
-            _trailRenderer.startWidth = 0.37f;
             _trailRenderer.enabled = true;
+
             transform.Rotate(0f, 0f, rotationSpeed, Space.Self);
             if (going)
             {
@@ -145,7 +137,6 @@ public class BoomerangThrow : MonoBehaviour
             p0 = source.transform.position;
             _targetJoint.target = (Vector3)p0;
             StayTrailRenderer();
-
         }
     }
     protected void CalculateThrow()
@@ -232,7 +223,7 @@ public class BoomerangThrow : MonoBehaviour
             timerTrail -= Time.deltaTime;
         }
         else
-            _trailRenderer.startWidth = 0;
+            _trailRenderer.enabled = false; 
     }
 
     protected virtual void Coming()
@@ -254,7 +245,7 @@ public class BoomerangThrow : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Player") && (coming ||cancelled) )
         {
-            cancelled = false;  
+            cancelled = false;
             isFlying = false;
             coming = false;
             going = false;
@@ -296,4 +287,3 @@ public class BoomerangThrow : MonoBehaviour
         Gizmos.DrawSphere(p2, 0.1f);
     }
 }
-
