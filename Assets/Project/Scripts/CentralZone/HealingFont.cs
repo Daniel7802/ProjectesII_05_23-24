@@ -5,9 +5,6 @@ using UnityEngine;
 public class HealingFont : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] hearts;
-
-    [SerializeField]
     GameObject player;
 
     private PlayerHealthSystem phs;
@@ -18,13 +15,11 @@ public class HealingFont : MonoBehaviour
         phs = player.GetComponent<PlayerHealthSystem>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        phs.counter = 0;
-
-        for(int i = 0; i < hearts.Length; i++)
+        if(collision.tag.Equals("Player"))
         {
-            hearts[i].SetActive(true);
+            phs.RespawnHeal();
         }
     }
 }
