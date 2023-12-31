@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8657772537321930209}
   - component: {fileID: 7202230827569110112}
+  - component: {fileID: 3860726644159155688}
   - component: {fileID: 4249498093612000130}
   - component: {fileID: 8007155767180025517}
-  - component: {fileID: 3860726644159155688}
   m_Layer: 0
   m_Name: goldenRoot
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 6011302563787199093}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7202230827569110112
 SpriteRenderer:
@@ -88,6 +88,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3860726644159155688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3306877640879446797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6321fc224daa44b9496f0621873332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectedTime: 2
+  pickUpTime: 0.3
+  height: 1.7
+  newScale: 0.7
+  speed: 20
+  ShopManager: {fileID: 0}
 --- !u!50 &4249498093612000130
 Rigidbody2D:
   serializedVersion: 4
@@ -160,23 +178,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.890969, y: 1.1206062}
   m_EdgeRadius: 0
---- !u!114 &3860726644159155688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3306877640879446797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc6321fc224daa44b9496f0621873332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collectedTime: 2
-  pickUpTime: 0.3
-  height: 1.7
-  newScale: 0.7
-  speed: 20
 --- !u!1 &8679038062124042447
 GameObject:
   m_ObjectHideFlags: 0

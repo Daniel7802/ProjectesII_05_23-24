@@ -71,10 +71,8 @@ public class PlayerHealthSystem : HealthSystem
     }
 
     public void deleteHeart(int index)
-    {
-        
+    {   
         hearts[index].SetActive(false);
-       
     }
     public void addHeart()
     {
