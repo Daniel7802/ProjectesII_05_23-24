@@ -6,7 +6,8 @@ public class HealthSystem : MonoBehaviour
 {
 
     [SerializeField]
-    protected int MaxHealth, health;
+    public int MaxHealth;
+    public int health;
     protected DeadSystem ds;
 
     [SerializeField]

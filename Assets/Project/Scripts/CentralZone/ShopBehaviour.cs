@@ -12,6 +12,16 @@ public class ShopBehaviour : MonoBehaviour
     [SerializeField]
     GameObject shopCanvas;
 
+    [SerializeField]
+    GameObject Player;
+
+    [SerializeField]
+    GameObject[] extraHearts;
+
+    private int extraheartsCounter = 0;
+
+    private PlayerHealthSystem phs;
+
     public TextMeshProUGUI currentRootsText;
 
     public int currentRoots = 30;
@@ -22,6 +32,7 @@ public class ShopBehaviour : MonoBehaviour
     void Start()
     {
         currentRootsText.text = currentRoots.ToString();
+        phs = Player.transform.GetComponent<PlayerHealthSystem>();
     }
 
     // Update is called once per frame
@@ -66,7 +77,12 @@ public class ShopBehaviour : MonoBehaviour
         if(currentRoots >= 5)
         {
             currentRoots -= 5;
-            currentRootsText.text = currentRoots.ToString(); 
+            currentRootsText.text = currentRoots.ToString();
+
+            phs.MaxHealth++;
+            extraHearts[extraheartsCounter].SetActive(true);
+            extraheartsCounter++;
+            phs.health = phs.MaxHealth;
         }
     }
 }

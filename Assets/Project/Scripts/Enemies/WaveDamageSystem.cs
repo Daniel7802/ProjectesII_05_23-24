@@ -15,8 +15,7 @@ public class WaveDamageSystem : DamageSystem
             {
                 if (phs.isInvincible == false && phs.counter < 5)
                 {
-                    phs.deleteHeart(phs.counter);
-                    phs.counter++;
+                    phs.deleteHeart();
                     phs.turnInvincible();
                     Vector2 dir = new Vector2(phs.transform.position.x - transform.position.x, phs.transform.position.y-transform.position.y);
                     Vector2 kbForce = dir.normalized * knockbackForce;
