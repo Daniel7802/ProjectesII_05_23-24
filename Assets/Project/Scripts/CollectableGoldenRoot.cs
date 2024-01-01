@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CollectableGoldenRoot : MonoBehaviour
 {
@@ -16,10 +17,17 @@ public class CollectableGoldenRoot : MonoBehaviour
     [SerializeField] float height = 1.8f;
     [SerializeField] float newScale = 0.7f;
     [SerializeField] float speed = 30f;
+
+    [SerializeField]
+    GameObject ShopManager;
+
+    private ShopBehaviour sb;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        sb = ShopManager.GetComponent<ShopBehaviour>();
     }
 
     // Update is called once per frame
@@ -57,8 +65,8 @@ public class CollectableGoldenRoot : MonoBehaviour
         {
             target = collision.gameObject;
             collected = true;
-
-
+            sb.currentRoots++;
+            sb.currentRootsText.text = sb.currentRoots.ToString();
         }
     }
 }
