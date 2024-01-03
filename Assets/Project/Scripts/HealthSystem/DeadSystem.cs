@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class DeadSystem : MonoBehaviour
 {
-  public virtual void Dead()
+    public GameObject blood;
+    public virtual void Dead()
     {
         Destroy(gameObject);
+        Instantiate(blood, transform.position, Quaternion.identity);
     }
 }

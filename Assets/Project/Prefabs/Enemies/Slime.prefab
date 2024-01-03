@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 808a7789e52454642804aebd5d0596fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blood: {fileID: 715038747342358181, guid: acefe0026199f9940bff03459ba3aab4, type: 3}
   miniSlime: {fileID: 2998486167879767135, guid: 912d7c1f80c6eb543be00acfd391a535, type: 3}
   spawnForce: 5
   player: {fileID: 0}
@@ -264,9 +265,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -299,7 +300,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

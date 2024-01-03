@@ -90,10 +90,7 @@ public class SlimeIA : Enemy
         waitingTimer += Time.deltaTime;
         if (waitingTimer >= waitingTime)
         {
-
-            if (distanceToPlayer < distanceAudio)
-                audioSource.PlayOneShot(slimeJumpSound, 0.5f);
-
+            audioSource.PlayOneShot(slimeJumpSound);
             rb2D.AddForce(impulseForce, ForceMode2D.Impulse);
             SetNewWaitingTime();
             setNewDest = true;
