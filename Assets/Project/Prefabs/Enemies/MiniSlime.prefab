@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blood: {fileID: 715038747342358181, guid: acefe0026199f9940bff03459ba3aab4, type: 3}
+  deathSound: {fileID: 8300000, guid: 8dcf6ea302322f246b80881a24136be2, type: 3}
 --- !u!95 &9160680943280425905
 Animator:
   serializedVersion: 5
@@ -350,4 +351,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2049c3badedfb0d4b85ef939d4501b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invTime: 1
+  invTime: 0.2
