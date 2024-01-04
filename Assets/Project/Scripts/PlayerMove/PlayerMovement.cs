@@ -5,6 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
+    ParticleSystem _walkParticles;
+    private ParticleSystem.EmissionModule _missionModuleWalk;
+
+
+    [SerializeField]
     public float speed = 10f;
     public float maxSpeed = 90f;
 
@@ -39,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         pg = pauseManager.GetComponent<PauseGameController>();
         audioSource = gameObject.AddComponent<AudioSource>();
+        _missionModuleWalk = _walkParticles.emission;
     }
 
     // Update is called once per frame
@@ -63,6 +69,13 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetFloat("Vertical", moveY);
             playerAnimator.SetFloat("Speed", movementVector.sqrMagnitude);
         }
+        if(playerRb.velocity.x != 0 || playerRb.velocity.y != 0)    
+        {
+            _missionModuleWalk.enabled = true;
+        }
+        else
+            _missionModuleWalk.enabled = false;
+
     }
 
     private void FixedUpdate()
