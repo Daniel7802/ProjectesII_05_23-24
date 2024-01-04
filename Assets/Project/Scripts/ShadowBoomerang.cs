@@ -14,6 +14,7 @@ public class ShadowBoomerang : BoomerangThrow
     PlayerMovement _playerMovement;
     [SerializeField]
     bool makeEffect = true;
+    bool canTp = true;
 
     [SerializeField]private float  blackHoleForce = 30;
     public override void  Start()
@@ -37,7 +38,7 @@ public class ShadowBoomerang : BoomerangThrow
 
     void Teleport ()
     {
-        if(isFlying && Input.GetMouseButtonDown(0))
+        if(isFlying && Input.GetMouseButtonDown(0) && canTp)
         {
             _playerMovement.playerRb.MovePosition(transform.position);
             coming = true;
@@ -91,11 +92,23 @@ public class ShadowBoomerang : BoomerangThrow
       
         if (collision.gameObject.CompareTag("Player") && coming)
         {
+            canTp = true;
             makeEffect = true;
             _particleBlackHole.Stop();
         }
+        else if (collision.gameObject.CompareTag("Water"))
+        {
+            canTp = false;
+        }
             base.OnTriggerEnter2D(collision);
       
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+         if (collision.gameObject.CompareTag("Water"))
+        {
+            canTp = true;
+        }
     }
     protected void OnTriggerStay2D(Collider2D collision)
     {
