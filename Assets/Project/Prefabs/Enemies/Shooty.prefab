@@ -168,18 +168,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   currentState: 0
-  startChasingRange: 6
-  stopChasingRange: 7
+  startChasingRange: 8
+  stopChasingRange: 9
   knockbackForce: 30
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 192
   roamingMoveForce: 3
   timeToStop: 6
   timeStoped: 1
   newDestTime: 3
-  chasingMoveForce: 8
-  aimingTime: 5
+  chasingMoveForce: 40
+  aimingTime: 3
   enemyBullet: {fileID: 8740438523283609490, guid: 192ecb6623fbab7438f6bb9073b6799d, type: 3}
-  startShootingRange: 5
-  stopShootingRange: 6
+  startShootingRange: 4
+  stopShootingRange: 5
   shootSound: {fileID: 8300000, guid: 9a8ba0a603f613a4eabbbc651df3e370, type: 3}
   reloadingTime: 1.5
   reloadingSound: {fileID: 8300000, guid: 29ed6299a89ad8744a16a6fc2a6a2ff4, type: 3}

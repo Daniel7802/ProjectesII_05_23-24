@@ -753,10 +753,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 726980654}
-    - target: {fileID: 8341986832147713556, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 726980654}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1325,7 +1321,7 @@ GameObject:
   - component: {fileID: 388382956}
   - component: {fileID: 388382955}
   - component: {fileID: 388382954}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Obstacles (+1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -14818,7 +14814,7 @@ GameObject:
   - component: {fileID: 903888666}
   - component: {fileID: 903888665}
   - component: {fileID: 903888664}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Obstacles
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -23539,7 +23535,7 @@ GameObject:
   m_Component:
   - component: {fileID: 939690630}
   - component: {fileID: 939690629}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Bounding Shape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135596,22 +135592,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shooty
       objectReference: {fileID: 0}
-    - target: {fileID: 2960416895373328995, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 2960416895373328995, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -15.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 4225902681694092369, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4225902681694092369, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5855127542648345499, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -135657,10 +135637,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7574028520940768118, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 726980654}
-    - target: {fileID: 8341986832147713556, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 726980654}
