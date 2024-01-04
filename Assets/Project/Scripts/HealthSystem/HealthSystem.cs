@@ -18,14 +18,14 @@ public class HealthSystem : MonoBehaviour
 
 
     private bool invincible = false;
-  
+
 
     private float canGetDamageTimer = 0.0f;
     [SerializeField] private float canGetDamageMaxTimer;
 
     protected SpriteRenderer spriteRenderer;
-    [SerializeField]protected Material defaultMaterial;
-    [SerializeField]protected Material damagedMaterial;
+    [SerializeField] protected Material defaultMaterial;
+    [SerializeField] protected Material damagedMaterial;
     protected float damagedTimer = 0.0f;
     [SerializeField] protected float damagedTime = 0.125f;
     protected bool isDamaged;
@@ -63,14 +63,14 @@ public class HealthSystem : MonoBehaviour
             spriteRenderer.material = defaultMaterial;
         }
 
-        if(getHit && !invincible)
+        if (getHit && !invincible)
         {
             if (canGetDamageTimer >= canGetDamageMaxTimer)
             {
                 GetDamage(1);
                 canGetDamageTimer = 0.0f;
             }
-                canGetDamageTimer += Time.deltaTime;
+            canGetDamageTimer += Time.deltaTime;
 
         }
         else
@@ -81,25 +81,42 @@ public class HealthSystem : MonoBehaviour
 
     public void GetDamage(int amount)
     {
-        _audioSource.PlayOneShot(damageSound);
-        health -= amount;
-
-        if (health <= 0)
+        if (this.gameObject.CompareTag("Player"))
         {
-            health = 0;
-            DeadState();
-        }
-       
+            _audioSource.PlayOneShot(damageSound);
+            health -= amount;
 
-        if (this.gameObject.CompareTag("Enemy"))
+            if (health <= 0)
+            {
+                health = 0;
+
+                DeadState();
+            }
+
+
+        }else if(!ds.isDead)    
         {
-            isDamaged = true;
+            _audioSource.PlayOneShot(damageSound);
+            health -= amount;
 
+            if (health <= 0)
+            {
+                health = 0;
+
+                DeadState();
+            }
+
+
+            if (this.gameObject.CompareTag("Enemy"))
+            {
+                isDamaged = true;
+
+            }
         }
     }
     public void TurnInvencible(bool inv)
-    {        
-        
+    {
+
         invincible = inv;
     }
 

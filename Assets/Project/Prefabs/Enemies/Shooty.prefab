@@ -9,15 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5855127542648345499}
-  - component: {fileID: 1473685859198301395}
-  - component: {fileID: 2447013554959318574}
-  - component: {fileID: 4225902681694092369}
-  - component: {fileID: 8341986832147713556}
-  - component: {fileID: 1524458598854764256}
-  - component: {fileID: 8411318322013947151}
-  - component: {fileID: 8543429425438343230}
-  - component: {fileID: 2775488161986300458}
-  - component: {fileID: 4428147445117597524}
+  - component: {fileID: 8407512604585491184}
+  - component: {fileID: 4435543863652032583}
+  - component: {fileID: 4946547836665349580}
+  - component: {fileID: 7574028520940768118}
+  - component: {fileID: 1407829007740879287}
+  - component: {fileID: 5730226635452260804}
+  - component: {fileID: 7488491513844311247}
+  - component: {fileID: 8026192735740820734}
+  - component: {fileID: 8377152920194647158}
   m_Layer: 9
   m_Name: Shooty
   m_TagString: Enemy
@@ -33,14 +33,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2285647051765586022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.73, y: 1.91, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1473685859198301395
+--- !u!212 &8407512604585491184
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &2447013554959318574
+--- !u!50 &4435543863652032583
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -119,7 +119,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &4225902681694092369
+--- !u!70 &4946547836665349580
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,7 +154,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0025533438, y: 0.02433896}
   m_Size: {x: 0.21358657, y: 0.28746653}
   m_Direction: 0
---- !u!114 &8341986832147713556
+--- !u!114 &7574028520940768118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,14 +176,14 @@ MonoBehaviour:
   timeStoped: 1
   newDestTime: 3
   chasingMoveForce: 8
-  aimingTime: 0.8
+  aimingTime: 5
   enemyBullet: {fileID: 8740438523283609490, guid: 192ecb6623fbab7438f6bb9073b6799d, type: 3}
   startShootingRange: 5
   stopShootingRange: 6
   shootSound: {fileID: 8300000, guid: 9a8ba0a603f613a4eabbbc651df3e370, type: 3}
   reloadingTime: 1.5
   reloadingSound: {fileID: 8300000, guid: 29ed6299a89ad8744a16a6fc2a6a2ff4, type: 3}
---- !u!114 &1524458598854764256
+--- !u!114 &1407829007740879287
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91d7381e81c5d14bbc733e08e61b575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 6
+  MaxHealth: 4
   health: 0
   getHit: 0
   damageSound: {fileID: 8300000, guid: 243831b253368bc40b4e9a4ca743e590, type: 3}
@@ -203,7 +203,7 @@ MonoBehaviour:
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
   damagedTime: 0.125
---- !u!114 &8411318322013947151
+--- !u!114 &5730226635452260804
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,7 +216,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blood: {fileID: 715038747342358181, guid: acefe0026199f9940bff03459ba3aab4, type: 3}
---- !u!82 &8543429425438343230
+  deathSound: {fileID: 8300000, guid: f582776eb44ecdc44bf289d689dd73b3, type: 3}
+  deathClipPitch: 1
+  isDead: 0
+--- !u!82 &7488491513844311247
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,7 +315,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!120 &2775488161986300458
+--- !u!120 &8026192735740820734
 LineRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -353,7 +356,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -413,10 +416,10 @@ LineRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!95 &4428147445117597524
+--- !u!95 &8377152920194647158
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0

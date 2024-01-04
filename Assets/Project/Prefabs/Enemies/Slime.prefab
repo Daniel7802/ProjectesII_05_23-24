@@ -152,7 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blood: {fileID: 715038747342358181, guid: acefe0026199f9940bff03459ba3aab4, type: 3}
-  deathSound: {fileID: 8300000, guid: cec3be1d80447c344b2b9b9cec98c4ae, type: 3}
+  deathSound: {fileID: 8300000, guid: a9adc3be9c93df54abdf66972003f3c7, type: 3}
+  deathClipPitch: 0.6
   miniSlime: {fileID: 2998486167879767135, guid: 912d7c1f80c6eb543be00acfd391a535, type: 3}
   spawnForce: 5
   player: {fileID: 0}
@@ -181,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91d7381e81c5d14bbc733e08e61b575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 5
+  MaxHealth: 3
   health: 0
   getHit: 0
   damageSound: {fileID: 8300000, guid: 243831b253368bc40b4e9a4ca743e590, type: 3}

@@ -57,6 +57,7 @@ public class Trap : MonoBehaviour
 
     void ShootOneBullet(DIR dir)
     {
+        _audioSource.PlayOneShot(shootSound, 0.5f);
         switch (dir)
         {
             case DIR.UP:
@@ -72,7 +73,7 @@ public class Trap : MonoBehaviour
                 direction = -transform.right;
                 break;
         }
-        _audioSource.PlayOneShot(shootSound, 0.1f);
+       
         GameObject bullet = Instantiate(trapBullet);
         bullet.transform.position = transform.position;
         bullet.transform.right = direction;

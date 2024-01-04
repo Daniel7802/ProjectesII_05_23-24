@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using static Unity.VisualScripting.Member;
 
 public class ShootyIA : Enemy
 {
-    
+
     private float moveForce;
 
     //roaming
@@ -14,7 +15,7 @@ public class ShootyIA : Enemy
     private bool isStoped = false;
     private float timerToStop = 0f;
     public float timeToStop = 6f;
-    private float timerStoped = 0f;    
+    private float timerStoped = 0f;
     public float timeStoped = 1f;
     private bool setNewDest = false;
     public float newDestTime = 3f;
@@ -29,7 +30,7 @@ public class ShootyIA : Enemy
     public float aimingTime = 0.8f;
 
     //shooting
-    public GameObject enemyBullet;  
+    public GameObject enemyBullet;
     public float startShootingRange;
     public float stopShootingRange;
     public AudioClip shootSound;
@@ -38,8 +39,8 @@ public class ShootyIA : Enemy
     private float reloadingTimer = 0f;
     public float reloadingTime;
     public AudioClip reloadingSound;
-   
-    public override void Start() 
+
+    public override void Start()
     {
         base.Start();
         currentState = 0;
@@ -57,7 +58,7 @@ public class ShootyIA : Enemy
 
                 if (distanceToPlayer < startChasingRange)
                 {
-                    
+
                     currentState = 1;
                 }
                 else
@@ -86,7 +87,7 @@ public class ShootyIA : Enemy
                 if (lineTimer < aimingTime)
                 {
                     animator.SetBool("walk", false);
-                    Aiming();                    
+                    Aiming();
                     lineTimer += Time.deltaTime;
                 }
                 else
@@ -96,7 +97,7 @@ public class ShootyIA : Enemy
                 }
                 break;
 
-            case 3:                
+            case 3:
                 Shooting();
                 reloadingTimer = 0;
                 currentState = 4;
@@ -108,11 +109,11 @@ public class ShootyIA : Enemy
                 if (reloadingTimer == 0f)
                     audioSource.PlayOneShot(reloadingSound, 0.1f);
                 reloadingTimer += Time.deltaTime;
-               
+
                 if (reloadingTimer > reloadingTime)
-                {                    
+                {
                     if (distanceToPlayer < startShootingRange)
-                    {                        
+                    {
                         currentState = 2;
                     }
                     else
@@ -128,7 +129,7 @@ public class ShootyIA : Enemy
     public override void Movement()
     {
         animator.SetBool("walk", true);
-        
+
         Vector2 directionVector = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
         Vector2 impulseForce = directionVector.normalized * moveForce;
 
@@ -139,7 +140,7 @@ public class ShootyIA : Enemy
     {
         moveForce = roamingMoveForce;
         target = roamingRandomPoint;
-      
+
         if (!isStoped)
         {
             Movement();
@@ -149,8 +150,8 @@ public class ShootyIA : Enemy
                 setNewDest = true;
                 newDestTimer = 0;
             }
-            
-            if (Vector2.Distance(transform.position,target)<1)
+
+            if (Vector2.Distance(transform.position, target) < 1)
             {
                 setNewDest = true;
             }
@@ -181,7 +182,7 @@ public class ShootyIA : Enemy
     {
         moveForce = chasingMoveForce;
         target = player.transform.position;
-      
+
         Movement();
     }
 
@@ -192,24 +193,34 @@ public class ShootyIA : Enemy
     }
     void ShowTrayectoryLine()
     {
-        lineRenderer.enabled = true;
-        lineRenderer.positionCount = 2;
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, player.transform.position);
+        if (lineRenderer != null)
+        {
+            lineRenderer.enabled = true;
+            lineRenderer.positionCount = 2;
+            lineRenderer.SetPosition(0, Vector3.zero);
+            Vector3 position2 = player.transform.position - transform.position;
+            lineRenderer.SetPosition(1, new Vector3(position2.x / transform.localScale.x, position2.y / transform.localScale.y, position2.z / transform.localScale.z));
+            //lineRenderer.SetPosition(0, transform.position);
+            // lineRenderer.SetPosition(1, player.transform.position);
+
+        }
+
+
     }
 
     void Shooting()
     {
         target = player.transform.position;
-        ShootOneBullet(); 
+        ShootOneBullet();
     }
     void ShootOneBullet()
     {
-        audioSource.PlayOneShot(shootSound,0.5f);
+        audioSource.PlayOneShot(shootSound, 0.5f);
         Vector2 dir = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
         GameObject bullet = Instantiate(enemyBullet);
         bullet.transform.position = transform.position;
         bullet.transform.right = dir;
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
