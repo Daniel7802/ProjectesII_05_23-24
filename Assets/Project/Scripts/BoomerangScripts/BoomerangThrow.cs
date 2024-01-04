@@ -141,7 +141,7 @@ public class BoomerangThrow : MonoBehaviour
     }
     protected void CalculateThrow()
     {
-        p0 = transform.position; // 5,5         
+        p0 = source.transform.position; // 5,5         
         pAux = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         vectorDirection = (Vector2)pAux - p0;
         vectorDirection.Normalize();
@@ -241,6 +241,8 @@ public class BoomerangThrow : MonoBehaviour
         if (collision.gameObject.tag.Equals("Wall")  || collision.gameObject.tag.Equals("ShadowWall"))
         {
             cancelled = true;
+            coming = true;
+            going = false;
             Coming();
         }
         if (collision.gameObject.CompareTag("Player") && (coming ||cancelled) )
@@ -268,17 +270,7 @@ public class BoomerangThrow : MonoBehaviour
         
     }
 
-    protected void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag.Equals("Wall") || collision.gameObject.tag.Equals("ShadowWall"))
-        {
-            _audioSource.PlayOneShot(goingSound);
-            coming = true;
-            going = false;
-        }
-
-
-    }
+   
     protected void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
