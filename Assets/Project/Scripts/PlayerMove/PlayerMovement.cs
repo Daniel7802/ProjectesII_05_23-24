@@ -91,9 +91,9 @@ public class PlayerMovement : MonoBehaviour
             // Roll
             if (isRolling)
             {
-                Vector2 rollVector = new Vector2(playerRb.velocity.x, playerRb.velocity.y);
-                playerRb.AddForce(rollVector.normalized * ImpulseForce, ForceMode2D.Impulse);
-
+                //Vector2 rollVector = new Vector2(playerRb.velocity.x, playerRb.velocity.y);
+                //playerRb.AddForce(rollVector.normalized * ImpulseForce, ForceMode2D.Impulse);
+                StartCoroutine(Dash());
                 if (startTimer)
                 {
                     timer--;
@@ -120,4 +120,17 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+    IEnumerator Dash()
+    {
+        Vector3 velocity = playerRb.velocity;
+        Vector2 rollVector = new Vector2(playerRb.velocity.x, playerRb.velocity.y);      
+        playerRb.velocity = rollVector.normalized * ImpulseForce;
+
+        yield return new WaitForEndOfFrame();
+
+        playerRb.velocity = rollVector.normalized*0.5f;
+    }
+
+   
 }

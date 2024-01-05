@@ -174,17 +174,17 @@ MonoBehaviour:
   hitLayer:
     serializedVersion: 2
     m_Bits: 192
-  roamingMoveForce: 3
+  roamingMoveForce: 1.5
   timeToStop: 6
   timeStoped: 1
   newDestTime: 3
-  chasingMoveForce: 6
-  aimingTime: 3
+  chasingMoveForce: 3
+  aimingTime: 1
   enemyBullet: {fileID: 8740438523283609490, guid: 192ecb6623fbab7438f6bb9073b6799d, type: 3}
   startShootingRange: 4
   stopShootingRange: 5
   shootSound: {fileID: 8300000, guid: 9a8ba0a603f613a4eabbbc651df3e370, type: 3}
-  reloadingTime: 1.5
+  reloadingTime: 2
   reloadingSound: {fileID: 8300000, guid: 29ed6299a89ad8744a16a6fc2a6a2ff4, type: 3}
 --- !u!114 &1407829007740879287
 MonoBehaviour:
