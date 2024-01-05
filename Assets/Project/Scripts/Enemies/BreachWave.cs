@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BreachWave : MonoBehaviour
 {
-
+   
     private ParticleSystem ring;
     ParticleSystem.ShapeModule ringShape;
     public WaveDamageSystem waveDmg;
@@ -28,7 +28,7 @@ public class BreachWave : MonoBehaviour
             {
                 found |= inCollider == collider;
             }
-            if (!found)
+            if(!found)
                 waveDmg.DamageItem(collider);
         }
     }
