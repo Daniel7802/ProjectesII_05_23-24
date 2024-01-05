@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BreachWave : MonoBehaviour    
+public class BreachWave : MonoBehaviour
 {
    
     private ParticleSystem ring;
@@ -12,7 +12,7 @@ public class BreachWave : MonoBehaviour
 
     private void Start()
     {
-        
+
         ring = GetComponent<ParticleSystem>();
         ringShape = ring.GetComponent<ParticleSystem>().shape;
     }
@@ -20,7 +20,7 @@ public class BreachWave : MonoBehaviour
     private void FixedUpdate()
     {
         Collider2D[] outColliders = Physics2D.OverlapCircleAll(this.transform.position, ringShape.radius);
-        Collider2D[] inColliders = Physics2D.OverlapCircleAll(this.transform.position, ringShape.radius * 0.1f);
+        Collider2D[] inColliders = Physics2D.OverlapCircleAll(this.transform.position, ringShape.radius * 0.01f);
         foreach (var collider in outColliders)
         {
             bool found = false;

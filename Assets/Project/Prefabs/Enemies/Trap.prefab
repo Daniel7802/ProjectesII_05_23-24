@@ -99,11 +99,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   up: 1
-  down: 1
+  down: 0
   right: 0
   left: 0
   trapBullet: {fileID: 575486747931979159, guid: 764d080d24b740345a482445c3350e8e, type: 3}
-  shootSound: {fileID: 8300000, guid: 8dcf6ea302322f246b80881a24136be2, type: 3}
+  shootSound: {fileID: 8300000, guid: f3aa93e4c43b38040bc478d855e96e57, type: 3}
   reloadingTime: 3
 --- !u!82 &2523845130063482466
 AudioSource:
@@ -118,7 +118,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.65
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -126,9 +126,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -161,7 +161,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

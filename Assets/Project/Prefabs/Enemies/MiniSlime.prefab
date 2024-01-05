@@ -220,6 +220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af76eb6b91e8574ba3c2d33b4ff7972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blood: {fileID: 715038747342358181, guid: 02ac5cf20e5fb3f4699543f1919d8b26, type: 3}
+  deathSound: {fileID: 8300000, guid: a9adc3be9c93df54abdf66972003f3c7, type: 3}
+  deathClipPitch: 0.5
+  isDead: 0
 --- !u!95 &9160680943280425905
 Animator:
   serializedVersion: 5
@@ -262,9 +266,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -297,7 +301,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -349,4 +353,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2049c3badedfb0d4b85ef939d4501b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invTime: 1
+  invTime: 0.2

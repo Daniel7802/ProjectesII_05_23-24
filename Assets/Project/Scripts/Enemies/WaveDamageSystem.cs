@@ -1,10 +1,11 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveDamageSystem : DamageSystem
 {
-    [SerializeField] private float knockbackForce = 30f;
+    [SerializeField] private float knockbackForce = 90f;
     public void DamageItem(Collider2D col)
     {
         Debug.Log(col.transform.name);
@@ -12,9 +13,10 @@ public class WaveDamageSystem : DamageSystem
         {
             if (col.gameObject.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs) && col.tag.Equals("Player"))
             {
-                if (phs.isInvincible == false && phs.counter < 5)
+                if (phs.isInvincible == false)
                 {
                     phs.deleteHeart();
+                    phs.counter++;
                     phs.turnInvincible();
                     Vector2 dir = new Vector2(phs.transform.position.x - transform.position.x, phs.transform.position.y - transform.position.y);
                     Vector2 kbForce = dir.normalized * knockbackForce;

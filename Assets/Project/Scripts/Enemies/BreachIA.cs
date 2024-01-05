@@ -138,9 +138,9 @@ public class BreachIA : Enemy
         ring.transform.position =new Vector2(transform.position.x,transform.position.y-0.5f);
         ring.Play();
 
-        if (ringShape.radius < 5)
+        if (ringShape.radius < 6)
         {
-            ringShape.radius += 0.05f;
+            ringShape.radius += 0.009f;
         }
         else
         {

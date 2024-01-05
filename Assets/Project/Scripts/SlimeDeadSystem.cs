@@ -13,13 +13,16 @@ public class SlimeDeadSystem : DeadSystem
     public GameObject player;
     private Vector2 vectorBetweenPlayer, vectorSlime1, vectorSlime2;
 
+  
+
 
 
     public override void Dead()
     {
+        
         base.Dead();
         SpawnMiniSlimes();
-
+        
     }
     void SpawnMiniSlimes()
     {
