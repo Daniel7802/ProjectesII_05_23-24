@@ -220,9 +220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af76eb6b91e8574ba3c2d33b4ff7972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blood: {fileID: 715038747342358181, guid: acefe0026199f9940bff03459ba3aab4, type: 3}
+  blood: {fileID: 715038747342358181, guid: 02ac5cf20e5fb3f4699543f1919d8b26, type: 3}
   deathSound: {fileID: 8300000, guid: a9adc3be9c93df54abdf66972003f3c7, type: 3}
   deathClipPitch: 0.5
+  isDead: 0
 --- !u!95 &9160680943280425905
 Animator:
   serializedVersion: 5

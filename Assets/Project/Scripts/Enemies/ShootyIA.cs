@@ -56,8 +56,8 @@ public class ShootyIA : Enemy
         switch (currentState)
         {
             case 0://roaming
-                
-                if (distanceToPlayer < startChasingRange&&RaycastPlayer())
+
+                if (distanceToPlayer < startChasingRange && RaycastPlayer())
                 {
 
                     currentState = 1;
@@ -75,9 +75,9 @@ public class ShootyIA : Enemy
                     currentState = 0;
                 }
                 else if (distanceToPlayer < startShootingRange)// player enough close to shoot
-                {                   
-                    
-                    if(RaycastPlayer())
+                {
+
+                    if (RaycastPlayer())
                         currentState = 2;
                     else
                         currentState = 0;
@@ -113,7 +113,7 @@ public class ShootyIA : Enemy
                     currentState = 3;
                     lineTimer = 0;
                 }
-                
+
                 break;
 
             case 3://shooting
@@ -243,10 +243,10 @@ public class ShootyIA : Enemy
     }
     bool RaycastPlayer()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, 1000, hitLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, 100, hitLayer);
 
-        return hit.rigidbody!= null &&hit.rigidbody.CompareTag("Player");
-           
+        return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

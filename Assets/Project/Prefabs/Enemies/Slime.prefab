@@ -136,6 +136,9 @@ MonoBehaviour:
   startChasingRange: 7
   stopChasingRange: 9
   knockbackForce: 10
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 192
   slimeJumpSound: {fileID: 8300000, guid: a9adc3be9c93df54abdf66972003f3c7, type: 3}
   roamingForce: 8
   chasingJumpForce: 15
@@ -151,9 +154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 808a7789e52454642804aebd5d0596fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blood: {fileID: 715038747342358181, guid: acefe0026199f9940bff03459ba3aab4, type: 3}
+  blood: {fileID: 715038747342358181, guid: 02ac5cf20e5fb3f4699543f1919d8b26, type: 3}
   deathSound: {fileID: 8300000, guid: a9adc3be9c93df54abdf66972003f3c7, type: 3}
   deathClipPitch: 0.6
+  isDead: 0
   miniSlime: {fileID: 2998486167879767135, guid: 912d7c1f80c6eb543be00acfd391a535, type: 3}
   spawnForce: 5
   player: {fileID: 0}
