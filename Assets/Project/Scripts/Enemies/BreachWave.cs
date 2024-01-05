@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BreachWave : MonoBehaviour    
 {
    
-    [SerializeField] private CircleCollider2D outerCircleCollider2D;
-    [SerializeField] private CircleCollider2D innerCircleCollider2D;
     private ParticleSystem ring;
     ParticleSystem.ShapeModule ringShape;
-    [SerializeField] private float colliderRadiusMultiplier = 6f;
- 
-
-    private Rigidbody2D rb2D;
+    public WaveDamageSystem waveDmg;
 
     private void Start()
     {
@@ -22,10 +18,25 @@ public class BreachWave : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {       
-        outerCircleCollider2D.radius = ringShape.radius;
-        innerCircleCollider2D.radius = ringShape.radius - 0.5f;
+    {
+        Collider2D[] outColliders = Physics2D.OverlapCircleAll(this.transform.position, ringShape.radius);
+        Collider2D[] inColliders = Physics2D.OverlapCircleAll(this.transform.position, ringShape.radius * 0.1f);
+        foreach (var collider in outColliders)
+        {
+            bool found = false;
+            foreach (var inCollider in inColliders)
+            {
+                found |= inCollider == collider;
+            }
+            if(!found)
+                waveDmg.DamageItem(collider);
+        }
     }
 
-   
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(this.transform.position, ringShape.radius);
+    }
+
+
 }

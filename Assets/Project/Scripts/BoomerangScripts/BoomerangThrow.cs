@@ -245,6 +245,7 @@ public class BoomerangThrow : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Player") && (coming ||cancelled) )
         {
+            
             cancelled = false;
             isFlying = false;
             coming = false;

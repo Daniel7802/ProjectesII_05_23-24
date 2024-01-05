@@ -140,7 +140,7 @@ public class BreachIA : Enemy
 
         if (ringShape.radius < 5)
         {
-            ringShape.radius += 0.01f;
+            ringShape.radius += 0.05f;
         }
         else
         {
