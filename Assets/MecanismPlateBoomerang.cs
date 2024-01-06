@@ -22,14 +22,14 @@ public class MecanismPlateBoomerang : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Boomerang"))
         {
             activate = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Boomerang"))
         {
             if (!playerOn)
             {
