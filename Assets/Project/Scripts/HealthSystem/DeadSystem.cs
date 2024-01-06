@@ -44,8 +44,7 @@ public class DeadSystem : MonoBehaviour
 
     IEnumerator PlayDeathClipOn(float delay)
     {
-        _audioSource.pitch = deathClipPitch;
-       // _audioSource.clip = deathSound;
+        _audioSource.pitch = deathClipPitch;       
         _audioSource.PlayOneShot(deathSound);
         yield return new WaitForSecondsRealtime(delay);
         _audioSource.pitch = 1f;

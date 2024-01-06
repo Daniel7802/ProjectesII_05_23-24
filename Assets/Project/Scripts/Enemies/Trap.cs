@@ -57,7 +57,7 @@ public class Trap : MonoBehaviour
 
     void ShootOneBullet(DIR dir)
     {
-        _audioSource.PlayOneShot(shootSound, 0.5f);
+        _audioSource.PlayOneShot(shootSound, 0.2f);
         switch (dir)
         {
             case DIR.UP:

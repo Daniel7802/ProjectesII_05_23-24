@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5534252705122510054}
-  - component: {fileID: 2961023911685879913}
-  - component: {fileID: 885982983123898079}
   - component: {fileID: 914195043431360793}
   - component: {fileID: 8750598740770476882}
   - component: {fileID: 1490013231619021368}
   - component: {fileID: 9104362723145284022}
+  - component: {fileID: 4584818969057198193}
+  - component: {fileID: 7307806823823455982}
   m_Layer: 0
   m_Name: DestructionObject
   m_TagString: Untagged
@@ -35,42 +35,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2961023911685879913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3870978750745870615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f2a9c7c4e91af3409477d696bec9cea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHealth: 1
-  health: 0
-  getHit: 0
-  damageSound: {fileID: 8300000, guid: d0e097273cbf2054ea58f1a74e3cf625, type: 3}
-  canGetDamageMaxTimer: 1
-  defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
-  damagedTime: 0.125
---- !u!114 &885982983123898079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3870978750745870615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e6ceaa9785b14f43b34238697562326, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dropObject: {fileID: 4198729898670467884, guid: 4f51d8aa4545eec44a677ddc08b8a193, type: 3}
-  player: {fileID: 0}
 --- !u!61 &914195043431360793
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -285,3 +251,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4584818969057198193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3870978750745870615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91d7381e81c5d14bbc733e08e61b575, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 1
+  health: 0
+  getHit: 0
+  damageSound: {fileID: 0}
+  canGetDamageMaxTimer: 1
+  defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
+  damagedTime: 0.125
+--- !u!114 &7307806823823455982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3870978750745870615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8212c01eff79e2498260d0ad4deb4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blood: {fileID: 715038747342358181, guid: da50471f57a04784a84d477a41893a74, type: 3}
+  deathSound: {fileID: 8300000, guid: d0e097273cbf2054ea58f1a74e3cf625, type: 3}
+  deathClipPitch: 1
+  isDead: 0
+  _dropObject: {fileID: 4198729898670467884, guid: 4f51d8aa4545eec44a677ddc08b8a193, type: 3}
+  player: {fileID: 0}
