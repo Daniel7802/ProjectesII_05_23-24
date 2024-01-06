@@ -16,10 +16,17 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D playerRb;
     private Animator playerAnimator;
 
-    private float moveX;
-    private float moveY;
-
     private Vector2 movementVector;
+    private Vector2 movementVectorNormalized;
+
+    //dash
+    [SerializeField] private float _dashingVelocity = 50f;
+    [SerializeField] private float _dashingTime = 0.02f;
+    [SerializeField] private float _dashingCoolDownTime = 1f;
+    private Vector2 _dashingDir;
+    private bool _isDashing;
+    private bool _canDash = true;
+    private TrailRenderer _dashTrailRenderer;
 
     [SerializeField]
     private bool isRolling;
@@ -27,49 +34,59 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float ImpulseForce;
 
-    private float timer = 10;
-    private bool startTimer = false;
-    private bool rollCoolDown = false;
-
     private PauseGameController pg;
     [SerializeField]
     GameObject pauseManager;
-    private AudioSource audioSource;
+    private AudioSource _audioSource;
     [SerializeField]
     private AudioClip rollSound;
+    private SpriteRenderer _spriteRenderer;
 
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         pg = pauseManager.GetComponent<PauseGameController>();
-        audioSource = gameObject.AddComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
         _missionModuleWalk = _walkParticles.emission;
+        _dashTrailRenderer = GetComponent<TrailRenderer>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!pg.isPaused)
+        if (!pg.isPaused)
         {
             // Inputs
-            moveX = Input.GetAxisRaw("Horizontal");
-            moveY = Input.GetAxisRaw("Vertical");           
-
-            if (Input.GetKeyDown(KeyCode.Space) && !isRolling && !rollCoolDown && (moveX != 0 || moveY != 0))
+            movementVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+          
+            // Dash
+            if (Input.GetKeyDown(KeyCode.Space) && movementVector != Vector2.zero && _canDash)
             {
-                audioSource.PlayOneShot(rollSound);
-                isRolling = true;
-                startTimer = true;
+                _audioSource.PlayOneShot(rollSound);
+
+                _isDashing = true;
+                _canDash = false;
+                _dashTrailRenderer.enabled = true;
+                _spriteRenderer.enabled = false;
+
+                _dashingDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+                
+                StartCoroutine(StopDashing());
+                StartCoroutine(DashCoolDown());
             }
 
-            movementVector = new Vector2(moveX, moveY).normalized;
 
-            playerAnimator.SetFloat("Horizontal", moveX);
-            playerAnimator.SetFloat("Vertical", moveY);
-            playerAnimator.SetFloat("Speed", movementVector.sqrMagnitude);
+
+            movementVectorNormalized = movementVector.normalized;
+
+            playerAnimator.SetFloat("Horizontal", movementVectorNormalized.x);
+            playerAnimator.SetFloat("Vertical", movementVectorNormalized.y);
+            playerAnimator.SetFloat("Speed", movementVectorNormalized.sqrMagnitude);
         }
-        if(playerRb.velocity.x != 0 || playerRb.velocity.y != 0)    
+        if (playerRb.velocity.x != 0 || playerRb.velocity.y != 0)
         {
             _missionModuleWalk.enabled = true;
         }
@@ -80,57 +97,36 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!pg.isPaused)
+        if (!pg.isPaused)
         {
             // Fisicas
-            if (!isRolling)
+            if (!_isDashing)
             {
-                playerRb.AddForce(movementVector * speed, ForceMode2D.Force);
+                playerRb.AddForce(movementVectorNormalized * speed, ForceMode2D.Force);
             }
 
             // Roll
-            if (isRolling)
+            if (_isDashing)
             {
-                //Vector2 rollVector = new Vector2(playerRb.velocity.x, playerRb.velocity.y);
-                //playerRb.AddForce(rollVector.normalized * ImpulseForce, ForceMode2D.Impulse);
-                StartCoroutine(Dash());
-                if (startTimer)
-                {
-                    timer--;
+                playerRb.velocity = _dashingDir.normalized * _dashingVelocity;
 
-                    if (timer < 0)
-                    {
-                        startTimer = false;
-                        isRolling = false;
-                        rollCoolDown = true;
-                    }
-                }
+                return;
             }
 
-            if (rollCoolDown)
-            {
-                timer++;
-
-                if (timer >= 30)
-                {
-                    isRolling = false;
-                    rollCoolDown = false;
-                    timer = 10;
-                }
-            }
         }
     }
 
-    IEnumerator Dash()
+    IEnumerator StopDashing()
     {
-        Vector3 velocity = playerRb.velocity;
-        Vector2 rollVector = new Vector2(playerRb.velocity.x, playerRb.velocity.y);      
-        playerRb.velocity = rollVector.normalized * ImpulseForce;
-
-        yield return new WaitForEndOfFrame();
-
-        playerRb.velocity = rollVector.normalized*0.5f;
+        yield return new WaitForSeconds(_dashingTime);
+        _isDashing = false;
+        _spriteRenderer.enabled = true;
+    }
+    IEnumerator DashCoolDown()
+    {
+        yield return new WaitForSeconds(_dashingCoolDownTime);
+        _dashTrailRenderer.enabled = false;
+        _canDash = true;
     }
 
-   
 }
