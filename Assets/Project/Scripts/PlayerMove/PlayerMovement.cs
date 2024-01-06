@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     private AudioSource _audioSource;
     [SerializeField]
     private AudioClip rollSound;
-    private SpriteRenderer _spriteRenderer;
+   
 
     void Start()
     {
@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _missionModuleWalk = _walkParticles.emission;
         _dashTrailRenderer = GetComponent<TrailRenderer>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+       
     }
 
     // Update is called once per frame
@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
                 _isDashing = true;
                 _canDash = false;
                 _dashTrailRenderer.enabled = true;
-                _spriteRenderer.enabled = false;
+               
 
                 _dashingDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
@@ -77,9 +77,6 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(StopDashing());
                 StartCoroutine(DashCoolDown());
             }
-
-
-
             movementVectorNormalized = movementVector.normalized;
 
             playerAnimator.SetFloat("Horizontal", movementVectorNormalized.x);
@@ -120,12 +117,12 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(_dashingTime);
         _isDashing = false;
-        _spriteRenderer.enabled = true;
+        _dashTrailRenderer.enabled = false;
+
     }
     IEnumerator DashCoolDown()
     {
-        yield return new WaitForSeconds(_dashingCoolDownTime);
-        _dashTrailRenderer.enabled = false;
+        yield return new WaitForSeconds(_dashingCoolDownTime);        
         _canDash = true;
     }
 
