@@ -6,7 +6,7 @@ public class PlayerHealthSystem : HealthSystem
 {
     [SerializeField]
     GameObject[] hearts;
-
+    NewBehaviourScript _damageFlash;
     public int counter;
 
     public bool isInvincible = false;
@@ -19,7 +19,7 @@ public class PlayerHealthSystem : HealthSystem
     {
         base.Awake();
         _respawnSystem = GetComponent<RespawnSystem>();
-    
+        _damageFlash = GetComponent<NewBehaviourScript>();
         counter = MaxHealth;
     }
 
@@ -70,12 +70,14 @@ public class PlayerHealthSystem : HealthSystem
 
     public void deleteHeart()
     {
+        _damageFlash.CallDamageFlasher();
         hearts[health - 1].SetActive(false);
     }
     public void addHeart()
     {
         if(health < MaxHealth)
         {
+            _damageFlash.CallHealFlasher();
             hearts[health + 1].SetActive(true);
         }
     }
