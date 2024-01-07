@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1594947951844908562}
   - component: {fileID: 1808350131506932154}
   - component: {fileID: 4643297507367795129}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4851,7 +4851,7 @@ GameObject:
   - component: {fileID: 3613450144279430501}
   - component: {fileID: 5970343758627233069}
   - component: {fileID: 5666166676430979260}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShadowBoomeran
   m_TagString: Boomerang
   m_Icon: {fileID: 0}
@@ -4872,7 +4872,7 @@ Transform:
   m_Children:
   - {fileID: 1594947951844908562}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3897944622222715238
 SpriteRenderer:
@@ -5203,7 +5203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986b05acc8a940b468467d51f73abeaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 1
+  dmg: 0.3
 --- !u!198 &7114509794649575709
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -10276,31 +10276,13 @@ MonoBehaviour:
   _principalCircleCollider: {fileID: 3613450144279430501}
   goingSound: {fileID: 8300000, guid: 0cf4ebdb3a4a05b47bb59aee3b292c12, type: 3}
   source: {fileID: 0}
-  _particleSystemFire: {fileID: 1808350131506932154}
-  maxTimer: 2
-  maxTimerAttack: 0.05
-  timer: 0
-  timerTrail: 0
-  attackTimer: 0
-  rotationSpeed: 25
-  minDistance: 0
-  maxDistance: 0
-  distance: 0
-  throwDuration: 1
-  wantsToThrow: 0
-  rightMouse: 0
-  canThrow: 0
   going: 0
   coming: 0
   knockback: 0
   isFlying: 0
   isFire: 0
   mouseHold: 0
-  p0: {x: 0, y: 0}
-  p2: {x: 0, y: 0}
-  pAux: {x: 0, y: 0}
-  vectorDirection: {x: 0, y: 0}
-  vectorObjective: {x: 0, y: 0}
+  shopManager: {fileID: 0}
   _particleBlackHole: {fileID: 0}
   _circleCollider: {fileID: 1474864576467928120}
   _particleBlackHoleGO: {fileID: 0}

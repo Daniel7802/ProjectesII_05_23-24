@@ -7,7 +7,7 @@ public class DamageBoomerang : MonoBehaviour
     private BoomerangThrow bt;
 
     [SerializeField]
-    int dmg;
+    float dmg;
 
     private void Start()
     {
