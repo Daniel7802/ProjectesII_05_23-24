@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,6 +14,8 @@ public class BoomerangManager : MonoBehaviour
     GameObject _boomerang;
     [SerializeField]
     GameObject _shadowBoomerang;
+
+    public bool shadowBoomerangCollected = false;
 
  
     //[SerializeField]
@@ -61,7 +64,7 @@ public class BoomerangManager : MonoBehaviour
     {
         if (!_boomerangThrow.isFlying)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && shadowBoomerangCollected)
             {
                 m_TargetGroup.RemoveMember(actualBoomerang.transform);
                 if (actualBoomerang == _boomerang)

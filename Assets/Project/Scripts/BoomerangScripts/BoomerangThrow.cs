@@ -34,8 +34,12 @@ public class BoomerangThrow : MonoBehaviour
     public bool going, coming, knockback;
     public bool isFlying, isFire, mouseHold;
 
-    Vector2 p0, p2, pAux, vectorDirection, vectorObjective;  
+    Vector2 p0, p2, pAux, vectorDirection, vectorObjective;
 
+    [SerializeField]
+    GameObject shopManager;
+
+    private ShopBehaviour sb;
     
     protected void Awake()
     {
@@ -47,6 +51,8 @@ public class BoomerangThrow : MonoBehaviour
         _audioSource = GetComponent<AudioSource>(); 
         _particleSystemFire = GetComponent<ParticleSystem>();
         _missionModuleFire = _particleSystemFire.emission;
+
+        sb = shopManager.GetComponent<ShopBehaviour>();
     }
     public virtual void Start()
     {
@@ -70,31 +76,33 @@ public class BoomerangThrow : MonoBehaviour
 
     protected void Update()
     {
-
-        if(isFire)
+        if (sb.isShoping == false)
         {
-            _missionModuleFire.enabled = true;
-        }
-        else
-            _missionModuleFire.enabled = false;
+            if (isFire)
+            {
+                _missionModuleFire.enabled = true;
+            }
+            else
+                _missionModuleFire.enabled = false;
 
-    
-        CalculateThrow();
-        ShowTrayectoryLine();
-        MouseManager();
-        if (mouseHold)
-        {
-            Vector2 vectorOffset = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            vectorOffset.Normalize();
-            transform.position = (vectorOffset) * 0.05f + (Vector2)transform.position;
-            if (distance <= maxDistance)
-            distance += Time.deltaTime * 6;
 
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            rightMouse = true;
-            if (isFlying && !going) { _audioSource.PlayOneShot(goingSound); }
+            CalculateThrow();
+            ShowTrayectoryLine();
+            MouseManager();
+            if (mouseHold)
+            {
+                Vector2 vectorOffset = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                vectorOffset.Normalize();
+                transform.position = (vectorOffset) * 0.05f + (Vector2)transform.position;
+                if (distance <= maxDistance)
+                    distance += Time.deltaTime * 6;
+
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                rightMouse = true;
+                if (isFlying && !going) { _audioSource.PlayOneShot(goingSound); }
+            }
         }
     }
     protected void FixedUpdate()
