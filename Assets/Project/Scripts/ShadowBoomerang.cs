@@ -46,7 +46,6 @@ public class ShadowBoomerang : BoomerangThrow
     }
     protected override void Staying()
     {
-        
 
         if (timer >= 0f)
         {
@@ -60,6 +59,8 @@ public class ShadowBoomerang : BoomerangThrow
             {
                 if (makeEffect)
                 {
+                    canTouchWall = false;
+
                     _circleCollider.enabled = true;
                     _particleBlackHole.Play();
                     makeEffect = false;
