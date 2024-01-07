@@ -27,16 +27,16 @@ public class CollectableGoldenRoot : MonoBehaviour
     private float idleVelocity = 2.0f;
     private float idleDistance = 0.2f;
 
-    //[SerializeField] GameObject ShopManager;
+    [SerializeField] GameObject ShopManager;
 
-    //private ShopBehaviour sb;
+    private ShopBehaviour sb;
 
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-       // sb = ShopManager.GetComponent<ShopBehaviour>();
+        sb = ShopManager.GetComponent<ShopBehaviour>();
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = _idleSound;
         _audioSource.loop = true;
@@ -96,9 +96,13 @@ public class CollectableGoldenRoot : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             target = collision.gameObject;
+            if (!collected)
+            {
+                sb.currentRoots++;
+                sb.currentRootsText.text = sb.currentRoots.ToString();
+            }
             collected = true;
-            //sb.currentRoots++;
-            //sb.currentRootsText.text = sb.currentRoots.ToString();
+            
         }
     }
 }
