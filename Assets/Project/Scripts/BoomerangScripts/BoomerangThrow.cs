@@ -10,6 +10,7 @@ public class BoomerangThrow : MonoBehaviour
 
     [SerializeField]
     public CircleCollider2D _principalCircleCollider;
+    protected bool canTouchWall = true;
 
     private TrailRenderer _trailRenderer;
     private LineRenderer _lineRenderer;
@@ -246,7 +247,7 @@ public class BoomerangThrow : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag.Equals("Wall")  || collision.gameObject.tag.Equals("ShadowWall"))
+        if (collision.gameObject.tag.Equals("Wall") && canTouchWall == true  || collision.gameObject.tag.Equals("ShadowWall") && canTouchWall == true )
         {
             cancelled = true;
             coming = true;
@@ -255,7 +256,7 @@ public class BoomerangThrow : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Player") && (coming ||cancelled) )
         {
-            
+            canTouchWall = true;
             cancelled = false;
             isFlying = false;
             coming = false;
