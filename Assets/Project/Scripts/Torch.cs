@@ -25,7 +25,7 @@ public class Torch : MonoBehaviour
 
     private void Start()
     {
-        maxTime = 3.0f;
+        //maxTime = 3.0f;
         time = maxTime;
     }
     void Update()
