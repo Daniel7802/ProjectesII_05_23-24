@@ -6,31 +6,26 @@ using UnityEngine;
 public class DamageSystem : MonoBehaviour
 {
     [SerializeField]
-    int dmg;
+    protected int dmg;
+
      void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent<HealthSystem>(out HealthSystem hs))
         {
             if(collision.tag != "Player")
-            {
-                hs.GetDamage(dmg);
+            {            
+                hs.GetDamage(dmg); 
             }
 
             if(collision.gameObject.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs) && collision.tag.Equals("Player") && this.tag != "Boomerang")
             {
-                if(phs.isInvincible == false && phs.counter < 5)
+                if(phs.isInvincible == false && phs.health > 0 && phs.health <= phs.MaxHealth)
                 {
-                    phs.deleteHeart(phs.counter);
-                    phs.counter++;
-                    phs.turnInvincible();
+                    phs.deleteHeart();
+                    phs.turnInvincible();                   
                     hs.GetDamage(dmg);
                 }
             }
-        }
-        if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
-        {
-            Vector2 dir = new Vector2(enemy.transform.position.x - transform.position.x,enemy.transform.position.y-transform.position.y);
-            enemy.KnockBack(dir);
-        }
+        } 
     }
 }

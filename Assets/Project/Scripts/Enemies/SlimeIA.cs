@@ -6,24 +6,37 @@ using UnityEngine;
 
 public class SlimeIA : Enemy
 {
-    private AudioSource audioSource;
+    public LayerMask hitLayer;
     public AudioClip slimeJumpSound;
     //movement    
-    public float waitingTime = 2f;
+    private float waitingTime;
+    private float minWaitingTime;
+    private float maxWaitingTime;
     private float waitingTimer = 0;
+
+    private float minWaitingTimeRoaming = 2.0f;
+    private float maxWaitingTimeRoaming = 3.0f;
+
+    private float minWaitingTimeChasing = 1.0f;
+    private float maxWaitingTimeChasing = 1.5f;
+
+
     private float moveForce;
     private float velocityMagnitudeToLand = 1f;
+    private float distanceAudio = 8f;
 
     //roaming
-    public float roamingForce;
+    public float roamingForce = 8;
     bool setNewDest = false;
 
     //chasing    
-    public float chasingJumpForce;
+    public float chasingJumpForce = 15;
 
-    private void Awake()
+    private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        base.Start();
+        currentState = 0;
+        SetNewWaitingTime();
     }
 
     void Update()
@@ -35,8 +48,9 @@ public class SlimeIA : Enemy
         {
             case 0:
 
-                if (distanceToPlayer < startChasingRange)
+                if (distanceToPlayer < startChasingRange && RaycastPlayer())
                 {
+
                     currentState = 1;
                 }
                 else
@@ -46,13 +60,16 @@ public class SlimeIA : Enemy
                 break;
             case 1:
 
-                if (distanceToPlayer > stopChasingRange)
+                if (distanceToPlayer > stopChasingRange)//target lost --> to roaming
                 {
                     currentState = 0;
                 }
                 else
                 {
-                    Chasing();
+                    if (RaycastPlayer())
+                        Chasing();
+                    else
+                        currentState = 0;
                 }
                 break;
 
@@ -77,9 +94,9 @@ public class SlimeIA : Enemy
         waitingTimer += Time.deltaTime;
         if (waitingTimer >= waitingTime)
         {
-            if (distanceToPlayer < 6)
-                audioSource.PlayOneShot(slimeJumpSound, 0.5f);
+            audioSource.PlayOneShot(slimeJumpSound);
             rb2D.AddForce(impulseForce, ForceMode2D.Impulse);
+            SetNewWaitingTime();
             setNewDest = true;
             waitingTimer = 0;
         }
@@ -89,7 +106,8 @@ public class SlimeIA : Enemy
     {
         moveForce = roamingForce;
         target = roamingRandomPoint;
-        spriteRenderer.color = Color.white;
+        minWaitingTime = minWaitingTimeRoaming;
+        maxWaitingTime = maxWaitingTimeRoaming;
         Movement();
         if (setNewDest)
         {
@@ -102,8 +120,22 @@ public class SlimeIA : Enemy
     {
         moveForce = chasingJumpForce;
         target = player.transform.position;
-        spriteRenderer.color = Color.red;
+        minWaitingTime = minWaitingTimeChasing;
+        maxWaitingTime = maxWaitingTimeChasing;
         Movement();
+    }
+
+    public void SetNewWaitingTime()
+    {
+        waitingTime = UnityEngine.Random.Range(minWaitingTime, maxWaitingTime);
+    }
+
+    bool RaycastPlayer()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, 100, hitLayer);
+
+        return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

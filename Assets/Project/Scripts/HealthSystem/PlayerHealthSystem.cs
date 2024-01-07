@@ -6,22 +6,21 @@ public class PlayerHealthSystem : HealthSystem
 {
     [SerializeField]
     GameObject[] hearts;
-
+    NewBehaviourScript _damageFlash;
     public int counter;
 
     public bool isInvincible = false;
     private float timer = 1f;
 
     RespawnSystem _respawnSystem;
-    AudioSource _audioSource;
-    public AudioClip hitSound;
+   
     // Start is called before the first frame update
     public override void Awake()
     {
         base.Awake();
         _respawnSystem = GetComponent<RespawnSystem>();
-        _audioSource = GetComponent<AudioSource>();
-        counter = 0;
+        _damageFlash = GetComponent<NewBehaviourScript>();
+        counter = MaxHealth;
     }
 
     public void Update()
@@ -53,8 +52,7 @@ public class PlayerHealthSystem : HealthSystem
     public void RespawnHeal()
     {
         health = MaxHealth;
-        counter = 0;
-        for (int i = 0; i < hearts.Length; i++)
+        for (int i = MaxHealth - 1; i >= 0; i--)
         {
             hearts[i].SetActive(true);
         }
@@ -70,15 +68,17 @@ public class PlayerHealthSystem : HealthSystem
         _respawnSystem.OnDeath();
     }
 
-    public void deleteHeart(int index)
+    public void deleteHeart()
     {
-        
-        hearts[index].SetActive(false);
-        _audioSource.PlayOneShot(hitSound,0.4f);
+        _damageFlash.CallDamageFlasher();
+        hearts[health - 1].SetActive(false);
     }
     public void addHeart()
     {
-        counter--;
-        hearts[counter].SetActive(true);
+        if(health < MaxHealth)
+        {
+            _damageFlash.CallHealFlasher();
+            hearts[health + 1].SetActive(true);
+        }
     }
 }

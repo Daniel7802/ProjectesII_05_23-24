@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &881231961002693264
 SpriteRenderer:
@@ -104,7 +104,7 @@ MonoBehaviour:
   torchActive: 0
   masterTorch: 0
   time: 0
-  maxTime: 0
+  maxTime: 3
 --- !u!61 &7070681258078019785
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -8,11 +8,13 @@ using Unity.VisualScripting;
 public class Enemy : MonoBehaviour
 {
     public GameObject player;
-    public Rigidbody2D rb2D;
-    public SpriteRenderer spriteRenderer;
-    public Animator animator;
+    protected Rigidbody2D rb2D;
+    protected SpriteRenderer spriteRenderer;
+    protected Animator animator;
+    protected AudioSource audioSource;  
 
-    protected int currentState = 0;
+    [SerializeField]
+    public int currentState = 0;
 
     protected float distanceToPlayer;
 
@@ -28,6 +30,13 @@ public class Enemy : MonoBehaviour
 
     public float knockbackForce;
 
+    public virtual void Start()
+    {
+        rb2D = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+    }
     public virtual void Movement()
     {
 
@@ -69,8 +78,18 @@ public class Enemy : MonoBehaviour
             spriteRenderer.flipX = true;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Boomerang"))
+        {
+            Vector2 dir = transform.position - collision.transform.position;
+            KnockBack(dir);
+        }
+    }
 
-   
+    
+
+
     public virtual void OnDrawGizmos()
     {
 
@@ -82,7 +101,6 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(roamingRandomPoint, 0.4f);
     }
-
-
+    
 }
 
