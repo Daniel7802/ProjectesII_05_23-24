@@ -13,6 +13,7 @@ public class CollectableGoldenRoot : MonoBehaviour
     [SerializeField] private AudioClip _collectedSound;
     private bool collectedSoundPlayed = false;
     bool collected = false;
+  
     [SerializeField] float collectedTime = 2f;
     [SerializeField] float pickUpTime = 2f;
     float collectedTimer = 0f;
@@ -100,7 +101,11 @@ public class CollectableGoldenRoot : MonoBehaviour
             {
                 sb.currentRoots++;
                 sb.currentRootsText.text = sb.currentRoots.ToString();
+               
             }
+            
+                
+            
             collected = true;
             
         }
