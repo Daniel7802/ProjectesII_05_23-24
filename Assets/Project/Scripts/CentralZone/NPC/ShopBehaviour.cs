@@ -26,7 +26,7 @@ public class ShopBehaviour : MonoBehaviour
 
     public int currentRoots = 30;
 
-    private bool isShoping = false;
+    public bool isShoping = false;
 
     // Start is called before the first frame update
     void Start()
@@ -83,6 +83,7 @@ public class ShopBehaviour : MonoBehaviour
             extraHearts[extraheartsCounter].SetActive(true);
             extraheartsCounter++;
             phs.health = phs.MaxHealth;
+            phs.RespawnHeal();
         }
     }
 }
