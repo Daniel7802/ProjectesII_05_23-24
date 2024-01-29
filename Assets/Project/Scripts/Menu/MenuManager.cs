@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField]
-    private string GameScene;
+    
 
     public GameObject pauseManager;
 
@@ -15,24 +15,26 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
+        if(pg != null)
         pg = pauseManager.GetComponent<PauseGameController>();
     }
 
-    public void StartGame()
+    public void StartGame(string a)
     {
-        SceneManager.LoadScene(GameScene);
+        SceneManager.LoadScene(a);
     }
 
-    public void GoToMainMenu()
+    public void GoToMainMenu(string a)
     {
-        SceneManager.LoadScene(GameScene);
+        SceneManager.LoadScene(a);
         Time.timeScale = 1.0f;
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1.0f;
-        pg.isPaused = false;
+        if (pg != null)
+            pg.isPaused = false;
     }
 
     public void CloseGame()
