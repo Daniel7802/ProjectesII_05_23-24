@@ -24316,6 +24316,14 @@ PrefabInstance:
       propertyPath: _shadowBoomerang
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1911137432474511315, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
+      propertyPath: canvasDead
+      value: 
+      objectReference: {fileID: 1280147403}
+    - target: {fileID: 1911137432474511315, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
+      propertyPath: _fadeInOutManager
+      value: 
+      objectReference: {fileID: 2119903047}
     - target: {fileID: 7490800426209183852, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: hearts.Array.size
       value: 5
@@ -24816,6 +24824,11 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: 417138028645374879, guid: ae50f7054066a784b8938d7ec9c5fc75, type: 3}
   m_PrefabInstance: {fileID: 1076595960}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &1280147403 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 3291433424029489220, guid: 8aef55d5aa445ae4ea85e56d3ef4a667, type: 3}
+  m_PrefabInstance: {fileID: 864018352}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1303801861 stripped
 GameObject:
