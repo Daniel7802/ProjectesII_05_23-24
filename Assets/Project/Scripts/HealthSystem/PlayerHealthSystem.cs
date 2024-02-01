@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerHealthSystem : HealthSystem
 {
@@ -13,10 +14,12 @@ public class PlayerHealthSystem : HealthSystem
     private float timer = 1f;
 
     RespawnSystem _respawnSystem;
-   
+
+    private CinemachineImpulseSource impulseSource;
     // Start is called before the first frame update
     public override void Awake()
     {
+        impulseSource = GetComponent<CinemachineImpulseSource>();   
         base.Awake();
         _respawnSystem = GetComponent<RespawnSystem>();
         _damageFlash = GetComponent<NewBehaviourScript>();
@@ -72,6 +75,7 @@ public class PlayerHealthSystem : HealthSystem
     {
         _damageFlash.CallDamageFlasher();
         hearts[health - 1].SetActive(false);
+        cameraShakeManager.instance.CameraShake(impulseSource);
     }
     public void addHeart()
     {

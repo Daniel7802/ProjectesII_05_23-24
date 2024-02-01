@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class FadeInOutManager : MonoBehaviour
 {
+    public static FadeInOutManager instance;
     public CanvasGroup canvasgroup;
     public bool fadeIn = false;
     public bool fadeOut = false;
 
     public float timeToFade;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
     void Start()
     {
         

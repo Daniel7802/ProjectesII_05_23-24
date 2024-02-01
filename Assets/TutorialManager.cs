@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
-    FadeInOutManager _fadeInOutManager;
     void Start()
     {
-        _fadeInOutManager = GetComponent<FadeInOutManager>();
-        _fadeInOutManager.Fadeout();
+        FadeInOutManager.instance.Fadeout();
     }
 
     // Update is called once per frame

@@ -7,14 +7,13 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField]
 
-    FadeInOutManager _fadeInOut;
     public GameObject pauseManager;
 
     private PauseGameController pg;
 
     private void Start()
     {
-        _fadeInOut = GetComponent<FadeInOutManager>();
+        FadeInOutManager.instance.Fadeout();
         Cursor.lockState = CursorLockMode.Confined;
         if(pg != null)
         pg = pauseManager.GetComponent<PauseGameController>();
@@ -22,7 +21,7 @@ public class MenuManager : MonoBehaviour
 
     public void StartGame(string a)
     {
-        _fadeInOut.Fadein();
+       FadeInOutManager.instance.Fadein();
         StartCoroutine(StartGameCorrotine(a));
     }
 
@@ -47,7 +46,7 @@ public class MenuManager : MonoBehaviour
     private IEnumerator StartGameCorrotine(string a)
     {
         Debug.Log("Waiting for loadScene");
-        yield return new WaitWhile(delegate { return _fadeInOut.fadeIn; });
+        yield return new WaitWhile(delegate { return FadeInOutManager.instance.fadeIn; });
         SceneManager.LoadScene(a);
     }
 }
