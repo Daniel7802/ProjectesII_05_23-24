@@ -31,12 +31,19 @@ public class SlimeIA : Enemy
 
     //chasing    
     public float chasingJumpForce = 15;
+    [SerializeField]
+    SpriteRenderer detectAlert;
+    [SerializeField]
+    SpriteRenderer lostTargetAlert;
+
+
 
     private void Start()
     {
         base.Start();
         currentState = 0;
         SetNewWaitingTime();
+
     }
 
     void Update()
@@ -50,7 +57,9 @@ public class SlimeIA : Enemy
 
                 if (distanceToPlayer < startChasingRange && RaycastPlayer())
                 {
-
+                    if (waitingTimer > 1.0f)
+                        waitingTimer = waitingTime;
+                    StartCoroutine(EnableAlert(detectAlert));
                     currentState = 1;
                 }
                 else
@@ -62,6 +71,7 @@ public class SlimeIA : Enemy
 
                 if (distanceToPlayer > stopChasingRange)//target lost --> to roaming
                 {
+                    StartCoroutine(EnableAlert(lostTargetAlert));
                     currentState = 0;
                 }
                 else
@@ -69,7 +79,11 @@ public class SlimeIA : Enemy
                     if (RaycastPlayer())
                         Chasing();
                     else
+                    {
+                        StartCoroutine(EnableAlert(lostTargetAlert));
                         currentState = 0;
+                    }
+
                 }
                 break;
 
@@ -118,6 +132,7 @@ public class SlimeIA : Enemy
 
     public override void Chasing()
     {
+
         moveForce = chasingJumpForce;
         target = player.transform.position;
         minWaitingTime = minWaitingTimeChasing;
@@ -135,6 +150,14 @@ public class SlimeIA : Enemy
         RaycastHit2D hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, 100, hitLayer);
 
         return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
+
+    }
+
+    private IEnumerator EnableAlert(SpriteRenderer sp)
+    {
+        sp.enabled = true;
+        yield return new WaitForSecondsRealtime(0.8f);
+        sp.enabled = false;
 
     }
 

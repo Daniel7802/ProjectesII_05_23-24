@@ -35,54 +35,52 @@ public class PlayerMovement : MonoBehaviour
     private float ImpulseForce;
 
     private PauseGameController pg;
-    [SerializeField]
-    GameObject pauseManager;
+
     private AudioSource _audioSource;
     [SerializeField]
     private AudioClip rollSound;
-   
+
 
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
-        pg = pauseManager.GetComponent<PauseGameController>();
+
         _audioSource = GetComponent<AudioSource>();
         _missionModuleWalk = _walkParticles.emission;
         _dashTrailRenderer = GetComponent<TrailRenderer>();
-       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!pg.isPaused)
+
+        // Inputs
+        movementVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        // Dash
+        if (Input.GetKeyDown(KeyCode.Space) && movementVector != Vector2.zero && _canDash)
         {
-            // Inputs
-            movementVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-          
-            // Dash
-            if (Input.GetKeyDown(KeyCode.Space) && movementVector != Vector2.zero && _canDash)
-            {
-                _audioSource.PlayOneShot(rollSound);
+            _audioSource.PlayOneShot(rollSound);
 
-                _isDashing = true;
-                _canDash = false;
-                _dashTrailRenderer.enabled = true;
-               
+            _isDashing = true;
+            _canDash = false;
+            _dashTrailRenderer.enabled = true;
 
-                _dashingDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-                
-                StartCoroutine(StopDashing());
-                StartCoroutine(DashCoolDown());
-            }
-            movementVectorNormalized = movementVector.normalized;
+            _dashingDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-            playerAnimator.SetFloat("Horizontal", movementVectorNormalized.x);
-            playerAnimator.SetFloat("Vertical", movementVectorNormalized.y);
-            playerAnimator.SetFloat("Speed", movementVectorNormalized.sqrMagnitude);
+
+            StartCoroutine(StopDashing());
+            StartCoroutine(DashCoolDown());
         }
+        movementVectorNormalized = movementVector.normalized;
+
+        playerAnimator.SetFloat("Horizontal", movementVectorNormalized.x);
+        playerAnimator.SetFloat("Vertical", movementVectorNormalized.y);
+        playerAnimator.SetFloat("Speed", movementVectorNormalized.sqrMagnitude);
+
         if (playerRb.velocity.x != 0 || playerRb.velocity.y != 0)
         {
             _missionModuleWalk.enabled = true;
@@ -94,23 +92,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!pg.isPaused)
+
+        // Fisicas
+        if (!_isDashing)
         {
-            // Fisicas
-            if (!_isDashing)
-            {
-                playerRb.AddForce(movementVectorNormalized * speed, ForceMode2D.Force);
-            }
-
-            // Roll
-            if (_isDashing)
-            {
-                playerRb.velocity = _dashingDir.normalized * _dashingVelocity;
-
-                return;
-            }
-
+            playerRb.AddForce(movementVectorNormalized * speed, ForceMode2D.Force);
         }
+
+        // Roll
+        if (_isDashing)
+        {
+            playerRb.velocity = _dashingDir.normalized * _dashingVelocity;
+
+            return;
+        }
+
+
     }
 
     IEnumerator StopDashing()
@@ -122,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator DashCoolDown()
     {
-        yield return new WaitForSeconds(_dashingCoolDownTime);        
+        yield return new WaitForSeconds(_dashingCoolDownTime);
         _canDash = true;
     }
 

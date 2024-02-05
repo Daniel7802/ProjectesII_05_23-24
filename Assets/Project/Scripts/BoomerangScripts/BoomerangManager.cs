@@ -41,7 +41,8 @@ public class BoomerangManager : MonoBehaviour
 
     private void Start()
     {
-        m_TargetGroup.AddMember(actualBoomerang.transform, 0.55f, 5);
+        if(m_TargetGroup != null)
+            m_TargetGroup.AddMember(actualBoomerang.transform, 0.55f, 5);
     }
     private void Update()
     {
