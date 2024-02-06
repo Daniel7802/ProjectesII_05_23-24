@@ -33,9 +33,6 @@ public class Enemy : MonoBehaviour
     //hit
 
     public GameObject hitParticles;
-    public ParticleSystem hitParticlesSystem;
-
-
     public float knockbackForce;
 
 
@@ -44,8 +41,7 @@ public class Enemy : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
-        hitParticlesSystem = GetComponentInChildren<ParticleSystem>();
+        audioSource = GetComponent<AudioSource>();       
 
     }
 
