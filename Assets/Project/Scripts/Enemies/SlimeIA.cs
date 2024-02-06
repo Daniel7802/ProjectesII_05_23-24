@@ -36,6 +36,7 @@ public class SlimeIA : Enemy
     [SerializeField]
     SpriteRenderer lostTargetAlert;
 
+  
 
 
     private void Start()
@@ -97,7 +98,8 @@ public class SlimeIA : Enemy
         {
             animator.SetBool("jump", true);
         }
-
+        
+    
     }
 
     public override void Movement()

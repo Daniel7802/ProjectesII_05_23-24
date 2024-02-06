@@ -28,7 +28,12 @@ public class Enemy : MonoBehaviour
     public float startChasingRange;
     public float stopChasingRange;
 
+    //hit
+    [SerializeField]
+    GameObject hitParticles;
+    ParticleSystem.ShapeModule hitParticlesShape;
     public float knockbackForce;
+
 
     public virtual void Start()
     {
@@ -36,6 +41,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        //hitParticlesShape = hitParticles.shape;
     }
     public virtual void Movement()
     {
@@ -82,8 +88,14 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Boomerang"))
         {
+            Instantiate(hitParticles, transform.position, Quaternion.identity);
             Vector2 dir = transform.position - collision.transform.position;
             KnockBack(dir);
+            //double anguloRadianes = Math.Atan2(dir.y, dir.x);            
+            //float anguloGrados = (float)(anguloRadianes * (180 / Math.PI));
+            //hitParticlesShape.rotation = new Vector3(0,anguloGrados,0);
+           
+            
         }
     }
 

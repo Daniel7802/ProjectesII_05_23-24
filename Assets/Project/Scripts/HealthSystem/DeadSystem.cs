@@ -12,8 +12,7 @@ public class DeadSystem : MonoBehaviour
     protected Collider2D _collider;
     protected LineRenderer _lineRenderer;
     [SerializeField] protected float deathClipPitch = 1f;
-    public bool isDead = false;
-    
+    public bool isDead = false;    
 
     private void Start()
     {
