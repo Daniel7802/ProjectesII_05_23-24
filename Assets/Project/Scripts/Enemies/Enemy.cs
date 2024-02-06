@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
 
     //hit
     [SerializeField]
-    GameObject hitParticles;
+    protected GameObject hitParticles;
     ParticleSystem.ShapeModule hitParticlesShape;
     public float knockbackForce;
 
@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
             spriteRenderer.flipX = true;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Boomerang"))
         {
@@ -94,8 +94,8 @@ public class Enemy : MonoBehaviour
             //double anguloRadianes = Math.Atan2(dir.y, dir.x);            
             //float anguloGrados = (float)(anguloRadianes * (180 / Math.PI));
             //hitParticlesShape.rotation = new Vector3(0,anguloGrados,0);
-           
-            
+
+
         }
     }
 

@@ -36,15 +36,11 @@ public class SlimeIA : Enemy
     [SerializeField]
     SpriteRenderer lostTargetAlert;
 
-  
-
-
     private void Start()
     {
         base.Start();
         currentState = 0;
         SetNewWaitingTime();
-
     }
 
     void Update()
@@ -163,12 +159,14 @@ public class SlimeIA : Enemy
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
+        base.OnCollisionEnter2D(collision);
         if (collision.gameObject.tag.Equals("Wall"))
         {
             setNewDest = true;
         }
+      
     }
 
 }
