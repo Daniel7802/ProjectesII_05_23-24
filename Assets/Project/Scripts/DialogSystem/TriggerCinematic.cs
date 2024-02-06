@@ -22,10 +22,11 @@ public class TriggerCinematic : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!fired)
+        if (!fired && other.tag.Equals("Player"))
         {
             cinematicManagerC.OnTriggerCinematic(index);
             fired = true;
+            UnityEngine.Debug.Log("Works");
         }
     }
 }

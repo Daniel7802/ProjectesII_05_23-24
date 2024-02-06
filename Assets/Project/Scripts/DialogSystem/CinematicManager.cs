@@ -147,6 +147,8 @@ public class CinematicManager : MonoBehaviour
 
             rb2d.velocity = new Vector2(0, 0);
 
+            dialogsData = keyboardDialogs;
+
             //if (PlayerAimController._instance.controllerType == PlayerAimController.ControllerType.MOUSE)
             //{
             //    dialogsData = keyboardDialogs;
@@ -397,7 +399,6 @@ public class CinematicManager : MonoBehaviour
                 StopAllCoroutines();
                 dialogTextC.text = text;
             }
-        }
-        
+        }  
     }
 }
