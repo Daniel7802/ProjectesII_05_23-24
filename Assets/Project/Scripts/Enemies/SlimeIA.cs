@@ -20,10 +20,9 @@ public class SlimeIA : Enemy
     private float minWaitingTimeChasing = 1.0f;
     private float maxWaitingTimeChasing = 1.5f;
 
-
     private float moveForce;
     private float velocityMagnitudeToLand = 1f;
-    private float distanceAudio = 8f;
+
 
     //roaming
     public float roamingForce = 8;
@@ -35,6 +34,8 @@ public class SlimeIA : Enemy
     SpriteRenderer detectAlert;
     [SerializeField]
     SpriteRenderer lostTargetAlert;
+
+
 
     private void Start()
     {
@@ -159,14 +160,16 @@ public class SlimeIA : Enemy
 
     }
 
-    protected override void OnCollisionEnter2D(Collision2D collision)
-    {
-        base.OnCollisionEnter2D(collision);
-        if (collision.gameObject.tag.Equals("Wall"))
-        {
-            setNewDest = true;
-        }
+    //protected override void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    base.OnCollisionEnter2D(collision);
+
+    //    if (collision.gameObject.tag.Equals("Wall"))
+    //    {
+    //        setNewDest = true;
+    //    }
       
-    }
+
+    //}
 
 }

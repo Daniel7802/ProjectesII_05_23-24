@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 using static UnityEngine.UI.Image;
 using Unity.VisualScripting;
+using static UnityEngine.ParticleSystem;
+
 
 public class Enemy : MonoBehaviour
 {
@@ -11,7 +13,7 @@ public class Enemy : MonoBehaviour
     protected Rigidbody2D rb2D;
     protected SpriteRenderer spriteRenderer;
     protected Animator animator;
-    protected AudioSource audioSource;  
+    protected AudioSource audioSource;
 
     [SerializeField]
     public int currentState = 0;
@@ -29,9 +31,11 @@ public class Enemy : MonoBehaviour
     public float stopChasingRange;
 
     //hit
-    [SerializeField]
-    protected GameObject hitParticles;
-    ParticleSystem.ShapeModule hitParticlesShape;
+
+    public GameObject hitParticles;
+    public ParticleSystem hitParticlesSystem;
+
+
     public float knockbackForce;
 
 
@@ -41,8 +45,10 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        //hitParticlesShape = hitParticles.shape;
+        hitParticlesSystem = GetComponentInChildren<ParticleSystem>();
+
     }
+
     public virtual void Movement()
     {
 
@@ -84,22 +90,30 @@ public class Enemy : MonoBehaviour
             spriteRenderer.flipX = true;
         }
     }
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Boomerang"))
-        {
-            Instantiate(hitParticles, transform.position, Quaternion.identity);
+        {            
+
             Vector2 dir = transform.position - collision.transform.position;
             KnockBack(dir);
-            //double anguloRadianes = Math.Atan2(dir.y, dir.x);            
-            //float anguloGrados = (float)(anguloRadianes * (180 / Math.PI));
-            //hitParticlesShape.rotation = new Vector3(0,anguloGrados,0);
+
+            float angleRadians = Mathf.Atan2(dir.y, dir.x);
+
+            // Convierte el ángulo a grados.
+            float angleDegrees = angleRadians * Mathf.Rad2Deg;
+            GameObject particles = Instantiate(hitParticles);
+            particles.transform.SetParent(transform, true);
+            particles.transform.position = transform.position;
+            particles.transform.rotation = Quaternion.Euler(-angleDegrees, 90, -90);
 
 
         }
     }
 
-    
+
+
+
 
 
     public virtual void OnDrawGizmos()
@@ -113,6 +127,6 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(roamingRandomPoint, 0.4f);
     }
-    
+
 }
 
