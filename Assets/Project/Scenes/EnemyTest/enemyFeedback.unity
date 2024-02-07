@@ -333,22 +333,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1776923819}
     m_Modifications:
-    - target: {fileID: 89447548352023463, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
-      propertyPath: MaxHealth
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 1768630766616490778, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
-    - target: {fileID: 2090466368601933057, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2415428209152163155, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
-      propertyPath: blood
-      value: 
-      objectReference: {fileID: 715038747342358181, guid: 77f214331f940dd438a3c67d27228665, type: 3}
     - target: {fileID: 2415428209152163155, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
       propertyPath: player
       value: 
@@ -357,18 +345,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1772740177}
-    - target: {fileID: 5409575842966737851, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
-      propertyPath: hitParticles
-      value: 
-      objectReference: {fileID: 4124127140682516938, guid: b2e66122466bf6d42a08e6b050756436, type: 3}
-    - target: {fileID: 5409575842966737851, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
-      propertyPath: knockbackForce
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5409575842966737851, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
-      propertyPath: hitParticlesSystem
-      value: 
-      objectReference: {fileID: 7358916221983139635, guid: b2e66122466bf6d42a08e6b050756436, type: 3}
     - target: {fileID: 5593360346023233113, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
       propertyPath: m_RootOrder
       value: -1
