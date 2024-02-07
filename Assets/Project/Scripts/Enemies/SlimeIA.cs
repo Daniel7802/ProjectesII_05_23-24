@@ -37,10 +37,9 @@ public class SlimeIA : Enemy
 
 
 
-    private void Start()
+    private  void  Start()
     {
-        base.Start();
-        currentState = 0;
+        base.Start();      
         SetNewWaitingTime();
     }
 
