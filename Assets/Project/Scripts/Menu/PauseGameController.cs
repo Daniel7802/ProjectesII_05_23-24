@@ -5,7 +5,7 @@ using UnityEngine;
 public class PauseGameController : MonoBehaviour
 {
     
-    public GameObject pauseMenuCanvas;
+    public Canvas pauseMenuCanvas;
     public GameObject pauseMenu;
 
     public GameObject[] allMenus;
@@ -21,18 +21,16 @@ public class PauseGameController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if (Time.timeScale != 0.0f)
+            if (!isPaused)
             {
-                Time.timeScale = 0.0f;
-                pauseMenuCanvas.SetActive(true);
-                pauseMenu.SetActive(true);
+                //Time.timeScale = 0.0f;
+                pauseMenuCanvas.gameObject.SetActive(true);
                 isPaused = true;
             }
-            else if (Time.timeScale == 0.0f)
+            else 
             {
                 Time.timeScale = 1.0f;
-                pauseMenuCanvas.SetActive(false);
-                pauseMenu.SetActive(true);
+                pauseMenuCanvas.gameObject.SetActive(false);
 
                 for(int i = 0; i < allMenus.Length; i++)
                 {
