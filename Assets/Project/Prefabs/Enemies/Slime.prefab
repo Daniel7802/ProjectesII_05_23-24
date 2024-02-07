@@ -137,7 +137,8 @@ MonoBehaviour:
   currentState: 0
   startChasingRange: 7
   stopChasingRange: 9
-  knockbackForce: 10
+  hitParticles: {fileID: 4124127140682516938, guid: b2e66122466bf6d42a08e6b050756436, type: 3}
+  knockbackForce: 2
   hitLayer:
     serializedVersion: 2
     m_Bits: 192
@@ -158,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 808a7789e52454642804aebd5d0596fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blood: {fileID: 715038747342358181, guid: 02ac5cf20e5fb3f4699543f1919d8b26, type: 3}
+  blood: {fileID: 715038747342358181, guid: 77f214331f940dd438a3c67d27228665, type: 3}
   deathSound: {fileID: 8300000, guid: a9adc3be9c93df54abdf66972003f3c7, type: 3}
   deathClipPitch: 0.6
   isDead: 0
@@ -190,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91d7381e81c5d14bbc733e08e61b575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 2
+  MaxHealth: 4
   health: 0
   getHit: 0
   damageSound: {fileID: 8300000, guid: 243831b253368bc40b4e9a4ca743e590, type: 3}
