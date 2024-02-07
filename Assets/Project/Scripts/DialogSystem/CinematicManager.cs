@@ -186,6 +186,11 @@ public class CinematicManager : MonoBehaviour
 
                 dialogCharacters[character].gameObject.SetActive(true);
 
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    InteractText();
+                }
+
                 //if(PlayerAimController._instance.controllerType == PlayerAimController.ControllerType.MOUSE)
                 //{
                 //    instructionsText[0].gameObject.SetActive(true);
