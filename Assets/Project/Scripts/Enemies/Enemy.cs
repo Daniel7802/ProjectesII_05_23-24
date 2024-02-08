@@ -36,7 +36,6 @@ public class Enemy : MonoBehaviour
     protected SpriteRenderer lostTargetAlert;
 
     //hit
-
     public GameObject hitParticles;
     public float knockbackForce;
 
@@ -79,7 +78,6 @@ public class Enemy : MonoBehaviour
             UnityEngine.Random.Range(transform.position.y - maxRoamingPointDistance, transform.position.y + maxRoamingPointDistance)
             );
     }
-
     public void FlipX()
     {
         if (target.x > transform.position.x)
@@ -111,19 +109,18 @@ public class Enemy : MonoBehaviour
 
             // Convierte el ángulo a grados.
             float angleDegrees = angleRadians * Mathf.Rad2Deg;
-            GameObject particles = Instantiate(hitParticles);
+            GameObject particles = Instantiate(hitParticles);           
             particles.transform.SetParent(transform, true);
+            if (GetComponent<LineRenderer>())
+                particles.transform.localScale *= 2;
+
             particles.transform.position = transform.position;
             particles.transform.rotation = Quaternion.Euler(-angleDegrees, 90, -90);
 
-
         }
     }
-
-
     public virtual void OnDrawGizmos()
     {
-
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, startChasingRange);
         Gizmos.DrawWireSphere(transform.position, stopChasingRange);
