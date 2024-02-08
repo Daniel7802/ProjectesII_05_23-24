@@ -30,10 +30,7 @@ public class SlimeIA : Enemy
 
     //chasing    
     public float chasingJumpForce = 15;
-    [SerializeField]
-    SpriteRenderer detectAlert;
-    [SerializeField]
-    SpriteRenderer lostTargetAlert;
+   
 
 
 
@@ -93,8 +90,7 @@ public class SlimeIA : Enemy
         else
         {
             animator.SetBool("jump", true);
-        }
-        
+        }      
     
     }
 
@@ -151,13 +147,7 @@ public class SlimeIA : Enemy
 
     }
 
-    private IEnumerator EnableAlert(SpriteRenderer sp)
-    {
-        sp.enabled = true;
-        yield return new WaitForSecondsRealtime(0.8f);
-        sp.enabled = false;
-
-    }
+  
 
     //protected override void OnCollisionEnter2D(Collision2D collision)
     //{

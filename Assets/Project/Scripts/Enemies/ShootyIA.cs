@@ -59,7 +59,7 @@ public class ShootyIA : Enemy
 
                 if (distanceToPlayer < startChasingRange && RaycastPlayer())
                 {
-
+                    StartCoroutine(EnableAlert(detectAlert));
                     currentState = 1;
                 }
                 else
@@ -72,6 +72,7 @@ public class ShootyIA : Enemy
 
                 if (distanceToPlayer > stopChasingRange)// target lost -->to roaming
                 {
+                    StartCoroutine(EnableAlert(lostTargetAlert));
                     currentState = 0;
                 }
                 else if (distanceToPlayer < startShootingRange)// player enough close to shoot
@@ -80,14 +81,21 @@ public class ShootyIA : Enemy
                     if (RaycastPlayer())
                         currentState = 2;
                     else
+                    {
+                        StartCoroutine(EnableAlert(lostTargetAlert));
                         currentState = 0;
+                    }
+
                 }
                 else
                 {
                     if (RaycastPlayer())
                         Chasing();
                     else
+                    {
+                        StartCoroutine(EnableAlert(lostTargetAlert));
                         currentState = 0;
+                    }
                 }
                 break;
 
@@ -137,6 +145,7 @@ public class ShootyIA : Enemy
                     }
                     else
                     {
+                        
                         currentState = 1;
                     }
                 }

@@ -30,6 +30,11 @@ public class Enemy : MonoBehaviour
     public float startChasingRange;
     public float stopChasingRange;
 
+    [SerializeField]
+    protected SpriteRenderer detectAlert;
+    [SerializeField]
+    protected SpriteRenderer lostTargetAlert;
+
     //hit
 
     public GameObject hitParticles;
@@ -86,6 +91,14 @@ public class Enemy : MonoBehaviour
             spriteRenderer.flipX = true;
         }
     }
+
+    protected IEnumerator EnableAlert(SpriteRenderer sp)
+    {
+        sp.enabled = true;
+        yield return new WaitForSecondsRealtime(0.8f);
+        sp.enabled = false;
+
+    }
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Boomerang"))
@@ -106,10 +119,6 @@ public class Enemy : MonoBehaviour
 
         }
     }
-
-
-
-
 
 
     public virtual void OnDrawGizmos()

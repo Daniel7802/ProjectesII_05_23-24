@@ -137,6 +137,8 @@ MonoBehaviour:
   currentState: 0
   startChasingRange: 7
   stopChasingRange: 9
+  detectAlert: {fileID: 7295913577487946166}
+  lostTargetAlert: {fileID: 1855340687970041106}
   hitParticles: {fileID: 4124127140682516938, guid: b2e66122466bf6d42a08e6b050756436, type: 3}
   knockbackForce: 2
   hitLayer:
@@ -145,8 +147,6 @@ MonoBehaviour:
   slimeJumpSound: {fileID: 8300000, guid: a9adc3be9c93df54abdf66972003f3c7, type: 3}
   roamingForce: 8
   chasingJumpForce: 15
-  detectAlert: {fileID: 7295913577487946166}
-  lostTargetAlert: {fileID: 1855340687970041106}
 --- !u!114 &2415428209152163155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91d7381e81c5d14bbc733e08e61b575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 10
+  MaxHealth: 4
   health: 0
   getHit: 0
   damageSound: {fileID: 8300000, guid: 243831b253368bc40b4e9a4ca743e590, type: 3}
