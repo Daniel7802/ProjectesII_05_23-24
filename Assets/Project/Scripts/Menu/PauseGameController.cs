@@ -23,7 +23,7 @@ public class PauseGameController : MonoBehaviour
         {
             if (!isPaused)
             {
-                //Time.timeScale = 0.0f;
+                Time.timeScale = 0.0f;
                 pauseMenuCanvas.gameObject.SetActive(true);
                 isPaused = true;
             }
