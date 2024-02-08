@@ -34,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 1768630766616490778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.44, y: 1.55, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6592565847142858743}
@@ -137,6 +137,8 @@ MonoBehaviour:
   currentState: 0
   startChasingRange: 7
   stopChasingRange: 9
+  detectAlert: {fileID: 7295913577487946166}
+  lostTargetAlert: {fileID: 1855340687970041106}
   hitParticles: {fileID: 4124127140682516938, guid: b2e66122466bf6d42a08e6b050756436, type: 3}
   knockbackForce: 2
   hitLayer:
@@ -145,8 +147,6 @@ MonoBehaviour:
   slimeJumpSound: {fileID: 8300000, guid: a9adc3be9c93df54abdf66972003f3c7, type: 3}
   roamingForce: 8
   chasingJumpForce: 15
-  detectAlert: {fileID: 7295913577487946166}
-  lostTargetAlert: {fileID: 1855340687970041106}
 --- !u!114 &2415428209152163155
 MonoBehaviour:
   m_ObjectHideFlags: 0
