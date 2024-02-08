@@ -13,8 +13,8 @@ public class HealthSystem : MonoBehaviour
     [SerializeField]
     public bool getHit;
 
-    private AudioSource _audioSource;
-    [SerializeField] private AudioClip damageSound;
+    protected AudioSource _audioSource;
+    [SerializeField] protected AudioClip damageSound;
 
 
     private bool invincible = false;
@@ -80,21 +80,9 @@ public class HealthSystem : MonoBehaviour
     }
 
     public void GetDamage(int amount)
-    {
-        if (this.gameObject.CompareTag("Player"))
-        {
-            _audioSource.PlayOneShot(damageSound);
-            health -= amount;
+    {        
 
-            if (health <= 0)
-            {
-                health = 0;
-
-                DeadState();
-            }
-
-
-        }else if(!ds.isDead)    
+        if(!ds.isDead)    
         {
             _audioSource.PlayOneShot(damageSound);
             health -= amount;
