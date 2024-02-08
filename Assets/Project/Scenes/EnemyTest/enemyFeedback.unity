@@ -337,10 +337,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shooty
       objectReference: {fileID: 0}
-    - target: {fileID: 5730226635452260804, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
-      propertyPath: blood
-      value: 
-      objectReference: {fileID: 715038747342358181, guid: 77f214331f940dd438a3c67d27228665, type: 3}
     - target: {fileID: 5855127542648345499, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -389,30 +385,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1772740177}
-    - target: {fileID: 7574028520940768118, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
-      propertyPath: hitParticles
-      value: 
-      objectReference: {fileID: 4124127140682516938, guid: b2e66122466bf6d42a08e6b050756436, type: 3}
-    - target: {fileID: 7574028520940768118, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
-      propertyPath: knockbackForce
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7574028520940768118, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
-      propertyPath: chasingMoveForce
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7574028520940768118, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
-      propertyPath: roamingMoveForce
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7574028520940768118, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
-      propertyPath: stopShootingRange
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7574028520940768118, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
-      propertyPath: startShootingRange
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -434,10 +406,6 @@ PrefabInstance:
     - target: {fileID: 1768630766616490778, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
       propertyPath: m_Name
       value: Slime
-      objectReference: {fileID: 0}
-    - target: {fileID: 1855340687970041106, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2415428209152163155, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
       propertyPath: player
