@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class RespawnSystem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    
-   public Vector2 checkpointPos1;
+
+    [SerializeField]
+    Canvas canvasDead;
+
+    public Vector2 checkpointPos1;
     PlayerHealthSystem _healthSystem;
 
     private void Start()
@@ -21,11 +23,17 @@ public class RespawnSystem : MonoBehaviour
     }
     public void OnDeath ()   
     {
-        Invoke("Respawn", 0f);
+        //Time.fixedDeltaTime = Time.timeScale * 0.5f; 
+        FadeInOutManager.instance.Fadein();
+        StartCoroutine(Respawn());
     }
-  public void  Respawn()    
+  IEnumerator Respawn()    
     {
+        yield return new WaitWhile(delegate { return FadeInOutManager.instance.fadeIn; });
+        //Time.fixedDeltaTime = Time.timeScale * 2;
+
         transform.position = checkpointPos1;
         _healthSystem.RespawnHeal();
+        canvasDead.gameObject.SetActive(true);
     }
 }
