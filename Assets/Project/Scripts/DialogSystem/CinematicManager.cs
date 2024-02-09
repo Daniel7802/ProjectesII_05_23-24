@@ -101,7 +101,7 @@ public class CinematicManager : MonoBehaviour
 
     private bool firstTime = true;
 
-    //PlayerController PC;
+    private PlayerController PC;
 
     GameCamera gameCameraC;
 
@@ -116,7 +116,7 @@ public class CinematicManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //PC = player.GetComponent<PlayerController>();
+        PC = player.GetComponent<PlayerController>();
 
         rb2d = player.GetComponent<Rigidbody2D>();
 
@@ -143,7 +143,7 @@ public class CinematicManager : MonoBehaviour
         {
             playingCinematic = true;
 
-            //PC.ChangeState(PlayerController.PlayerStates.CINEMATIC);
+            PC.playerStates = PlayerController.PlayerStates.CINEMATIC;
 
             rb2d.velocity = new Vector2(0, 0);
 
@@ -228,7 +228,7 @@ public class CinematicManager : MonoBehaviour
                     Dialog.gameObject.SetActive(false);
                     isCinematicMode = false;
                     playingCinematic = false;
-                    //PC.ChangeState(PlayerController.PlayerStates.NONE);
+                    PC.playerStates = PlayerController.PlayerStates.NONE;
                 }
                 else if (command.id == CinematicCommandId.wait)
                 {

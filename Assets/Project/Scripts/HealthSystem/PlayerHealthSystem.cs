@@ -28,10 +28,6 @@ public class PlayerHealthSystem : HealthSystem
 
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            health = 100;
-        }
         if(isInvincible)
         {
             timer -= Time.deltaTime;
@@ -46,9 +42,6 @@ public class PlayerHealthSystem : HealthSystem
 
     public void Heal()
     {
-        if (health < MaxHealth)
-            health++;
-
         addHeart();
     }
 
@@ -75,7 +68,7 @@ public class PlayerHealthSystem : HealthSystem
     {
         _audioSource.PlayOneShot(damageSound);
         _damageFlash.CallDamageFlasher();
-        hearts[health - 1].SetActive(false);
+        hearts[health].SetActive(false);
         cameraShakeManager.instance.CameraShake(impulseSource);
     }
     public void addHeart()
@@ -83,7 +76,8 @@ public class PlayerHealthSystem : HealthSystem
         if(health < MaxHealth)
         {
             _damageFlash.CallHealFlasher();
-            hearts[health + 1].SetActive(true);
+            hearts[health].SetActive(true);
+            health = health + 1;
         }
     }
 }

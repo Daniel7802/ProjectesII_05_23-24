@@ -101,13 +101,8 @@ public class CollectableGoldenRoot : MonoBehaviour
             {
                 sb.currentRoots++;
                 sb.currentRootsText.text = sb.currentRoots.ToString();
-               
-            }
-            
-                
-            
-            collected = true;
-            
+            }                           
+            collected = true;           
         }
     }
 }

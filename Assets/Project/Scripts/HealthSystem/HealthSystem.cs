@@ -35,7 +35,6 @@ public class HealthSystem : MonoBehaviour
         ds = GetComponent<DeadSystem>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         _audioSource = GetComponent<AudioSource>();
-
     }
     public virtual void Start()
     {
@@ -71,7 +70,6 @@ public class HealthSystem : MonoBehaviour
                 canGetDamageTimer = 0.0f;
             }
             canGetDamageTimer += Time.deltaTime;
-
         }
         else
         {
@@ -81,8 +79,7 @@ public class HealthSystem : MonoBehaviour
 
     public void GetDamage(int amount)
     {        
-
-        if(!ds.isDead)    
+        if(!ds.isDead)
         {
             _audioSource.PlayOneShot(damageSound);
             health -= amount;
@@ -94,17 +91,14 @@ public class HealthSystem : MonoBehaviour
                 DeadState();
             }
 
-
             if (this.gameObject.CompareTag("Enemy"))
             {
                 isDamaged = true;
-
             }
         }
     }
     public void TurnInvencible(bool inv)
     {
-
         invincible = inv;
     }
 
