@@ -73,6 +73,7 @@ public class PlayerHealthSystem : HealthSystem
 
     public void deleteHeart()
     {
+        _audioSource.PlayOneShot(damageSound);
         _damageFlash.CallDamageFlasher();
         hearts[health - 1].SetActive(false);
         cameraShakeManager.instance.CameraShake(impulseSource);

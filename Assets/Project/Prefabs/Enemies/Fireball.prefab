@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 7645983495821287060}
   - component: {fileID: 6533029916758261950}
   - component: {fileID: 7158819006622528720}
-  - component: {fileID: 599122054401250897}
+  - component: {fileID: 4442891671097729199}
   - component: {fileID: 2818218184552519878}
   - component: {fileID: 5837486453836168623}
   - component: {fileID: -8016580430347103988}
   m_Layer: 0
-  m_Name: trapBullet
-  m_TagString: Untagged
+  m_Name: Fireball
+  m_TagString: TrapBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 696196781016103152}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7645983495821287060
 SpriteRenderer:
@@ -153,7 +153,7 @@ CircleCollider2D:
   m_Offset: {x: 0.031245947, y: -0.019735247}
   serializedVersion: 2
   m_Radius: 0.19374251
---- !u!114 &599122054401250897
+--- !u!114 &4442891671097729199
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,12 +162,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 575486747931979159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ed76c1d0cbe9844f98c5fa559a8a998, type: 3}
+  m_Script: {fileID: 11500000, guid: a2b7a3d99bf00004cae63097a35be3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 25
   rb2D: {fileID: 6533029916758261950}
   lifeTime: 3
+  fireballParticles: {fileID: 715038747342358181, guid: 7242285fe5269af47a40a47f6e7de1a6, type: 3}
 --- !u!114 &2818218184552519878
 MonoBehaviour:
   m_ObjectHideFlags: 0

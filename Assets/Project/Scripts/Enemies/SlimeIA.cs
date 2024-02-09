@@ -20,10 +20,9 @@ public class SlimeIA : Enemy
     private float minWaitingTimeChasing = 1.0f;
     private float maxWaitingTimeChasing = 1.5f;
 
-
     private float moveForce;
     private float velocityMagnitudeToLand = 1f;
-    private float distanceAudio = 8f;
+
 
     //roaming
     public float roamingForce = 8;
@@ -31,11 +30,13 @@ public class SlimeIA : Enemy
 
     //chasing    
     public float chasingJumpForce = 15;
+   
 
-    private void Start()
+
+
+    private  void  Start()
     {
-        base.Start();
-        currentState = 0;
+        base.Start();      
         SetNewWaitingTime();
     }
 
@@ -50,7 +51,9 @@ public class SlimeIA : Enemy
 
                 if (distanceToPlayer < startChasingRange && RaycastPlayer())
                 {
-
+                    if (waitingTimer > 1.0f)
+                        waitingTimer = waitingTime;
+                    StartCoroutine(EnableAlert(detectAlert));
                     currentState = 1;
                 }
                 else
@@ -62,6 +65,7 @@ public class SlimeIA : Enemy
 
                 if (distanceToPlayer > stopChasingRange)//target lost --> to roaming
                 {
+                    StartCoroutine(EnableAlert(lostTargetAlert));
                     currentState = 0;
                 }
                 else
@@ -69,7 +73,11 @@ public class SlimeIA : Enemy
                     if (RaycastPlayer())
                         Chasing();
                     else
+                    {
+                        StartCoroutine(EnableAlert(lostTargetAlert));
                         currentState = 0;
+                    }
+
                 }
                 break;
 
@@ -82,8 +90,8 @@ public class SlimeIA : Enemy
         else
         {
             animator.SetBool("jump", true);
-        }
-
+        }      
+    
     }
 
     public override void Movement()
@@ -118,6 +126,7 @@ public class SlimeIA : Enemy
 
     public override void Chasing()
     {
+
         moveForce = chasingJumpForce;
         target = player.transform.position;
         minWaitingTime = minWaitingTimeChasing;
@@ -138,12 +147,18 @@ public class SlimeIA : Enemy
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag.Equals("Wall"))
-        {
-            setNewDest = true;
-        }
-    }
+  
+
+    //protected override void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    base.OnCollisionEnter2D(collision);
+
+    //    if (collision.gameObject.tag.Equals("Wall"))
+    //    {
+    //        setNewDest = true;
+    //    }
+      
+
+    //}
 
 }
