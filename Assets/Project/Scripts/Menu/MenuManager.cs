@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField]
-    private string GameScene;
 
     public GameObject pauseManager;
 
@@ -14,29 +13,40 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        FadeInOutManager.instance.Fadeout();
         Cursor.lockState = CursorLockMode.Confined;
+        if(pg != null)
         pg = pauseManager.GetComponent<PauseGameController>();
     }
 
-    public void StartGame()
+    public void StartGame(string a)
     {
-        SceneManager.LoadScene(GameScene);
+       FadeInOutManager.instance.Fadein();
+        StartCoroutine(StartGameCorrotine(a));
     }
 
-    public void GoToMainMenu()
+    public void GoToMainMenu(string a)
     {
-        SceneManager.LoadScene(GameScene);
+        SceneManager.LoadScene(a);
         Time.timeScale = 1.0f;
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1.0f;
-        pg.isPaused = false;
+        if (pg != null)
+            pg.isPaused = false;
     }
 
     public void CloseGame()
     {
         Application.Quit();
+    }
+
+    private IEnumerator StartGameCorrotine(string a)
+    {
+        Debug.Log("Waiting for loadScene");
+        yield return new WaitWhile(delegate { return FadeInOutManager.instance.fadeIn; });
+        SceneManager.LoadScene(a);
     }
 }

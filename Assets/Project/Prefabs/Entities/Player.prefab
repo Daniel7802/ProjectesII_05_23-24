@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 8638531527341201700}
   - component: {fileID: 3186222789098184563}
   - component: {fileID: 7358840857204965754}
+  - component: {fileID: 6599269381416271683}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -42,8 +43,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5166747287639789255}
-  - {fileID: 962452590142860609}
-  - {fileID: 7630211537684905033}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -117,7 +116,7 @@ MonoBehaviour:
   playerRb: {fileID: 8119343296046956285}
   _dashingVelocity: 20
   _dashingTime: 0.2
-  _dashingCoolDownTime: 2
+  _dashingCoolDownTime: 0.5
   isRolling: 0
   ImpulseForce: 20
   rollSound: {fileID: 8300000, guid: 70e2d6cf14dc29f4f8b8dc61b3d5a4f4, type: 3}
@@ -147,13 +146,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   counter: 0
   isInvincible: 0
 --- !u!114 &1911137432474511315
@@ -168,6 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a352d1a841b2c748a4724282a2f0140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvasDead: {fileID: 0}
   checkpointPos1: {x: 0, y: 0}
 --- !u!114 &1774810771542259340
 MonoBehaviour:
@@ -546,6 +539,59 @@ MonoBehaviour:
   _damageFlashColor: {r: 1, g: 0, b: 0, a: 1}
   _healFlashColor: {r: 0, g: 1, b: 0, a: 1}
   flashTime: 0.25
+--- !u!114 &6599269381416271683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416834808553754793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 4
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &1235175410748444481
 GameObject:
   m_ObjectHideFlags: 0
