@@ -49,8 +49,6 @@ public class ShopBehaviour : MonoBehaviour
         {
             shopCanvas.SetActive(false);
         }
-
-        Debug.Log(currentRoots);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
