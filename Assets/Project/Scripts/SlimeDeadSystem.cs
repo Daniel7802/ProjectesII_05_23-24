@@ -19,7 +19,7 @@ public class SlimeDeadSystem : DeadSystem
 
     public override void Dead()
     {
-        
+        player = GetComponent<SlimeIA>().player;
         base.Dead();
         SpawnMiniSlimes();
         

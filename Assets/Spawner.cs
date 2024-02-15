@@ -13,19 +13,13 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Spawn();
     }
 
     public void Spawn()
     {
         GameObject enemyInst = Instantiate(enemy, this.transform.position, Quaternion.identity);
-        if (enemyInst == enemyInst.GetComponent<SlimeIA>()) 
-        {
-            enemyInst.GetComponent<SlimeIA>().player = player;
-        }
-        if (enemyInst == enemyInst.GetComponent<ShootyIA>())
-        {
-            enemyInst.GetComponent<SlimeIA>().player = player;
-        }
+        enemyInst.GetComponent<Enemy>().player = player;
+        Destroy(this);
     }
 }
