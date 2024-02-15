@@ -32,7 +32,6 @@ public class CollectableGoldenRoot : MonoBehaviour
 
     private ShopBehaviour sb;
 
-
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -48,8 +47,7 @@ public class CollectableGoldenRoot : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate()
-    {      
-
+    {
         if (collected)
         {
             if(!collectedSoundPlayed)
@@ -57,8 +55,7 @@ public class CollectableGoldenRoot : MonoBehaviour
                 _audioSource.clip = null;
                 _audioSource.PlayOneShot(_collectedSound, 1f);
                 collectedSoundPlayed = true;
-            }          
-         
+            }           
 
             if (collectedTimer < collectedTime)
             {
@@ -78,19 +75,15 @@ public class CollectableGoldenRoot : MonoBehaviour
             {
                 collected = false;
                 collectedTimer = 0f;
-                Destroy(gameObject);
-               
+                Destroy(gameObject);         
             }
         }
         else
         {
             float movement = Mathf.Sin(Time.time * idleVelocity) * idleDistance;
-            transform.position = startPosition + new Vector3(0, movement, 0);
-            
-            
+            transform.position = startPosition + new Vector3(0, movement, 0);    
         }
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -100,7 +93,6 @@ public class CollectableGoldenRoot : MonoBehaviour
             if (!collected)
             {
                 sb.currentRoots++;
-                sb.currentRootsText.text = sb.currentRoots.ToString();
             }                           
             collected = true;           
         }
