@@ -38,6 +38,8 @@ public class CinematicManager : MonoBehaviour
         setObjectPosition,
         setPlayerFacing,
         setPlayerVelocity,
+        fadeInEffect,
+        fadeOutEffect
     };
 
     [System.Serializable]
@@ -220,7 +222,7 @@ public class CinematicManager : MonoBehaviour
 
                 if (command.id == CinematicCommandId.enterCinematicMode)
                 {
-                    Dialog.gameObject.SetActive(true);
+                    //Dialog.gameObject.SetActive(true);
                     isCinematicMode = true;
                 }
                 else if (command.id == CinematicCommandId.exitCinematicMode)
@@ -246,6 +248,7 @@ public class CinematicManager : MonoBehaviour
                     int index = Int32.Parse(command.param1);
                     showingDialog = true;
                     dialogIndex = index;
+                    Dialog.gameObject.SetActive(true);
                 }
                 else if (command.id == CinematicCommandId.setCameraPosition)
                 {
@@ -290,6 +293,15 @@ public class CinematicManager : MonoBehaviour
                 else if (command.id == CinematicCommandId.setPlayerVelocity)
                 {
                     int speed = Int32.Parse(command.param1);
+                }
+                else if(command.id == CinematicCommandId.fadeInEffect)
+                {
+                    FadeInOutManager.instance.Fadein();
+                    Debug.Log("Works");
+                }
+                else if(command.id == CinematicCommandId.fadeOutEffect)
+                {
+                    FadeInOutManager.instance.Fadeout();
                 }
                 else
                 {
