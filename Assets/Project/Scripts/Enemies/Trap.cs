@@ -20,6 +20,8 @@ public class Trap : MonoBehaviour
     [SerializeField] private AudioClip shootSound;
 
     [SerializeField] private float reloadingTime = 3f;
+    [SerializeField] private float startTime;
+    private bool activate = false;
     private float reloadingTimer = 0f;
 
     private void Start()
@@ -28,31 +30,40 @@ public class Trap : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (reloadingTimer < reloadingTime)
-        {
-            reloadingTimer+=Time.deltaTime;
-        }
+        if (startTime < 0)
+            activate = true;
         else
+        startTime -= Time.deltaTime;
+
+        if (activate)
         {
-            if (up)
+            if (reloadingTimer < reloadingTime)
             {
-                ShootOneBullet(DIR.UP);
+                reloadingTimer += Time.deltaTime;
             }
-            if (down)
+            else
             {
-                ShootOneBullet(DIR.DOWN);
+                if (up)
+                {
+                    ShootOneBullet(DIR.UP);
+                }
+                if (down)
+                {
+                    ShootOneBullet(DIR.DOWN);
+                }
+                if (right)
+                {
+                    ShootOneBullet(DIR.RIGHT);
+                }
+                if (left)
+                {
+                    ShootOneBullet(DIR.LEFT);
+                }
+
+                reloadingTimer = 0f;
             }
-            if(right)
-            {
-                ShootOneBullet(DIR.RIGHT);
-            }
-            if(left)
-            {
-                ShootOneBullet(DIR.LEFT);
-            }
-            
-            reloadingTimer = 0f;
         }
+        
     }
 
     void ShootOneBullet(DIR dir)
