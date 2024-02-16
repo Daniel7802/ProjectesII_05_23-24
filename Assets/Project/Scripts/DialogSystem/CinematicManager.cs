@@ -9,7 +9,7 @@ using UnityEngine.TextCore.Text;
 
 public class CinematicManager : MonoBehaviour
 {
-    private Transform gameCamera;
+    public Transform gameCamera;
     public Transform[] cameraPositions;
     public Transform[] characterPositions;
     public GameObject[] Characters;
@@ -134,8 +134,7 @@ public class CinematicManager : MonoBehaviour
 
         dialogTextC = dialogText.GetComponent<TextMeshProUGUI>();
 
-        //gameCameraC = FindObjectOfType<GameCamera>();
-        //gameCamera = gameCameraC.transform;
+        gameCameraC = gameCamera.GetComponent<GameCamera>();
     }
 
     // Update is called once per frame
@@ -224,6 +223,8 @@ public class CinematicManager : MonoBehaviour
                 {
                     //Dialog.gameObject.SetActive(true);
                     isCinematicMode = true;
+                    gameCameraC.gameObject.SetActive(true);
+                    gameCameraC.EnterCinematicMode();
                 }
                 else if (command.id == CinematicCommandId.exitCinematicMode)
                 {
@@ -231,6 +232,8 @@ public class CinematicManager : MonoBehaviour
                     isCinematicMode = false;
                     playingCinematic = false;
                     PC.playerStates = PlayerController.PlayerStates.NONE;
+                    gameCameraC.gameObject.SetActive(false);
+                    gameCameraC.ExitCinematicMode();
                 }
                 else if (command.id == CinematicCommandId.wait)
                 {
@@ -254,7 +257,9 @@ public class CinematicManager : MonoBehaviour
                 {
                     int index = Int32.Parse(command.param1);
 
-                    //gameCamera.position = cameraPositions[index].position;
+                    gameCamera.position = Vector3.MoveTowards(gameCamera.position, cameraPositions[index].position, 3 * Time.deltaTime);
+
+                    gameCamera.position = cameraPositions[index].position;
                     //gameCamera.rotation = cameraPositions[index].rotation;
                 }
                 else if (command.id == CinematicCommandId.setCameraSize)
