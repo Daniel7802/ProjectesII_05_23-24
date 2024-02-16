@@ -24,6 +24,7 @@ public class ShadowBoomerang : BoomerangThrow
         _playerMovement = source.GetComponent<PlayerMovement>();
         _particleBlackHole = _particleBlackHoleGO.GetComponent<ParticleSystem>();
         _circleCollider.enabled = false;
+        type = boomerangType.SHADOW;
     }
 
     new private void Update()
@@ -38,7 +39,7 @@ public class ShadowBoomerang : BoomerangThrow
 
     void Teleport ()
     {
-        if(isFlying && Input.GetMouseButtonDown(0) && canTp)
+        if(isFlying && Input.GetMouseButtonDown(1) && canTp)
         {
             _playerMovement.playerRb.MovePosition(transform.position);
             coming = true;

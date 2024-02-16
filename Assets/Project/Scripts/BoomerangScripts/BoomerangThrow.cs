@@ -37,6 +37,10 @@ public class BoomerangThrow : MonoBehaviour
 
     Vector2 p0, p2, pAux, vectorDirection, vectorObjective;
 
+   public enum boomerangType { NORMAL, SHADOW, ICE, RAIZ};
+
+
+    public boomerangType type;
     [SerializeField]
     //GameObject shopManager;
 
@@ -57,6 +61,7 @@ public class BoomerangThrow : MonoBehaviour
     }
     public virtual void Start()
     {
+        type = boomerangType.NORMAL;
         rotationSpeed = 25;
         maxTimer = 2;
         maxTimerAttack = 0.05f;
@@ -98,7 +103,7 @@ public class BoomerangThrow : MonoBehaviour
                 distance += Time.deltaTime * 6;
 
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0) && isFlying)
         {
             rightMouse = true;
             if (isFlying && !going) { _audioSource.PlayOneShot(goingSound); }
@@ -269,7 +274,7 @@ public class BoomerangThrow : MonoBehaviour
             attackTimer = maxTimerAttack;
         }
 
-        if (collision.gameObject.TryGetComponent<Torch>(out Torch torch) && isFlying)
+        if (collision.gameObject.TryGetComponent<Torch>(out Torch torch) && isFlying && type == boomerangType.NORMAL)
         {
             if (torch.torchActive)
                 isFire = true;
