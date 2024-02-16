@@ -162,7 +162,7 @@ public class BoomerangThrow : MonoBehaviour
         p2 = vectorObjective;
     }
 
-    protected void ThrowBoomerang()
+    protected virtual void ThrowBoomerang()
     {
         knockback = true;
         going = true;

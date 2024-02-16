@@ -14,7 +14,9 @@ public class ShadowBoomerang : BoomerangThrow
     PlayerMovement _playerMovement;
     [SerializeField]
     bool makeEffect = true;
-    bool canTp = true;
+    [SerializeField]
+    int waterOverlapped = 0;
+    bool canTp { get { return waterOverlapped > 0; } }
 
     [SerializeField]private float  blackHoleForce = 30;
     public override void  Start()
@@ -39,7 +41,7 @@ public class ShadowBoomerang : BoomerangThrow
 
     void Teleport ()
     {
-        if(isFlying && Input.GetMouseButtonDown(1) && canTp)
+        if(isFlying && Input.GetMouseButtonDown(1) && !canTp)
         {
             _playerMovement.playerRb.MovePosition(transform.position);
             coming = true;
@@ -83,6 +85,10 @@ public class ShadowBoomerang : BoomerangThrow
             coming = true;
         }
     }
+    protected override void ThrowBoomerang()
+    {
+        base.ThrowBoomerang();
+    }
     protected override void Coming()
     {
         base.Coming();
@@ -94,13 +100,12 @@ public class ShadowBoomerang : BoomerangThrow
       
         if (collision.gameObject.CompareTag("Player") && coming)
         {
-            canTp = true;
             makeEffect = true;
             _particleBlackHole.Stop();
         }
-        else if (collision.gameObject.CompareTag("Water"))
+        if (collision.gameObject.CompareTag("Water"))
         {
-            canTp = false;
+            waterOverlapped++;
         }
             base.OnTriggerEnter2D(collision);
       
@@ -109,7 +114,7 @@ public class ShadowBoomerang : BoomerangThrow
     {
          if (collision.gameObject.CompareTag("Water"))
         {
-            canTp = true;
+            waterOverlapped--;
         }
     }
     protected void OnTriggerStay2D(Collider2D collision)
