@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class DamageBoomerang : MonoBehaviour
 {
+    [SerializeField]
     private BoomerangThrow bt;
 
     [SerializeField]
     float dmg;
-
-    private void Start()
-    {
-        bt = GetComponent<BoomerangThrow>();    
-    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {

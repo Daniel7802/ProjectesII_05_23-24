@@ -43,6 +43,9 @@ public class PlayerMovement : MonoBehaviour
     // ESTADOS DEL PLAYER
     private PlayerController _playerController;
 
+    private Vector2 teleportTarget;
+    private bool wantsToTeleport;
+
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
@@ -109,7 +112,19 @@ public class PlayerMovement : MonoBehaviour
 
                 return;
             }
+
+            if (wantsToTeleport)
+            {
+                wantsToTeleport = false;
+                transform.position = teleportTarget;
+            }
         }
+    }
+
+    public void Teleport(Vector2 target)
+    {
+        wantsToTeleport = true;
+        teleportTarget = target;
     }
 
     IEnumerator StopDashing()

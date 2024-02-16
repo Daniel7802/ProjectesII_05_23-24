@@ -5,22 +5,27 @@ using UnityEngine;
 
 public class BoomerangThrow : MonoBehaviour
 {
-    private TargetJoint2D _targetJoint;
+    protected TargetJoint2D _targetJoint;
     private SpriteRenderer _spriteRenderer;
 
     [SerializeField]
     public CircleCollider2D _principalCircleCollider;
     protected bool canTouchWall = true;
 
+    [SerializeField]
     private TrailRenderer _trailRenderer;
+    [SerializeField]
     private LineRenderer _lineRenderer;
+    [SerializeField]
     protected AudioSource _audioSource;
 
+    [SerializeField]
     public AudioClip goingSound;
 
     [SerializeField]
     protected GameObject source; //Player
 
+    [SerializeField]
     private ParticleSystem _particleSystemFire;
     private ParticleSystem.EmissionModule _missionModuleFire;
 
@@ -48,13 +53,9 @@ public class BoomerangThrow : MonoBehaviour
 
     protected void Awake()
     {
-        _lineRenderer = GetComponent<LineRenderer>();
         _targetJoint = GetComponent<TargetJoint2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _trailRenderer = GetComponent<TrailRenderer>();
-        _particleSystemFire = GetComponent<ParticleSystem>();
         _audioSource = GetComponent<AudioSource>();
-        _particleSystemFire = GetComponent<ParticleSystem>();
         _missionModuleFire = _particleSystemFire.emission;
 
         //sb = shopManager.GetComponent<ShopBehaviour>();
@@ -106,7 +107,9 @@ public class BoomerangThrow : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && isFlying)
         {
             rightMouse = true;
-            if (isFlying && !going) { _audioSource.PlayOneShot(goingSound); }
+            if (isFlying && !going) { 
+                //_audioSource.PlayOneShot(goingSound);
+            }
         }
 
     }
@@ -166,7 +169,7 @@ public class BoomerangThrow : MonoBehaviour
     {
         knockback = true;
         going = true;
-        _audioSource.PlayOneShot(goingSound);
+        //_audioSource.PlayOneShot(goingSound);
         canThrow = false;
         rightMouse = false;
 
@@ -223,7 +226,7 @@ public class BoomerangThrow : MonoBehaviour
         }
         else
         {
-            _audioSource.PlayOneShot(goingSound);
+            //_audioSource.PlayOneShot(goingSound);
             coming = true;
 
         }

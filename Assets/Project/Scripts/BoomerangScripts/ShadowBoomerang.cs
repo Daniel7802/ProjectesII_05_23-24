@@ -43,8 +43,8 @@ public class ShadowBoomerang : BoomerangThrow
     {
         if(isFlying && Input.GetMouseButtonDown(1) && !canTp)
         {
-            _playerMovement.playerRb.MovePosition(transform.position);
             coming = true;
+            _playerMovement.Teleport(transform.position);
         }
     }
     protected override void Staying()
@@ -81,7 +81,7 @@ public class ShadowBoomerang : BoomerangThrow
         else
         {
             _particleBlackHole.Stop();
-            _audioSource.PlayOneShot(goingSound);
+            //_audioSource.PlayOneShot(goingSound);
             coming = true;
         }
     }
