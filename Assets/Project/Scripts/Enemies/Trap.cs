@@ -15,7 +15,8 @@ public class Trap : MonoBehaviour
     [SerializeField] private GameObject trapBullet;
 
     private Vector2 direction = Vector2.zero;
-
+    [SerializeField]
+   public bool wait;
     private AudioSource _audioSource;
     [SerializeField] private AudioClip shootSound;
 
@@ -30,40 +31,44 @@ public class Trap : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (startTime < 0)
-            activate = true;
-        else
-        startTime -= Time.deltaTime;
-
-        if (activate)
+        if(!wait)
         {
-            if (reloadingTimer < reloadingTime)
-            {
-                reloadingTimer += Time.deltaTime;
-            }
+            if (startTime < 0)
+                activate = true;
             else
-            {
-                if (up)
-                {
-                    ShootOneBullet(DIR.UP);
-                }
-                if (down)
-                {
-                    ShootOneBullet(DIR.DOWN);
-                }
-                if (right)
-                {
-                    ShootOneBullet(DIR.RIGHT);
-                }
-                if (left)
-                {
-                    ShootOneBullet(DIR.LEFT);
-                }
+                startTime -= Time.deltaTime;
 
-                reloadingTimer = 0f;
+            if (activate)
+            {
+                if (reloadingTimer < reloadingTime)
+                {
+                    reloadingTimer += Time.deltaTime;
+                }
+                else
+                {
+                    if (up)
+                    {
+                        ShootOneBullet(DIR.UP);
+                    }
+                    if (down)
+                    {
+                        ShootOneBullet(DIR.DOWN);
+                    }
+                    if (right)
+                    {
+                        ShootOneBullet(DIR.RIGHT);
+                    }
+                    if (left)
+                    {
+                        ShootOneBullet(DIR.LEFT);
+                    }
+
+                    reloadingTimer = 0f;
+                }
             }
+
         }
-        
+
     }
 
     void ShootOneBullet(DIR dir)
