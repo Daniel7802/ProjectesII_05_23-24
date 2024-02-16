@@ -7,6 +7,11 @@ public class activateLeaver : MonoBehaviour
 {
    public bool activate = false;
     Animator animator;
+    enum type { Nothing, Trap };
+    [SerializeField]
+    type activateType = type.Nothing;
+    [SerializeField]
+    List<Trap> traps = new List<Trap>();
     void Start()
     {
         animator = GetComponent<Animator>();    
@@ -24,6 +29,13 @@ public class activateLeaver : MonoBehaviour
         {
             activate = true;
             animator.SetBool("active", true);
+            if(activateType == type.Trap)
+            {
+                foreach (Trap trap in traps) 
+                {
+                    trap.wait = false;
+                }
+            }
         }
     }
 }
