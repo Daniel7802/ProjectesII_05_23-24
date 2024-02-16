@@ -30,13 +30,13 @@ public class SlimeIA : Enemy
 
     //chasing    
     public float chasingJumpForce = 15;
-   
 
 
 
-    private  void  Start()
+
+    private void Start()
     {
-        base.Start();      
+        base.Start();
         SetNewWaitingTime();
     }
 
@@ -90,8 +90,8 @@ public class SlimeIA : Enemy
         else
         {
             animator.SetBool("jump", true);
-        }      
-    
+        }
+
     }
 
     public override void Movement()
@@ -147,7 +147,7 @@ public class SlimeIA : Enemy
 
     }
 
-  
+
 
     //protected override void OnCollisionEnter2D(Collision2D collision)
     //{
@@ -157,7 +157,7 @@ public class SlimeIA : Enemy
     //    {
     //        setNewDest = true;
     //    }
-      
+
 
     //}
 

@@ -10,7 +10,7 @@ public class SlimeDeadSystem : DeadSystem
 
     [SerializeField] float spawnForce = 5f;
 
-    public GameObject player;
+    private GameObject player;
     private Vector2 vectorBetweenPlayer, vectorSlime1, vectorSlime2;
 
   
