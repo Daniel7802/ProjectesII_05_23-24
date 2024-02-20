@@ -23,16 +23,12 @@ public class SlimeIA : Enemy
     private float moveForce;
     private float velocityMagnitudeToLand = 1f;
 
-
     //roaming
     public float roamingForce = 8;
     bool setNewDest = false;
 
     //chasing    
     public float chasingJumpForce = 15;
-
-
-
 
     private void Start()
     {
