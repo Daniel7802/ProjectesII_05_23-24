@@ -22,7 +22,7 @@ public class ShopBehaviour : MonoBehaviour
 
     private PlayerHealthSystem phs;
 
-    public TextMeshProUGUI currentRootsText;
+    public TextMeshProUGUI[] currentRootsText;
 
     public int currentRoots = 30;
 
@@ -31,7 +31,11 @@ public class ShopBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentRootsText.text = currentRoots.ToString();
+        for(int i = 0; i < currentRootsText.Length; i++)
+        {
+            currentRootsText[i].text = currentRoots.ToString();
+        }
+
         phs = Player.transform.GetComponent<PlayerHealthSystem>();
     }
 
@@ -50,7 +54,10 @@ public class ShopBehaviour : MonoBehaviour
             shopCanvas.SetActive(false);
         }
 
-        currentRootsText.text = currentRoots.ToString();
+        for (int i = 0; i < currentRootsText.Length; i++)
+        {
+            currentRootsText[i].text = currentRoots.ToString();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -77,7 +84,11 @@ public class ShopBehaviour : MonoBehaviour
         if(currentRoots >= 5)
         {
             currentRoots -= 5;
-            currentRootsText.text = currentRoots.ToString();
+
+            for (int i = 0; i < currentRootsText.Length; i++)
+            {
+                currentRootsText[i].text = currentRoots.ToString();
+            }
 
             phs.MaxHealth++;
             extraHearts[extraheartsCounter].SetActive(true);
