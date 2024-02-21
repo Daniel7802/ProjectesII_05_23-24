@@ -14,8 +14,12 @@ public class BoomerangManager : MonoBehaviour
     GameObject _boomerang;
     [SerializeField]
     GameObject _shadowBoomerang;
+    [SerializeField]
+    GameObject _iceBoomerang;
 
-    public bool shadowBoomerangCollected = false;
+
+
+    public bool shadowBoomerangCollected = true;
 
  
     //[SerializeField]
@@ -71,11 +75,46 @@ public class BoomerangManager : MonoBehaviour
                 if (actualBoomerang == _boomerang)
                 {
                     actualBoomerang.SetActive(false);
+                    actualBoomerang = _iceBoomerang;
+
+                    actualBoomerang.SetActive(true);
+                }
+                else if (actualBoomerang == _shadowBoomerang)
+                {
+                    actualBoomerang.SetActive(false);
+                    actualBoomerang = _boomerang;
+
+                    actualBoomerang.SetActive(true);
+                }
+
+                else if (actualBoomerang == _iceBoomerang)
+                {
+                    actualBoomerang.SetActive(false);
+                    actualBoomerang = _shadowBoomerang;
+
+                    actualBoomerang.SetActive(true);
+                }
+                StartCoroutine(AddToTargetGroup(actualBoomerang));
+            }
+            if (Input.GetKeyDown(KeyCode.E) && shadowBoomerangCollected)
+            {
+                m_TargetGroup.RemoveMember(actualBoomerang.transform);
+                if (actualBoomerang == _boomerang)
+                {
+                    actualBoomerang.SetActive(false);
                     actualBoomerang = _shadowBoomerang;
 
                     actualBoomerang.SetActive(true);
                 }
                 else if (actualBoomerang == _shadowBoomerang)
+                {
+                    actualBoomerang.SetActive(false);
+                    actualBoomerang = _iceBoomerang;
+
+                    actualBoomerang.SetActive(true);
+                }
+
+                else if (actualBoomerang == _iceBoomerang)
                 {
                     actualBoomerang.SetActive(false);
                     actualBoomerang = _boomerang;

@@ -291,7 +291,8 @@ public class BoomerangThrow : MonoBehaviour
     protected void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(p0, 0.1f);
+        Gizmos.DrawSphere(p0, 0.5f);
+        Gizmos.DrawSphere(pAux, 0.5f);
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(p2, 0.1f);
     }
