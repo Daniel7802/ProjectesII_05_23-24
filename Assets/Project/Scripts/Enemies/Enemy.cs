@@ -10,11 +10,13 @@ using static UnityEngine.ParticleSystem;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    protected GameObject player;
+    public GameObject player;
     protected Rigidbody2D rb2D;
     protected SpriteRenderer spriteRenderer;
     protected Animator animator;
     protected AudioSource audioSource;
+
+    [SerializeField]
     protected LayerMask hitLayer;
 
     protected enum CurrentState { ROAMING, CHASING, AIMING, RELOADING, SHOOTING };
@@ -25,17 +27,19 @@ public class Enemy : MonoBehaviour
     protected float distanceToPlayer;
 
     //MOVEMENT
-    protected float moveForce;
+    protected float moveSpeed;
 
     //ROAMING
     [SerializeField]
-    protected float roamingForce;
+    protected float roamingSpeed;
     [SerializeField]
-    protected CircleCollider2D roamingZone;
+    public CircleCollider2D roamingZone;
     protected Vector2 roamingRandomPoint;
     protected bool setNewDest = false;
 
     //CHASING    
+    [SerializeField]
+    private float chasingSpeed;
     public float startChasingRange;
     public float stopChasingRange;
 
@@ -56,22 +60,7 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
 
-    }
-
-    public virtual void Update()
-    {
-        FlipX();
-        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-
-        switch (currentState)
-        {
-
-            case CurrentState.ROAMING:
-                break;
-            case CurrentState.CHASING:
-                break;
-
-        }
+        SetNewRoamingDestination();
     }
 
     public virtual void Movement()
@@ -81,12 +70,27 @@ public class Enemy : MonoBehaviour
 
     public virtual void Roaming()
     {
-       
+        moveSpeed = roamingSpeed;
+        target = roamingRandomPoint;
+
+        Movement();
+        if (Vector2.Distance(transform.position, target) < 0.2)
+        {
+            setNewDest = true;
+        }
+        if (setNewDest)
+        {
+            SetNewRoamingDestination();
+            setNewDest = false;
+        }
 
     }
 
     public virtual void Chasing()
     {
+        moveSpeed = chasingSpeed;
+        target = player.transform.position;
+        Movement();
 
     }
 
@@ -105,7 +109,7 @@ public class Enemy : MonoBehaviour
 
         Vector2 center = circle.transform.position;
 
-        float randomRadius = Mathf.Sqrt(UnityEngine.Random.value) * circle.radius*this.transform.localScale.x;
+        float randomRadius = Mathf.Sqrt(UnityEngine.Random.value) * circle.radius * this.transform.localScale.x;
         float randomAngle = UnityEngine.Random.Range(0, 2 * Mathf.PI);
 
         float x = center.x + randomRadius * Mathf.Cos(randomAngle);
@@ -115,14 +119,19 @@ public class Enemy : MonoBehaviour
     }
     public void FlipX()
     {
-        if (target.x > transform.position.x)
+        if (rb2D.velocity.x > 0) spriteRenderer.flipX = false;
+        else if (rb2D.velocity.x == 0)
         {
-            spriteRenderer.flipX = false;
+            if (target.x > transform.position.x) spriteRenderer.flipX = false;
+            else spriteRenderer.flipX = true;
         }
-        else
-        {
-            spriteRenderer.flipX = true;
-        }
+        else spriteRenderer.flipX = true;
+    }
+    
+    public void FlipByTarget()
+    {
+        if (target.x > transform.position.x) spriteRenderer.flipX = false;
+        else spriteRenderer.flipX = true;
     }
 
     protected IEnumerator EnableAlert(SpriteRenderer sp)
@@ -135,9 +144,7 @@ public class Enemy : MonoBehaviour
     protected bool RaycastPlayer()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, 100, hitLayer);
-
         return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
-
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
@@ -160,7 +167,7 @@ public class Enemy : MonoBehaviour
 
         }
     }
-    public virtual void OnDrawGizmos()
+    public void OnDrawGizmos()
     {
         //Gizmos.color = Color.yellow;
         //Gizmos.DrawWireSphere(transform.position, startChasingRange);

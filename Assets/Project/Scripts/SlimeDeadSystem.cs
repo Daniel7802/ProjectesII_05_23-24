@@ -11,15 +11,11 @@ public class SlimeDeadSystem : DeadSystem
     [SerializeField] float spawnForce = 5f;
 
     private GameObject player;
-    private Vector2 vectorBetweenPlayer, vectorSlime1, vectorSlime2;
-
-  
-
-
+    private Vector2 vectorBetweenPlayer, vectorSlime1, vectorSlime2; 
 
     public override void Dead()
     {
-        player = GetComponent<SlimeIA>().player;
+        player = GetComponent<Enemy>().player;        
         base.Dead();
         SpawnMiniSlimes();
         
@@ -33,8 +29,8 @@ public class SlimeDeadSystem : DeadSystem
             Vector2 vector = transform.position;
             GameObject slime = Instantiate(miniSlime, vector, Quaternion.identity);
             GameObject slime2 = Instantiate(miniSlime, vector, Quaternion.identity);
-            slime.GetComponent<SlimeIA>().player = player;
-            slime2.GetComponent<SlimeIA>().player = player;
+            slime.GetComponent<Enemy>().player = player;
+            slime2.GetComponent<Enemy>().player = player;
 
             slime.GetComponent<HealthSystem>().TurnInvencible(true);
             slime2.GetComponent<HealthSystem>().TurnInvencible(true);
