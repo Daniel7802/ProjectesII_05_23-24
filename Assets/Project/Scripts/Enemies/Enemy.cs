@@ -9,22 +9,31 @@ using static UnityEngine.ParticleSystem;
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject player;
+    [SerializeField]
+    protected GameObject player;
     protected Rigidbody2D rb2D;
     protected SpriteRenderer spriteRenderer;
     protected Animator animator;
     protected AudioSource audioSource;
+    protected LayerMask hitLayer;
 
+    protected enum CurrentState { ROAMING, CHASING, AIMING, RELOADING, SHOOTING };
     [SerializeField]
-    public int currentState = 0;
-
-    protected float distanceToPlayer;
+    protected CurrentState currentState = CurrentState.ROAMING;
 
     protected Vector2 target;
+    protected float distanceToPlayer;
 
-    //ROAMING       
+    //MOVEMENT
+    protected float moveForce;
+
+    //ROAMING
+    [SerializeField]
+    protected float roamingForce;
+    [SerializeField]
+    protected CircleCollider2D roamingZone;
     protected Vector2 roamingRandomPoint;
-    protected float maxRoamingPointDistance = 4;
+    protected bool setNewDest = false;
 
     //CHASING    
     public float startChasingRange;
@@ -45,8 +54,24 @@ public class Enemy : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();       
+        audioSource = GetComponent<AudioSource>();
 
+    }
+
+    public virtual void Update()
+    {
+        FlipX();
+        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+
+        switch (currentState)
+        {
+
+            case CurrentState.ROAMING:
+                break;
+            case CurrentState.CHASING:
+                break;
+
+        }
     }
 
     public virtual void Movement()
@@ -56,7 +81,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void Roaming()
     {
-
+       
 
     }
 
@@ -71,12 +96,22 @@ public class Enemy : MonoBehaviour
         rb2D.AddForce(kbForce, ForceMode2D.Impulse);
     }
 
-    public void SetNewRoamingDestination()
+    protected void SetNewRoamingDestination()
     {
-        roamingRandomPoint = new Vector2(
-            UnityEngine.Random.Range(transform.position.x - maxRoamingPointDistance, transform.position.x + maxRoamingPointDistance),
-            UnityEngine.Random.Range(transform.position.y - maxRoamingPointDistance, transform.position.y + maxRoamingPointDistance)
-            );
+        roamingRandomPoint = GetRandomPointInCircle(roamingZone);
+    }
+    protected Vector2 GetRandomPointInCircle(CircleCollider2D circle)
+    {
+
+        Vector2 center = circle.transform.position;
+
+        float randomRadius = Mathf.Sqrt(UnityEngine.Random.value) * circle.radius*this.transform.localScale.x;
+        float randomAngle = UnityEngine.Random.Range(0, 2 * Mathf.PI);
+
+        float x = center.x + randomRadius * Mathf.Cos(randomAngle);
+        float y = center.y + randomRadius * Mathf.Sin(randomAngle);
+
+        return new Vector2(x, y);
     }
     public void FlipX()
     {
@@ -97,11 +132,17 @@ public class Enemy : MonoBehaviour
         sp.enabled = false;
 
     }
+    protected bool RaycastPlayer()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, 100, hitLayer);
+
+        return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
+
+    }
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Boomerang"))
-        {            
-
+        {
             Vector2 dir = transform.position - collision.transform.position;
             KnockBack(dir);
 
@@ -109,7 +150,7 @@ public class Enemy : MonoBehaviour
 
             // Convierte el ángulo a grados.
             float angleDegrees = angleRadians * Mathf.Rad2Deg;
-            GameObject particles = Instantiate(hitParticles);           
+            GameObject particles = Instantiate(hitParticles);
             particles.transform.SetParent(transform, true);
             if (GetComponent<LineRenderer>())
                 particles.transform.localScale *= 2;
@@ -121,13 +162,15 @@ public class Enemy : MonoBehaviour
     }
     public virtual void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, startChasingRange);
-        Gizmos.DrawWireSphere(transform.position, stopChasingRange);
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(target, 0.4f);
+        //Gizmos.color = Color.yellow;
+        //Gizmos.DrawWireSphere(transform.position, startChasingRange);
+        //Gizmos.DrawWireSphere(transform.position, stopChasingRange);
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawSphere(target, 0.4f);
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(roamingRandomPoint, 0.4f);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(roamingZone.transform.position, roamingZone.radius * this.transform.localScale.x);
     }
 
 }

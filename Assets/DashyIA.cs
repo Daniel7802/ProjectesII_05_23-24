@@ -2,17 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashyIA :  Enemy
+public class DashyIA : Enemy
 {
-    // Start is called before the first frame update
+    
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        FlipX();
+        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+
+        switch (currentState)
+        {
+            case CurrentState.ROAMING:
+                if (distanceToPlayer < startChasingRange && RaycastPlayer())
+                {
+                    
+                }
+                else
+                {
+                    Roaming();
+                }
+                break;
+
+            case CurrentState.CHASING:
+
+                break;
+
+        }
     }
 }

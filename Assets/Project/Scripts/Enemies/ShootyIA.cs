@@ -8,9 +8,6 @@ using static Unity.VisualScripting.Member;
 public class ShootyIA : Enemy
 {
 
-    private float moveForce;
-    public LayerMask hitLayer;
-
     //roaming
     public float roamingMoveForce = 3f;
     private bool isStoped = false;
@@ -18,7 +15,7 @@ public class ShootyIA : Enemy
     public float timeToStop = 6f;
     private float timerStoped = 0f;
     public float timeStoped = 1f;
-    private bool setNewDest = false;
+    
     public float newDestTime = 3f;
     private float newDestTimer = 0f;
 
@@ -44,23 +41,21 @@ public class ShootyIA : Enemy
     public override void Start()
     {
         base.Start();
-        currentState = 0;
         lineRenderer = GetComponent<LineRenderer>();
     }
 
-    private void Update()
+    public override void Update()
     {
-        FlipX();
-        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        base.Update();
 
         switch (currentState)
         {
-            case 0://roaming
+            case CurrentState.ROAMING:
 
                 if (distanceToPlayer < startChasingRange && RaycastPlayer())
                 {
                     StartCoroutine(EnableAlert(detectAlert));
-                    currentState = 1;
+                    currentState = CurrentState.CHASING;
                 }
                 else
                 {
@@ -68,22 +63,21 @@ public class ShootyIA : Enemy
                 }
                 break;
 
-            case 1://chasing
+            case CurrentState.CHASING:
 
                 if (distanceToPlayer > stopChasingRange)// target lost -->to roaming
                 {
                     StartCoroutine(EnableAlert(lostTargetAlert));
-                    currentState = 0;
+                    currentState = CurrentState.ROAMING;
                 }
                 else if (distanceToPlayer < startShootingRange)// player enough close to shoot
                 {
-
                     if (RaycastPlayer())
-                        currentState = 2;
+                        currentState = CurrentState.AIMING;
                     else
                     {
                         StartCoroutine(EnableAlert(lostTargetAlert));
-                        currentState = 0;
+                        currentState = CurrentState.ROAMING;
                     }
 
                 }
@@ -94,12 +88,12 @@ public class ShootyIA : Enemy
                     else
                     {
                         StartCoroutine(EnableAlert(lostTargetAlert));
-                        currentState = 0;
+                        currentState = CurrentState.ROAMING;
                     }
                 }
                 break;
 
-            case 2://aiming
+            case CurrentState.AIMING:
                 if (RaycastPlayer())
                 {
                     if (lineTimer < aimingTime)
@@ -111,26 +105,25 @@ public class ShootyIA : Enemy
                     else
                     {
                         lineRenderer.enabled = false;
-                        currentState = 3;
+                        currentState = CurrentState.SHOOTING;
                     }
-
                 }
                 else
                 {
                     lineRenderer.enabled = false;
-                    currentState = 3;
+                    currentState = CurrentState.SHOOTING;
                     lineTimer = 0;
                 }
 
                 break;
 
-            case 3://shooting
+            case CurrentState.SHOOTING:
                 Shooting();
                 reloadingTimer = 0;
-                currentState = 4;
+                currentState = CurrentState.RELOADING;
                 break;
 
-            case 4://reloading
+            case CurrentState.RELOADING:
                 target = player.transform.position;
                 lineTimer = 0;
                 if (reloadingTimer == 0f)
@@ -141,12 +134,11 @@ public class ShootyIA : Enemy
                 {
                     if (distanceToPlayer < startShootingRange)
                     {
-                        currentState = 2;
+                        currentState = CurrentState.AIMING;
                     }
                     else
                     {
-                        
-                        currentState = 1;
+                        currentState = CurrentState.CHASING;
                     }
                 }
                 break;
@@ -248,13 +240,6 @@ public class ShootyIA : Enemy
         GameObject bullet = Instantiate(enemyBullet);
         bullet.transform.position = transform.position;
         bullet.transform.right = dir;
-
-    }
-    bool RaycastPlayer()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, 100, hitLayer);
-
-        return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
 
     }
 
