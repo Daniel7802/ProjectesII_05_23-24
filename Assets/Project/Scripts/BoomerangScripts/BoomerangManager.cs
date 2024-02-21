@@ -82,9 +82,15 @@ public class BoomerangManager : MonoBehaviour
 
                     actualBoomerang.SetActive(true);
                 }
-                m_TargetGroup.AddMember(actualBoomerang.transform, 0.55f, 5);
-                _boomerangThrow = actualBoomerang.GetComponent<BoomerangThrow>();
+                StartCoroutine(AddToTargetGroup(actualBoomerang));
             }
         } 
+    }
+
+    private IEnumerator AddToTargetGroup(GameObject a)
+    {
+        _boomerangThrow = a.GetComponent<BoomerangThrow>();
+        yield return new WaitForSeconds(0.2f);
+        m_TargetGroup.AddMember(a.transform, 0.55f, 5);
     }
 }
