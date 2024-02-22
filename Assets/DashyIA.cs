@@ -93,7 +93,7 @@ public class DashyIA : Enemy
                 moveSpeed = chasingSpeed;                
                 Movement();
                 trailRenderer.enabled = true;
-                if (Vector2.Distance(transform.position,target)<0.2)
+                if (Vector2.Distance(transform.position,target)<0.5)
                 {                    
                     currentState = CurrentState.RELOADING;                   
                     chargingTimer = 0;
