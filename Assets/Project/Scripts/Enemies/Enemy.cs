@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected LayerMask hitLayer;
 
-    protected enum CurrentState { ROAMING, CHASING, AIMING, RELOADING, SHOOTING };
+    protected enum CurrentState { ROAMING, CHASING, AIMING, RELOADING, SHOOTING, ICE };
     [SerializeField]
     protected CurrentState currentState = CurrentState.ROAMING;
 
@@ -107,6 +107,7 @@ public class Enemy : MonoBehaviour
     {
         roamingRandomPoint = GetRandomPointInCircle(roamingZone);
     }
+
     protected Vector2 GetRandomPointInCircle(CircleCollider2D circle)
     {
 
@@ -120,6 +121,7 @@ public class Enemy : MonoBehaviour
 
         return new Vector2(x, y);
     }
+
     public void FlipX()
     {
         if (rb2D.velocity.x > 0) spriteRenderer.flipX = false;
@@ -149,6 +151,15 @@ public class Enemy : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, 100, hitLayer);
         return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
     }
+
+    protected IEnumerator Ice()
+    {
+        currentState = CurrentState.ICE;
+        
+        yield return new WaitForSeconds(10f);
+        currentState = CurrentState.ROAMING;
+    }
+
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Boomerang"))
@@ -167,6 +178,11 @@ public class Enemy : MonoBehaviour
 
             particles.transform.position = transform.position;
             particles.transform.rotation = Quaternion.Euler(-angleDegrees, 90, -90);
+
+            if(collision.GetComponentInParent<IceBoomerang>())
+            {
+                StartCoroutine(Ice());
+            }
 
         }
         if (collision.CompareTag("Wall"))
