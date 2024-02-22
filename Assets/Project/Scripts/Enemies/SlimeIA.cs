@@ -26,8 +26,7 @@ public class SlimeIA : Enemy
     public override void Start()
     {
         base.Start();
-        SetNewWaitingTime();
-        
+        SetNewWaitingTime();        
     }
 
     private void Update()
@@ -52,14 +51,14 @@ public class SlimeIA : Enemy
 
     public override void Movement()
     {
-        Vector2 directionVector = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
-        Vector2 impulseForce = directionVector.normalized * moveSpeed;
+        Vector2 dir = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
+        Vector2 moveForce = dir.normalized * moveSpeed;
 
         waitingTimer += Time.deltaTime;
         if (waitingTimer >= waitingTime)
         {
             audioSource.PlayOneShot(slimeJumpSound);
-            rb2D.AddForce(impulseForce, ForceMode2D.Impulse);
+            rb2D.AddForce(moveForce, ForceMode2D.Impulse);
             SetNewWaitingTime();
             waitingTimer = 0;
         }
@@ -81,9 +80,6 @@ public class SlimeIA : Enemy
             base.Roaming();
 
         }
-
-
-
     }
 
     public override void Chasing()

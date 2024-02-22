@@ -9,18 +9,10 @@ public class ShootyIA : Enemy
 {
 
     //roaming
-
-    private bool isStoped = false;
-    private float timerToStop = 0f;
-    public float timeToStop = 6f;
-    private float timerStoped = 0f;
-    public float timeStoped = 1f;
-
-    public float newDestTime = 3f;
-    private float newDestTimer = 0f;
-
-    //chasing   
-
+    private float waitingTime;
+    private float minWaitingTime = 1.5f;
+    private float maxWaitingTime = 3f;
+    private float waitingTimer = 0;
 
     //aiming
     private LineRenderer lineRenderer;
@@ -42,7 +34,7 @@ public class ShootyIA : Enemy
     {
         base.Start();
         lineRenderer = GetComponent<LineRenderer>();
-        
+
     }
 
     private void Update()
@@ -75,11 +67,7 @@ public class ShootyIA : Enemy
     public override void Movement()
     {
         animator.SetBool("walk", true);
-
-        Vector2 directionVector = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
-        Vector2 impulseForce = directionVector.normalized * moveSpeed;
-
-        rb2D.AddForce(impulseForce, ForceMode2D.Force);
+        base.Movement();
     }
 
     public override void Roaming()
@@ -89,7 +77,10 @@ public class ShootyIA : Enemy
             StartCoroutine(EnableAlert(detectAlert));
             currentState = CurrentState.CHASING;
         }
-        else base.Roaming();
+        else
+        {
+            base.Roaming();
+        }
 
     }
 
@@ -197,12 +188,15 @@ public class ShootyIA : Enemy
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void SetNewWaitingTime()
     {
-        if (collision.gameObject.tag.Equals("Wall"))
-        {
-            setNewDest = true;
-        }
+        waitingTime = UnityEngine.Random.Range(minWaitingTime, maxWaitingTime);
+    }
+
+    IEnumerator RoamingWait()
+    {
+        yield return new WaitForSecondsRealtime(2);
+        setNewDest = true;
     }
 
 }

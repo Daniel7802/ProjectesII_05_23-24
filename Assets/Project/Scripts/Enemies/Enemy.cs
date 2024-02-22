@@ -65,6 +65,9 @@ public class Enemy : MonoBehaviour
 
     public virtual void Movement()
     {
+        Vector2 dir = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
+        Vector2 moveForce = dir.normalized * moveSpeed;
+        rb2D.AddForce(moveForce, ForceMode2D.Force);
 
     }
 
@@ -72,8 +75,8 @@ public class Enemy : MonoBehaviour
     {
         moveSpeed = roamingSpeed;
         target = roamingRandomPoint;
-
         Movement();
+
         if (Vector2.Distance(transform.position, target) < 0.2)
         {
             setNewDest = true;
@@ -146,9 +149,9 @@ public class Enemy : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, 100, hitLayer);
         return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
     }
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Boomerang"))
+        if (collision.CompareTag("Boomerang"))
         {
             Vector2 dir = transform.position - collision.transform.position;
             KnockBack(dir);
@@ -165,6 +168,10 @@ public class Enemy : MonoBehaviour
             particles.transform.position = transform.position;
             particles.transform.rotation = Quaternion.Euler(-angleDegrees, 90, -90);
 
+        }
+        if (collision.CompareTag("Wall"))
+        {
+            setNewDest = true;
         }
     }
     public void OnDrawGizmos()

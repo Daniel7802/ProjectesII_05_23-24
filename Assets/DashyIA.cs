@@ -4,19 +4,31 @@ using UnityEngine;
 
 public class DashyIA : Enemy
 {
+    //CHARGING DASH
     [SerializeField]
     float chargingSpeed = 3f;
     [SerializeField]
-    float chargingTime = 1f;
+    float chargingTime = 0.7f;
     float chargingTimer = 0f;
+
+    //DASH
+    [SerializeField]
+    float dashingTime = 1.8f;
+
+    //RELOAD DASH
+    [SerializeField]
+    float reloadingSpeed = 3f;
+    [SerializeField]
+    float reloadingTime = 3f;
+    float reloadingTimer = 0f;
+
+    TrailRenderer trailRenderer;
 
     public override void Start()
     {
         base.Start();
-
+        trailRenderer = GetComponent<TrailRenderer>();
     }
-
-
     void Update()
     {
         FlipByTarget();
@@ -32,16 +44,16 @@ public class DashyIA : Enemy
                 Chasing();
                 break;
 
+            case CurrentState.RELOADING:
+                Reloading();
+                break;
+
         }
     }
 
     public override void Movement()
     {
-
-        Vector2 directionVector = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
-        Vector2 impulseForce = directionVector.normalized * moveSpeed;
-
-        rb2D.AddForce(impulseForce, ForceMode2D.Force);
+        base.Movement();
     }
 
     public override void Roaming()
@@ -52,7 +64,6 @@ public class DashyIA : Enemy
             currentState = CurrentState.CHASING;
         }
         else base.Roaming();
-
     }
 
     public override void Chasing()
@@ -61,36 +72,59 @@ public class DashyIA : Enemy
 
         if (RaycastPlayer())
         {
-
+            chargingTimer += Time.deltaTime;
             if (chargingTimer < chargingTime)
             {
-                chargingTimer += Time.deltaTime;
                 Vector2 dir = new Vector2(transform.position.x - target.x, transform.position.y - target.y);
                 Vector2 chargingForce = dir.normalized * chargingSpeed;
                 rb2D.AddForce(chargingForce);
-
             }
             else
             {
                 base.Chasing();
-                if (chargingTimer > chargingTime * 3)
+                trailRenderer.enabled = true;
+                if (chargingTimer > dashingTime)
+                {
+                    
+                    
+                    currentState = CurrentState.RELOADING;
                     chargingTimer = 0;
+                }
             }
-
-
         }
         else
         {
             StartCoroutine(EnableAlert(lostTargetAlert));
             currentState = CurrentState.ROAMING;
+            chargingTimer = 0;
         }
     }
 
-    //IEnumerator ChargingDash()
-    //{
+    void Reloading()
+    {
+        trailRenderer.enabled = false;
+        reloadingTimer += Time.deltaTime;
+        if (reloadingTimer < reloadingTime)
+        {
+            Vector2 reloadingForce = transform.up.normalized * reloadingSpeed;
+            rb2D.AddForce(reloadingForce);
+        }
+        else
+        {
+            currentState = CurrentState.ROAMING;
+            reloadingTimer = 0;
+        }
+    }
 
-    //    //yield return new WaitForSecondsRealtime(chargingTime);
+    public override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
+        if (collision.CompareTag("Player"))
+        {
+            currentState = CurrentState.RELOADING;
+            chargingTimer = 0;
+        }
+    }
 
 
-    //}
 }

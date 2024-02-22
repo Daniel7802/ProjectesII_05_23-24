@@ -196,7 +196,6 @@ MonoBehaviour:
   health: 0
   getHit: 0
   damageSound: {fileID: 8300000, guid: 243831b253368bc40b4e9a4ca743e590, type: 3}
-  canGetDamageMaxTimer: 0.1
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
   damagedTime: 0.125
@@ -477,7 +476,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6932088649128909108, guid: a60f5ffb62c7c244482956bf356d6034, type: 3}
       propertyPath: m_Radius
-      value: 1.05
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7686230234475305767, guid: a60f5ffb62c7c244482956bf356d6034, type: 3}
       propertyPath: m_Name
