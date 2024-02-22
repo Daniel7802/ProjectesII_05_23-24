@@ -114,18 +114,18 @@ MonoBehaviour:
   currentState: 0
   roamingSpeed: 1.5
   roamingZone: {fileID: 7184832709495165701}
-  chasingSpeed: 15
+  chasingSpeed: 5
   startChasingRange: 5
   stopChasingRange: 7
   detectAlert: {fileID: 4143192538361341163}
   lostTargetAlert: {fileID: 1194824986348023701}
   hitParticles: {fileID: 4124127140682516938, guid: b2e66122466bf6d42a08e6b050756436, type: 3}
   knockbackForce: 4
-  chargingSpeed: 3
-  chargingTime: 1
-  dashingTime: 2.7
-  reloadingSpeed: 3
-  reloadingTime: 3
+  chargingSpeed: 1
+  chargingTime: 1.5
+  dashingTime: 2
+  reloadingSpeed: 1
+  reloadingTime: 2
 --- !u!50 &790668251335665328
 Rigidbody2D:
   serializedVersion: 4
@@ -139,7 +139,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 5
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
