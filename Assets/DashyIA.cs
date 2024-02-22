@@ -6,20 +6,17 @@ public class DashyIA : Enemy
 {
     //CHARGING DASH
     [SerializeField]
-    float chargingSpeed = 3f;
+    float chargingSpeed = 1f;
     [SerializeField]
-    float chargingTime = 0.7f;
+    float chargingTime = 1f;
     float chargingTimer = 0f;
 
-    //DASH
-    [SerializeField]
-    float dashingTime = 1.8f;
+    //DASH   
+    bool lastPlayerPos = false;
 
-    //RELOAD DASH
+    //RELOAD DASH   
     [SerializeField]
-    float reloadingSpeed = 3f;
-    [SerializeField]
-    float reloadingTime = 3f;
+    float reloadingTime = 2f;
     float reloadingTimer = 0f;
 
     TrailRenderer trailRenderer;
@@ -68,28 +65,34 @@ public class DashyIA : Enemy
 
     public override void Chasing()
     {
-        target = player.transform.position;
-
         if (RaycastPlayer())
         {
             chargingTimer += Time.deltaTime;
             if (chargingTimer < chargingTime)
             {
-                Vector2 dir = new Vector2(transform.position.x - target.x, transform.position.y - target.y);
+                
+                Vector2 dir = new Vector2(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y);
                 Vector2 chargingForce = dir.normalized * chargingSpeed;
                 rb2D.AddForce(chargingForce);
             }
             else
-            {
-                base.Chasing();
-                trailRenderer.enabled = true;
-                if (chargingTimer > dashingTime)
+            {                
+                
+                if (!lastPlayerPos)
                 {
-                    
-                    
-                    currentState = CurrentState.RELOADING;
-                    chargingTimer = 0;
+                    target = player.transform.position;
+                    lastPlayerPos = true;
                 }
+                moveSpeed = chasingSpeed;                
+                Movement();
+                trailRenderer.enabled = true;
+                if (Vector2.Distance(transform.position,target)<1)
+                {                    
+                    currentState = CurrentState.RELOADING;                   
+                    chargingTimer = 0;
+                    lastPlayerPos = false;
+                }
+
             }
         }
         else
@@ -106,7 +109,7 @@ public class DashyIA : Enemy
         reloadingTimer += Time.deltaTime;
         if (reloadingTimer < reloadingTime)
         {
-            Vector2 reloadingForce = transform.up.normalized * reloadingSpeed;
+            Vector2 reloadingForce = transform.up.normalized * roamingSpeed;
             rb2D.AddForce(reloadingForce);
         }
         else

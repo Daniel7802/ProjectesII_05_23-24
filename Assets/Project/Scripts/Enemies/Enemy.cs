@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
 
     //CHASING    
     [SerializeField]
-    private float chasingSpeed;
+    protected float chasingSpeed;
     public float startChasingRange;
     public float stopChasingRange;
 
