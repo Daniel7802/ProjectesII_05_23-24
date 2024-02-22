@@ -176,23 +176,22 @@ MonoBehaviour:
   currentState: 0
   roamingSpeed: 3
   roamingZone: {fileID: 6194980557239026081}
-  chasingSpeed: 5
+  chasingSpeed: 8
   startChasingRange: 9
   stopChasingRange: 10
-  detectAlert: {fileID: 979152450879534677}
+  targetFoundAlert: {fileID: 979152450879534677}
   lostTargetAlert: {fileID: 6987501723595340}
   hitParticles: {fileID: 4124127140682516938, guid: b2e66122466bf6d42a08e6b050756436, type: 3}
   knockbackForce: 8
-  timeToStop: 6
-  timeStoped: 1
-  newDestTime: 3
   aimingTime: 1
+  targetFoundSound: {fileID: 8300000, guid: 4212a9fa6b650644ab4b5f34effffc01, type: 3}
   enemyBullet: {fileID: 8740438523283609490, guid: 192ecb6623fbab7438f6bb9073b6799d, type: 3}
   startShootingRange: 7
   stopShootingRange: 8
   shootSound: {fileID: 8300000, guid: 9a8ba0a603f613a4eabbbc651df3e370, type: 3}
   reloadingTime: 2
   reloadingSound: {fileID: 8300000, guid: 29ed6299a89ad8744a16a6fc2a6a2ff4, type: 3}
+  targetLostSound: {fileID: 8300000, guid: 9e1394d3c4f71e240a8b0cd7d042348b, type: 3}
 --- !u!114 &1407829007740879287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +208,6 @@ MonoBehaviour:
   health: 0
   getHit: 0
   damageSound: {fileID: 8300000, guid: 243831b253368bc40b4e9a4ca743e590, type: 3}
-  canGetDamageMaxTimer: 0.5
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
   damagedTime: 0.125

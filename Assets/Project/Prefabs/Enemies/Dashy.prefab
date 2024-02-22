@@ -114,13 +114,14 @@ MonoBehaviour:
   currentState: 0
   roamingSpeed: 0.3
   roamingZone: {fileID: 7184832709495165701}
-  chasingSpeed: 5
+  chasingSpeed: 6
   startChasingRange: 7
   stopChasingRange: 9
-  detectAlert: {fileID: 4143192538361341163}
+  targetFoundAlert: {fileID: 4143192538361341163}
   lostTargetAlert: {fileID: 1194824986348023701}
   hitParticles: {fileID: 4124127140682516938, guid: b2e66122466bf6d42a08e6b050756436, type: 3}
-  knockbackForce: 4
+  knockbackForce: 2
+  buzzSound: {fileID: 0}
   chargingSpeed: 1
   chargingTime: 1
   reloadingTime: 2

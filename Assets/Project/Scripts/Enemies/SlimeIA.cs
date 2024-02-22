@@ -70,7 +70,7 @@ public class SlimeIA : Enemy
         {
             if (rb2D.velocity.magnitude < speedToLand)
                 waitingTimer = waitingTime;
-            StartCoroutine(EnableAlert(detectAlert));
+            StartCoroutine(EnableAlert(targetFoundAlert));
             currentState = CurrentState.CHASING;
         }
         else

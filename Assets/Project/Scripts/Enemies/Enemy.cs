@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
     public float stopChasingRange;
 
     [SerializeField]
-    protected SpriteRenderer detectAlert;
+    protected SpriteRenderer targetFoundAlert;
     [SerializeField]
     protected SpriteRenderer lostTargetAlert;
 

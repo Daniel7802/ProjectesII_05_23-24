@@ -1094,6 +1094,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3192807541708884154, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192807541708884154, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 63a5d6fca5ed65b4abe6309966bc06cb, type: 3}
     - target: {fileID: 6207711718406370829, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
       propertyPath: m_Name
       value: Dashy
@@ -1102,6 +1110,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1772740177}
+    - target: {fileID: 6315945374743837193, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
+      propertyPath: buzzSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 63a5d6fca5ed65b4abe6309966bc06cb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DashyIA : Enemy
 {
+    [SerializeField]
+    private AudioClip buzzSound;
+
     //CHARGING DASH
     [SerializeField]
     float chargingSpeed = 1f;
@@ -25,9 +28,13 @@ public class DashyIA : Enemy
     {
         base.Start();
         trailRenderer = GetComponent<TrailRenderer>();
+        audioSource.clip = buzzSound;
+        audioSource.loop = true;
+        audioSource.Play();
     }
     void Update()
     {
+        
         FlipByTarget();
         distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
@@ -57,7 +64,7 @@ public class DashyIA : Enemy
     {
         if (distanceToPlayer < startChasingRange && RaycastPlayer())
         {
-            StartCoroutine(EnableAlert(detectAlert));
+            StartCoroutine(EnableAlert(targetFoundAlert));
             currentState = CurrentState.CHASING;
         }
         else base.Roaming();
@@ -86,7 +93,7 @@ public class DashyIA : Enemy
                 moveSpeed = chasingSpeed;                
                 Movement();
                 trailRenderer.enabled = true;
-                if (Vector2.Distance(transform.position,target)<1)
+                if (Vector2.Distance(transform.position,target)<0.2)
                 {                    
                     currentState = CurrentState.RELOADING;                   
                     chargingTimer = 0;

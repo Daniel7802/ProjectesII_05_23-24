@@ -17,18 +17,30 @@ public class ShootyIA : Enemy
     //aiming
     private LineRenderer lineRenderer;
     private float lineTimer = 0f;
-    public float aimingTime = 0.8f;
+    [SerializeField]
+    private float aimingTime = 0.8f;
+    [SerializeField]
+    private AudioClip targetFoundSound;
 
     //shooting
-    public GameObject enemyBullet;
-    public float startShootingRange;
-    public float stopShootingRange;
-    public AudioClip shootSound;
+    [SerializeField]
+    private GameObject enemyBullet;
+    [SerializeField]
+    private float startShootingRange;
+    [SerializeField]
+    private float stopShootingRange;
+    [SerializeField]
+    private AudioClip shootSound;
 
     //reloading   
     private float reloadingTimer = 0f;
-    public float reloadingTime;
-    public AudioClip reloadingSound;
+    [SerializeField]
+    private float reloadingTime;
+    [SerializeField]
+    private AudioClip reloadingSound;
+
+    [SerializeField]
+    private AudioClip targetLostSound;
 
     public override void Start()
     {
@@ -74,7 +86,8 @@ public class ShootyIA : Enemy
     {
         if (distanceToPlayer < startChasingRange && RaycastPlayer())
         {
-            StartCoroutine(EnableAlert(detectAlert));
+            audioSource.PlayOneShot(targetFoundSound,0.3f);
+            StartCoroutine(EnableAlert(targetFoundAlert));
             currentState = CurrentState.CHASING;
         }
         else
@@ -88,6 +101,7 @@ public class ShootyIA : Enemy
     {
         if (distanceToPlayer > stopChasingRange)// target lost -->to roaming
         {
+            audioSource.PlayOneShot(targetLostSound);
             StartCoroutine(EnableAlert(lostTargetAlert));
             currentState = CurrentState.ROAMING;
         }
@@ -97,6 +111,7 @@ public class ShootyIA : Enemy
                 currentState = CurrentState.AIMING;
             else
             {
+                audioSource.PlayOneShot(targetLostSound);
                 StartCoroutine(EnableAlert(lostTargetAlert));
                 currentState = CurrentState.ROAMING;
             }
@@ -106,6 +121,7 @@ public class ShootyIA : Enemy
             if (RaycastPlayer()) base.Chasing();
             else
             {
+                audioSource.PlayOneShot(targetLostSound);
                 StartCoroutine(EnableAlert(lostTargetAlert));
                 currentState = CurrentState.ROAMING;
             }
