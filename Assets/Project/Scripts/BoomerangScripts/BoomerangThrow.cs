@@ -51,6 +51,9 @@ public class BoomerangThrow : MonoBehaviour
 
     // private ShopBehaviour sb;
 
+    // ESTADOS DEL PLAYER
+    private PlayerController _playerController;
+
     protected void Awake()
     {
         _targetJoint = GetComponent<TargetJoint2D>();
@@ -59,6 +62,7 @@ public class BoomerangThrow : MonoBehaviour
         _missionModuleFire = _particleSystemFire.emission;
 
         //sb = shopManager.GetComponent<ShopBehaviour>();
+        _playerController = source.GetComponent<PlayerController>();
     }
     public virtual void Start()
     {
@@ -83,6 +87,10 @@ public class BoomerangThrow : MonoBehaviour
 
     protected void Update()
     {
+        if (_playerController.playerStates == PlayerController.PlayerStates.CINEMATIC)
+        {
+            return;
+        }
 
         if (isFire)
         {

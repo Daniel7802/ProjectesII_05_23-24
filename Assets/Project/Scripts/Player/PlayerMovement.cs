@@ -93,6 +93,10 @@ public class PlayerMovement : MonoBehaviour
             else
                 _missionModuleWalk.enabled = false;
         }
+        else
+        {
+            playerAnimator.SetFloat("Speed", 0);
+        }
     }
 
     private void FixedUpdate()
