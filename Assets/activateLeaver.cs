@@ -27,15 +27,19 @@ public class activateLeaver : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Boomerang"))
         {
-            activate = true;
-            animator.SetBool("active", true);
-            if(activateType == type.Trap)
+          
+            if(collision.GetComponentInParent<BoomerangThrow>().type == BoomerangThrow.boomerangType.NORMAL) 
             {
-                foreach (Trap trap in traps) 
+                activate = true;
+                animator.SetBool("active", true);
+                if (activateType == type.Trap)
                 {
-                    trap.wait = false;
+                    foreach (Trap trap in traps)
+                    {
+                        trap.wait = false;
+                    }
                 }
-            }
+            }            
         }
     }
 }

@@ -45,8 +45,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5166747287639789255}
-  - {fileID: 7630211537684905033}
-  - {fileID: 962452590142860609}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -131,10 +129,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _walkParticles: {fileID: 2532327101062282870}
-  speed: 90
-  maxSpeed: 90
+  speed: 100
+  maxSpeed: 100
   playerRb: {fileID: 8119343296046956285}
-  _dashingVelocity: 20
+  _dashingVelocity: 35
   _dashingTime: 0.2
   _dashingCoolDownTime: 0.5
   isRolling: 0
@@ -195,8 +193,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TargetGroup: {fileID: 0}
-  _boomerang: {fileID: 3558624528541944798}
-  _shadowBoomerang: {fileID: 6186366267837455062}
+  _boomerang: {fileID: 0}
+  _shadowBoomerang: {fileID: 0}
   shadowBoomerangCollected: 0
   _boomerangThrow: {fileID: 0}
 --- !u!50 &8119343296046956285
@@ -224,7 +222,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &2036063889959427783
 CapsuleCollider2D:
