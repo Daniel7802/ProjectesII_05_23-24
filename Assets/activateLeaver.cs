@@ -27,7 +27,8 @@ public class activateLeaver : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Boomerang"))
         {
-            if(collision.GetComponent<BoomerangThrow>().type == BoomerangThrow.boomerangType.NORMAL) 
+          
+            if(collision.GetComponentInParent<BoomerangThrow>().type == BoomerangThrow.boomerangType.NORMAL) 
             {
                 activate = true;
                 animator.SetBool("active", true);
