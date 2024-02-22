@@ -20,8 +20,8 @@ public class HealthSystem : MonoBehaviour
     private bool invincible = false;
 
 
-    private float canGetDamageTimer = 0.0f;
-    [SerializeField] private float canGetDamageMaxTimer;
+    private float canGetDamageTimer = 0f;
+    private float canGetDamageMaxTimer = 0.5f;
 
     protected SpriteRenderer spriteRenderer;
     [SerializeField] protected Material defaultMaterial;
@@ -78,8 +78,8 @@ public class HealthSystem : MonoBehaviour
     }
 
     public void GetDamage(int amount)
-    {        
-        if(!ds.isDead)
+    {
+        if (!ds.isDead)
         {
             _audioSource.PlayOneShot(damageSound);
             health -= amount;

@@ -154,7 +154,6 @@ MonoBehaviour:
   health: 0
   getHit: 0
   damageSound: {fileID: 8300000, guid: 6efaa4ea0eb16334f854cd6fc43cf133, type: 3}
-  canGetDamageMaxTimer: 0
   defaultMaterial: {fileID: 0}
   damagedMaterial: {fileID: 0}
   damagedTime: 0.125
@@ -428,7 +427,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416834808553754793}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!96 &3186222789098184563
 TrailRenderer:
   serializedVersion: 3
@@ -480,8 +479,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.010101318
-        value: 0.6133213
+        time: 0.0055885315
+        value: 0.52421
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -502,9 +501,9 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 0.6901961}
-      key2: {r: 1, g: 1, b: 1, a: 0}
+      key0: {r: 1, g: 1, b: 1, a: 0}
+      key1: {r: 1, g: 1, b: 1, a: 0.37757787}
+      key2: {r: 1, g: 1, b: 1, a: 0.6901961}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -519,7 +518,7 @@ TrailRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 65535
+      atime1: 31997
       atime2: 65535
       atime3: 0
       atime4: 0
@@ -529,7 +528,7 @@ TrailRenderer:
       m_Mode: 0
       m_ColorSpace: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
+      m_NumAlphaKeys: 3
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
@@ -5536,11 +5535,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
---- !u!1 &6186366267837455062 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6657343719683139223, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
-  m_PrefabInstance: {fileID: 700804038090636353}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7630211537684905033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6942920568467783688, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
@@ -5639,10 +5633,5 @@ PrefabInstance:
 --- !u!4 &962452590142860609 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6942920568467783688, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
-  m_PrefabInstance: {fileID: 7854670210418617673}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3558624528541944798 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6657343719683139223, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
   m_PrefabInstance: {fileID: 7854670210418617673}
   m_PrefabAsset: {fileID: 0}
