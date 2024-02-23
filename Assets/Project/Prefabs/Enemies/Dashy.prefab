@@ -83,7 +83,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: -1224618603, guid: 47319e76dcacb8b48a2c4f9309badc9c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -120,6 +120,7 @@ MonoBehaviour:
   targetFoundAlert: {fileID: 4143192538361341163}
   lostTargetAlert: {fileID: 1194824986348023701}
   hitParticles: {fileID: 4124127140682516938, guid: b2e66122466bf6d42a08e6b050756436, type: 3}
+  FreezeParticles: {fileID: 0}
   knockbackForce: 2
   buzzSound: {fileID: 0}
   chargingSpeed: 1

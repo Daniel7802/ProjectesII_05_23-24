@@ -84,7 +84,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: -1601364208, guid: c5c02f42f450cd444ac627ae1abac486, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -180,9 +180,10 @@ MonoBehaviour:
   chasingSpeed: 15
   startChasingRange: 7
   stopChasingRange: 9
-  detectAlert: {fileID: 7876159836395383995}
+  targetFoundAlert: {fileID: 0}
   lostTargetAlert: {fileID: 4980021602583810777}
   hitParticles: {fileID: 0}
+  FreezeParticles: {fileID: 0}
   knockbackForce: 3
   slimeJumpSound: {fileID: 8300000, guid: a9adc3be9c93df54abdf66972003f3c7, type: 3}
 --- !u!114 &3777680514949961585
@@ -201,7 +202,6 @@ MonoBehaviour:
   health: 0
   getHit: 0
   damageSound: {fileID: 8300000, guid: 243831b253368bc40b4e9a4ca743e590, type: 3}
-  canGetDamageMaxTimer: 0.5
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
   damagedTime: 0.12
@@ -507,11 +507,6 @@ PrefabInstance:
 --- !u!4 &6874641738931072825 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1495091724837097479, guid: 99f343e49e56a5a40acee073d79230cf, type: 3}
-  m_PrefabInstance: {fileID: 5465118407299301182}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &7876159836395383995 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 2780336806846944133, guid: 99f343e49e56a5a40acee073d79230cf, type: 3}
   m_PrefabInstance: {fileID: 5465118407299301182}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7797620701494556546

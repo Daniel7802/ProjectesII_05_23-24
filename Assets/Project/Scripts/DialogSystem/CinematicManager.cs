@@ -223,8 +223,8 @@ public class CinematicManager : MonoBehaviour
                 {
                     //Dialog.gameObject.SetActive(true);
                     isCinematicMode = true;
-                    gameCameraC.gameObject.SetActive(true);
-                    gameCameraC.EnterCinematicMode();
+                    //gameCameraC.gameObject.SetActive(true);
+                    //gameCameraC.EnterCinematicMode();
                 }
                 else if (command.id == CinematicCommandId.exitCinematicMode)
                 {
@@ -255,12 +255,12 @@ public class CinematicManager : MonoBehaviour
                 }
                 else if (command.id == CinematicCommandId.setCameraPosition)
                 {
-                    int index = Int32.Parse(command.param1);
+                    //int index = Int32.Parse(command.param1);
 
-                    gameCamera.position = Vector3.MoveTowards(gameCamera.position, cameraPositions[index].position, 3 * Time.deltaTime);
+                    //gameCamera.position = Vector3.MoveTowards(gameCamera.position, cameraPositions[index].position, 3 * Time.deltaTime);
 
-                    gameCamera.position = cameraPositions[index].position;
-                    //gameCamera.rotation = cameraPositions[index].rotation;
+                    //gameCamera.position = cameraPositions[index].position;
+                    ////gameCamera.rotation = cameraPositions[index].rotation;
                 }
                 else if (command.id == CinematicCommandId.setCameraSize)
                 {

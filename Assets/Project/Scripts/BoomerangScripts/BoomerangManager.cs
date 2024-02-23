@@ -20,6 +20,7 @@ public class BoomerangManager : MonoBehaviour
 
 
     public bool shadowBoomerangCollected = true;
+    public bool iceBoomerangCollected = false;
 
  
     //[SerializeField]
@@ -69,10 +70,10 @@ public class BoomerangManager : MonoBehaviour
     {
         if (!_boomerangThrow.isFlying)
         {
-            if (Input.GetKeyDown(KeyCode.Q) && shadowBoomerangCollected)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 m_TargetGroup.RemoveMember(actualBoomerang.transform);
-                if (actualBoomerang == _boomerang)
+                if (actualBoomerang == _boomerang && iceBoomerangCollected)
                 {
                     actualBoomerang.SetActive(false);
                     actualBoomerang = _iceBoomerang;
@@ -86,8 +87,7 @@ public class BoomerangManager : MonoBehaviour
 
                     actualBoomerang.SetActive(true);
                 }
-
-                else if (actualBoomerang == _iceBoomerang)
+                else if (actualBoomerang == _iceBoomerang && shadowBoomerangCollected)
                 {
                     actualBoomerang.SetActive(false);
                     actualBoomerang = _shadowBoomerang;
@@ -96,24 +96,23 @@ public class BoomerangManager : MonoBehaviour
                 }
                 StartCoroutine(AddToTargetGroup(actualBoomerang));
             }
-            if (Input.GetKeyDown(KeyCode.E) && shadowBoomerangCollected)
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 m_TargetGroup.RemoveMember(actualBoomerang.transform);
-                if (actualBoomerang == _boomerang)
+                if (actualBoomerang == _boomerang && shadowBoomerangCollected)
                 {
                     actualBoomerang.SetActive(false);
                     actualBoomerang = _shadowBoomerang;
 
                     actualBoomerang.SetActive(true);
                 }
-                else if (actualBoomerang == _shadowBoomerang)
+                else if (actualBoomerang == _shadowBoomerang && iceBoomerangCollected)
                 {
                     actualBoomerang.SetActive(false);
                     actualBoomerang = _iceBoomerang;
 
                     actualBoomerang.SetActive(true);
                 }
-
                 else if (actualBoomerang == _iceBoomerang)
                 {
                     actualBoomerang.SetActive(false);

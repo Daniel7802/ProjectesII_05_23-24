@@ -37,7 +37,7 @@ public class GameCamera : MonoBehaviour
         if (cinematicMode)
         {
             transform.position = savedGameplayPosition;
-            cameraC.orthographicSize = savedGameplaySize;
+            //cameraC.orthographicSize = savedGameplaySize;
 
             cinematicMode = false;
         }

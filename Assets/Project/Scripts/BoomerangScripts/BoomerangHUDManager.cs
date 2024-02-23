@@ -8,13 +8,19 @@ public class BoomerangHUDManager : MonoBehaviour
     GameObject boomerang;
 
     [SerializeField]
-    GameObject shadowBoomerang;
-
-    [SerializeField]
     GameObject boomerangImage;
 
     [SerializeField]
+    GameObject shadowBoomerang;
+
+    [SerializeField]
     GameObject shadowBoomerangImage;
+
+    [SerializeField]
+    GameObject iceBoomerang;
+
+    [SerializeField]
+    GameObject iceBoomerangImage;
 
     private BoomerangThrow bt;
 
@@ -43,6 +49,15 @@ public class BoomerangHUDManager : MonoBehaviour
         else
         {
             shadowBoomerangImage.SetActive(false);
+        }
+
+        if (iceBoomerang.activeInHierarchy)
+        {
+            iceBoomerangImage.SetActive(true);
+        }
+        else
+        {
+            iceBoomerangImage.SetActive(false);
         }
     }
 }
