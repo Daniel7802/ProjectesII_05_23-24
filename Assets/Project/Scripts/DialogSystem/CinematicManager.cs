@@ -9,7 +9,7 @@ using UnityEngine.TextCore.Text;
 
 public class CinematicManager : MonoBehaviour
 {
-    private Transform gameCamera;
+    public Transform gameCamera;
     public Transform[] cameraPositions;
     public Transform[] characterPositions;
     public GameObject[] Characters;
@@ -134,8 +134,7 @@ public class CinematicManager : MonoBehaviour
 
         dialogTextC = dialogText.GetComponent<TextMeshProUGUI>();
 
-        //gameCameraC = FindObjectOfType<GameCamera>();
-        //gameCamera = gameCameraC.transform;
+        gameCameraC = gameCamera.GetComponent<GameCamera>();
     }
 
     // Update is called once per frame
@@ -166,7 +165,7 @@ public class CinematicManager : MonoBehaviour
 
             if (showingDialog)
             {
-                if(firstTime)
+                if (firstTime)
                 {
                     dialogTextC.text = string.Empty;
                     StartDialogue();
@@ -174,13 +173,13 @@ public class CinematicManager : MonoBehaviour
                 }
 
                 for (int i = 0; i < dialogCommon.Length; i++)
-                { 
-                    dialogCommon[i].gameObject.SetActive(true); 
+                {
+                    dialogCommon[i].gameObject.SetActive(true);
                 }
 
                 for (int i = 0; i < dialogCharacters.Length; i++)
-                { 
-                    dialogCharacters[i].gameObject.SetActive(false); 
+                {
+                    dialogCharacters[i].gameObject.SetActive(false);
                 }
 
                 int character = dialogsData[dialogIndex].character;
@@ -224,6 +223,8 @@ public class CinematicManager : MonoBehaviour
                 {
                     //Dialog.gameObject.SetActive(true);
                     isCinematicMode = true;
+                    gameCameraC.gameObject.SetActive(true);
+                    gameCameraC.EnterCinematicMode();
                 }
                 else if (command.id == CinematicCommandId.exitCinematicMode)
                 {
@@ -231,6 +232,8 @@ public class CinematicManager : MonoBehaviour
                     isCinematicMode = false;
                     playingCinematic = false;
                     PC.playerStates = PlayerController.PlayerStates.NONE;
+                    gameCameraC.gameObject.SetActive(false);
+                    gameCameraC.ExitCinematicMode();
                 }
                 else if (command.id == CinematicCommandId.wait)
                 {
@@ -254,7 +257,9 @@ public class CinematicManager : MonoBehaviour
                 {
                     int index = Int32.Parse(command.param1);
 
-                    //gameCamera.position = cameraPositions[index].position;
+                    gameCamera.position = Vector3.MoveTowards(gameCamera.position, cameraPositions[index].position, 3 * Time.deltaTime);
+
+                    gameCamera.position = cameraPositions[index].position;
                     //gameCamera.rotation = cameraPositions[index].rotation;
                 }
                 else if (command.id == CinematicCommandId.setCameraSize)
@@ -294,12 +299,12 @@ public class CinematicManager : MonoBehaviour
                 {
                     int speed = Int32.Parse(command.param1);
                 }
-                else if(command.id == CinematicCommandId.fadeInEffect)
+                else if (command.id == CinematicCommandId.fadeInEffect)
                 {
                     FadeInOutManager.instance.Fadein();
                     Debug.Log("Works");
                 }
-                else if(command.id == CinematicCommandId.fadeOutEffect)
+                else if (command.id == CinematicCommandId.fadeOutEffect)
                 {
                     FadeInOutManager.instance.Fadeout();
                 }
@@ -353,13 +358,13 @@ public class CinematicManager : MonoBehaviour
 
     IEnumerator TypeLine()
     {
-        foreach(char c in dialogsData[dialogIndex].text.ToCharArray())
+        foreach (char c in dialogsData[dialogIndex].text.ToCharArray())
         {
-            if(c == '<')
+            if (c == '<')
             {
                 textSpeed = 0.00f;
             }
-            else if(c == '>')
+            else if (c == '>')
             {
                 textSpeed = 0.05f;
             }
@@ -368,12 +373,12 @@ public class CinematicManager : MonoBehaviour
             if (textSpeed != 0 && isCinematicMode)
                 //AudioManager._instance.Play2dOneShotSound(typeSound, 0.3f, 0.5f, 1.5f);
 
-            yield return new WaitForSeconds(textSpeed);
+                yield return new WaitForSeconds(textSpeed);
         }
     }
     private void NextLine()
     {
-        if(dialogIndex < dialogsData.Length - 1)
+        if (dialogIndex < dialogsData.Length - 1)
         {
             dialogIndex++;
             dialogTextC.text = string.Empty;
@@ -416,6 +421,6 @@ public class CinematicManager : MonoBehaviour
                 StopAllCoroutines();
                 dialogTextC.text = text;
             }
-        }  
+        }
     }
 }
