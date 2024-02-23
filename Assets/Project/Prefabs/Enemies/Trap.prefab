@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 5
   m_Sprite: {fileID: -875199892, guid: 6b374fda15cb1374a99409005d4c5401, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -104,8 +104,10 @@ MonoBehaviour:
   right: 0
   left: 0
   trapBullet: {fileID: 575486747931979159, guid: 764d080d24b740345a482445c3350e8e, type: 3}
+  wait: 0
   shootSound: {fileID: 8300000, guid: f3aa93e4c43b38040bc478d855e96e57, type: 3}
   reloadingTime: 3
+  startTime: 0
 --- !u!82 &2523845130063482466
 AudioSource:
   m_ObjectHideFlags: 0
