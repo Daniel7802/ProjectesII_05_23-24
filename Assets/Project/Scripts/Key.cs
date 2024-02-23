@@ -11,8 +11,8 @@ public class Key : MonoBehaviour
     [SerializeField]
     GameObject winManager;
 
-    [SerializeField]
-    GameObject position;
+    //[SerializeField]
+    //GameObject position;
     void Start()
     {
         taken = false;
@@ -23,7 +23,7 @@ public class Key : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             taken = true;
-            collision.gameObject.transform.position = position.transform.position;
+            //collision.gameObject.transform.position = position.transform.position;
             wm.counter++;
         }
     }

@@ -18,7 +18,6 @@ public class ShadowBoomerangActivation : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        bm.shadowBoomerangCollected = true;
-        Destroy(gameObject);
+        bm.shadowBoomerangCollected = true;       
     }
 }
