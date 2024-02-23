@@ -50,6 +50,8 @@ public class Enemy : MonoBehaviour
 
     //hit
     public GameObject hitParticles;
+    [SerializeField]
+    GameObject FreezeParticles;
     public float knockbackForce;
 
 
@@ -155,8 +157,13 @@ public class Enemy : MonoBehaviour
     protected IEnumerator Ice()
     {
         currentState = CurrentState.ICE;
-        
-        yield return new WaitForSeconds(10f);
+       GameObject a = Instantiate(FreezeParticles, this.transform.position, Quaternion.identity);  
+        a.transform.SetParent(transform, true);
+        GetComponent<SpriteRenderer>().color = new Color(0.5f,0.6f,0.9f,1);
+       
+        yield return new WaitForSeconds(2f);
+        GetComponent<SpriteRenderer>().color = Color.white;
+
         currentState = CurrentState.ROAMING;
     }
 
