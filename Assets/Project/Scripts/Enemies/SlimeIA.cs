@@ -43,6 +43,8 @@ public class SlimeIA : Enemy
             case CurrentState.CHASING:
                 Chasing();
                 break;
+            case CurrentState.ICE:
+                break;
         }
 
         if (rb2D.velocity.magnitude < speedToLand) animator.SetBool("jump", false);

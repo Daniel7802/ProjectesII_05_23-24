@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected LayerMask hitLayer;
 
-    protected enum CurrentState { ROAMING, CHASING, AIMING, RELOADING, SHOOTING };
+    protected enum CurrentState { ROAMING, CHASING, AIMING, RELOADING, SHOOTING, ICE };
     [SerializeField]
     protected CurrentState currentState = CurrentState.ROAMING;
 
@@ -50,7 +50,10 @@ public class Enemy : MonoBehaviour
 
     //hit
     public GameObject hitParticles;
+    [SerializeField]
+    GameObject FreezeParticles;
     public float knockbackForce;
+    private bool canFreeze = true;
 
 
     public virtual void Start()
@@ -107,6 +110,7 @@ public class Enemy : MonoBehaviour
     {
         roamingRandomPoint = GetRandomPointInCircle(roamingZone);
     }
+
     protected Vector2 GetRandomPointInCircle(CircleCollider2D circle)
     {
 
@@ -120,6 +124,7 @@ public class Enemy : MonoBehaviour
 
         return new Vector2(x, y);
     }
+
     public void FlipX()
     {
         if (rb2D.velocity.x > 0) spriteRenderer.flipX = false;
@@ -144,11 +149,32 @@ public class Enemy : MonoBehaviour
         sp.enabled = false;
 
     }
+    protected IEnumerator FreezeRecover()
+    {
+        canFreeze = false;
+        yield return new WaitForSecondsRealtime(6.0f);
+        canFreeze = true;
+    }
     protected bool RaycastPlayer()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, 100, hitLayer);
         return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
     }
+
+    protected IEnumerator Ice()
+    {
+        currentState = CurrentState.ICE;
+        StartCoroutine(FreezeRecover());
+        GameObject a = Instantiate(FreezeParticles, this.transform.position, Quaternion.identity);  
+        a.transform.SetParent(transform, true);
+        GetComponent<SpriteRenderer>().color = new Color(0.5f,0.6f,0.9f,1);
+       
+        yield return new WaitForSeconds(2f);
+        GetComponent<SpriteRenderer>().color = Color.white;
+
+        currentState = CurrentState.ROAMING;
+    }
+
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Boomerang"))
@@ -167,6 +193,12 @@ public class Enemy : MonoBehaviour
 
             particles.transform.position = transform.position;
             particles.transform.rotation = Quaternion.Euler(-angleDegrees, 90, -90);
+
+            if(collision.GetComponentInParent<IceBoomerang>())
+            {
+                if(canFreeze)
+                StartCoroutine(Ice());
+            }
 
         }
         if (collision.CompareTag("Wall"))
