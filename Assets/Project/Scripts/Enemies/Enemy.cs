@@ -53,6 +53,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     GameObject FreezeParticles;
     public float knockbackForce;
+    private bool canFreeze = true;
 
 
     public virtual void Start()
@@ -148,6 +149,12 @@ public class Enemy : MonoBehaviour
         sp.enabled = false;
 
     }
+    protected IEnumerator FreezeRecover()
+    {
+        canFreeze = false;
+        yield return new WaitForSecondsRealtime(6.0f);
+        canFreeze = true;
+    }
     protected bool RaycastPlayer()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, 100, hitLayer);
@@ -157,7 +164,8 @@ public class Enemy : MonoBehaviour
     protected IEnumerator Ice()
     {
         currentState = CurrentState.ICE;
-       GameObject a = Instantiate(FreezeParticles, this.transform.position, Quaternion.identity);  
+        StartCoroutine(FreezeRecover());
+        GameObject a = Instantiate(FreezeParticles, this.transform.position, Quaternion.identity);  
         a.transform.SetParent(transform, true);
         GetComponent<SpriteRenderer>().color = new Color(0.5f,0.6f,0.9f,1);
        
@@ -188,6 +196,7 @@ public class Enemy : MonoBehaviour
 
             if(collision.GetComponentInParent<IceBoomerang>())
             {
+                if(canFreeze)
                 StartCoroutine(Ice());
             }
 
