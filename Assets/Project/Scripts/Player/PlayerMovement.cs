@@ -9,9 +9,9 @@ public class PlayerMovement : MonoBehaviour
     private ParticleSystem.EmissionModule _missionModuleWalk;
 
 
-    [SerializeField]
-    public float speed = 10f;
-    public float maxSpeed = 90f;
+    public float speed = 100f;
+    public float maxSpeed = 100f;
+    public float iceSpeedRecover = 100.0f;
 
     public Rigidbody2D playerRb;
     private Animator playerAnimator;
@@ -20,9 +20,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movementVectorNormalized;
 
     //dash
-    [SerializeField] private float _dashingVelocity = 50f;
-    [SerializeField] private float _dashingTime = 0.02f;
-    [SerializeField] private float _dashingCoolDownTime = 1f;
+    private float _dashingVelocity = 35f;
+    private float _dashingTime = 0.02f;
+    private float _dashingCoolDownTime = 0.5f;
     private Vector2 _dashingDir;
     private bool _isDashing;
     private bool _canDash = true;
@@ -141,5 +141,23 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(_dashingCoolDownTime);
         _canDash = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("IceGround"))
+        {
+            playerRb.drag = 2;
+            speed = 20f;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("IceGround"))
+        {
+            playerRb.drag = 20;
+            speed = iceSpeedRecover;
+        }
     }
 }

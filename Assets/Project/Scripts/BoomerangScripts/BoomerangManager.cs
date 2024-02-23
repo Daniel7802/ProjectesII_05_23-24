@@ -56,14 +56,14 @@ public class BoomerangManager : MonoBehaviour
 
     void prepareLaunch()
     {
-        if(_boomerangThrow.mouseHold)
-        {
-            _playerMovement.speed = prepareLaunchSpeed;
-        }
-        else
-        {
-            _playerMovement.speed = _playerMovement.maxSpeed;
-        }
+        //if(_boomerangThrow.mouseHold)
+        //{
+        //    _playerMovement.speed = _playerMovement.speed* 0.3f;
+        //}
+        //else
+        //{
+        //    _playerMovement.speed = _playerMovement.speed * 1.7f;
+        //}
     }
     void ChangeBoomerang()
     {
