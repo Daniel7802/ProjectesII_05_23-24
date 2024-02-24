@@ -5,9 +5,11 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField]
-    GameObject enemy;
+    public GameObject enemy;
     [SerializeField]
     GameObject player;
+
+
       
 
     // Update is called once per frame
