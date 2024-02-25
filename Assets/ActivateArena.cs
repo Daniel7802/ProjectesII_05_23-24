@@ -23,19 +23,13 @@ public class ActivateArena : MonoBehaviour
         }
         if (arena.GetComponent<WaveSpawner>().isFinished&&!end)
         {
-            StartCoroutine(DeleteSpikes());
+            StartCoroutine(DeleteHalfSpikes());
             end = true;
         }
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            StartCoroutine(ShowSpikes());
-        }
-    }
+  
 
     private IEnumerator ShowSpikes()
     {
@@ -48,14 +42,23 @@ public class ActivateArena : MonoBehaviour
         }
         spikesShowed = true;
     }
-    private IEnumerator DeleteSpikes()
+    private IEnumerator DeleteHalfSpikes()
     {
-        spikes.Reverse();
-        foreach (GameObject spike in spikes)
+       // spikes.Reverse();
+        for (int i = 0; i < spikes.Count / 2; i++)
         {
-            spike.SetActive(false);
+            //spikes[i].SetActive(true);
+            spikes[i + 4].SetActive(false);
             yield return new WaitForSeconds(spikesSpawnSeconds);
         }
-        spikes.Reverse();
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player")&&!end)
+        {
+            StartCoroutine(ShowSpikes());
+        }
     }
 }

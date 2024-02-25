@@ -26,13 +26,12 @@ public class SlimeIA : Enemy
     public override void Start()
     {
         base.Start();
-        SetNewWaitingTime();        
+        SetNewWaitingTime();
     }
 
     private void Update()
     {
-        FlipX();
-        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        FlipX();       
 
         switch (currentState)
         {
@@ -68,11 +67,12 @@ public class SlimeIA : Enemy
 
     public override void Roaming()
     {
-        if (distanceToPlayer < startChasingRange && RaycastPlayer())
+        if (enemyDetectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
         {
+            StartCoroutine(EnableAlert(targetFoundAlert));
             if (rb2D.velocity.magnitude < speedToLand)
                 waitingTimer = waitingTime;
-            StartCoroutine(EnableAlert(targetFoundAlert));
+
             currentState = CurrentState.CHASING;
         }
         else
@@ -86,25 +86,19 @@ public class SlimeIA : Enemy
 
     public override void Chasing()
     {
-        if (distanceToPlayer > stopChasingRange)//target lost --> to roaming
+        if (enemyDetectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
+        {
+            
+            minWaitingTime = minWaitingTimeChasing;
+            maxWaitingTime = maxWaitingTimeChasing;
+            base.Chasing();
+        }
+        else
         {
             StartCoroutine(EnableAlert(lostTargetAlert));
             currentState = CurrentState.ROAMING;
         }
-        else
-        {
-            if (RaycastPlayer())
-            {
-                minWaitingTime = minWaitingTimeChasing;
-                maxWaitingTime = maxWaitingTimeChasing;
-                base.Chasing();
-            }
-            else
-            {
-                StartCoroutine(EnableAlert(lostTargetAlert));
-                currentState = CurrentState.ROAMING;
-            }
-        }
+       
 
 
     }

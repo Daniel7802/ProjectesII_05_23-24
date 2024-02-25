@@ -14,11 +14,9 @@ public class SlimeDeadSystem : DeadSystem
     private Vector2 vectorBetweenPlayer, vectorSlime1, vectorSlime2; 
 
     public override void Dead()
-    {
-        player = GetComponent<Enemy>().player;        
+    {             
         base.Dead();
-        SpawnMiniSlimes();
-        
+        SpawnMiniSlimes();        
     }
     void SpawnMiniSlimes()
     {
@@ -28,9 +26,7 @@ public class SlimeDeadSystem : DeadSystem
             
             Vector2 vector = transform.position;
             GameObject slime = Instantiate(miniSlime, vector, Quaternion.identity);
-            GameObject slime2 = Instantiate(miniSlime, vector, Quaternion.identity);
-            slime.GetComponent<Enemy>().player = player;
-            slime2.GetComponent<Enemy>().player = player;
+            GameObject slime2 = Instantiate(miniSlime, vector, Quaternion.identity);          
 
             slime.GetComponent<HealthSystem>().TurnInvencible(true);
             slime2.GetComponent<HealthSystem>().TurnInvencible(true);

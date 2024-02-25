@@ -4,26 +4,19 @@ using UnityEngine;
 
 
 public class WaveSpawner : MonoBehaviour
-{
-    public GameObject player;
+{   
     public GameObject spawnAlert; // Prefab del signo de alerta
 
     public List<EnemyWave> waves = new List<EnemyWave>();
     private int currentWaveIndex = -1;
     private List<GameObject> spawnedEnemies = new List<GameObject>();
-    public bool isFinished = false;
-   
-
-    
+    public bool isFinished = false; 
 
 
     private void Start()
     {
-
         StartCoroutine(StartNextWaveWithDelay());
-
-    }
-    
+    }    
     
     private IEnumerator StartNextWaveWithDelay()
     {
@@ -78,8 +71,7 @@ public class WaveSpawner : MonoBehaviour
     {
         foreach (var enemyInfo in wave.enemiesToSpawn)
         {
-            GameObject spawnedEnemy = Instantiate(enemyInfo.enemyPrefab, enemyInfo.spawn.position, Quaternion.identity);
-            spawnedEnemy.GetComponent<Enemy>().player = player;
+            GameObject spawnedEnemy = Instantiate(enemyInfo.enemyPrefab, enemyInfo.spawn.position, Quaternion.identity);           
             spawnedEnemies.Add(spawnedEnemy);
         }
     }

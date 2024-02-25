@@ -36,7 +36,7 @@ public class DashyIA : Enemy
     {
         
         FlipByTarget();
-        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        
 
         switch (currentState)
         {
@@ -78,7 +78,7 @@ public class DashyIA : Enemy
             if (chargingTimer < chargingTime)
             {
                 
-                Vector2 dir = new Vector2(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y);
+                Vector2 dir = new Vector2(transform.position.x - enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position.x, transform.position.y - enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position.y);
                 Vector2 chargingForce = dir.normalized * chargingSpeed;
                 rb2D.AddForce(chargingForce);
             }
@@ -87,7 +87,7 @@ public class DashyIA : Enemy
                 
                 if (!lastPlayerPos)
                 {
-                    target = player.transform.position;
+                    target = enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position;
                     lastPlayerPos = true;
                 }
                 moveSpeed = chasingSpeed;                
@@ -126,15 +126,15 @@ public class DashyIA : Enemy
         }
     }
 
-    public override void OnTriggerEnter2D(Collider2D collision)
-    {
-        base.OnTriggerEnter2D(collision);
-        if (collision.CompareTag("Player"))
-        {
-            currentState = CurrentState.RELOADING;
-            chargingTimer = 0;
-        }
-    }
+    //public override void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    base.OnTriggerEnter2D(collision);
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        currentState = CurrentState.RELOADING;
+    //        chargingTimer = 0;
+    //    }
+    //}
 
 
 }

@@ -8,9 +8,7 @@ using static UnityEngine.ParticleSystem;
 
 
 public class Enemy : MonoBehaviour
-{
-    [SerializeField]
-    public GameObject player;
+{   
     protected Rigidbody2D rb2D;
     protected SpriteRenderer spriteRenderer;
     protected Animator animator;
@@ -28,7 +26,7 @@ public class Enemy : MonoBehaviour
 
     //MOVEMENT
     protected float moveSpeed;
-
+ 
     //ROAMING
     [SerializeField]
     protected float roamingSpeed;
@@ -38,6 +36,9 @@ public class Enemy : MonoBehaviour
     protected bool setNewDest = false;
 
     //CHASING    
+    [SerializeField]
+    public GameObject enemyDetectionZone;
+
     [SerializeField]
     protected float chasingSpeed;
     public float startChasingRange;
@@ -49,11 +50,11 @@ public class Enemy : MonoBehaviour
     protected SpriteRenderer lostTargetAlert;
 
     //hit
-    public GameObject hitParticles;
+    
     [SerializeField]
     GameObject FreezeParticles;
-    public float knockbackForce;
-    private bool canFreeze = true;
+  
+    public bool canFreeze = true;
 
 
     public virtual void Start()
@@ -95,16 +96,12 @@ public class Enemy : MonoBehaviour
     public virtual void Chasing()
     {
         moveSpeed = chasingSpeed;
-        target = player.transform.position;
+        target = enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position;
         Movement();
 
     }
 
-    public void KnockBack(Vector2 dir)
-    {
-        Vector2 kbForce = dir.normalized * knockbackForce;
-        rb2D.AddForce(kbForce, ForceMode2D.Impulse);
-    }
+   
 
     protected void SetNewRoamingDestination()
     {
@@ -135,7 +132,8 @@ public class Enemy : MonoBehaviour
         }
         else spriteRenderer.flipX = true;
     }
-    
+
+
     public void FlipByTarget()
     {
         if (target.x > transform.position.x) spriteRenderer.flipX = false;
@@ -157,66 +155,35 @@ public class Enemy : MonoBehaviour
     }
     protected bool RaycastPlayer()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, 100, hitLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, (enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position - transform.position).normalized, 100, hitLayer);
         return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
     }
 
-    protected IEnumerator Ice()
+    public IEnumerator Ice()
     {
         currentState = CurrentState.ICE;
         StartCoroutine(FreezeRecover());
-        GameObject a = Instantiate(FreezeParticles, this.transform.position, Quaternion.identity);  
+        GameObject a = Instantiate(FreezeParticles, this.transform.position, Quaternion.identity);
         a.transform.SetParent(transform, true);
-        GetComponent<SpriteRenderer>().color = new Color(0.5f,0.6f,0.9f,1);
-       
+        GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.6f, 0.9f, 1);
+
         yield return new WaitForSeconds(2f);
         GetComponent<SpriteRenderer>().color = Color.white;
 
         currentState = CurrentState.ROAMING;
     }
-
-    public virtual void OnTriggerEnter2D(Collider2D collision)
+  
+    public virtual void OnDrawGizmos()
     {
-        if (collision.CompareTag("Boomerang"))
-        {
-            Vector2 dir = transform.position - collision.transform.position;
-            KnockBack(dir);
-
-            float angleRadians = Mathf.Atan2(dir.y, dir.x);
-
-            // Convierte el ángulo a grados.
-            float angleDegrees = angleRadians * Mathf.Rad2Deg;
-            GameObject particles = Instantiate(hitParticles);
-            particles.transform.SetParent(transform, true);
-            if (GetComponent<LineRenderer>())
-                particles.transform.localScale *= 2;
-
-            particles.transform.position = transform.position;
-            particles.transform.rotation = Quaternion.Euler(-angleDegrees, 90, -90);
-
-            if(collision.GetComponentInParent<IceBoomerang>())
-            {
-                if(canFreeze)
-                StartCoroutine(Ice());
-            }
-
-        }
-        if (collision.CompareTag("Wall"))
-        {
-            setNewDest = true;
-        }
-    }
-    public void OnDrawGizmos()
-    {
-        //Gizmos.color = Color.yellow;
-        //Gizmos.DrawWireSphere(transform.position, startChasingRange);
-        //Gizmos.DrawWireSphere(transform.position, stopChasingRange);
-        //Gizmos.color = Color.red;
-        //Gizmos.DrawSphere(target, 0.4f);
+        
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(roamingRandomPoint, 0.4f);
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(roamingZone.transform.position, roamingZone.radius * this.transform.localScale.x);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, enemyDetectionZone.GetComponent<CircleCollider2D>().radius * this.transform.localScale.x);
+
+
     }
 
 }
