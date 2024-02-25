@@ -1,12 +1,13 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 [System.Serializable]
 public class EnemySpawnInfo
 {
     public GameObject enemyPrefab;
     public Transform spawn;
 }
+
 [System.Serializable]
 public class EnemyWave
 {

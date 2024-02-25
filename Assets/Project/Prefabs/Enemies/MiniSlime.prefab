@@ -38,9 +38,9 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5297300515669718673}
   - {fileID: 6874641738931072825}
   - {fileID: 567056011771088956}
-  - {fileID: 5297300515669718673}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -180,10 +180,10 @@ MonoBehaviour:
   chasingSpeed: 15
   startChasingRange: 7
   stopChasingRange: 9
-  targetFoundAlert: {fileID: 0}
+  targetFoundAlert: {fileID: 7876159836395383995}
   lostTargetAlert: {fileID: 4980021602583810777}
-  hitParticles: {fileID: 0}
-  FreezeParticles: {fileID: 0}
+  hitParticles: {fileID: 4124127140682516938, guid: b2e66122466bf6d42a08e6b050756436, type: 3}
+  FreezeParticles: {fileID: 6096575759060088230, guid: 3e8f2d9c4f8211442a533f620a1b7bd9, type: 3}
   knockbackForce: 3
   slimeJumpSound: {fileID: 8300000, guid: a9adc3be9c93df54abdf66972003f3c7, type: 3}
 --- !u!114 &3777680514949961585
@@ -507,6 +507,11 @@ PrefabInstance:
 --- !u!4 &6874641738931072825 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1495091724837097479, guid: 99f343e49e56a5a40acee073d79230cf, type: 3}
+  m_PrefabInstance: {fileID: 5465118407299301182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &7876159836395383995 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2780336806846944133, guid: 99f343e49e56a5a40acee073d79230cf, type: 3}
   m_PrefabInstance: {fileID: 5465118407299301182}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7797620701494556546

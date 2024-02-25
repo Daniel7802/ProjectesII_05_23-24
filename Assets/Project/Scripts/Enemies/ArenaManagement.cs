@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class WaveSpawner : MonoBehaviour
 {
     public GameObject player;
@@ -10,15 +11,23 @@ public class WaveSpawner : MonoBehaviour
     public List<EnemyWave> waves = new List<EnemyWave>();
     private int currentWaveIndex = -1;
     private List<GameObject> spawnedEnemies = new List<GameObject>();
+    public bool isFinished = false;
    
+
+    
+
 
     private void Start()
     {
-        StartCoroutine(StartNextWaveWithDelay());
-    }
 
+        StartCoroutine(StartNextWaveWithDelay());
+
+    }
+    
+    
     private IEnumerator StartNextWaveWithDelay()
     {
+        
         while (true)
         {
             yield return new WaitUntil(() => AreAllWaveEnemiesDead());
@@ -32,7 +41,7 @@ public class WaveSpawner : MonoBehaviour
                 foreach (var enemyInfo in waves[currentWaveIndex + 1].enemiesToSpawn)
                 {
                     GameObject alertSign = Instantiate(spawnAlert, enemyInfo.spawn.position, Quaternion.identity);
-                    
+
                     alertSigns.Add(alertSign); // Añadir a la lista
                 }
 
@@ -45,7 +54,7 @@ public class WaveSpawner : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(1f); // Tiempo adicional de espera si es necesario
+            yield return new WaitForSeconds(0.5f); // Tiempo adicional de espera si es necesario
             StartNextWave();
         }
     }
@@ -60,6 +69,7 @@ public class WaveSpawner : MonoBehaviour
         }
         else
         {
+            isFinished = true;
             Debug.Log("Todas las oleadas completadas.");
         }
     }
@@ -79,4 +89,5 @@ public class WaveSpawner : MonoBehaviour
         spawnedEnemies.RemoveAll(enemy => enemy == null);
         return spawnedEnemies.Count == 0;
     }
+   
 }
