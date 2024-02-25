@@ -7,10 +7,7 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     public GameObject enemy;
     [SerializeField]
-    GameObject player;
-
-
-      
+    GameObject player;      
 
     // Update is called once per frame
     void Update()

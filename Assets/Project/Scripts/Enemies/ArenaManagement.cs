@@ -1,75 +1,82 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class ArenaManagement : MonoBehaviour
+public class WaveSpawner : MonoBehaviour
 {
-    
-    [SerializeField] public List<List<Spawner>> waves;
+    public GameObject player;
+    public GameObject spawnAlert; // Prefab del signo de alerta
 
-    [SerializeField] private List<Spawner> wave1;
-    [SerializeField] private List<Spawner> wave2;
-    [SerializeField] private List<Spawner> wave3;
-    [SerializeField] private List<Spawner> wave4;
-    [SerializeField] private List<Spawner> wave5;
-
-    [SerializeField] private List<GameObject> enemiesInWave;
-
-    bool enemiesAdded = false;
-   
+    public List<EnemyWave> waves = new List<EnemyWave>();
+    private int currentWaveIndex = -1;
+    private List<GameObject> spawnedEnemies = new List<GameObject>();
    
 
-    int actualWaveIndex = 0;
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        waves = new List<List<Spawner>>();
-        //wave1 = new List<Spawner>();
-        //wave2 = new List<Spawner>();
-        enemiesInWave = new List<GameObject>();
-        waves.Add(wave1);
-        waves.Add(wave2);
-        
-       //waves.Add(wave3);
+        StartCoroutine(StartNextWaveWithDelay());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator StartNextWaveWithDelay()
     {
-        StartNextWave();
-        if (!enemiesAdded)
+        while (true)
         {
-            foreach (Spawner spawner in waves[actualWaveIndex])
+            yield return new WaitUntil(() => AreAllWaveEnemiesDead());
+
+            // Lista para almacenar las instancias de los signos de alerta
+            List<GameObject> alertSigns = new List<GameObject>();
+
+            if (currentWaveIndex + 1 < waves.Count) // Verificar si hay más oleadas
             {
-                enemiesInWave.Add(spawner.enemy);
+                // Instanciar un signo de alerta en la posición de cada enemigo de la próxima oleada
+                foreach (var enemyInfo in waves[currentWaveIndex + 1].enemiesToSpawn)
+                {
+                    GameObject alertSign = Instantiate(spawnAlert, enemyInfo.spawn.position, Quaternion.identity);
+                    
+                    alertSigns.Add(alertSign); // Añadir a la lista
+                }
+
+                yield return new WaitForSeconds(2f); // Esperar 2 segundos con los signos de alerta activos
+
+                // Desactivar y destruir los signos de alerta
+                foreach (var sign in alertSigns)
+                {
+                    Destroy(sign);
+                }
             }
-            enemiesAdded=true;
-        }
-        
-        if(enemiesInWave.Count<=0) {
-            actualWaveIndex++;
-            enemiesAdded = false;
+
+            yield return new WaitForSeconds(1f); // Tiempo adicional de espera si es necesario
+            StartNextWave();
         }
     }
-    public void StartNextWave()
-    {
-        if (actualWaveIndex < waves.Count&&!enemiesInWave.Any())
-        {
-            SpawnWave(waves[actualWaveIndex]);
 
+    private void StartNextWave()
+    {
+        currentWaveIndex++;
+        if (currentWaveIndex < waves.Count)
+        {
+            spawnedEnemies.Clear();
+            SpawnWave(waves[currentWaveIndex]);
         }
         else
         {
-            Debug.Log("sacabo");
+            Debug.Log("Todas las oleadas completadas.");
         }
     }
-    private void SpawnWave(List<Spawner> level)
+
+    private void SpawnWave(EnemyWave wave)
     {
-        foreach (Spawner spawner in level)
+        foreach (var enemyInfo in wave.enemiesToSpawn)
         {
-            spawner.Spawn();
+            GameObject spawnedEnemy = Instantiate(enemyInfo.enemyPrefab, enemyInfo.spawn.position, Quaternion.identity);
+            spawnedEnemy.GetComponent<Enemy>().player = player;
+            spawnedEnemies.Add(spawnedEnemy);
         }
+    }
+
+    private bool AreAllWaveEnemiesDead()
+    {
+        spawnedEnemies.RemoveAll(enemy => enemy == null);
+        return spawnedEnemies.Count == 0;
     }
 }
-
