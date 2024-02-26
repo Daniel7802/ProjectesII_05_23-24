@@ -9,9 +9,10 @@ public class DetectionZone : MonoBehaviour
     public float detectionRadius = 5f;
     public LayerMask detectableObjectsLayer;
 
-
+   
     void Update()
     {
+
         // Detecta objetos dentro del radio alrededor del objeto
         Collider2D objectDetected = Physics2D.OverlapCircle(transform.position, detectionRadius, detectableObjectsLayer);
 
@@ -22,7 +23,7 @@ public class DetectionZone : MonoBehaviour
             playerDetected = true;
 
         }
-        if (Vector2.Distance(transform.position, player.transform.position) > detectionRadius)
+        if (Vector2.Distance(transform.position, player.transform.position) > detectionRadius+1)
         {
             playerDetected = false;
         }

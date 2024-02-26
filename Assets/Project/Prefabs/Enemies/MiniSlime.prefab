@@ -42,7 +42,7 @@ Transform:
   - {fileID: 7146709335101038876}
   - {fileID: 567056011771088956}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &85886036668043690
 SpriteRenderer:
@@ -203,7 +203,7 @@ MonoBehaviour:
   damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
   damagedTime: 0.125
   knockbackForce: 5
-  hitParticles: {fileID: 715038747342358181, guid: bf2bff8c69c6eb048a389a4c8a7b8b97, type: 3}
+  hitParticles: {fileID: 4124127140682516938, guid: f04bd7e3d755c5545a237a4ac939cd75, type: 3}
 --- !u!114 &6238226914675135810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af76eb6b91e8574ba3c2d33b4ff7972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blood: {fileID: 715038747342358181, guid: bf2bff8c69c6eb048a389a4c8a7b8b97, type: 3}
+  blood: {fileID: 715038747342358181, guid: f0040b765189a324296ba7ca0ca85e81, type: 3}
   deathSound: {fileID: 8300000, guid: a9adc3be9c93df54abdf66972003f3c7, type: 3}
   deathClipPitch: 0.5
   isDead: 0
@@ -408,7 +408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8302360224837931957, guid: 2979a559db137da4986d073333b41ab4, type: 3}
       propertyPath: detectionRadius
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -559,6 +559,10 @@ PrefabInstance:
     - target: {fileID: 2717214797864894739, guid: a60f5ffb62c7c244482956bf356d6034, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6932088649128909108, guid: a60f5ffb62c7c244482956bf356d6034, type: 3}
+      propertyPath: m_Radius
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7686230234475305767, guid: a60f5ffb62c7c244482956bf356d6034, type: 3}
       propertyPath: m_Name

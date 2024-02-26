@@ -126,15 +126,15 @@ public class DashyIA : Enemy
         }
     }
 
-    //public override void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    base.OnTriggerEnter2D(collision);
-    //    if (collision.CompareTag("Player"))
-    //    {
-    //        currentState = CurrentState.RELOADING;
-    //        chargingTimer = 0;
-    //    }
-    //}
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.CompareTag("Player"))
+        {
+            currentState = CurrentState.RELOADING;
+            chargingTimer = 0;
+        }
+    }
 
 
 }

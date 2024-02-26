@@ -19,6 +19,7 @@ public class DamageSystem : MonoBehaviour
 
             if(collision.gameObject.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs) && collision.tag.Equals("Player") && this.tag != "Boomerang")
             {
+
                 if(phs.isInvincible == false && phs.health > 0 && phs.health <= phs.MaxHealth)
                 {
                     

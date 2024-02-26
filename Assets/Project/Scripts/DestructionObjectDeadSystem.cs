@@ -6,15 +6,11 @@ using UnityEngine.UIElements;
 public class DestructionObjectDeadSystem : DeadSystem
 {
     [SerializeField]
-    private GameObject _dropObject;
-    [SerializeField]
-    private GameObject player;
-    private Vector3 _position;
+    private GameObject _dropObject;    
 
     public override void Dead()
     {
-        GameObject heart = Instantiate(_dropObject, transform.position, Quaternion.identity);
-        heart.GetComponent<CollectableSystem>().SetTargetPosition(player);
+        GameObject heart = Instantiate(_dropObject, transform.position, Quaternion.identity);        
         base.Dead();
        
 

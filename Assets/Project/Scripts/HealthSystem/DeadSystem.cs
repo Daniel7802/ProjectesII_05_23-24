@@ -36,6 +36,11 @@ public class DeadSystem : MonoBehaviour
                 Destroy(_lineRenderer);
                 //EditorApplication.isPaused = true;
             }
+            if (this.TryGetComponent<Enemy>(out Enemy enemy))
+            {
+                enemy.foundTargetAlert.enabled = false;
+                enemy.lostTargetAlert.enabled = false;
+            }
                
             StartCoroutine(PlayDeathClipOn(1));
             Instantiate(blood, transform.position, Quaternion.identity);

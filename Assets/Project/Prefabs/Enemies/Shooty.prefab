@@ -186,7 +186,7 @@ MonoBehaviour:
   aimingTime: 1
   foundTargetSound: {fileID: 8300000, guid: 4212a9fa6b650644ab4b5f34effffc01, type: 3}
   shootyBullet: {fileID: 8740438523283609490, guid: 192ecb6623fbab7438f6bb9073b6799d, type: 3}
-  startShootingRange: 6
+  startShootingRange: 8
   shootSound: {fileID: 8300000, guid: 9a8ba0a603f613a4eabbbc651df3e370, type: 3}
   reloadingTime: 2
   reloadingSound: {fileID: 8300000, guid: 29ed6299a89ad8744a16a6fc2a6a2ff4, type: 3}
@@ -206,12 +206,12 @@ MonoBehaviour:
   MaxHealth: 0
   health: 0
   getHit: 0
-  damageSound: {fileID: 0}
-  defaultMaterial: {fileID: 0}
-  damagedMaterial: {fileID: 0}
+  damageSound: {fileID: 8300000, guid: 243831b253368bc40b4e9a4ca743e590, type: 3}
+  defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
   damagedTime: 0.125
-  knockbackForce: 0
-  hitParticles: {fileID: 0}
+  knockbackForce: 20
+  hitParticles: {fileID: 4124127140682516938, guid: b2e66122466bf6d42a08e6b050756436, type: 3}
 --- !u!114 &112751377570224906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,7 +749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8302360224837931957, guid: 2979a559db137da4986d073333b41ab4, type: 3}
       propertyPath: detectionRadius
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5413380774628200482, guid: 2979a559db137da4986d073333b41ab4, type: 3}

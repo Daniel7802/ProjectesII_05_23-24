@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8194458580351543599}
   - component: {fileID: 6315945374743837193}
   - component: {fileID: 8218766079895413773}
+  - component: {fileID: 2175465213348956454}
   - component: {fileID: 8203291310308635906}
   - component: {fileID: 3192807541708884154}
   - component: {fileID: 2984398382711593016}
@@ -108,7 +109,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 3
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -173,10 +174,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 192
   currentState: 0
-  roamingSpeed: 0.3
+  roamingSpeed: 1
   roamingZone: {fileID: 7184832709495165701}
   detectionZone: {fileID: 3150606929536593461}
-  chasingSpeed: 6
+  chasingSpeed: 9
   foundTargetAlert: {fileID: 267903596789559106}
   lostTargetAlert: {fileID: 1194824986348023701}
   FreezeParticles: {fileID: 6096575759060088230, guid: 3e8f2d9c4f8211442a533f620a1b7bd9, type: 3}
@@ -198,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615ee4a4a8cac70428001b416ae13250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 0
+  MaxHealth: 2
   health: 0
   getHit: 0
   damageSound: {fileID: 8300000, guid: f582776eb44ecdc44bf289d689dd73b3, type: 3}
@@ -207,6 +208,19 @@ MonoBehaviour:
   damagedTime: 0.125
   knockbackForce: 5
   hitParticles: {fileID: 4124127140682516938, guid: b2e66122466bf6d42a08e6b050756436, type: 3}
+--- !u!114 &2175465213348956454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6207711718406370829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73ab9022abd20a45856f8dedfe21125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 1
 --- !u!114 &8203291310308635906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,6 +738,10 @@ PrefabInstance:
     - target: {fileID: 8038230522801893715, guid: 2979a559db137da4986d073333b41ab4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302360224837931957, guid: 2979a559db137da4986d073333b41ab4, type: 3}
+      propertyPath: detectionRadius
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
