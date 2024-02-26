@@ -26,8 +26,8 @@ public class GameCamera : MonoBehaviour
     {
         if (!cinematicMode)
         {
-            //savedGameplayPosition = transform.position;
-            //savedGameplaySize = cameraC.orthographicSize;
+            savedGameplayPosition = transform.position;
+            savedGameplaySize = cameraC.orthographicSize;
             cinematicMode = true;
         }
     }
@@ -45,7 +45,7 @@ public class GameCamera : MonoBehaviour
 
     public void SetSize(float size)
     {
-        cameraC.orthographicSize = size;
+        //scameraC.orthographicSize = size;
     }
 
     public void setObjectActive(int objectIndex, bool active)
