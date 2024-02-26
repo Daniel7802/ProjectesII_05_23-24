@@ -30,8 +30,7 @@ public class DestructionEvent : MonoBehaviour
     public void DestroyItem()
     {
         _animator.SetBool("destruction", true);
-        GameObject heart = Instantiate(_dropObject,_position, Quaternion.identity);
-        heart.GetComponent<CollectableSystem>().SetTargetPosition(player);
+        GameObject heart = Instantiate(_dropObject,_position, Quaternion.identity);        
         
         //_renderer.enabled = false;
         _collider2D.enabled = false;        

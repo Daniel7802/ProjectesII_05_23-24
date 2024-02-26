@@ -16,7 +16,7 @@ public class Trap : MonoBehaviour
 
     private Vector2 direction = Vector2.zero;
     [SerializeField]
-   public bool wait;
+    public bool wait;
     private AudioSource _audioSource;
     [SerializeField] private AudioClip shootSound;
 
@@ -27,11 +27,11 @@ public class Trap : MonoBehaviour
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();       
+        _audioSource = GetComponent<AudioSource>();
     }
     private void FixedUpdate()
     {
-        if(!wait)
+        if (!wait)
         {
             if (startTime < 0)
                 activate = true;
@@ -89,7 +89,7 @@ public class Trap : MonoBehaviour
                 direction = -transform.right;
                 break;
         }
-       
+
         GameObject bullet = Instantiate(trapBullet);
         bullet.transform.position = transform.position;
         bullet.transform.right = direction;

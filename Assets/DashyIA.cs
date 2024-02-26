@@ -12,7 +12,7 @@ public class DashyIA : Enemy
     float chargingSpeed = 1f;
     [SerializeField]
     float chargingTime = 1f;
-    float chargingTimer = 0f;
+    public float chargingTimer = 0f;
 
     //DASH   
     bool lastPlayerPos = false;
@@ -34,9 +34,9 @@ public class DashyIA : Enemy
     }
     void Update()
     {
-        
+
         FlipByTarget();
-        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+
 
         switch (currentState)
         {
@@ -62,9 +62,9 @@ public class DashyIA : Enemy
 
     public override void Roaming()
     {
-        if (distanceToPlayer < startChasingRange && RaycastPlayer())
+        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
         {
-            StartCoroutine(EnableAlert(targetFoundAlert));
+            StartCoroutine(EnableAlert(foundTargetAlert));
             currentState = CurrentState.CHASING;
         }
         else base.Roaming();
@@ -72,30 +72,30 @@ public class DashyIA : Enemy
 
     public override void Chasing()
     {
-        if (RaycastPlayer())
+        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
         {
             chargingTimer += Time.deltaTime;
             if (chargingTimer < chargingTime)
             {
-                
-                Vector2 dir = new Vector2(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y);
+
+                Vector2 dir = new Vector2(transform.position.x - detectionZone.GetComponent<DetectionZone>().player.transform.position.x, transform.position.y - detectionZone.GetComponent<DetectionZone>().player.transform.position.y);
                 Vector2 chargingForce = dir.normalized * chargingSpeed;
                 rb2D.AddForce(chargingForce);
             }
             else
-            {                
-                
+            {
+
                 if (!lastPlayerPos)
                 {
-                    target = player.transform.position;
+                    target = detectionZone.GetComponent<DetectionZone>().player.transform.position;
                     lastPlayerPos = true;
                 }
-                moveSpeed = chasingSpeed;                
+                moveSpeed = chasingSpeed;
                 Movement();
                 trailRenderer.enabled = true;
-                if (Vector2.Distance(transform.position,target)<0.5)
-                {                    
-                    currentState = CurrentState.RELOADING;                   
+                if (Vector2.Distance(transform.position, target) < 0.5)
+                {
+                    currentState = CurrentState.RELOADING;
                     chargingTimer = 0;
                     lastPlayerPos = false;
                 }
@@ -126,9 +126,9 @@ public class DashyIA : Enemy
         }
     }
 
-    public override void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(collision);
+
         if (collision.CompareTag("Player"))
         {
             currentState = CurrentState.RELOADING;

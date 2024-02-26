@@ -5,10 +5,9 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField]
-    GameObject enemy;
+    public GameObject enemy;
     [SerializeField]
-    GameObject player;
-      
+    GameObject player;      
 
     // Update is called once per frame
     void Update()
@@ -19,7 +18,7 @@ public class Spawner : MonoBehaviour
     public void Spawn()
     {
         GameObject enemyInst = Instantiate(enemy, this.transform.position, Quaternion.identity);
-        enemyInst.GetComponent<Enemy>().player = player;
+       
         Destroy(this);
     }
 }

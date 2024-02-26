@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseGameController : MonoBehaviour
 {
@@ -30,15 +31,26 @@ public class PauseGameController : MonoBehaviour
             else 
             {
                 Time.timeScale = 1.0f;
-                pauseMenuCanvas.gameObject.SetActive(false);
-
-                for(int i = 0; i < allMenus.Length; i++)
-                {
-                    allMenus[i].SetActive(false);
-                }
+                pauseMenuCanvas.gameObject.SetActive(false);             
 
                 isPaused = false;
             }
         }
     }
+
+    public void ResumeButton()
+    {
+        Time.timeScale = 1.0f;
+        pauseMenuCanvas.gameObject.SetActive(false);       
+
+        isPaused = false;
+    }
+    public void ExitMenu()
+    {
+        Time.timeScale = 1.0f;
+        pauseMenuCanvas.gameObject.SetActive(false);
+
+        SceneManager.LoadScene("MainMenu");
+    }
+
 }

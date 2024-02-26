@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class SpawerManager : MonoBehaviour
 {
     [SerializeField]
     private List<List<GameObject>> list;
+
+    
 
     public List<List<GameObject>> List
     {
