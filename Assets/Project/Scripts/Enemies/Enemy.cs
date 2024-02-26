@@ -17,9 +17,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected LayerMask hitLayer;
 
-    protected enum CurrentState { ROAMING, CHASING, AIMING, RELOADING, SHOOTING, ICE };
+    public enum CurrentState { ROAMING, CHASING, AIMING, RELOADING, SHOOTING, ICE };
     [SerializeField]
-    protected CurrentState currentState = CurrentState.ROAMING;
+    public CurrentState currentState = CurrentState.ROAMING;
 
     protected Vector2 target;
     protected float distanceToPlayer;
@@ -37,15 +37,13 @@ public class Enemy : MonoBehaviour
 
     //CHASING    
     [SerializeField]
-    public GameObject enemyDetectionZone;
+    public GameObject detectionZone;
 
     [SerializeField]
-    protected float chasingSpeed;
-    public float startChasingRange;
-    public float stopChasingRange;
+    protected float chasingSpeed;  
 
     [SerializeField]
-    protected SpriteRenderer targetFoundAlert;
+    protected SpriteRenderer foundTargetAlert;
     [SerializeField]
     protected SpriteRenderer lostTargetAlert;
 
@@ -96,7 +94,7 @@ public class Enemy : MonoBehaviour
     public virtual void Chasing()
     {
         moveSpeed = chasingSpeed;
-        target = enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position;
+        target = detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position;
         Movement();
 
     }
@@ -155,7 +153,7 @@ public class Enemy : MonoBehaviour
     }
     protected bool RaycastPlayer()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, (enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position - transform.position).normalized, 100, hitLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, (detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position - transform.position).normalized, 100, hitLayer);
         return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
     }
 
@@ -181,7 +179,7 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(roamingZone.transform.position, roamingZone.radius * this.transform.localScale.x);
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, enemyDetectionZone.GetComponent<CircleCollider2D>().radius * this.transform.localScale.x);
+        Gizmos.DrawWireSphere(transform.position, detectionZone.GetComponent<CircleCollider2D>().radius * this.transform.localScale.x);
 
 
     }

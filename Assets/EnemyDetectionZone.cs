@@ -4,45 +4,32 @@ using UnityEngine;
 
 public class EnemyDetectionZone : MonoBehaviour
 {
-    public bool playerDetected = false;
-    private CircleCollider2D circleCollider;
     public GameObject player;
+    public bool playerDetected;
+    public float detectionRadius = 5f;
+    public LayerMask detectableObjectsLayer;
 
-    private void Start()
+    void Update()
     {
-        circleCollider = GetComponent<CircleCollider2D>();
+        // Detecta objetos dentro del radio alrededor del objeto
+        Collider2D[] objectsDetected = Physics2D.OverlapCircleAll(transform.position, detectionRadius, detectableObjectsLayer);
+
+        foreach (var objectDetected in objectsDetected)
+        {
+            if (objectDetected.tag.Equals("Player"))
+            {
+                playerDetected = true;
+                player = objectDetected.gameObject; 
+            }
+            //Debug.Log($"{objectDetected.name} detectado dentro del radio");
+            // Aquí puedes implementar la lógica específica cuando detectas un objeto
+        }
     }
 
-    public virtual void OnTriggerEnter2D(Collider2D collision)
+    // Opcional: Dibuja el radio de detección en el editor para visualización
+    void OnDrawGizmos()
     {
-        if (collision.CompareTag("Player"))
-        {
-            player = collision.gameObject;
-            playerDetected = true;            
-        }
-            
-
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
-    //public virtual void OnTriggerStay2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("Player"))
-    //    {
-    //        player = collision.gameObject;
-    //        playerDetected = true;
-    //    }
-
-
-    //}
-
-    public virtual void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            playerDetected = false;
-            player = null;
-        }
-
-    }   
-
-    
 }

@@ -8,7 +8,7 @@ public class DamageSystem : MonoBehaviour
     [SerializeField]
     protected int dmg;
 
-    void OnTriggerEnter2D(Collider2D collision)
+    public virtual void  OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent<HealthSystem>(out HealthSystem hs))
         {
@@ -21,11 +21,13 @@ public class DamageSystem : MonoBehaviour
             {
                 if(phs.isInvincible == false && phs.health > 0 && phs.health <= phs.MaxHealth)
                 {
+                    
                     phs.turnInvincible();                   
                     phs.GetDamage(dmg);
                     phs.deleteHeart();
                 }
             }
-        } 
+        }
+       
     }
 }

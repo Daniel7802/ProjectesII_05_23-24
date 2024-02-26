@@ -12,7 +12,7 @@ public class DashyIA : Enemy
     float chargingSpeed = 1f;
     [SerializeField]
     float chargingTime = 1f;
-    float chargingTimer = 0f;
+    public float chargingTimer = 0f;
 
     //DASH   
     bool lastPlayerPos = false;
@@ -34,9 +34,9 @@ public class DashyIA : Enemy
     }
     void Update()
     {
-        
+
         FlipByTarget();
-        
+
 
         switch (currentState)
         {
@@ -62,9 +62,9 @@ public class DashyIA : Enemy
 
     public override void Roaming()
     {
-        if (distanceToPlayer < startChasingRange && RaycastPlayer())
+        if (detectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
         {
-            StartCoroutine(EnableAlert(targetFoundAlert));
+            StartCoroutine(EnableAlert(foundTargetAlert));
             currentState = CurrentState.CHASING;
         }
         else base.Roaming();
@@ -72,30 +72,30 @@ public class DashyIA : Enemy
 
     public override void Chasing()
     {
-        if (RaycastPlayer())
+        if (detectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
         {
             chargingTimer += Time.deltaTime;
             if (chargingTimer < chargingTime)
             {
-                
-                Vector2 dir = new Vector2(transform.position.x - enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position.x, transform.position.y - enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position.y);
+
+                Vector2 dir = new Vector2(transform.position.x - detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position.x, transform.position.y - detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position.y);
                 Vector2 chargingForce = dir.normalized * chargingSpeed;
                 rb2D.AddForce(chargingForce);
             }
             else
-            {                
-                
+            {
+
                 if (!lastPlayerPos)
                 {
-                    target = enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position;
+                    target = detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position;
                     lastPlayerPos = true;
                 }
-                moveSpeed = chasingSpeed;                
+                moveSpeed = chasingSpeed;
                 Movement();
                 trailRenderer.enabled = true;
-                if (Vector2.Distance(transform.position,target)<0.5)
-                {                    
-                    currentState = CurrentState.RELOADING;                   
+                if (Vector2.Distance(transform.position, target) < 0.5)
+                {
+                    currentState = CurrentState.RELOADING;
                     chargingTimer = 0;
                     lastPlayerPos = false;
                 }

@@ -8,32 +8,32 @@ public class SlimeDeadSystem : DeadSystem
     [SerializeField] GameObject miniSlime;
     bool miniSlimesSpawned = false;
 
-    [SerializeField] float spawnForce = 5f;
+    [SerializeField] float spawnForce = 10f;
 
     private GameObject player;
-    private Vector2 vectorBetweenPlayer, vectorSlime1, vectorSlime2; 
+    private Vector2 vectorBetweenPlayer, vectorSlime1, vectorSlime2;
 
     public override void Dead()
-    {             
+    {
         base.Dead();
-        SpawnMiniSlimes();        
+        SpawnMiniSlimes();
+
+
     }
     void SpawnMiniSlimes()
     {
 
         if (!miniSlimesSpawned)
         {
-            
-            Vector2 vector = transform.position;
-            GameObject slime = Instantiate(miniSlime, vector, Quaternion.identity);
-            GameObject slime2 = Instantiate(miniSlime, vector, Quaternion.identity);          
 
-            slime.GetComponent<HealthSystem>().TurnInvencible(true);
-            slime2.GetComponent<HealthSystem>().TurnInvencible(true);
 
+            GameObject minislime1 = Instantiate(miniSlime, transform.position, Quaternion.identity);
+            GameObject minislime2 = Instantiate(miniSlime, transform.position, Quaternion.identity);
+            minislime1.GetComponent<HealthSystem>().TurnInvencible(true);
+            minislime2.GetComponent<HealthSystem>().TurnInvencible(true);
             CalculateVectors();
-            slime.GetComponent<Rigidbody2D>().AddForce(vectorSlime1,ForceMode2D.Impulse);
-            slime2.GetComponent<Rigidbody2D>().AddForce(vectorSlime2, ForceMode2D.Impulse);            
+            minislime1.GetComponent<Rigidbody2D>().AddForce(vectorSlime1.normalized * spawnForce, ForceMode2D.Impulse);
+            minislime2.GetComponent<Rigidbody2D>().AddForce(vectorSlime2.normalized * spawnForce, ForceMode2D.Impulse);
 
             miniSlimesSpawned = true;
         }
@@ -42,6 +42,7 @@ public class SlimeDeadSystem : DeadSystem
 
     void CalculateVectors()
     {
+        player = GetComponent<EnemyDetectionZone>().player;
         vectorBetweenPlayer = player.transform.position - transform.position;
         vectorSlime1 = new Vector2(-vectorBetweenPlayer.y, vectorBetweenPlayer.x).normalized * spawnForce;
         vectorSlime2 = new Vector2(vectorBetweenPlayer.y, -vectorBetweenPlayer.x).normalized * spawnForce;

@@ -67,12 +67,12 @@ public class SlimeIA : Enemy
 
     public override void Roaming()
     {
-        if (enemyDetectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
+        if (detectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
         {
-            StartCoroutine(EnableAlert(targetFoundAlert));
-            if (rb2D.velocity.magnitude < speedToLand)
+            StartCoroutine(EnableAlert(foundTargetAlert));
+            if (!animator.GetBool("jump"))
                 waitingTimer = waitingTime;
-
+            
             currentState = CurrentState.CHASING;
         }
         else
@@ -86,7 +86,7 @@ public class SlimeIA : Enemy
 
     public override void Chasing()
     {
-        if (enemyDetectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
+        if (detectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
         {
             
             minWaitingTime = minWaitingTimeChasing;

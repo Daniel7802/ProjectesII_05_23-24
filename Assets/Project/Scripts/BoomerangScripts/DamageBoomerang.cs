@@ -17,6 +17,7 @@ public class DamageBoomerang : MonoBehaviour
             if (collision.gameObject.TryGetComponent<HealthSystem>(out HealthSystem hs) && !collision.tag.Equals("Player"))
             {
                 hs.getHit = true;
+
               
                 if (collision.gameObject.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs) && collision.tag.Equals("Player") && this.tag != "Boomerang")
                 {

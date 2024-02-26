@@ -10,6 +10,7 @@ public class DeadSystem : MonoBehaviour
     protected AudioSource _audioSource;
     protected SpriteRenderer _spriteRenderer;
     protected Collider2D _collider;
+
     protected LineRenderer _lineRenderer;
     [SerializeField] protected float deathClipPitch = 1f;
     public bool isDead = false;    
@@ -19,6 +20,7 @@ public class DeadSystem : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();  
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
+    
         _lineRenderer = GetComponent<LineRenderer>();
     }
    
@@ -28,6 +30,7 @@ public class DeadSystem : MonoBehaviour
         {
             _spriteRenderer.enabled = false;
             _collider.enabled = false;
+     
             if(_lineRenderer != null)
             {
                 Destroy(_lineRenderer);

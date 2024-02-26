@@ -21,10 +21,11 @@ public class EnemyCollider : MonoBehaviour
         Vector2 kbForce = dir.normalized * knockbackForce;
         rb2D.AddForce(kbForce, ForceMode2D.Impulse);
     }
-    public virtual void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Boomerang"))
+        if (collision.tag.Equals("Boomerang"))
         {
+            Debug.Log("klklklkklk");
             Vector2 dir = transform.position - collision.transform.position;
             KnockBack(dir);
 
@@ -46,6 +47,14 @@ public class EnemyCollider : MonoBehaviour
                     StartCoroutine(parent.GetComponent<Enemy>().Ice());
             }
 
+        }
+        if (parent.GetComponent<DashyIA>())
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                parent.GetComponent<DashyIA>().currentState = Enemy.CurrentState.RELOADING;
+                parent.GetComponent<DashyIA>().chargingTimer = 0;
+            }
         }
 
     }

@@ -20,15 +20,13 @@ public class ShootyIA : Enemy
     [SerializeField]
     private float aimingTime = 0.8f;
     [SerializeField]
-    private AudioClip targetFoundSound;
+    private AudioClip foundTargetSound;
 
     //shooting
     [SerializeField]
-    private GameObject enemyBullet;
+    private GameObject shootyBullet;
     [SerializeField]
-    private float startShootingRange;
-    [SerializeField]
-    private float stopShootingRange;
+    private float startShootingRange;  
     [SerializeField]
     private AudioClip shootSound;
 
@@ -84,10 +82,10 @@ public class ShootyIA : Enemy
 
     public override void Roaming()
     {
-        if (enemyDetectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
+        if (detectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
         {
-            audioSource.PlayOneShot(targetFoundSound, 0.3f);
-            StartCoroutine(EnableAlert(targetFoundAlert));
+            audioSource.PlayOneShot(foundTargetSound, 0.3f);
+            StartCoroutine(EnableAlert(foundTargetAlert));
             currentState = CurrentState.CHASING;
         }
         else
@@ -99,10 +97,10 @@ public class ShootyIA : Enemy
 
     public override void Chasing()
     {
-        if (enemyDetectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
+        if (detectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
         {
 
-            if (Vector2.Distance(transform.position, enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position) < startShootingRange)
+            if (Vector2.Distance(transform.position, detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position) < startShootingRange)
             {
                 currentState = CurrentState.AIMING;
             }
@@ -124,11 +122,11 @@ public class ShootyIA : Enemy
     void Aiming()
     {
 
-        target = enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position;
+        target = detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position;
 
-        if (enemyDetectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
+        if (detectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
         {
-            if (Vector2.Distance(transform.position, enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position) < startShootingRange)
+            if (Vector2.Distance(transform.position, detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position) < startShootingRange)
             {
                 if (lineTimer < aimingTime)
                 {
@@ -168,7 +166,7 @@ public class ShootyIA : Enemy
             lineRenderer.enabled = true;
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, Vector3.zero);
-            Vector3 position2 = enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position - transform.position;
+            Vector3 position2 = detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position - transform.position;
             //lineRenderer.SetPosition(1, new Vector3(position2.x / transform.localScale.x, position2.y / transform.localScale.y, position2.z / transform.localScale.z));
             //lineRenderer.SetPosition(1, new Vector3(position2.x, position2.y, position2.z));
             int d = 2;
@@ -179,25 +177,25 @@ public class ShootyIA : Enemy
 
     void Shooting()
     {
-        target = enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position;
+        target = detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position;
         ShootOneBullet();
         currentState = CurrentState.RELOADING;
     }
     void ShootOneBullet()
     {
         audioSource.PlayOneShot(shootSound, 0.5f);
-        Vector2 dir = new Vector2(enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position.x - transform.position.x, enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position.y - transform.position.y);
-        GameObject bullet = Instantiate(enemyBullet);
+        Vector2 dir = new Vector2(detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position.x - transform.position.x, detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position.y - transform.position.y);
+        GameObject bullet = Instantiate(shootyBullet);
         bullet.transform.position = transform.position;
         bullet.transform.right = dir;
     }
 
     void Reloading()
     {
-        target = enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position;
-        if (enemyDetectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
+        target = detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position;
+        if (detectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
         {
-            if (Vector2.Distance(transform.position, enemyDetectionZone.GetComponent<EnemyDetectionZone>().player.transform.position) < startShootingRange)
+            if (Vector2.Distance(transform.position, detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position) < startShootingRange)
             {
                 if (reloadingTimer == 0f)
                     audioSource.PlayOneShot(reloadingSound, 0.1f);
@@ -234,11 +232,7 @@ public class ShootyIA : Enemy
         waitingTime = UnityEngine.Random.Range(minWaitingTime, maxWaitingTime);
     }
 
-    IEnumerator RoamingWait()
-    {
-        yield return new WaitForSecondsRealtime(2);
-        setNewDest = true;
-    }
+    
 
     public override void OnDrawGizmos()
     {
