@@ -10,9 +10,16 @@ public class DestructionObjectDeadSystem : DeadSystem
 
     public override void Dead()
     {
-        GameObject heart = Instantiate(_dropObject, transform.position, Quaternion.identity);        
-        base.Dead();
-       
-
+        GameObject heart = Instantiate(_dropObject, transform.position, Quaternion.identity);
+        heart.GetComponent<CollectableSystem>().SetTargetPosition(player);
+        base.Dead();  
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+           if(collision.GetComponent<PlayerMovement>()._isDashing)
+            Dead();
+        }
     }
 }

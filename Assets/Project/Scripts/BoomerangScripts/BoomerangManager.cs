@@ -9,7 +9,7 @@ public class BoomerangManager : MonoBehaviour
 {
     PlayerMovement _playerMovement;
     [SerializeField]
-    CinemachineTargetGroup m_TargetGroup;
+   public CinemachineTargetGroup m_TargetGroup;
     [SerializeField]
     GameObject _boomerang;
     [SerializeField]
@@ -125,7 +125,7 @@ public class BoomerangManager : MonoBehaviour
         } 
     }
 
-    private IEnumerator AddToTargetGroup(GameObject a)
+    public IEnumerator AddToTargetGroup(GameObject a)
     {
         _boomerangThrow = a.GetComponent<BoomerangThrow>();
         yield return new WaitForSeconds(0.2f);

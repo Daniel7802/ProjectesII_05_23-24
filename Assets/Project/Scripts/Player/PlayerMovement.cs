@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private float _dashingTime = 0.02f;
     private float _dashingCoolDownTime = 0.5f;
     private Vector2 _dashingDir;
-    private bool _isDashing;
+    public bool _isDashing;
     private bool _canDash = true;
     private TrailRenderer _dashTrailRenderer;
 
