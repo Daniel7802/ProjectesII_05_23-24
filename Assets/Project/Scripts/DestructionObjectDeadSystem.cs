@@ -6,10 +6,7 @@ using UnityEngine.UIElements;
 public class DestructionObjectDeadSystem : DeadSystem
 {
     [SerializeField]
-    private GameObject _dropObject;
-    [SerializeField]
-    private GameObject player;
-    private Vector3 _position;
+    private GameObject _dropObject;    
 
     public override void Dead()
     {
