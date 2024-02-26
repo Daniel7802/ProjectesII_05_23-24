@@ -15,8 +15,14 @@ public class DestructionObjectDeadSystem : DeadSystem
     {
         GameObject heart = Instantiate(_dropObject, transform.position, Quaternion.identity);
         heart.GetComponent<CollectableSystem>().SetTargetPosition(player);
-        base.Dead();
-       
-
+        base.Dead();  
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+           if(collision.GetComponent<PlayerMovement>()._isDashing)
+            Dead();
+        }
     }
 }
