@@ -202,8 +202,8 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
   damagedTime: 0.125
-  knockbackForce: 0
-  hitParticles: {fileID: 4124127140682516938, guid: b2e66122466bf6d42a08e6b050756436, type: 3}
+  knockbackForce: 5
+  hitParticles: {fileID: 715038747342358181, guid: bf2bff8c69c6eb048a389a4c8a7b8b97, type: 3}
 --- !u!114 &6238226914675135810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2049c3badedfb0d4b85ef939d4501b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invTime: 0.5
+  invTime: 1
 --- !u!1001 &3063810673955164385
 PrefabInstance:
   m_ObjectHideFlags: 0
