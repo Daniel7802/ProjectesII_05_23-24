@@ -1985,7 +1985,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 10.061904
+  field of view: 11.421186
   orthographic: 1
   orthographic size: 7
   m_Depth: -1
@@ -2011,7 +2011,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368727517}
   m_LocalRotation: {x: 0.017991265, y: -0.0074992385, z: 0.00013494641, w: 0.99981004}
-  m_LocalPosition: {x: 0.82937527, y: -2.373339, z: -9.992402}
+  m_LocalPosition: {x: 94.36991, y: -7.630223, z: -9.992401}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2186,10 +2186,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1445802563}
     m_Modifications:
-    - target: {fileID: 885982983123898079, guid: bbace9dc14288eb46b00a7aeb29232b2, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 59969908}
     - target: {fileID: 3870978750745870615, guid: bbace9dc14288eb46b00a7aeb29232b2, type: 3}
       propertyPath: m_Name
       value: DestructionObject (24)
@@ -2242,10 +2238,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 59969908}
-    - target: {fileID: 7307806823823455982, guid: bbace9dc14288eb46b00a7aeb29232b2, type: 3}
-      propertyPath: _dropObject
-      value: 
-      objectReference: {fileID: 4198729898670467884, guid: 4f51d8aa4545eec44a677ddc08b8a193, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23583,11 +23575,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.56
+      value: 94.22
       objectReference: {fileID: 0}
     - target: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.75
+      value: -7.99
       objectReference: {fileID: 0}
     - target: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23692,15 +23684,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8592275167556148878, guid: 2f540635d9e62644e8bb93686f4139ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.4100924
+      value: 94.36991
       objectReference: {fileID: 0}
     - target: {fileID: 8592275167556148878, guid: 2f540635d9e62644e8bb93686f4139ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.3902228
+      value: -7.630223
       objectReference: {fileID: 0}
     - target: {fileID: 8592275167556148878, guid: 2f540635d9e62644e8bb93686f4139ee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.992402
+      value: -9.992401
       objectReference: {fileID: 0}
     - target: {fileID: 8592275167556148878, guid: 2f540635d9e62644e8bb93686f4139ee, type: 3}
       propertyPath: m_LocalRotation.w
@@ -58206,10 +58198,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1445802563}
     m_Modifications:
-    - target: {fileID: 885982983123898079, guid: bbace9dc14288eb46b00a7aeb29232b2, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 59969908}
     - target: {fileID: 3870978750745870615, guid: bbace9dc14288eb46b00a7aeb29232b2, type: 3}
       propertyPath: m_Name
       value: DestructionObject (2)
@@ -58794,7 +58782,8 @@ PrefabInstance:
       propertyPath: _dropObject
       value: 
       objectReference: {fileID: 4198729898670467884, guid: 4f51d8aa4545eec44a677ddc08b8a193, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5489160463485930869, guid: bbace9dc14288eb46b00a7aeb29232b2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
