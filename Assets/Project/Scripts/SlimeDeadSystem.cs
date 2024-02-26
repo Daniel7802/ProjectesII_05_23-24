@@ -29,12 +29,12 @@ public class SlimeDeadSystem : DeadSystem
 
             GameObject minislime1 = Instantiate(miniSlime, transform.position, Quaternion.identity);
             GameObject minislime2 = Instantiate(miniSlime, transform.position, Quaternion.identity);
-            minislime1.GetComponent<HealthSystem>().TurnInvencible(true);
-            minislime2.GetComponent<HealthSystem>().TurnInvencible(true);
             CalculateVectors();
-            minislime1.GetComponent<Rigidbody2D>().AddForce(vectorSlime1.normalized * spawnForce, ForceMode2D.Impulse);
-            minislime2.GetComponent<Rigidbody2D>().AddForce(vectorSlime2.normalized * spawnForce, ForceMode2D.Impulse);
-
+            minislime1.gameObject.GetComponent<Rigidbody2D>().AddForce(vectorSlime1, ForceMode2D.Impulse);
+            minislime2.gameObject.GetComponent<Rigidbody2D>().AddForce(vectorSlime2, ForceMode2D.Impulse);
+            minislime1.gameObject.GetComponent<HealthSystem>().TurnInvencible(true);
+            minislime2.gameObject.GetComponent<HealthSystem>().TurnInvencible(true);
+            
             miniSlimesSpawned = true;
         }
     }
@@ -42,7 +42,7 @@ public class SlimeDeadSystem : DeadSystem
 
     void CalculateVectors()
     {
-        player = GetComponent<EnemyDetectionZone>().player;
+        player = GetComponent<DetectionZone>().player;
         vectorBetweenPlayer = player.transform.position - transform.position;
         vectorSlime1 = new Vector2(-vectorBetweenPlayer.y, vectorBetweenPlayer.x).normalized * spawnForce;
         vectorSlime2 = new Vector2(vectorBetweenPlayer.y, -vectorBetweenPlayer.x).normalized * spawnForce;

@@ -94,7 +94,7 @@ public class Enemy : MonoBehaviour
     public virtual void Chasing()
     {
         moveSpeed = chasingSpeed;
-        target = detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position;
+        target = detectionZone.GetComponent<DetectionZone>().player.transform.position;
         Movement();
 
     }
@@ -153,7 +153,7 @@ public class Enemy : MonoBehaviour
     }
     protected bool RaycastPlayer()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, (detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position - transform.position).normalized, 100, hitLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, (detectionZone.GetComponent<DetectionZone>().player.transform.position - transform.position).normalized, 100, hitLayer);
         return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
     }
 
@@ -178,9 +178,7 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawSphere(roamingRandomPoint, 0.4f);
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(roamingZone.transform.position, roamingZone.radius * this.transform.localScale.x);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, detectionZone.GetComponent<CircleCollider2D>().radius * this.transform.localScale.x);
-
+        
 
     }
 

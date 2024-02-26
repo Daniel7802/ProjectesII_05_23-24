@@ -67,7 +67,7 @@ public class SlimeIA : Enemy
 
     public override void Roaming()
     {
-        if (detectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
+        if (detectionZone.GetComponent<DetectionZone>().playerDetected&&RaycastPlayer())
         {
             StartCoroutine(EnableAlert(foundTargetAlert));
             if (!animator.GetBool("jump"))
@@ -86,7 +86,7 @@ public class SlimeIA : Enemy
 
     public override void Chasing()
     {
-        if (detectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
+        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
         {
             
             minWaitingTime = minWaitingTimeChasing;

@@ -62,7 +62,7 @@ public class DashyIA : Enemy
 
     public override void Roaming()
     {
-        if (detectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
+        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
         {
             StartCoroutine(EnableAlert(foundTargetAlert));
             currentState = CurrentState.CHASING;
@@ -72,13 +72,13 @@ public class DashyIA : Enemy
 
     public override void Chasing()
     {
-        if (detectionZone.GetComponent<EnemyDetectionZone>().playerDetected && RaycastPlayer())
+        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
         {
             chargingTimer += Time.deltaTime;
             if (chargingTimer < chargingTime)
             {
 
-                Vector2 dir = new Vector2(transform.position.x - detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position.x, transform.position.y - detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position.y);
+                Vector2 dir = new Vector2(transform.position.x - detectionZone.GetComponent<DetectionZone>().player.transform.position.x, transform.position.y - detectionZone.GetComponent<DetectionZone>().player.transform.position.y);
                 Vector2 chargingForce = dir.normalized * chargingSpeed;
                 rb2D.AddForce(chargingForce);
             }
@@ -87,7 +87,7 @@ public class DashyIA : Enemy
 
                 if (!lastPlayerPos)
                 {
-                    target = detectionZone.GetComponent<EnemyDetectionZone>().player.transform.position;
+                    target = detectionZone.GetComponent<DetectionZone>().player.transform.position;
                     lastPlayerPos = true;
                 }
                 moveSpeed = chasingSpeed;

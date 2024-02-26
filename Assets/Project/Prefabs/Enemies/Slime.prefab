@@ -13,12 +13,11 @@ GameObject:
   - component: {fileID: 2090466368601933057}
   - component: {fileID: 7850562791844730482}
   - component: {fileID: 5409575842966737851}
-  - component: {fileID: 2415428209152163155}
-  - component: {fileID: 89447548352023463}
+  - component: {fileID: 3463231459883185995}
   - component: {fileID: 3248467698314488781}
+  - component: {fileID: 2415428209152163155}
   - component: {fileID: 9135118707840236033}
   - component: {fileID: 765361287545638351}
-  - component: {fileID: 7800204388314759459}
   m_Layer: 10
   m_Name: Slime
   m_TagString: Enemy
@@ -184,6 +183,40 @@ MonoBehaviour:
   FreezeParticles: {fileID: 6096575759060088230, guid: 3e8f2d9c4f8211442a533f620a1b7bd9, type: 3}
   canFreeze: 1
   slimeJumpSound: {fileID: 8300000, guid: a9adc3be9c93df54abdf66972003f3c7, type: 3}
+--- !u!114 &3463231459883185995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768630766616490778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615ee4a4a8cac70428001b416ae13250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 5
+  health: 0
+  getHit: 0
+  damageSound: {fileID: 8300000, guid: 243831b253368bc40b4e9a4ca743e590, type: 3}
+  defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
+  damagedTime: 0.125
+  knockbackForce: 10
+  hitParticles: {fileID: 4124127140682516938, guid: b2e66122466bf6d42a08e6b050756436, type: 3}
+--- !u!114 &3248467698314488781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768630766616490778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73ab9022abd20a45856f8dedfe21125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 1
 --- !u!114 &2415428209152163155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,43 +231,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blood: {fileID: 715038747342358181, guid: 77f214331f940dd438a3c67d27228665, type: 3}
   deathSound: {fileID: 8300000, guid: a9adc3be9c93df54abdf66972003f3c7, type: 3}
-  _damageSystem: {fileID: 0}
   deathClipPitch: 0.6
   isDead: 0
   miniSlime: {fileID: 2998486167879767135, guid: 912d7c1f80c6eb543be00acfd391a535, type: 3}
   spawnForce: 10
---- !u!114 &89447548352023463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1768630766616490778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e91d7381e81c5d14bbc733e08e61b575, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHealth: 2
-  health: 0
-  getHit: 0
-  damageSound: {fileID: 8300000, guid: 243831b253368bc40b4e9a4ca743e590, type: 3}
-  defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
-  damagedTime: 0.125
---- !u!114 &3248467698314488781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1768630766616490778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c73ab9022abd20a45856f8dedfe21125, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dmg: 1
 --- !u!95 &9135118707840236033
 Animator:
   serializedVersion: 5
@@ -352,20 +352,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7800204388314759459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1768630766616490778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd9fbed0d3c8f8a46ac3ae54e39590db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knockbackForce: 10
-  hitParticles: {fileID: 4124127140682516938, guid: b2e66122466bf6d42a08e6b050756436, type: 3}
 --- !u!1001 &3060927483178307646
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -590,11 +576,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8302360224837931957, guid: 2979a559db137da4986d073333b41ab4, type: 3}
       propertyPath: detectionRadius
-      value: 5.07
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8302360224837931957, guid: 2979a559db137da4986d073333b41ab4, type: 3}
       propertyPath: detectableObjectsLayer.m_Bits
-      value: 64
+      value: 192
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5413380774628200482, guid: 2979a559db137da4986d073333b41ab4, type: 3}
