@@ -43,7 +43,7 @@ public class FadeInOutManager : MonoBehaviour
             
             if (canvasgroup.alpha >= 0)
             {
-                canvasgroup.alpha -= timeToFade * Time.deltaTime;
+                canvasgroup.alpha -= timeToFade * Time.deltaTime *0.2f;
                 if (canvasgroup.alpha == 0)
                 {
                     fadeOut = false;
