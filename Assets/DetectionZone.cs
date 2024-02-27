@@ -23,7 +23,7 @@ public class DetectionZone : MonoBehaviour
             playerDetected = true;
 
         }
-        if (player!=null&&Vector2.Distance(transform.position, player.transform.position) > detectionRadius + 1)
+        if (player != null && Vector2.Distance(transform.position, player.transform.position) > detectionRadius + 1)
         {
             playerDetected = false;
         }
