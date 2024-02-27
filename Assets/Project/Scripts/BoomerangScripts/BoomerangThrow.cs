@@ -58,7 +58,6 @@ public class BoomerangThrow : MonoBehaviour
     {
         _targetJoint = GetComponent<TargetJoint2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _audioSource = GetComponent<AudioSource>();
         _missionModuleFire = _particleSystemFire.emission;
 
         //sb = shopManager.GetComponent<ShopBehaviour>();
@@ -116,7 +115,7 @@ public class BoomerangThrow : MonoBehaviour
         {
             rightMouse = true;
             if (isFlying && !going) { 
-                //_audioSource.PlayOneShot(goingSound);
+                _audioSource.PlayOneShot(goingSound);
             }
         }
 
@@ -177,7 +176,7 @@ public class BoomerangThrow : MonoBehaviour
     {
         knockback = true;
         going = true;
-        //_audioSource.PlayOneShot(goingSound);
+        _audioSource.PlayOneShot(goingSound);
         canThrow = false;
         rightMouse = false;
 
@@ -234,7 +233,7 @@ public class BoomerangThrow : MonoBehaviour
         }
         else
         {
-            //_audioSource.PlayOneShot(goingSound);
+            _audioSource.PlayOneShot(goingSound);
             coming = true;
 
         }

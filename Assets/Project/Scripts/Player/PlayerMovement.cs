@@ -8,10 +8,14 @@ public class PlayerMovement : MonoBehaviour
     ParticleSystem _walkParticles;
     private ParticleSystem.EmissionModule _missionModuleWalk;
 
+    bool dontWalked = true;
 
     public float speed = 100f;
     public float maxSpeed = 100f;
     public float iceSpeedRecover = 100.0f;
+
+    [SerializeField]
+    AudioSource _walkSound;
 
     public Rigidbody2D playerRb;
     private Animator playerAnimator;
@@ -86,12 +90,23 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetFloat("Vertical", movementVectorNormalized.y);
             playerAnimator.SetFloat("Speed", movementVectorNormalized.sqrMagnitude);
 
-            if (playerRb.velocity.x != 0 || playerRb.velocity.y != 0)
+            if (playerRb.velocity.x >= 0.1 || playerRb.velocity.y >= 0.1)
             {
                 _missionModuleWalk.enabled = true;
+                if(dontWalked)
+                {
+                    _walkSound.Play();
+                    dontWalked = false;
+                }
             }
             else
+            {
+                _walkSound.Stop();
                 _missionModuleWalk.enabled = false;
+                dontWalked = true;
+            }
+
+            
         }
         else
         {
