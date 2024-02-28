@@ -5,6 +5,8 @@ using UnityEngine;
 public class destroyBridge : MonoBehaviour
 {
     [SerializeField]
+   GameObject _bridgeBreak;
+    [SerializeField]
     activateLeaver leaver;
     SpriteRenderer _spriteRenderer;
     BoxCollider2D _boxCollider;
@@ -24,4 +26,5 @@ public class destroyBridge : MonoBehaviour
             _boxCollider.enabled = false;
         }
     }
+   
 }

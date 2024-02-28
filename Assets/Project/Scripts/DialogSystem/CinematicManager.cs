@@ -6,6 +6,7 @@ using UnityEditor;
 using System;
 using System.Security.Cryptography;
 using UnityEngine.TextCore.Text;
+using Unity.VisualScripting;
 
 public class CinematicManager : MonoBehaviour
 {
@@ -39,7 +40,8 @@ public class CinematicManager : MonoBehaviour
         setPlayerFacing,
         setPlayerVelocity,
         fadeInEffect,
-        fadeOutEffect
+        fadeOutEffect,
+        destroyObject
     };
 
     [System.Serializable]
@@ -307,6 +309,11 @@ public class CinematicManager : MonoBehaviour
                 else if (command.id == CinematicCommandId.fadeOutEffect)
                 {
                     FadeInOutManager.instance.Fadeout();
+                }
+                else if (command.id == CinematicCommandId.destroyObject)
+                {
+                    int objectIndex = Int32.Parse(command.param1);
+                    Destroy(Characters[objectIndex]);
                 }
                 else
                 {
