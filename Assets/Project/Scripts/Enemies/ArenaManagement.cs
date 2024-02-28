@@ -47,7 +47,7 @@ public class WaveSpawner : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(0.5f); // Tiempo adicional de espera si es necesario
+            yield return new WaitForSeconds(0f); // Tiempo adicional de espera si es necesario
             StartNextWave();
         }
     }
@@ -71,8 +71,12 @@ public class WaveSpawner : MonoBehaviour
     {
         foreach (var enemyInfo in wave.enemiesToSpawn)
         {
-            GameObject spawnedEnemy = Instantiate(enemyInfo.enemyPrefab, enemyInfo.spawn.position, Quaternion.identity);           
-            spawnedEnemies.Add(spawnedEnemy);
+            GameObject spawnedEnemy = Instantiate(enemyInfo.enemyPrefab, enemyInfo.spawn.position, Quaternion.identity);
+            if (!spawnedEnemy.GetComponent<DestructionObjectDeadSystem>())
+            {
+                spawnedEnemies.Add(spawnedEnemy);
+            }
+            
         }
     }
 
