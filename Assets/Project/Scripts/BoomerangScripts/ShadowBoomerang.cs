@@ -108,7 +108,13 @@ public class ShadowBoomerang : BoomerangThrow
             waterOverlapped++;
         }
             base.OnTriggerEnter2D(collision);
-      
+
+        if (collision.gameObject.CompareTag("Fire"))
+        {
+            coming = true;
+        }
+
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
