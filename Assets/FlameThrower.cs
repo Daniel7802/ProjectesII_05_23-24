@@ -15,7 +15,8 @@ public class FlameThrower : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.GetComponentInParent<IceBoomerang>())
-        {            
+        {
+            Debug.Log("penis");
             emissionModule.enabled = false;
             boxCollider.enabled = false;
         }

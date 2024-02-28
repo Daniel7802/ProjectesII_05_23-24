@@ -37,7 +37,7 @@ public class ActivateArena : MonoBehaviour
         for(int i = 0; i< spikes.Count/2; i++)
         {
             spikes[i].SetActive(true);
-            spikes[i+4].SetActive(true);
+            spikes[i+ (spikes.Count / 2)].SetActive(true);
             yield return new WaitForSeconds(spikesSpawnSeconds);
         }
         spikesShowed = true;
@@ -48,7 +48,7 @@ public class ActivateArena : MonoBehaviour
         for (int i = 0; i < spikes.Count / 2; i++)
         {
             //spikes[i].SetActive(true);
-            spikes[i + 4].SetActive(false);
+            spikes[i + (spikes.Count / 2)].SetActive(false);
             yield return new WaitForSeconds(spikesSpawnSeconds);
         }
 
