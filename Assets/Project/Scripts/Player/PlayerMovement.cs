@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetFloat("Vertical", movementVectorNormalized.y);
             playerAnimator.SetFloat("Speed", movementVectorNormalized.sqrMagnitude);
 
-            if (playerRb.velocity.x >= 0.1 || playerRb.velocity.y >= 0.1)
+            if (playerRb.velocity.x >= 0.1 || playerRb.velocity.y >= 0.1 || playerRb.velocity.x <= -0.1 || playerRb.velocity.y <= -0.1)
             {
                 _missionModuleWalk.enabled = true;
                 if(dontWalked)
