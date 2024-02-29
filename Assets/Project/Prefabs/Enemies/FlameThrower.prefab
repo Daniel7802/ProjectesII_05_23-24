@@ -34,7 +34,7 @@ Transform:
   - {fileID: 7520133449007514298}
   - {fileID: 4787754052634054292}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1772641374950549467
 SpriteRenderer:
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: -1261063152, guid: 324f9b9ee297214439361928e4102ff7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -289,6 +289,10 @@ PrefabInstance:
     - target: {fileID: 3072534086168131011, guid: 7625f880b96b463428473eb079a6d34c, type: 3}
       propertyPath: m_Name
       value: FlameThrowerParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 7031441339907542397, guid: 7625f880b96b463428473eb079a6d34c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7031441339907542397, guid: 7625f880b96b463428473eb079a6d34c, type: 3}
       propertyPath: m_Materials.Array.data[0]
