@@ -14,6 +14,6 @@ public class BoomerangActivation : MonoBehaviour
     {
         boomerang.SetActive(true);
         //boomerangHUD.SetActive(true);
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }
