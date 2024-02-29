@@ -269,6 +269,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71122608}
   m_CullTransparentMesh: 1
+--- !u!1 &86536264 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4163626825709298684, guid: 048c66179e3de69498ea2069e1a9575a, type: 3}
+  m_PrefabInstance: {fileID: 2089280592}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &141060386
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -911,7 +916,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 11.4211855
+  field of view: 11.421186
   orthographic: 1
   orthographic size: 6.25
   m_Depth: -1
@@ -937,7 +942,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 278909586}
   m_LocalRotation: {x: 0.017991265, y: -0.0074992385, z: 0.00013494641, w: 0.99981004}
-  m_LocalPosition: {x: -15.475121, y: -23.560335, z: -14.988601}
+  m_LocalPosition: {x: -39.875145, y: -57.860325, z: -14.988601}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1422,7 +1427,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430092304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.699982, y: -24.099998, z: 0}
+  m_LocalPosition: {x: -40.100006, y: -58.399998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1848,7 +1853,7 @@ PolygonCollider2D:
       - {x: 90.81994, y: 68.77144}
       - {x: 90.33234, y: 92.54654}
       - {x: 120.0524, y: 92.142334}
-      - {x: 120.1942, y: 59.538895}
+      - {x: 177.83064, y: 54.049706}
       - {x: 178.93428, y: -107.2356}
       - {x: -155.95345, y: -109.71395}
       - {x: -160.08754, y: 80.71459}
@@ -2041,11 +2046,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8592275167556148878, guid: 2f540635d9e62644e8bb93686f4139ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.475121
+      value: -39.875145
       objectReference: {fileID: 0}
     - target: {fileID: 8592275167556148878, guid: 2f540635d9e62644e8bb93686f4139ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -23.560335
+      value: -57.860325
       objectReference: {fileID: 0}
     - target: {fileID: 8592275167556148878, guid: 2f540635d9e62644e8bb93686f4139ee, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3075,11 +3080,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -327.3
+      value: -351.7
       objectReference: {fileID: 0}
     - target: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 64.1
+      value: 29.8
       objectReference: {fileID: 0}
     - target: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3643,6 +3648,14 @@ PrefabInstance:
       propertyPath: boomerangManager
       value: 
       objectReference: {fileID: 726980654}
+    - target: {fileID: 1675665859528226773, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: helpText
+      value: 
+      objectReference: {fileID: 86536264}
+    - target: {fileID: 1675665859528226773, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: boomerangManager
+      value: 
+      objectReference: {fileID: 726980654}
     - target: {fileID: 1966550744788613089, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -3929,22 +3942,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2941634221223512491, guid: 048c66179e3de69498ea2069e1a9575a, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 726980654}
-    - target: {fileID: 3179680408727837048, guid: 048c66179e3de69498ea2069e1a9575a, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 726980654}
     - target: {fileID: 4479293423295190287, guid: 048c66179e3de69498ea2069e1a9575a, type: 3}
       propertyPath: m_Name
       value: ---SHADOW ZONE---
       objectReference: {fileID: 0}
-    - target: {fileID: 5823081258734076331, guid: 048c66179e3de69498ea2069e1a9575a, type: 3}
-      propertyPath: boomerangManager
-      value: 
-      objectReference: {fileID: 726980654}
     - target: {fileID: 7875042041890363131, guid: 048c66179e3de69498ea2069e1a9575a, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -4019,6 +4020,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShadowBoomeran
       objectReference: {fileID: 0}
+    - target: {fileID: 6657343719683139223, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6942920568467783688, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4076,17 +4081,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1337895739}
     m_Modifications:
-    - target: {fileID: 3639324189242386273, guid: fa4fa84134905b1499f7e3ec2f5f3ba0, type: 3}
+    - target: {fileID: 3607568608243761146, guid: fa4fa84134905b1499f7e3ec2f5f3ba0, type: 3}
       propertyPath: source
       value: 
       objectReference: {fileID: 726980654}
+    - target: {fileID: 3837049070191781159, guid: fa4fa84134905b1499f7e3ec2f5f3ba0, type: 3}
+      propertyPath: bt
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4876550285294931385, guid: fa4fa84134905b1499f7e3ec2f5f3ba0, type: 3}
       propertyPath: m_Name
       value: IceBoomerang
-      objectReference: {fileID: 0}
-    - target: {fileID: 4876550285294931385, guid: fa4fa84134905b1499f7e3ec2f5f3ba0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5714381441905534789, guid: fa4fa84134905b1499f7e3ec2f5f3ba0, type: 3}
       propertyPath: m_RootOrder

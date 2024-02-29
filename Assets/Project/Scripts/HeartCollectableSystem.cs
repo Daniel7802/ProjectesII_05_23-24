@@ -24,7 +24,7 @@ public class HeartCollectableSystem : MonoBehaviour
                 Vector3 dir = collision.transform.position - this.transform.position;
 
                 rb2D.AddForce(dir.normalized * speed);
-                speed++;
+                speed+=5;
             }
             else
             {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ShadowBoomerangActivation : MonoBehaviour
+public class OtherBoomerangActivation : MonoBehaviour
 {
     [SerializeField]
     GameObject boomerangManager;
@@ -21,17 +21,21 @@ public class ShadowBoomerangActivation : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (this.tag.Equals("ShadowBoomerang"))
+        if (collision.CompareTag("Player"))
         {
-            
-            helpText.SetActive(true);
-            bm.shadowBoomerangCollected = true;
 
-        }
-        else if (this.tag.Equals("IceBoomerang"))
-        {
-            bm.iceBoomerangCollected = true;
+            if (this.tag.Equals("ShadowBoomerang"))
+            {
 
+                helpText.SetActive(true);
+                bm.shadowBoomerangCollected = true;
+
+            }
+            else if (this.tag.Equals("IceBoomerang"))
+            {
+                bm.iceBoomerangCollected = true;
+
+            }
         }
     }
 }
