@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     //dash
     private float _dashingVelocity = 35f;
-    private float _dashingTime = 0.02f;
+    private float _dashingTime = 0.13f;
     private float _dashingCoolDownTime = 0.5f;
     private Vector2 _dashingDir;
     public bool _isDashing;
@@ -164,6 +164,7 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRb.drag = 2;
             speed = 20f;
+            _dashingVelocity = 25f;
         }
     }
 
@@ -173,6 +174,8 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRb.drag = 20;
             speed = iceSpeedRecover;
+            _dashingVelocity = 35f;
+
         }
     }
 }
