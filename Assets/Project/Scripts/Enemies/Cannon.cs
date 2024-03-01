@@ -56,7 +56,7 @@ public class Cannon : MonoBehaviour
     IEnumerator ShootOneBullet()
     {
         _animator.SetBool("Shoot", true);
-        _audioSource.PlayOneShot(shootSound, 0.2f);
+        _audioSource.PlayOneShot(shootSound, 1f);
         yield return new WaitForSeconds(0.2f);
         GameObject bullet = Instantiate(cannonBullet);
         bullet.transform.position = transform.position;
