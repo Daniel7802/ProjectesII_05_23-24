@@ -7,6 +7,10 @@ public class PlayerHealthSystem : HealthSystem
 {
     [SerializeField]
     GameObject[] hearts;
+
+    [SerializeField]
+    List<GameObject> heartList = new List<GameObject>();
+
     NewBehaviourScript _damageFlash;
     public int counter;
 
@@ -24,6 +28,11 @@ public class PlayerHealthSystem : HealthSystem
         _respawnSystem = GetComponent<RespawnSystem>();
         _damageFlash = GetComponent<NewBehaviourScript>();
         counter = MaxHealth;
+
+        for(int i = 0; i < MaxHealth; i++)
+        {
+            heartList.Add(hearts[i]);
+        }
     }
 
     public void Update()
@@ -50,7 +59,7 @@ public class PlayerHealthSystem : HealthSystem
         health = MaxHealth;
         for (int i = MaxHealth - 1; i >= 0; i--)
         {
-            hearts[i].SetActive(true);
+            heartList[i].SetActive(true);
         }
     }
 
@@ -68,7 +77,7 @@ public class PlayerHealthSystem : HealthSystem
     {
         _audioSource.PlayOneShot(damageSound);
         _damageFlash.CallDamageFlasher();
-        hearts[health].SetActive(false);
+        heartList[health].SetActive(false);
         cameraShakeManager.instance.CameraShake(impulseSource);
     }
     public void addHeart()
@@ -76,7 +85,7 @@ public class PlayerHealthSystem : HealthSystem
         if(health < MaxHealth)
         {
             _damageFlash.CallHealFlasher();
-            hearts[health].SetActive(true);
+            heartList[health].SetActive(true);
             health = health + 1;
         }
     }
