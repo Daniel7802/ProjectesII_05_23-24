@@ -128,7 +128,7 @@ public class BoomerangManager : MonoBehaviour
     public IEnumerator AddToTargetGroup(GameObject a)
     {
         _boomerangThrow = a.GetComponent<BoomerangThrow>();
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(1.0f);
         m_TargetGroup.AddMember(a.transform, 0.55f, 5);
     }
 }
