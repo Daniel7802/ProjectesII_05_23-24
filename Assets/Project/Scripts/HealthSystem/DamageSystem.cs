@@ -21,8 +21,7 @@ public class DamageSystem : MonoBehaviour
             {
 
                 if(phs.isInvincible == false && phs.health > 0 && phs.health <= phs.MaxHealth)
-                {
-                    
+                {     
                     phs.turnInvincible();                   
                     phs.GetDamage(dmg);
                     phs.deleteHeart();
