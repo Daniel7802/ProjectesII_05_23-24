@@ -8,7 +8,7 @@ public class ActivateArena : MonoBehaviour
     public GameObject arena;
 
     //spikes
-    private float spikesSpawnSeconds = 0.5f;
+    private float spikesSpawnSeconds = 0.3f;
     public bool spikesShowed = false;
     //public GameObject spikesParent;
     public List<GameObject> spikes = new List<GameObject>();
