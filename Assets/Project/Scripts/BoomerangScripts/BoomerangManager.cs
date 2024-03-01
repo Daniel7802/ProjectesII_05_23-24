@@ -13,9 +13,9 @@ public class BoomerangManager : MonoBehaviour
     [SerializeField]
     GameObject _boomerang;
     [SerializeField]
-    GameObject _shadowBoomerang;
+  public  GameObject _shadowBoomerang;
     [SerializeField]
-    GameObject _iceBoomerang;
+  public  GameObject _iceBoomerang;
 
 
 
@@ -28,7 +28,7 @@ public class BoomerangManager : MonoBehaviour
     //[SerializeField]
     //GameObject _rootBoomerang;
 
-   GameObject actualBoomerang;
+  public GameObject actualBoomerang;
 
     public BoomerangThrow _boomerangThrow;
 
@@ -51,21 +51,9 @@ public class BoomerangManager : MonoBehaviour
     }
     private void Update()
     {
-        prepareLaunch();
         ChangeBoomerang();
     }
-
-    void prepareLaunch()
-    {
-        //if(_boomerangThrow.mouseHold)
-        //{
-        //    _playerMovement.speed = _playerMovement.speed* 0.3f;
-        //}
-        //else
-        //{
-        //    _playerMovement.speed = _playerMovement.speed * 1.7f;
-        //}
-    }
+ 
     void ChangeBoomerang()
     {
         if (!_boomerangThrow.isFlying)
