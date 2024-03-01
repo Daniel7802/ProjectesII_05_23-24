@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody2D playerRb;
     private Animator playerAnimator;
+    private SpriteRenderer sr;
 
     private Vector2 movementVector;
     private Vector2 movementVectorNormalized;
@@ -50,10 +51,17 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 teleportTarget;
     private bool wantsToTeleport;
 
+    public enum lastDirection { LEFT, RIGHT, UP, DOWN, NONE };
+    public lastDirection LastDirection;
+
+    [SerializeField]
+    private Sprite[] directionSprites;
+
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
 
         _audioSource = GetComponent<AudioSource>();
         _missionModuleWalk = _walkParticles.emission;
@@ -105,13 +113,13 @@ public class PlayerMovement : MonoBehaviour
                 _missionModuleWalk.enabled = false;
                 dontWalked = true;
             }
-
-            
         }
         else
         {
             playerAnimator.SetFloat("Speed", 0);
         }
+
+        CheckLastDirection();
     }
 
     private void FixedUpdate()
@@ -173,6 +181,46 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRb.drag = 20;
             speed = iceSpeedRecover;
+        }
+    }
+
+    private void CheckLastDirection()
+    {
+        if(Input.GetAxisRaw("Horizontal") < 0)
+        {
+            LastDirection = lastDirection.LEFT;
+        }
+        else if(Input.GetAxisRaw("Horizontal") > 0)
+        {
+            LastDirection = lastDirection.RIGHT;
+        }
+        else if (Input.GetAxisRaw("Vertical") > 0)
+        {
+            LastDirection = lastDirection.UP;
+        }
+        else if (Input.GetAxisRaw("Vertical") < 0)
+        {
+            LastDirection = lastDirection.DOWN;
+        }
+
+        if(speed < 0.001)
+        {
+            if(LastDirection == lastDirection.LEFT)
+            {
+                sr.sprite = directionSprites[0];
+            }
+            else if (LastDirection == lastDirection.RIGHT)
+            {
+                sr.sprite = directionSprites[1];
+            }
+            else if (LastDirection == lastDirection.UP)
+            {
+                sr.sprite = directionSprites[2];
+            }
+            else if (LastDirection == lastDirection.DOWN)
+            {
+                sr.sprite = directionSprites[3];
+            }
         }
     }
 }
