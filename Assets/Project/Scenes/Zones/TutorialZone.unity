@@ -3128,7 +3128,7 @@ Tilemap:
       - {fileID: 469755726, guid: 359eef7a931b70c428dc54b9b441249e, type: 3}
       - {fileID: -600399516, guid: 359eef7a931b70c428dc54b9b441249e, type: 3}
       - {fileID: -1817048204, guid: 359eef7a931b70c428dc54b9b441249e, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 83, y: 10, z: 0}
@@ -6185,8 +6185,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.1426506, y: 5.3904, z: 0}
-    m_Extent: {x: 19.63925, y: 21.5876, z: 0}
+    m_Center: {x: 0.13895035, y: 5.3854494, z: 0}
+    m_Extent: {x: 19.64255, y: 21.57315, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -24740,8 +24740,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.089099884, y: -0.15785027, z: 0}
-    m_Extent: {x: 16.5411, y: 16.03305, z: 0}
+    m_Center: {x: 0.082099915, y: -0.15249968, z: 0}
+    m_Extent: {x: 16.5476, y: 16.0311, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 1.45
@@ -62810,6 +62810,10 @@ PrefabInstance:
     - target: {fileID: 6657343719683139223, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
       propertyPath: m_Name
       value: Boomerang
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657343719683139223, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6942920568467783688, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
       propertyPath: m_RootOrder
