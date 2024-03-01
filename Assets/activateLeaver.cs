@@ -11,7 +11,7 @@ public class activateLeaver : MonoBehaviour
     [SerializeField]
     type activateType = type.Nothing;
     [SerializeField]
-    List<Trap> traps = new List<Trap>();
+    List<Cannon> cannons = new List<Cannon>();
     void Start()
     {
         animator = GetComponent<Animator>();    
@@ -34,9 +34,9 @@ public class activateLeaver : MonoBehaviour
                 animator.SetBool("active", true);
                 if (activateType == type.Trap)
                 {
-                    foreach (Trap trap in traps)
+                    foreach (Cannon cannon in cannons)
                     {
-                        trap.wait = false;
+                        cannon.wait = false;
                     }
                 }
             }            
