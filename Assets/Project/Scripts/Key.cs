@@ -10,9 +10,7 @@ public class Key : MonoBehaviour
 
     [SerializeField]
     GameObject winManager;
-
-    [SerializeField]
-    GameObject position;
+    
     void Start()
     {
         taken = false;

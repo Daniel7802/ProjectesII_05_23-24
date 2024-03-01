@@ -26,7 +26,7 @@ public class ShadowBoomerang : BoomerangThrow
         _playerMovement = source.GetComponent<PlayerMovement>();
         _particleBlackHole = _particleBlackHoleGO.GetComponent<ParticleSystem>();
         _circleCollider.enabled = false;
-        type = boomerangType.SHADOW;
+        type = BoomerangType.SHADOW;
     }
 
     new private void Update()

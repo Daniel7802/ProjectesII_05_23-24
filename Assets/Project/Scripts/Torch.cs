@@ -9,7 +9,7 @@ public class Torch : MonoBehaviour
    private ParticleSystem.EmissionModule _missionModule;
 
     [SerializeField]
-    public bool torchActive, masterTorch;
+    public bool torchActive, masterTorch,cantTurnOff;
 
     [SerializeField]
     private float time, maxTime;
@@ -49,7 +49,11 @@ public class Torch : MonoBehaviour
     {
         if (time >= 0f)
         {
-            time -= Time.deltaTime;
+            if(!cantTurnOff)
+            {
+                time -= Time.deltaTime;
+            }
+            
         }
         else
         {

@@ -42,11 +42,11 @@ public class BoomerangThrow : MonoBehaviour
 
     Vector2 p0, p2, pAux, vectorDirection, vectorObjective;
 
-   public enum boomerangType { NORMAL, SHADOW, ICE, RAIZ};
+    public enum BoomerangType { NORMAL, SHADOW, ICE, RAIZ };
 
 
-    public boomerangType type;
-    [SerializeField]
+    public BoomerangType type;
+
     //GameObject shopManager;
 
     // private ShopBehaviour sb;
@@ -65,7 +65,7 @@ public class BoomerangThrow : MonoBehaviour
     }
     public virtual void Start()
     {
-        type = boomerangType.NORMAL;
+
         rotationSpeed = 25;
         maxTimer = 2;
         maxTimerAttack = 0.05f;
@@ -114,7 +114,8 @@ public class BoomerangThrow : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && isFlying)
         {
             rightMouse = true;
-            if (isFlying && !going) { 
+            if (isFlying && !going)
+            {
                 _audioSource.PlayOneShot(goingSound);
             }
         }
@@ -284,17 +285,20 @@ public class BoomerangThrow : MonoBehaviour
             attackTimer = maxTimerAttack;
         }
 
-        if (collision.gameObject.TryGetComponent<Torch>(out Torch torch) && isFlying && type == boomerangType.NORMAL)
+        if (collision.gameObject.TryGetComponent<Torch>(out Torch torch) && isFlying)
         {
-            if (torch.torchActive)
-                isFire = true;
-            else if (!torch.torchActive && isFire)
-                torch.torchActive = true;
-
-            if(type == boomerangType.ICE)
+            if (type == BoomerangType.NORMAL)
+            {
+                if (torch.torchActive)
+                    isFire = true;
+                else if (!torch.torchActive && isFire)
+                    torch.torchActive = true;
+            }
+            else if (type == BoomerangType.ICE && !torch.masterTorch)
             {
                 torch.torchActive = false;
             }
+
         }
 
     }
