@@ -73,8 +73,4 @@ public class CollectAnimation : MonoBehaviour
             collected = true;
         }
     }
-
-
-
-
 }

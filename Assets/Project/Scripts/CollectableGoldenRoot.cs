@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class GoldenRootCollectAnimation : CollectAnimation
 {
-
-
     [SerializeField] private AudioClip _idleSound;
 
     [SerializeField] GameObject ShopManager;
@@ -18,7 +16,6 @@ public class GoldenRootCollectAnimation : CollectAnimation
     {
         base.Start();
         sb = ShopManager.GetComponent<ShopBehaviour>();
-
     }
 
     public override void OnTriggerEnter2D(Collider2D collision)
@@ -26,12 +23,10 @@ public class GoldenRootCollectAnimation : CollectAnimation
         base.OnTriggerEnter2D(collision);
         if (collision.CompareTag("Player"))
         {
-
-            if (!collected)
+            if (collected)
             {
                 sb.currentRoots++;
             }
-
         }
     }
 }
