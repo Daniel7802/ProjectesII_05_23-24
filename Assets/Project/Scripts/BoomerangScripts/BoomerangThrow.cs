@@ -290,6 +290,11 @@ public class BoomerangThrow : MonoBehaviour
                 isFire = true;
             else if (!torch.torchActive && isFire)
                 torch.torchActive = true;
+
+            if(type == boomerangType.ICE)
+            {
+                torch.torchActive = false;
+            }
         }
 
     }
