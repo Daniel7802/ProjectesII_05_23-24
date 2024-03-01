@@ -72,9 +72,10 @@ public class BoomerangManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                m_TargetGroup.RemoveMember(actualBoomerang.transform);
                 if (actualBoomerang == _boomerang && iceBoomerangCollected)
                 {
+                    m_TargetGroup.RemoveMember(actualBoomerang.transform);
+
                     actualBoomerang.SetActive(false);
                     actualBoomerang = _iceBoomerang;
 
@@ -82,6 +83,8 @@ public class BoomerangManager : MonoBehaviour
                 }
                 else if (actualBoomerang == _shadowBoomerang)
                 {
+                    m_TargetGroup.RemoveMember(actualBoomerang.transform);
+
                     actualBoomerang.SetActive(false);
                     actualBoomerang = _boomerang;
 
@@ -89,6 +92,8 @@ public class BoomerangManager : MonoBehaviour
                 }
                 else if (actualBoomerang == _iceBoomerang && shadowBoomerangCollected)
                 {
+                    m_TargetGroup.RemoveMember(actualBoomerang.transform);
+
                     actualBoomerang.SetActive(false);
                     actualBoomerang = _shadowBoomerang;
 
@@ -98,9 +103,10 @@ public class BoomerangManager : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
-                m_TargetGroup.RemoveMember(actualBoomerang.transform);
                 if (actualBoomerang == _boomerang && shadowBoomerangCollected)
                 {
+                    m_TargetGroup.RemoveMember(actualBoomerang.transform);
+
                     actualBoomerang.SetActive(false);
                     actualBoomerang = _shadowBoomerang;
 
@@ -108,6 +114,8 @@ public class BoomerangManager : MonoBehaviour
                 }
                 else if (actualBoomerang == _shadowBoomerang && iceBoomerangCollected)
                 {
+                    m_TargetGroup.RemoveMember(actualBoomerang.transform);
+
                     actualBoomerang.SetActive(false);
                     actualBoomerang = _iceBoomerang;
 
@@ -115,6 +123,8 @@ public class BoomerangManager : MonoBehaviour
                 }
                 else if (actualBoomerang == _iceBoomerang)
                 {
+                    m_TargetGroup.RemoveMember(actualBoomerang.transform);
+
                     actualBoomerang.SetActive(false);
                     actualBoomerang = _boomerang;
 
