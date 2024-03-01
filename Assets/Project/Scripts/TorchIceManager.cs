@@ -6,6 +6,7 @@ public class TorchIceManager : MonoBehaviour
 {
     [SerializeField]
     private Torch[] activeTorch;
+    [SerializeField]
     private Torch[] nonActiveTorch;
     int activated = 0;
     int nonActivated = 0;
