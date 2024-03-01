@@ -23,16 +23,23 @@ public class OtherBoomerangActivation : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-
             if (this.tag.Equals("ShadowBoomerang"))
             {
-
+                bm.m_TargetGroup.RemoveMember(bm.actualBoomerang.transform);
+                bm.actualBoomerang.SetActive(false);
+                bm.actualBoomerang = bm._shadowBoomerang;
                 helpText.SetActive(true);
                 bm.shadowBoomerangCollected = true;
+                bm.actualBoomerang.SetActive(true);
 
             }
             else if (this.tag.Equals("IceBoomerang"))
             {
+                bm.m_TargetGroup.RemoveMember(bm.actualBoomerang.transform);
+                bm.actualBoomerang.SetActive(false);
+                bm.actualBoomerang = bm._iceBoomerang;
+                helpText.SetActive(true);
+                bm.actualBoomerang.SetActive(true);
                 bm.iceBoomerangCollected = true;
 
             }
