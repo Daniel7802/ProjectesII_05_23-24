@@ -10,12 +10,12 @@ public class GoldenRootCollectAnimation : CollectAnimation
 
     [SerializeField] GameObject ShopManager;
 
-    private ShopBehaviour sb;
+    private PlayerInventory pi;
 
     public override void Start()
     {
         base.Start();
-        sb = ShopManager.GetComponent<ShopBehaviour>();
+        pi = ShopManager.GetComponent<PlayerInventory>();
     }
 
     public override void OnTriggerEnter2D(Collider2D collision)
@@ -25,7 +25,7 @@ public class GoldenRootCollectAnimation : CollectAnimation
         {
             if (collected)
             {
-                sb.currentRoots++;
+                pi.currentRoots++;
             }
         }
     }

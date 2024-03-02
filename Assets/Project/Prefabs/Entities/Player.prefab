@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1277243566894445860}
   - component: {fileID: 9145842343681718827}
   - component: {fileID: 7490800426209183852}
+  - component: {fileID: 5204449990380883998}
   - component: {fileID: 1911137432474511315}
   - component: {fileID: 1774810771542259340}
   - component: {fileID: 8119343296046956285}
@@ -165,8 +166,24 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  heartList: []
   counter: 0
   isInvincible: 0
+--- !u!114 &5204449990380883998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416834808553754793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b8455d7eaa70043bb83bdbf9bdb2e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRoots: 30
+  extraHearts: []
+  currentRootsText: []
 --- !u!114 &1911137432474511315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +216,7 @@ MonoBehaviour:
   _iceBoomerang: {fileID: 0}
   shadowBoomerangCollected: 0
   iceBoomerangCollected: 0
+  actualBoomerang: {fileID: 0}
   _boomerangThrow: {fileID: 0}
 --- !u!50 &8119343296046956285
 Rigidbody2D:
