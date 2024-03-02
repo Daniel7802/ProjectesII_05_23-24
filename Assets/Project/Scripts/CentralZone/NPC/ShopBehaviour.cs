@@ -12,31 +12,17 @@ public class ShopBehaviour : MonoBehaviour
     [SerializeField]
     GameObject shopCanvas;
 
-    [SerializeField]
-    GameObject Player;
-
-    [SerializeField]
-    GameObject[] extraHearts;
-
-    private int extraheartsCounter = 0;
-
-    private PlayerHealthSystem phs;
-
-    public TextMeshProUGUI[] currentRootsText;
-
-    public int currentRoots = 30;
-
     public bool isShoping = false;
+
+    [SerializeField]
+    GameObject player;
+
+    private PlayerInventory pi;
 
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < currentRootsText.Length; i++)
-        {
-            currentRootsText[i].text = currentRoots.ToString();
-        }
-
-        phs = Player.transform.GetComponent<PlayerHealthSystem>();
+        pi = player.GetComponent<PlayerInventory>();
     }
 
     // Update is called once per frame
@@ -52,11 +38,6 @@ public class ShopBehaviour : MonoBehaviour
         else
         {
             shopCanvas.SetActive(false);
-        }
-
-        for (int i = 0; i < currentRootsText.Length; i++)
-        {
-            currentRootsText[i].text = currentRoots.ToString();
         }
     }
 
@@ -81,20 +62,6 @@ public class ShopBehaviour : MonoBehaviour
 
     public void PurchaseHeart()
     {
-        if(currentRoots >= 5)
-        {
-            currentRoots -= 5;
-
-            for (int i = 0; i < currentRootsText.Length; i++)
-            {
-                currentRootsText[i].text = currentRoots.ToString();
-            }
-
-            phs.MaxHealth++;
-            extraHearts[extraheartsCounter].SetActive(true);
-            extraheartsCounter++;
-            phs.health = phs.MaxHealth;
-            phs.RespawnHeal();
-        }
+        pi.IncreaseMaxHearts();
     }
 }
