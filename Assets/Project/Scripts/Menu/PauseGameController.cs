@@ -32,7 +32,11 @@ public class PauseGameController : MonoBehaviour
             {
                 Time.timeScale = 1.0f;
                 pauseMenuCanvas.gameObject.SetActive(false);             
-
+                for(int i = 0; i < allMenus.Length; i++)
+                {
+                    allMenus[i].gameObject.SetActive(false);
+                }
+                pauseMenu.SetActive(true);
                 isPaused = false;
             }
         }

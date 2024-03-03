@@ -101,13 +101,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6321fc224daa44b9496f0621873332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _idleSound: {fileID: 8300000, guid: d495f691ff5a69e4cb863cc16acb7f11, type: 3}
   _collectedSound: {fileID: 8300000, guid: 5cd426105b5d7974c869cdbd72f2cc9e, type: 3}
   collectedTime: 2
   pickUpTime: 0.3
   height: 1.7
-  newScale: 0.7
   speed: 20
+  _idleSound: {fileID: 8300000, guid: d495f691ff5a69e4cb863cc16acb7f11, type: 3}
   ShopManager: {fileID: 0}
 --- !u!50 &4249498093612000130
 Rigidbody2D:
@@ -190,7 +189,7 @@ AudioSource:
   m_GameObject: {fileID: 3306877640879446797}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8175254453196319869, guid: c142dd72f306a0647a17af513791ef1d, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1

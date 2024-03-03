@@ -111363,7 +111363,7 @@ Transform:
   - {fileID: 2856209622877219359}
   - {fileID: 2310093238933037783}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &193219100752379691
 PrefabInstance:
@@ -111718,6 +111718,10 @@ PrefabInstance:
       propertyPath: ShopManager
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7297359607153161243, guid: 37a50e205951ae643b8d18d8764afc7a, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 8175254453196319869, guid: c142dd72f306a0647a17af513791ef1d, type: 2}
     - target: {fileID: 8657772537321930209, guid: 37a50e205951ae643b8d18d8764afc7a, type: 3}
       propertyPath: m_RootOrder
       value: -1
