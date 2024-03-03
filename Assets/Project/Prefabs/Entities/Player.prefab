@@ -182,8 +182,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoots: 30
-  extraHearts: []
-  currentRootsText: []
+  extraHearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  voidHearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  currentRootsText:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1911137432474511315
 MonoBehaviour:
   m_ObjectHideFlags: 0
