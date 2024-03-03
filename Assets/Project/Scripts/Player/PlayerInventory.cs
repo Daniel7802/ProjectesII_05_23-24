@@ -10,6 +10,9 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     GameObject[] extraHearts;
 
+    [SerializeField]
+    GameObject[] voidHearts;
+
     private int extraheartsCounter = 0;
 
     public TextMeshProUGUI[] currentRootsText;
@@ -46,9 +49,10 @@ public class PlayerInventory : MonoBehaviour
             {
                 currentRootsText[i].text = currentRoots.ToString();
             }
-
             phs.MaxHealth++;
+            phs.heartList.Add(extraHearts[extraheartsCounter]);
             extraHearts[extraheartsCounter].SetActive(true);
+            voidHearts[extraheartsCounter].SetActive(true);
             extraheartsCounter++;
             phs.health = phs.MaxHealth;
             phs.RespawnHeal();

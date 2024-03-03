@@ -550,7 +550,6 @@ MonoBehaviour:
   isFire: 0
   mouseHold: 0
   type: 2
-  _playerController: {fileID: 0}
 --- !u!1 &5038968182770832230
 GameObject:
   m_ObjectHideFlags: 0
@@ -5420,7 +5419,7 @@ AudioSource:
   m_GameObject: {fileID: 6642239363335461261}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8175254453196319869, guid: c142dd72f306a0647a17af513791ef1d, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
