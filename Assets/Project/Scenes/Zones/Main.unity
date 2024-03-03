@@ -664,7 +664,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 278909586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.080017, y: -57.65001, z: -17}
+  m_LocalPosition: {x: -14.470032, y: 50.819992, z: -17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1670,11 +1670,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8592275167556148878, guid: 2f540635d9e62644e8bb93686f4139ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.080017
+      value: -14.470032
       objectReference: {fileID: 0}
     - target: {fileID: 8592275167556148878, guid: 2f540635d9e62644e8bb93686f4139ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -57.65001
+      value: 50.819992
       objectReference: {fileID: 0}
     - target: {fileID: 8592275167556148878, guid: 2f540635d9e62644e8bb93686f4139ee, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4294,6 +4294,26 @@ PrefabInstance:
       propertyPath: bt
       value: 
       objectReference: {fileID: 2143169035382245825}
+    - target: {fileID: 3947543216053080472, guid: fa4fa84134905b1499f7e3ec2f5f3ba0, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3947543216053080472, guid: fa4fa84134905b1499f7e3ec2f5f3ba0, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime2
+      value: 42212
+      objectReference: {fileID: 0}
+    - target: {fileID: 3947543216053080472, guid: fa4fa84134905b1499f7e3ec2f5f3ba0, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3947543216053080472, guid: fa4fa84134905b1499f7e3ec2f5f3ba0, type: 3}
+      propertyPath: m_Parameters.colorGradient.key2.a
+      value: 0.6901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 3947543216053080472, guid: fa4fa84134905b1499f7e3ec2f5f3ba0, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_NumAlphaKeys
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4783299023656041779, guid: fa4fa84134905b1499f7e3ec2f5f3ba0, type: 3}
       propertyPath: m_Enabled
       value: 0
