@@ -13,15 +13,15 @@ public class HealthSystem : MonoBehaviour
     [SerializeField]
     public bool getHit;
 
-    private AudioSource _audioSource;
-    [SerializeField] private AudioClip damageSound;
+    protected AudioSource _audioSource;
+    [SerializeField] protected AudioClip damageSound;
 
 
     private bool invincible = false;
 
 
-    private float canGetDamageTimer = 0.0f;
-    [SerializeField] private float canGetDamageMaxTimer;
+    private float canGetDamageTimer = 0f;
+    private float canGetDamageMaxTimer = 0.5f;
 
     protected SpriteRenderer spriteRenderer;
     [SerializeField] protected Material defaultMaterial;
@@ -35,7 +35,6 @@ public class HealthSystem : MonoBehaviour
         ds = GetComponent<DeadSystem>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         _audioSource = GetComponent<AudioSource>();
-
     }
     public virtual void Start()
     {
@@ -71,7 +70,6 @@ public class HealthSystem : MonoBehaviour
                 canGetDamageTimer = 0.0f;
             }
             canGetDamageTimer += Time.deltaTime;
-
         }
         else
         {
@@ -81,7 +79,7 @@ public class HealthSystem : MonoBehaviour
 
     public void GetDamage(int amount)
     {
-        if (this.gameObject.CompareTag("Player"))
+        if (!ds.isDead)
         {
             _audioSource.PlayOneShot(damageSound);
             health -= amount;
@@ -92,31 +90,15 @@ public class HealthSystem : MonoBehaviour
 
                 DeadState();
             }
-
-
-        }else if(!ds.isDead)    
-        {
-            _audioSource.PlayOneShot(damageSound);
-            health -= amount;
-
-            if (health <= 0)
-            {
-                health = 0;
-
-                DeadState();
-            }
-
 
             if (this.gameObject.CompareTag("Enemy"))
             {
                 isDamaged = true;
-
             }
         }
     }
     public void TurnInvencible(bool inv)
     {
-
         invincible = inv;
     }
 

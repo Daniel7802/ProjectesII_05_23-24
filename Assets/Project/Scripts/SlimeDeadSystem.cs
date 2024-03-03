@@ -8,51 +8,40 @@ public class SlimeDeadSystem : DeadSystem
     [SerializeField] GameObject miniSlime;
     bool miniSlimesSpawned = false;
 
-    [SerializeField] float spawnForce = 5f;
+    [SerializeField] float spawnForce = 10f;
 
-    public GameObject player;
+    private GameObject player;
     private Vector2 vectorBetweenPlayer, vectorSlime1, vectorSlime2;
-
-  
-
-
 
     public override void Dead()
     {
-        
         base.Dead();
         SpawnMiniSlimes();
-        
+
+
     }
     void SpawnMiniSlimes()
     {
 
         if (!miniSlimesSpawned)
         {
+            GameObject minislime1 = Instantiate(miniSlime, transform.position, Quaternion.identity);
+            GameObject minislime2 = Instantiate(miniSlime, transform.position, Quaternion.identity);
             
-            Vector2 vector = transform.position;
-            GameObject slime = Instantiate(miniSlime, vector, Quaternion.identity);
-            GameObject slime2 = Instantiate(miniSlime, vector, Quaternion.identity);
-            slime.GetComponent<SlimeIA>().player = player;
-            slime2.GetComponent<SlimeIA>().player = player;
+            minislime1.gameObject.GetComponent<HealthSystem>().TurnInvencible(true);
+            minislime2.gameObject.GetComponent<HealthSystem>().TurnInvencible(true);
 
-            slime.GetComponent<HealthSystem>().TurnInvencible(true);
-            slime2.GetComponent<HealthSystem>().TurnInvencible(true);
-
-            CalculateVectors();
-            slime.GetComponent<Rigidbody2D>().AddForce(vectorSlime1,ForceMode2D.Impulse);
-            slime2.GetComponent<Rigidbody2D>().AddForce(vectorSlime2, ForceMode2D.Impulse);            
+            player = GetComponent<DetectionZone>().player;
+            vectorBetweenPlayer = player.transform.position - transform.position;
+            vectorSlime1 = new Vector2(-vectorBetweenPlayer.y, vectorBetweenPlayer.x).normalized * spawnForce;
+            vectorSlime2 = new Vector2(vectorBetweenPlayer.y, -vectorBetweenPlayer.x).normalized * spawnForce;
+            minislime1.gameObject.GetComponent<Rigidbody2D>().AddForce(vectorSlime1, ForceMode2D.Impulse);
+            minislime2.gameObject.GetComponent<Rigidbody2D>().AddForce(vectorSlime2, ForceMode2D.Impulse);
 
             miniSlimesSpawned = true;
         }
     }
 
 
-    void CalculateVectors()
-    {
-        vectorBetweenPlayer = player.transform.position - transform.position;
-        vectorSlime1 = new Vector2(-vectorBetweenPlayer.y, vectorBetweenPlayer.x).normalized * spawnForce;
-        vectorSlime2 = new Vector2(vectorBetweenPlayer.y, -vectorBetweenPlayer.x).normalized * spawnForce;
-    }
 }
 

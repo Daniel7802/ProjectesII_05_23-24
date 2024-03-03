@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerHealthSystem : HealthSystem
 {
     [SerializeField]
     GameObject[] hearts;
+
+    public List<GameObject> heartList = new List<GameObject>();
+
     NewBehaviourScript _damageFlash;
     public int counter;
 
@@ -13,22 +17,25 @@ public class PlayerHealthSystem : HealthSystem
     private float timer = 1f;
 
     RespawnSystem _respawnSystem;
-   
+
+    private CinemachineImpulseSource impulseSource;
     // Start is called before the first frame update
     public override void Awake()
     {
+        impulseSource = GetComponent<CinemachineImpulseSource>();   
         base.Awake();
         _respawnSystem = GetComponent<RespawnSystem>();
         _damageFlash = GetComponent<NewBehaviourScript>();
         counter = MaxHealth;
+
+        for(int i = 0; i < MaxHealth; i++)
+        {
+            heartList.Add(hearts[i]);
+        }
     }
 
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            health = 100;
-        }
         if(isInvincible)
         {
             timer -= Time.deltaTime;
@@ -43,9 +50,6 @@ public class PlayerHealthSystem : HealthSystem
 
     public void Heal()
     {
-        if (health < MaxHealth)
-            health++;
-
         addHeart();
     }
 
@@ -54,7 +58,7 @@ public class PlayerHealthSystem : HealthSystem
         health = MaxHealth;
         for (int i = MaxHealth - 1; i >= 0; i--)
         {
-            hearts[i].SetActive(true);
+            heartList[i].SetActive(true);
         }
     }
 
@@ -70,15 +74,18 @@ public class PlayerHealthSystem : HealthSystem
 
     public void deleteHeart()
     {
+        _audioSource.PlayOneShot(damageSound);
         _damageFlash.CallDamageFlasher();
-        hearts[health - 1].SetActive(false);
+        heartList[health].SetActive(false);
+        cameraShakeManager.instance.CameraShake(impulseSource);
     }
     public void addHeart()
     {
         if(health < MaxHealth)
         {
             _damageFlash.CallHealFlasher();
-            hearts[health + 1].SetActive(true);
+            heartList[health].SetActive(true);
+            health = health + 1;
         }
     }
 }

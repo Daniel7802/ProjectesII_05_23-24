@@ -15,44 +15,60 @@ public class Trap : MonoBehaviour
     [SerializeField] private GameObject trapBullet;
 
     private Vector2 direction = Vector2.zero;
-
+    [SerializeField]
+    public bool wait;
     private AudioSource _audioSource;
     [SerializeField] private AudioClip shootSound;
 
     [SerializeField] private float reloadingTime = 3f;
+    [SerializeField] private float startTime;
+    private bool activate = false;
     private float reloadingTimer = 0f;
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();       
+        _audioSource = GetComponent<AudioSource>();
     }
     private void FixedUpdate()
     {
-        if (reloadingTimer < reloadingTime)
+        if (!wait)
         {
-            reloadingTimer+=Time.deltaTime;
+            if (startTime < 0)
+                activate = true;
+            else
+                startTime -= Time.deltaTime;
+
+            if (activate)
+            {
+                if (reloadingTimer < reloadingTime)
+                {
+                    reloadingTimer += Time.deltaTime;
+                }
+                else
+                {
+                    if (up)
+                    {
+                        ShootOneBullet(DIR.UP);
+                    }
+                    if (down)
+                    {
+                        ShootOneBullet(DIR.DOWN);
+                    }
+                    if (right)
+                    {
+                        ShootOneBullet(DIR.RIGHT);
+                    }
+                    if (left)
+                    {
+                        ShootOneBullet(DIR.LEFT);
+                    }
+
+                    reloadingTimer = 0f;
+                }
+            }
+
         }
-        else
-        {
-            if (up)
-            {
-                ShootOneBullet(DIR.UP);
-            }
-            if (down)
-            {
-                ShootOneBullet(DIR.DOWN);
-            }
-            if(right)
-            {
-                ShootOneBullet(DIR.RIGHT);
-            }
-            if(left)
-            {
-                ShootOneBullet(DIR.LEFT);
-            }
-            
-            reloadingTimer = 0f;
-        }
+
     }
 
     void ShootOneBullet(DIR dir)
@@ -73,7 +89,7 @@ public class Trap : MonoBehaviour
                 direction = -transform.right;
                 break;
         }
-       
+
         GameObject bullet = Instantiate(trapBullet);
         bullet.transform.position = transform.position;
         bullet.transform.right = direction;

@@ -8,207 +8,156 @@ using static Unity.VisualScripting.Member;
 public class ShootyIA : Enemy
 {
 
-    private float moveForce;
-    public LayerMask hitLayer;
-
     //roaming
-    public float roamingMoveForce = 3f;
-    private bool isStoped = false;
-    private float timerToStop = 0f;
-    public float timeToStop = 6f;
-    private float timerStoped = 0f;
-    public float timeStoped = 1f;
-    private bool setNewDest = false;
-    public float newDestTime = 3f;
-    private float newDestTimer = 0f;
+    private float waitingTime;
+    private float minWaitingTime = 1.5f;
+    private float maxWaitingTime = 3f;
 
-    //chasing   
-    public float chasingMoveForce = 8f;
 
     //aiming
     private LineRenderer lineRenderer;
     private float lineTimer = 0f;
-    public float aimingTime = 0.8f;
+    [SerializeField]
+    private float aimingTime = 0.8f;
+    [SerializeField]
+    private AudioClip foundTargetSound;
 
     //shooting
-    public GameObject enemyBullet;
-    public float startShootingRange;
-    public float stopShootingRange;
-    public AudioClip shootSound;
+    [SerializeField]
+    private GameObject shootyBullet;
+    [SerializeField]
+    private float startShootingRange;  
+    [SerializeField]
+    private AudioClip shootSound;
 
     //reloading   
     private float reloadingTimer = 0f;
-    public float reloadingTime;
-    public AudioClip reloadingSound;
+    [SerializeField]
+    private float reloadingTime;
+    [SerializeField]
+    private AudioClip reloadingSound;
+
+    [SerializeField]
+    private AudioClip lostTargetSound;
 
     public override void Start()
     {
         base.Start();
-        currentState = 0;
         lineRenderer = GetComponent<LineRenderer>();
+
     }
 
     private void Update()
     {
-        FlipX();
-        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        FlipByTarget();
 
         switch (currentState)
         {
-            case 0://roaming
-
-                if (distanceToPlayer < startChasingRange && RaycastPlayer())
-                {
-
-                    currentState = 1;
-                }
-                else
-                {
-                    Roaming();
-                }
+            case CurrentState.ROAMING:
+                Roaming();
                 break;
 
-            case 1://chasing
-
-                if (distanceToPlayer > stopChasingRange)// target lost -->to roaming
-                {
-                    currentState = 0;
-                }
-                else if (distanceToPlayer < startShootingRange)// player enough close to shoot
-                {
-
-                    if (RaycastPlayer())
-                        currentState = 2;
-                    else
-                        currentState = 0;
-                }
-                else
-                {
-                    if (RaycastPlayer())
-                        Chasing();
-                    else
-                        currentState = 0;
-                }
+            case CurrentState.CHASING:
+                Chasing();
                 break;
 
-            case 2://aiming
-                if (RaycastPlayer())
-                {
-                    if (lineTimer < aimingTime)
-                    {
-                        animator.SetBool("walk", false);
-                        Aiming();
-                        lineTimer += Time.deltaTime;
-                    }
-                    else
-                    {
-                        lineRenderer.enabled = false;
-                        currentState = 3;
-                    }
-
-                }
-                else
-                {
-                    lineRenderer.enabled = false;
-                    currentState = 3;
-                    lineTimer = 0;
-                }
-
+            case CurrentState.AIMING:
+                Aiming();
                 break;
 
-            case 3://shooting
+            case CurrentState.SHOOTING:
                 Shooting();
-                reloadingTimer = 0;
-                currentState = 4;
                 break;
 
-            case 4://reloading
-                target = player.transform.position;
-                lineTimer = 0;
-                if (reloadingTimer == 0f)
-                    audioSource.PlayOneShot(reloadingSound, 0.1f);
-                reloadingTimer += Time.deltaTime;
-
-                if (reloadingTimer > reloadingTime)
-                {
-                    if (distanceToPlayer < startShootingRange)
-                    {
-                        currentState = 2;
-                    }
-                    else
-                    {
-                        currentState = 1;
-                    }
-                }
+            case CurrentState.RELOADING:
+                Reloading();
                 break;
-
         }
-
     }
     public override void Movement()
     {
         animator.SetBool("walk", true);
-
-        Vector2 directionVector = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
-        Vector2 impulseForce = directionVector.normalized * moveForce;
-
-        rb2D.AddForce(impulseForce);
+        base.Movement();
     }
 
     public override void Roaming()
     {
-        moveForce = roamingMoveForce;
-        target = roamingRandomPoint;
-
-        if (!isStoped)
+        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
         {
-            Movement();
-            newDestTimer += Time.deltaTime;
-            if (newDestTimer > newDestTime)
-            {
-                setNewDest = true;
-                newDestTimer = 0;
-            }
-
-            if (Vector2.Distance(transform.position, target) < 1)
-            {
-                setNewDest = true;
-            }
+            audioSource.PlayOneShot(foundTargetSound, 0.3f);
+            StartCoroutine(EnableAlert(foundTargetAlert));
+            currentState = CurrentState.CHASING;
+        }
+        else
+        {
+            base.Roaming();
         }
 
-        timerToStop += Time.deltaTime;
-        if (timerToStop > timeToStop)
-        {
-            isStoped = true;
-            animator.SetBool("walk", false);
-            timerStoped += Time.deltaTime;
-            if (timerStoped > timeStoped)
-            {
-                isStoped = false;
-                timerStoped = 0;
-                timerToStop = 0;
-            }
-        }
-
-        if (setNewDest)
-        {
-            SetNewRoamingDestination();
-            setNewDest = false;
-        }
     }
 
     public override void Chasing()
     {
-        moveForce = chasingMoveForce;
-        target = player.transform.position;
+        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
+        {
 
-        Movement();
+            if (Vector2.Distance(transform.position, detectionZone.GetComponent<DetectionZone>().player.transform.position) < startShootingRange)
+            {
+                currentState = CurrentState.AIMING;
+            }
+            else
+            {
+                base.Chasing();
+            }
+
+        }
+        else
+        {
+            audioSource.PlayOneShot(lostTargetSound);
+            StartCoroutine(EnableAlert(lostTargetAlert));
+            currentState = CurrentState.ROAMING;
+        }
+
     }
 
     void Aiming()
     {
-        target = player.transform.position;
-        ShowTrayectoryLine();
+
+        target = detectionZone.GetComponent<DetectionZone>().player.transform.position;
+
+        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
+        {
+            if (Vector2.Distance(transform.position, detectionZone.GetComponent<DetectionZone>().player.transform.position) < startShootingRange)
+            {
+                if (lineTimer < aimingTime)
+                {
+                    animator.SetBool("walk", false);
+                    ShowTrayectoryLine();
+                    lineTimer += Time.deltaTime;
+                }
+                else
+                {
+                    lineRenderer.enabled = false;
+                    lineTimer = 0;
+                    currentState = CurrentState.SHOOTING;
+
+                }
+            }
+            else
+            {
+                lineRenderer.enabled = false;
+                lineTimer = 0f;
+                currentState = CurrentState.CHASING;
+            }
+        }
+        else
+        {
+            lineRenderer.enabled = false;
+            lineTimer = 0f;
+            audioSource.PlayOneShot(lostTargetSound);
+            StartCoroutine(EnableAlert(lostTargetAlert));
+            currentState = CurrentState.ROAMING;
+
+        }
     }
     void ShowTrayectoryLine()
     {
@@ -217,51 +166,79 @@ public class ShootyIA : Enemy
             lineRenderer.enabled = true;
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, Vector3.zero);
-            Vector3 position2 = player.transform.position - transform.position;
-            lineRenderer.SetPosition(1, new Vector3(position2.x / transform.localScale.x, position2.y / transform.localScale.y, position2.z / transform.localScale.z));
-            //lineRenderer.SetPosition(0, transform.position);
-            // lineRenderer.SetPosition(1, player.transform.position);
+            Vector3 position2 = detectionZone.GetComponent<DetectionZone>().player.transform.position - transform.position;
+            //lineRenderer.SetPosition(1, new Vector3(position2.x / transform.localScale.x, position2.y / transform.localScale.y, position2.z / transform.localScale.z));
+            //lineRenderer.SetPosition(1, new Vector3(position2.x, position2.y, position2.z));
+            int d = 2;
+            lineRenderer.SetPosition(1, new Vector3(position2.x / d, position2.y / d, position2.z / d));
 
         }
-
-
     }
 
     void Shooting()
     {
-        target = player.transform.position;
+        target = detectionZone.GetComponent<DetectionZone>().player.transform.position;
         ShootOneBullet();
+        currentState = CurrentState.RELOADING;
     }
     void ShootOneBullet()
     {
         audioSource.PlayOneShot(shootSound, 0.5f);
-        Vector2 dir = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
-        GameObject bullet = Instantiate(enemyBullet);
+        Vector2 dir = new Vector2(detectionZone.GetComponent<DetectionZone>().player.transform.position.x - transform.position.x, detectionZone.GetComponent<DetectionZone>().player.transform.position.y - transform.position.y);
+        GameObject bullet = Instantiate(shootyBullet);
         bullet.transform.position = transform.position;
         bullet.transform.right = dir;
-
-    }
-    bool RaycastPlayer()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, 100, hitLayer);
-
-        return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
-
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void Reloading()
     {
-        if (collision.gameObject.tag.Equals("Wall"))
+        target = detectionZone.GetComponent<DetectionZone>().player.transform.position;
+        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
         {
-            setNewDest = true;
+            if (Vector2.Distance(transform.position, detectionZone.GetComponent<DetectionZone>().player.transform.position) < startShootingRange)
+            {
+                if (reloadingTimer == 0f)
+                    audioSource.PlayOneShot(reloadingSound, 0.1f);
+
+                reloadingTimer += Time.deltaTime;
+
+                if (reloadingTimer > reloadingTime)
+                {
+                    reloadingTimer = 0f;
+                    currentState = CurrentState.AIMING;
+
+                }
+               
+            }
+            else
+            {
+                reloadingTimer = 0f;
+                currentState = CurrentState.CHASING;
+            }
+
         }
+        else
+        {
+            reloadingTimer = 0f;
+            audioSource.PlayOneShot(lostTargetSound);
+            StartCoroutine(EnableAlert(lostTargetAlert));
+            currentState = CurrentState.ROAMING;
+        }
+        
     }
+
+    public void SetNewWaitingTime()
+    {
+        waitingTime = UnityEngine.Random.Range(minWaitingTime, maxWaitingTime);
+    }
+
+    
+
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, startShootingRange);
-        Gizmos.DrawWireSphere(transform.position, stopShootingRange);
-
     }
+
 }

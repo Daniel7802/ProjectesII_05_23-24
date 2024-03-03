@@ -4,23 +4,28 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoomerangThrow : MonoBehaviour
-{    
-    private TargetJoint2D _targetJoint;
+{
+    protected TargetJoint2D _targetJoint;
     private SpriteRenderer _spriteRenderer;
 
     [SerializeField]
     public CircleCollider2D _principalCircleCollider;
     protected bool canTouchWall = true;
 
+    [SerializeField]
     private TrailRenderer _trailRenderer;
+    [SerializeField]
     private LineRenderer _lineRenderer;
+    [SerializeField]
     protected AudioSource _audioSource;
 
+    [SerializeField]
     public AudioClip goingSound;
 
     [SerializeField]
     protected GameObject source; //Player
 
+    [SerializeField]
     private ParticleSystem _particleSystemFire;
     private ParticleSystem.EmissionModule _missionModuleFire;
 
@@ -37,26 +42,30 @@ public class BoomerangThrow : MonoBehaviour
 
     Vector2 p0, p2, pAux, vectorDirection, vectorObjective;
 
-    [SerializeField]
-    GameObject shopManager;
+    public enum BoomerangType { NORMAL, SHADOW, ICE, RAIZ };
 
-    private ShopBehaviour sb;
-    
+
+    public BoomerangType type;
+
+    //GameObject shopManager;
+
+    // private ShopBehaviour sb;
+
+    // ESTADOS DEL PLAYER
+    private PlayerController _playerController;
+
     protected void Awake()
     {
-        _lineRenderer = GetComponent<LineRenderer>();
         _targetJoint = GetComponent<TargetJoint2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _trailRenderer = GetComponent<TrailRenderer>();       
-        _particleSystemFire = GetComponent<ParticleSystem>();
-        _audioSource = GetComponent<AudioSource>(); 
-        _particleSystemFire = GetComponent<ParticleSystem>();
         _missionModuleFire = _particleSystemFire.emission;
 
-        sb = shopManager.GetComponent<ShopBehaviour>();
+        //sb = shopManager.GetComponent<ShopBehaviour>();
+        _playerController = source.GetComponent<PlayerController>();
     }
     public virtual void Start()
     {
+
         rotationSpeed = 25;
         maxTimer = 2;
         maxTimerAttack = 0.05f;
@@ -77,34 +86,40 @@ public class BoomerangThrow : MonoBehaviour
 
     protected void Update()
     {
-        if (sb.isShoping == false)
+        if (_playerController.playerStates == PlayerController.PlayerStates.CINEMATIC)
         {
-            if (isFire)
-            {
-                _missionModuleFire.enabled = true;
-            }
-            else
-                _missionModuleFire.enabled = false;
+            return;
+        }
+
+        if (isFire)
+        {
+            _missionModuleFire.enabled = true;
+        }
+        else
+            _missionModuleFire.enabled = false;
 
 
-            CalculateThrow();
-            ShowTrayectoryLine();
-            MouseManager();
-            if (mouseHold)
-            {
-                Vector2 vectorOffset = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-                vectorOffset.Normalize();
-                transform.position = (vectorOffset) * 0.05f + (Vector2)transform.position;
-                if (distance <= maxDistance)
-                    distance += Time.deltaTime * 6;
+        CalculateThrow();
+        ShowTrayectoryLine();
+        MouseManager();
+        if (mouseHold)
+        {
+            Vector2 vectorOffset = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            vectorOffset.Normalize();
+            transform.position = (vectorOffset) * 0.05f + (Vector2)transform.position;
+            if (distance <= maxDistance)
+                distance += Time.deltaTime * 6;
 
-            }
-            if (Input.GetMouseButtonDown(1))
+        }
+        if (Input.GetMouseButtonDown(0) && isFlying)
+        {
+            rightMouse = true;
+            if (isFlying && !going)
             {
-                rightMouse = true;
-                if (isFlying && !going) { _audioSource.PlayOneShot(goingSound); }
+                _audioSource.PlayOneShot(goingSound);
             }
         }
+
     }
     protected void FixedUpdate()
     {
@@ -120,7 +135,7 @@ public class BoomerangThrow : MonoBehaviour
 
         if (isFlying)
         {
-           _principalCircleCollider.enabled = true;
+            _principalCircleCollider.enabled = true;
             _spriteRenderer.enabled = true;
             _trailRenderer.enabled = true;
 
@@ -138,7 +153,7 @@ public class BoomerangThrow : MonoBehaviour
 
             else if (coming)
             {
-                Coming();          
+                Coming();
             }
         }
         else
@@ -156,9 +171,9 @@ public class BoomerangThrow : MonoBehaviour
         vectorDirection.Normalize();
         vectorObjective = (vectorDirection) * distance + (Vector2)transform.position;
         p2 = vectorObjective;
-    }   
+    }
 
-    protected void ThrowBoomerang()
+    protected virtual void ThrowBoomerang()
     {
         knockback = true;
         going = true;
@@ -207,7 +222,7 @@ public class BoomerangThrow : MonoBehaviour
     }
 
     protected virtual void Staying()
-    {      
+    {
         if (timer >= 0f)
         {
             if (timer <= 1.80f)
@@ -232,7 +247,7 @@ public class BoomerangThrow : MonoBehaviour
             timerTrail -= Time.deltaTime;
         }
         else
-            _trailRenderer.enabled = false; 
+            _trailRenderer.enabled = false;
     }
 
     protected virtual void Coming()
@@ -247,14 +262,14 @@ public class BoomerangThrow : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag.Equals("Wall") && canTouchWall == true  || collision.gameObject.tag.Equals("ShadowWall") && canTouchWall == true )
+        if (collision.gameObject.tag.Equals("Wall") && canTouchWall == true || collision.gameObject.tag.Equals("ShadowWall") && canTouchWall == true)
         {
             cancelled = true;
             coming = true;
             going = false;
             Coming();
         }
-        if (collision.gameObject.CompareTag("Player") && (coming ||cancelled) )
+        if (collision.gameObject.CompareTag("Player") && (coming || cancelled))
         {
             canTouchWall = true;
             cancelled = false;
@@ -272,19 +287,28 @@ public class BoomerangThrow : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent<Torch>(out Torch torch) && isFlying)
         {
-            if (torch.torchActive)
-                isFire = true;
-            else if (!torch.torchActive && isFire)
-                torch.torchActive = true;
+            if (type == BoomerangType.NORMAL)
+            {
+                if (torch.torchActive)
+                    isFire = true;
+                else if (!torch.torchActive && isFire)
+                    torch.torchActive = true;
+            }
+            else if (type == BoomerangType.ICE && !torch.masterTorch)
+            {
+                torch.torchActive = false;
+            }
+
         }
-        
+
     }
 
-   
+
     protected void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(p0, 0.1f);
+        Gizmos.DrawSphere(p0, 0.5f);
+        Gizmos.DrawSphere(pAux, 0.5f);
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(p2, 0.1f);
     }

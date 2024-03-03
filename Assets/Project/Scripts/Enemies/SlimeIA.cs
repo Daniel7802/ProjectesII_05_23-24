@@ -6,144 +6,106 @@ using UnityEngine;
 
 public class SlimeIA : Enemy
 {
-    public LayerMask hitLayer;
     public AudioClip slimeJumpSound;
-    //movement    
+
+    //movement        
     private float waitingTime;
     private float minWaitingTime;
     private float maxWaitingTime;
     private float waitingTimer = 0;
+    private float speedToLand = 1f;
 
-    private float minWaitingTimeRoaming = 2.0f;
-    private float maxWaitingTimeRoaming = 3.0f;
+    //roaming    
+    private float minWaitingTimeRoaming = 2.5f;
+    private float maxWaitingTimeRoaming = 3.5f;
 
-    private float minWaitingTimeChasing = 1.0f;
-    private float maxWaitingTimeChasing = 1.5f;
+    //chasing      
+    private float minWaitingTimeChasing = 0.8f;
+    private float maxWaitingTimeChasing = 1.3f;
 
-
-    private float moveForce;
-    private float velocityMagnitudeToLand = 1f;
-    private float distanceAudio = 8f;
-
-    //roaming
-    public float roamingForce = 8;
-    bool setNewDest = false;
-
-    //chasing    
-    public float chasingJumpForce = 15;
-
-    private void Start()
+    public override void Start()
     {
         base.Start();
-        currentState = 0;
         SetNewWaitingTime();
     }
 
-    void Update()
+    private void Update()
     {
-        FlipX();
-        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        FlipX();       
 
         switch (currentState)
         {
-            case 0:
-
-                if (distanceToPlayer < startChasingRange && RaycastPlayer())
-                {
-
-                    currentState = 1;
-                }
-                else
-                {
-                    Roaming();
-                }
-                break;
-            case 1:
-
-                if (distanceToPlayer > stopChasingRange)//target lost --> to roaming
-                {
-                    currentState = 0;
-                }
-                else
-                {
-                    if (RaycastPlayer())
-                        Chasing();
-                    else
-                        currentState = 0;
-                }
+            case CurrentState.ROAMING:
+                Roaming();
                 break;
 
+            case CurrentState.CHASING:
+                Chasing();
+                break;
+            case CurrentState.ICE:
+                break;
         }
 
-        if ((rb2D.velocity.magnitude < velocityMagnitudeToLand))
-        {
-            animator.SetBool("jump", false);
-        }
-        else
-        {
-            animator.SetBool("jump", true);
-        }
-
+        if (rb2D.velocity.magnitude < speedToLand) animator.SetBool("jump", false);
+        else animator.SetBool("jump", true);
     }
 
     public override void Movement()
     {
-        Vector2 directionVector = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
-        Vector2 impulseForce = directionVector.normalized * moveForce;
+        Vector2 dir = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
+        Vector2 moveForce = dir.normalized * moveSpeed;
 
         waitingTimer += Time.deltaTime;
         if (waitingTimer >= waitingTime)
         {
             audioSource.PlayOneShot(slimeJumpSound);
-            rb2D.AddForce(impulseForce, ForceMode2D.Impulse);
+            rb2D.AddForce(moveForce, ForceMode2D.Impulse);
             SetNewWaitingTime();
-            setNewDest = true;
             waitingTimer = 0;
         }
     }
 
     public override void Roaming()
     {
-        moveForce = roamingForce;
-        target = roamingRandomPoint;
-        minWaitingTime = minWaitingTimeRoaming;
-        maxWaitingTime = maxWaitingTimeRoaming;
-        Movement();
-        if (setNewDest)
+        if (detectionZone.GetComponent<DetectionZone>().playerDetected&&RaycastPlayer())
         {
-            SetNewRoamingDestination();
-            setNewDest = false;
+            StartCoroutine(EnableAlert(foundTargetAlert));
+            if (!animator.GetBool("jump"))
+                waitingTimer = waitingTime;
+            
+            currentState = CurrentState.CHASING;
+        }
+        else
+        {
+            minWaitingTime = minWaitingTimeRoaming;
+            maxWaitingTime = maxWaitingTimeRoaming;
+            base.Roaming();
+
         }
     }
 
     public override void Chasing()
     {
-        moveForce = chasingJumpForce;
-        target = player.transform.position;
-        minWaitingTime = minWaitingTimeChasing;
-        maxWaitingTime = maxWaitingTimeChasing;
-        Movement();
+        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
+        {
+            
+            minWaitingTime = minWaitingTimeChasing;
+            maxWaitingTime = maxWaitingTimeChasing;
+            base.Chasing();
+        }
+        else
+        {
+            StartCoroutine(EnableAlert(lostTargetAlert));
+            currentState = CurrentState.ROAMING;
+        }
+       
+
+
     }
 
     public void SetNewWaitingTime()
     {
         waitingTime = UnityEngine.Random.Range(minWaitingTime, maxWaitingTime);
-    }
-
-    bool RaycastPlayer()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, 100, hitLayer);
-
-        return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
-
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag.Equals("Wall"))
-        {
-            setNewDest = true;
-        }
     }
 
 }

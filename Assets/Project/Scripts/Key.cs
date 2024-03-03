@@ -8,23 +8,21 @@ public class Key : MonoBehaviour
 
     private winManagerWithKeys wm;
 
-    [SerializeField]
-    GameObject winManager;
-
-    [SerializeField]
-    GameObject position;
+    //[SerializeField]
+    //GameObject winManager;
+    
     void Start()
     {
         taken = false;
-        wm = winManager.GetComponent<winManagerWithKeys>();
+        //wm = winManager.GetComponent<winManagerWithKeys>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
             taken = true;
-            collision.gameObject.transform.position = position.transform.position;
-            wm.counter++;
+            
+            //wm.counter++;
         }
     }
 }
