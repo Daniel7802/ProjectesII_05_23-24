@@ -14,20 +14,20 @@ public class RespawnSystem : MonoBehaviour
 
     private void Start()
     {
-        checkpointPos1 = transform.position;    
-        _healthSystem = GetComponent<PlayerHealthSystem>();   
+        checkpointPos1 = transform.position;
+        _healthSystem = GetComponent<PlayerHealthSystem>();
     }
     public void UpdateCheckPoint(Vector2 pos)
     {
         checkpointPos1 = pos;
     }
-    public void OnDeath ()   
+    public void OnDeath()
     {
         //Time.fixedDeltaTime = Time.timeScale * 0.5f; 
         FadeInOutManager.instance.Fadein();
         StartCoroutine(Respawn());
     }
-  IEnumerator Respawn()    
+    IEnumerator Respawn()
     {
         yield return new WaitWhile(delegate { return FadeInOutManager.instance.fadeIn; });
         //Time.fixedDeltaTime = Time.timeScale * 2;
