@@ -1046,7 +1046,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 278909586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.700012, y: -5.300003, z: -17}
+  m_LocalPosition: {x: -23.299988, y: 28.699997, z: -17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1495,7 +1495,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430092304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.700012, y: -5.300003, z: 0}
+  m_LocalPosition: {x: -23.299988, y: 28.699997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2311,11 +2311,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8592275167556148878, guid: 2f540635d9e62644e8bb93686f4139ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 43.700012
+      value: -23.299988
       objectReference: {fileID: 0}
     - target: {fileID: 8592275167556148878, guid: 2f540635d9e62644e8bb93686f4139ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.300003
+      value: 28.699997
       objectReference: {fileID: 0}
     - target: {fileID: 8592275167556148878, guid: 2f540635d9e62644e8bb93686f4139ee, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3520,11 +3520,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -542
+      value: -609
       objectReference: {fileID: 0}
     - target: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 159.2
+      value: 193.2
       objectReference: {fileID: 0}
     - target: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4257,22 +4257,6 @@ PrefabInstance:
       propertyPath: boomerangManager
       value: 
       objectReference: {fileID: 726980654}
-    - target: {fileID: 1221429874915020091, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 34.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 1221429874915020091, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.3699999
-      objectReference: {fileID: 0}
-    - target: {fileID: 1529221034730543307, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 29.990002
-      objectReference: {fileID: 0}
-    - target: {fileID: 1529221034730543307, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -8.87
-      objectReference: {fileID: 0}
     - target: {fileID: 1966550744788613089, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -4321,38 +4305,6 @@ PrefabInstance:
       propertyPath: ShopManager
       value: 
       objectReference: {fileID: 141969664}
-    - target: {fileID: 2091172746282045839, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 25.740002
-      objectReference: {fileID: 0}
-    - target: {fileID: 2091172746282045839, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -8.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 2579476951740683325, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 37.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 2579476951740683325, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 2960039000797806711, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 25.740002
-      objectReference: {fileID: 0}
-    - target: {fileID: 2960039000797806711, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.3699999
-      objectReference: {fileID: 0}
-    - target: {fileID: 3215548603818049909, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 25.740002
-      objectReference: {fileID: 0}
-    - target: {fileID: 3215548603818049909, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.62
-      objectReference: {fileID: 0}
     - target: {fileID: 3391319354331244070, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
       propertyPath: ShopManager
       value: 
@@ -4361,41 +4313,9 @@ PrefabInstance:
       propertyPath: ShopManager
       value: 
       objectReference: {fileID: 141969664}
-    - target: {fileID: 5156423858640642030, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 34.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156423858640642030, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 6343748814787116293, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 34.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 6343748814787116293, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -8.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 6396685604709757950, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 29.990002
-      objectReference: {fileID: 0}
-    - target: {fileID: 6396685604709757950, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.62
-      objectReference: {fileID: 0}
     - target: {fileID: 7562267141145151496, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
       propertyPath: m_Name
       value: ---ICE ZONE---
-      objectReference: {fileID: 0}
-    - target: {fileID: 7574799673750718410, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 29.990002
-      objectReference: {fileID: 0}
-    - target: {fileID: 7574799673750718410, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.3699999
       objectReference: {fileID: 0}
     - target: {fileID: 7628673936072495376, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
       propertyPath: ShopManager
