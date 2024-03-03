@@ -127,6 +127,9 @@ public class BoomerangManager : MonoBehaviour
     {
         _boomerangThrow = a.GetComponent<BoomerangThrow>();
         yield return new WaitForSeconds(1.0f);
+        m_TargetGroup.RemoveMember(_boomerang.transform);
+        m_TargetGroup.RemoveMember(_iceBoomerang.transform);
+        m_TargetGroup.RemoveMember(_shadowBoomerang.transform);
         m_TargetGroup.AddMember(a.transform, 0.55f, 5);
     }
 }

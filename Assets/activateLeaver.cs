@@ -26,20 +26,17 @@ public class activateLeaver : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Boomerang"))
-        {
-          
-            if(collision.GetComponentInParent<BoomerangThrow>().type == BoomerangThrow.BoomerangType.NORMAL) 
+        {          
+            activate = true;
+            animator.SetBool("active", true);
+            if (activateType == type.Trap)
             {
-                activate = true;
-                animator.SetBool("active", true);
-                if (activateType == type.Trap)
+                foreach (Cannon cannon in cannons)
                 {
-                    foreach (Cannon cannon in cannons)
-                    {
-                        cannon.wait = false;
-                    }
+                    cannon.wait = false;
                 }
-            }            
+            }
+                        
         }
     }
 
