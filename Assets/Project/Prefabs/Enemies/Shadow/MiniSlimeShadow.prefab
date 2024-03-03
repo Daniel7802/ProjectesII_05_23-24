@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 9160680943280425905}
   - component: {fileID: 6208089742085827678}
   - component: {fileID: 6352708676460876648}
+  - component: {fileID: 6564812548854099657}
   m_Layer: 10
   m_Name: MiniSlimeShadow
   m_TagString: Enemy
@@ -350,6 +351,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invTime: 0.2
+--- !u!114 &6564812548854099657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2998486167879767135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73ab9022abd20a45856f8dedfe21125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 1
 --- !u!1001 &3063810673955164385
 PrefabInstance:
   m_ObjectHideFlags: 0
