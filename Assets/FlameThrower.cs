@@ -1,40 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class FlameThrower : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem flameThrowerParticles;    
-    //private ParticleSystem.EmissionModule flameParticlesEmissionModule;
-
+    public bool needsActivator;
+    public bool active;
+    [SerializeField] private ParticleSystem flameThrowerParticles;
     [SerializeField] private BoxCollider2D boxCollider;
-
     [SerializeField] private GameObject hotEffect;
     [SerializeField] private ParticleSystem smokeParticles;
-   // private ParticleSystem.EmissionModule smokeParticlesEmissionModule;
+    [SerializeField] private AudioClip _flameSound;
 
-    
-    [SerializeField] private GameObject coldEffect;
-    [SerializeField] private ParticleSystem iceParticles;
-   // private ParticleSystem.EmissionModule iceParticlesEmissionModule;
+    bool freezed = false;
     [SerializeField] private float coldTime = 4f;
     private float coldTimer;
-    bool freezed = false;
+    [SerializeField] private GameObject coldEffect;
+    [SerializeField] private ParticleSystem iceParticles;
+    [SerializeField] private AudioClip _iceSound;
 
-    public bool active ;
-    public bool needsActivator;
+    private AudioSource _audioSource;
+    
     private void Start()
     {
-        //flameParticlesEmissionModule = flameThrowerParticles.emission;
-        //smokeParticlesEmissionModule = smokeParticles.emission;
-        //iceParticlesEmissionModule = iceParticles.emission;
-
+        _audioSource = GetComponent<AudioSource>();
         if (needsActivator)
-        {
-            //flameParticlesEmissionModule.enabled = false;
-            //smokeParticlesEmissionModule.enabled = false;
-            //iceParticlesEmissionModule.enabled = false;
-           
+        {           
             boxCollider.enabled = false;
             hotEffect.SetActive(false);
             coldEffect.SetActive(false);
@@ -62,11 +54,14 @@ public class FlameThrower : MonoBehaviour
     public void ActiveTrap()
     {
         freezed = false;
-        coldEffect.SetActive(false);
-        //iceParticlesEmissionModule.enabled = false;
+        coldEffect.SetActive(false);      
         coldTimer = 0;
 
-        active = true;
+        active = true;       
+
+        _audioSource.clip = _flameSound;
+        _audioSource.loop = true;
+        _audioSource.Play();       
         flameThrowerParticles.Play();
         boxCollider.enabled = true;
         hotEffect.SetActive(true);
@@ -79,10 +74,12 @@ public class FlameThrower : MonoBehaviour
         boxCollider.enabled = false;
         hotEffect.SetActive(false);
         smokeParticles.Stop();
+        _audioSource.loop = false;
 
         freezed = true;
         coldEffect.SetActive(true);
         iceParticles.Play();
+        _audioSource.PlayOneShot(_iceSound,20);
     }
    
     private void OnTriggerEnter2D(Collider2D collision)
