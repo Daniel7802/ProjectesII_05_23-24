@@ -1430,10 +1430,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5948195424110258971, guid: 875e4c473a15f134b820c4cc606a4823, type: 3}
-      propertyPath: m_AnimatedTiles.Array.data[1].second.m_AnimationSpeed
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6611596132261574956, guid: 875e4c473a15f134b820c4cc606a4823, type: 3}
       propertyPath: player
       value: 
@@ -4587,6 +4583,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 763541658316989488, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: ShopManager
+      value: 
+      objectReference: {fileID: 141969664}
     - target: {fileID: 877620897738100400, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
       propertyPath: boomerangManager
       value: 
@@ -4635,10 +4635,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2052673134141389465, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: ShopManager
+      value: 
+      objectReference: {fileID: 141969664}
+    - target: {fileID: 3391319354331244070, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: ShopManager
+      value: 
+      objectReference: {fileID: 141969664}
+    - target: {fileID: 4966716806776621269, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: ShopManager
+      value: 
+      objectReference: {fileID: 141969664}
     - target: {fileID: 7562267141145151496, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
       propertyPath: m_Name
       value: ---ICE ZONE---
       objectReference: {fileID: 0}
+    - target: {fileID: 7628673936072495376, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: ShopManager
+      value: 
+      objectReference: {fileID: 141969664}
+    - target: {fileID: 8399284261939799580, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: ShopManager
+      value: 
+      objectReference: {fileID: 141969664}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
