@@ -119,7 +119,10 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetFloat("Speed", 0);
         }
 
-        CheckLastDirection();
+        if(speed < 0)
+        {
+            CheckLastDirection();
+        }
     }
 
     private void FixedUpdate()
@@ -186,24 +189,56 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckLastDirection()
     {
-        if(Input.GetAxisRaw("Horizontal") < 0)
+        if(Input.GetAxisRaw("Horizontal") < 0 && Input.GetAxisRaw("Vertical") == 0)
         {
             LastDirection = lastDirection.LEFT;
+            SetAllFalse();
+            playerAnimator.SetBool("Left", true);
         }
-        else if(Input.GetAxisRaw("Horizontal") > 0)
+        else if(Input.GetAxisRaw("Horizontal") > 0 && Input.GetAxisRaw("Vertical") == 0)
         {
             LastDirection = lastDirection.RIGHT;
+            SetAllFalse();
+            playerAnimator.SetBool("Right", true);
         }
-        else if (Input.GetAxisRaw("Vertical") > 0)
+        else if (Input.GetAxisRaw("Vertical") > 0 && Input.GetAxisRaw("Horizontal") == 0)
         {
             LastDirection = lastDirection.UP;
+            SetAllFalse();
+            playerAnimator.SetBool("Up", true);
         }
-        else if (Input.GetAxisRaw("Vertical") < 0)
+        else if (Input.GetAxisRaw("Vertical") < 0 && Input.GetAxisRaw("Horizontal") == 0)
         {
             LastDirection = lastDirection.DOWN;
+            SetAllFalse();
+            playerAnimator.SetBool("Down", true);
+        }
+        else if(Input.GetAxisRaw("Horizontal") < 0 && Input.GetAxisRaw("Vertical") < 0)
+        {
+            // DOWN LEFT
+            SetAllFalse();
+            playerAnimator.SetBool("DownLeft", true);
+        }
+        else if (Input.GetAxisRaw("Horizontal") < 0 && Input.GetAxisRaw("Vertical") > 0)
+        {
+            // UP LEFT
+            SetAllFalse();
+            playerAnimator.SetBool("UpLeft", true);
+        }
+        else if (Input.GetAxisRaw("Horizontal") > 0 && Input.GetAxisRaw("Vertical") > 0)
+        {
+            // UP RIGHT
+            SetAllFalse();
+            playerAnimator.SetBool("UpRight", true);
+        }
+        else if (Input.GetAxisRaw("Horizontal") > 0 && Input.GetAxisRaw("Vertical") < 0)
+        {
+            // DOWN RIGHT
+            SetAllFalse();
+            playerAnimator.SetBool("DownRight", true);
         }
 
-        if(speed < 0.001)
+        if (speed < 0.001)
         {
             if(LastDirection == lastDirection.LEFT)
             {
@@ -222,5 +257,17 @@ public class PlayerMovement : MonoBehaviour
                 sr.sprite = directionSprites[3];
             }
         }
+    }
+
+    private void SetAllFalse()
+    {
+        playerAnimator.SetBool("DownRight", false);
+        playerAnimator.SetBool("UpRight", false);
+        playerAnimator.SetBool("UpLeft", false);
+        playerAnimator.SetBool("DownLeft", false);
+        playerAnimator.SetBool("Down", false);
+        playerAnimator.SetBool("Up", false);
+        playerAnimator.SetBool("Right", false);
+        playerAnimator.SetBool("Left", false);
     }
 }
