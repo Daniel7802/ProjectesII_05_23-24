@@ -40,7 +40,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881292331971171240}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -5361,12 +5361,12 @@ MonoBehaviour:
   isFire: 0
   mouseHold: 0
   type: 1
-  _playerController: {fileID: 0}
   _particleBlackHole: {fileID: 8800783346553589472}
-  _circleCollider: {fileID: 4672590427673277232}
-  _particleBlackHoleGO: {fileID: 0}
+  _circleCollider: {fileID: 4508640487765782347}
+  _particleBlackHoleGO: {fileID: 1644714272665242771}
   makeEffect: 1
   waterOverlapped: 0
+  tpSound: {fileID: 8300000, guid: 224ebcf039812c24783d7d10239ead2b, type: 3}
   blackHoleForce: 30
 --- !u!257 &5666166676430979260
 TargetJoint2D:
@@ -5709,6 +5709,11 @@ PrefabInstance:
 --- !u!4 &477527676884979965 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4466444674464105337, guid: e1d2988602dd4224a99f58c2195ec52d, type: 3}
+  m_PrefabInstance: {fileID: 4277147649452004228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1644714272665242771 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3280953462656982807, guid: e1d2988602dd4224a99f58c2195ec52d, type: 3}
   m_PrefabInstance: {fileID: 4277147649452004228}
   m_PrefabAsset: {fileID: 0}
 --- !u!198 &8800783346553589472 stripped

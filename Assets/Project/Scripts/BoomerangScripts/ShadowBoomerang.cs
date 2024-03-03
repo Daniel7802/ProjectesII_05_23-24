@@ -17,12 +17,13 @@ public class ShadowBoomerang : BoomerangThrow
     [SerializeField]
     int waterOverlapped = 0;
     bool canTp { get { return waterOverlapped > 0; } }
+    [SerializeField] private AudioClip tpSound;
 
-    [SerializeField]private float  blackHoleForce = 30;
-    public override void  Start()
+    [SerializeField] private float blackHoleForce = 30;
+    public override void Start()
     {
-       
-        base.Start();   
+
+        base.Start();
         _playerMovement = source.GetComponent<PlayerMovement>();
         _particleBlackHole = _particleBlackHoleGO.GetComponent<ParticleSystem>();
         _circleCollider.enabled = false;
@@ -33,16 +34,17 @@ public class ShadowBoomerang : BoomerangThrow
     {
         base.Update();
         Teleport();
-        if(!coming && isFlying) 
+        if (!coming && isFlying)
         {
             _particleBlackHoleGO.transform.position = transform.position;
-        }        
+        }
     }
 
-    void Teleport ()
+    void Teleport()
     {
-        if(isFlying && Input.GetMouseButtonDown(1) && !canTp)
+        if (isFlying && Input.GetMouseButtonDown(1) && !canTp)
         {
+            _audioSource.PlayOneShot(tpSound);
             coming = true;
             _playerMovement.Teleport(transform.position);
         }
@@ -55,7 +57,7 @@ public class ShadowBoomerang : BoomerangThrow
             if (timer <= 1.80f)
             {
                 knockback = false;
-               
+
             }
 
             if (timer <= 1.5f)
@@ -97,7 +99,7 @@ public class ShadowBoomerang : BoomerangThrow
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-      
+
         if (collision.gameObject.CompareTag("Player") && coming)
         {
             makeEffect = true;
@@ -107,7 +109,7 @@ public class ShadowBoomerang : BoomerangThrow
         {
             waterOverlapped++;
         }
-            base.OnTriggerEnter2D(collision);
+        base.OnTriggerEnter2D(collision);
 
         if (collision.gameObject.CompareTag("Fire"))
         {
@@ -118,18 +120,18 @@ public class ShadowBoomerang : BoomerangThrow
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-         if (collision.gameObject.CompareTag("Water"))
+        if (collision.gameObject.CompareTag("Water"))
         {
             waterOverlapped--;
         }
     }
     protected void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") )
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
             Vector2 blackHoleForceDirection = transform.position - collision.transform.position;
-            Vector2 blackHoleForceVector = blackHoleForceDirection.normalized * blackHoleForce;         
+            Vector2 blackHoleForceVector = blackHoleForceDirection.normalized * blackHoleForce;
             rb.AddForce(blackHoleForceVector);
         }
     }

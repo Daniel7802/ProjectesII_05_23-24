@@ -12,7 +12,7 @@ public class TorchIceManager : MonoBehaviour
     int nonActivated = 0;
 
     [SerializeField]
-    private bool activeMechanisme;
+    public bool activeMechanisme;
 
     void Update()
     {
