@@ -63,7 +63,7 @@ public class WaveSpawner : MonoBehaviour
         else
         {
             isFinished = true;
-            Debug.Log("Todas las oleadas completadas.");
+            //Debug.Log("Todas las oleadas completadas.");
         }
     }
 

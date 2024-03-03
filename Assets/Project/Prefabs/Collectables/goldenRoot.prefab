@@ -101,13 +101,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6321fc224daa44b9496f0621873332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _idleSound: {fileID: 8300000, guid: d495f691ff5a69e4cb863cc16acb7f11, type: 3}
-  _collectedSound: {fileID: 8300000, guid: 5cd426105b5d7974c869cdbd72f2cc9e, type: 3}
-  collectedTime: 2
+  _collectedSound: {fileID: 8300000, guid: f22dd8587d57a354980e5e48f6c00e7b, type: 3}
+  collectedTime: 1
   pickUpTime: 0.3
-  height: 1.7
-  newScale: 0.7
+  height: 1.3
   speed: 20
+  _idleSound: {fileID: 8300000, guid: d495f691ff5a69e4cb863cc16acb7f11, type: 3}
   ShopManager: {fileID: 0}
 --- !u!50 &4249498093612000130
 Rigidbody2D:
