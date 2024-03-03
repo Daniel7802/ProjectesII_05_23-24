@@ -18,11 +18,13 @@ public class ShopBehaviour : MonoBehaviour
     GameObject player;
 
     private PlayerInventory pi;
+    private PlayerController pc;
 
     // Start is called before the first frame update
     void Start()
     {
         pi = player.GetComponent<PlayerInventory>();
+        pc = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -32,12 +34,18 @@ public class ShopBehaviour : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.E)) 
             {
+                pc.playerStates = PlayerController.PlayerStates.CINEMATIC;
                 shopCanvas.SetActive(true);
             }
         }
         else
         {
             shopCanvas.SetActive(false);
+        }
+
+        if(shopCanvas.activeInHierarchy == false)
+        {
+            pc.playerStates = PlayerController.PlayerStates.NONE;
         }
     }
 
