@@ -3495,7 +3495,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1337895738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 372.69, y: -61.43, z: 0}
+  m_LocalPosition: {x: 206.3, y: -150.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5006,6 +5006,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 763541658316989488, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: ShopManager
+      value: 
+      objectReference: {fileID: 141969664}
     - target: {fileID: 877620897738100400, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
       propertyPath: boomerangManager
       value: 
@@ -5054,10 +5058,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2052673134141389465, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: ShopManager
+      value: 
+      objectReference: {fileID: 141969664}
+    - target: {fileID: 3391319354331244070, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: ShopManager
+      value: 
+      objectReference: {fileID: 141969664}
+    - target: {fileID: 4966716806776621269, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: ShopManager
+      value: 
+      objectReference: {fileID: 141969664}
     - target: {fileID: 7562267141145151496, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
       propertyPath: m_Name
       value: ---ICE ZONE---
       objectReference: {fileID: 0}
+    - target: {fileID: 7628673936072495376, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: ShopManager
+      value: 
+      objectReference: {fileID: 141969664}
+    - target: {fileID: 8399284261939799580, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: ShopManager
+      value: 
+      objectReference: {fileID: 141969664}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

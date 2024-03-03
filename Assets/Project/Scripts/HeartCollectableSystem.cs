@@ -8,10 +8,12 @@ public class HeartCollectableSystem : MonoBehaviour
     private Rigidbody2D rb2D;  
     public float speed;
     float distanceToPlayer;
+    private DeadSystem deadSystem;
 
     private void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        deadSystem = GetComponent<DeadSystem>();
     }   
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -24,11 +26,11 @@ public class HeartCollectableSystem : MonoBehaviour
                 Vector3 dir = collision.transform.position - this.transform.position;
 
                 rb2D.AddForce(dir.normalized * speed);
-                speed+=5;
+                speed+=2;
             }
             else
             {
-                Destroy(gameObject);
+                deadSystem.Dead();
                 if (collision.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs))
                 {
                     if (phs.counter > 0)
