@@ -5,13 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class PauseGameController : MonoBehaviour
 {
-    
     public Canvas pauseMenuCanvas;
     public GameObject pauseMenu;
 
     public GameObject[] allMenus;
 
     public bool isPaused;
+
+    [SerializeField]
+    private GameObject Player;
+
+    private PlayerController pc;
+
+    private void Start()
+    {
+        pc = Player.GetComponent<PlayerController>();
+    }
 
     private void Update()
     {
@@ -27,6 +36,7 @@ public class PauseGameController : MonoBehaviour
                 Time.timeScale = 0.0f;
                 pauseMenuCanvas.gameObject.SetActive(true);
                 isPaused = true;
+                pc.playerStates = PlayerController.PlayerStates.CINEMATIC;
             }
             else 
             {
@@ -38,6 +48,7 @@ public class PauseGameController : MonoBehaviour
                 }
                 pauseMenu.SetActive(true);
                 isPaused = false;
+                pc.playerStates = PlayerController.PlayerStates.NONE;
             }
         }
     }
@@ -48,6 +59,7 @@ public class PauseGameController : MonoBehaviour
         pauseMenuCanvas.gameObject.SetActive(false);       
 
         isPaused = false;
+        pc.playerStates = PlayerController.PlayerStates.NONE;
     }
     public void ExitMenu()
     {
