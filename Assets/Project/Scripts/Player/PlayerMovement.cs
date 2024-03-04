@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _dashingDir;
     public bool _isDashing;
     private bool _canDash = true;
+    [SerializeField]
     private TrailRenderer _dashTrailRenderer;
 
     [SerializeField]
@@ -40,7 +41,9 @@ public class PlayerMovement : MonoBehaviour
 
     private PauseGameController pg;
 
+    [SerializeField]
     private AudioSource _audioSource;
+
     [SerializeField]
     private AudioClip rollSound;
 
@@ -54,12 +57,10 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
-
-        _audioSource = GetComponent<AudioSource>();
-        _missionModuleWalk = _walkParticles.emission;
-        _dashTrailRenderer = GetComponent<TrailRenderer>();
-
         _playerController = GetComponent<PlayerController>();
+
+        _missionModuleWalk = _walkParticles.emission;
+
     }
 
     // Update is called once per frame
