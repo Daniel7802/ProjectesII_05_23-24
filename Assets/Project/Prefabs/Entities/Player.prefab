@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 930333622301758238}
   - component: {fileID: 3124599053576833423}
   - component: {fileID: 9145842343681718827}
+  - component: {fileID: 3519800714855546790}
   - component: {fileID: 5204449990380883998}
   - component: {fileID: 8119343296046956285}
   - component: {fileID: 2036063889959427783}
   - component: {fileID: 2147911285255576}
   - component: {fileID: 8638531527341201700}
-  - component: {fileID: 3519800714855546790}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -122,6 +122,19 @@ MonoBehaviour:
   ImpulseForce: 20
   _audioSource: {fileID: 7400606570983725942}
   rollSound: {fileID: 8300000, guid: 70e2d6cf14dc29f4f8b8dc61b3d5a4f4, type: 3}
+--- !u!114 &3519800714855546790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416834808553754793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec6d2e761a0b7e4dbd2ea65be0a3d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStates: 0
 --- !u!114 &5204449990380883998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,19 +258,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416834808553754793}
   m_Enabled: 1
---- !u!114 &3519800714855546790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416834808553754793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cec6d2e761a0b7e4dbd2ea65be0a3d4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerStates: 0
 --- !u!1 &1235175410748444481
 GameObject:
   m_ObjectHideFlags: 0
@@ -5563,7 +5563,7 @@ MonoBehaviour:
   getHit: 0
   _audioSource: {fileID: 7400606570983725942}
   damageSound: {fileID: 8300000, guid: 6efaa4ea0eb16334f854cd6fc43cf133, type: 3}
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 3124599053576833423}
   defaultMaterial: {fileID: 0}
   damagedMaterial: {fileID: 0}
   damagedTime: 0.125

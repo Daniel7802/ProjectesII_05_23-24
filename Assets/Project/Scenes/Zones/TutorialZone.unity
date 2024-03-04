@@ -594,11 +594,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
   m_PrefabInstance: {fileID: 1179420235}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &59969930 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 3124599053576833423, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
-  m_PrefabInstance: {fileID: 1179420235}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &62495413
 GameObject:
   m_ObjectHideFlags: 0
@@ -23731,30 +23726,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1774810771542259340, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
-      propertyPath: _boomerang
-      value: 
-      objectReference: {fileID: 1702083033}
-    - target: {fileID: 1774810771542259340, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
-      propertyPath: m_TargetGroup
-      value: 
-      objectReference: {fileID: 179345045}
-    - target: {fileID: 1774810771542259340, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
-      propertyPath: _shadowBoomerang
-      value: 
-      objectReference: {fileID: 1217497808}
-    - target: {fileID: 1911137432474511315, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
-      propertyPath: canvasDead
-      value: 
-      objectReference: {fileID: 1280147403}
-    - target: {fileID: 5204449990380883998, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
-      propertyPath: voidHearts.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5204449990380883998, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
-      propertyPath: extraHearts.Array.size
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 5204449990380883998, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: voidHearts.Array.data[0]
       value: 
@@ -23831,42 +23802,10 @@ PrefabInstance:
       propertyPath: _shadowBoomerang
       value: 
       objectReference: {fileID: 1217497808}
-    - target: {fileID: 7490800426209183852, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
-      propertyPath: hearts.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7490800426209183852, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
-      propertyPath: hearts.Array.data[0]
-      value: 
-      objectReference: {fileID: 1115309027}
-    - target: {fileID: 7490800426209183852, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
-      propertyPath: hearts.Array.data[1]
-      value: 
-      objectReference: {fileID: 80912199}
-    - target: {fileID: 7490800426209183852, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
-      propertyPath: hearts.Array.data[2]
-      value: 
-      objectReference: {fileID: 1439379493}
-    - target: {fileID: 7490800426209183852, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
-      propertyPath: hearts.Array.data[3]
-      value: 
-      objectReference: {fileID: 1155444758}
-    - target: {fileID: 7490800426209183852, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
-      propertyPath: hearts.Array.data[4]
-      value: 
-      objectReference: {fileID: 880693772}
     - target: {fileID: 8362302874423174041, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: canvasDead
       value: 
       objectReference: {fileID: 1280147403}
-    - target: {fileID: 8413229326925292861, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
-      propertyPath: spriteRenderer
-      value: 
-      objectReference: {fileID: 59969930}
-    - target: {fileID: 8413229326925292861, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
-      propertyPath: hearts.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 8413229326925292861, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
