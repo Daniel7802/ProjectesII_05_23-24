@@ -44,7 +44,6 @@ public class ShootyIA : Enemy
     {
         base.Start();
         lineRenderer = GetComponent<LineRenderer>();
-
     }
 
     private void Update()
@@ -82,82 +81,82 @@ public class ShootyIA : Enemy
 
     public override void Roaming()
     {
-        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
-        {
-            audioSource.PlayOneShot(foundTargetSound, 0.3f);
-            StartCoroutine(EnableAlert(foundTargetAlert));
-            currentState = CurrentState.CHASING;
-        }
-        else
-        {
-            base.Roaming();
-        }
+        //if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
+        //{
+        //    audioSource.PlayOneShot(foundTargetSound, 0.3f);
+        //    StartCoroutine(EnableAlert(foundTargetAlert));
+        //    currentState = CurrentState.CHASING;
+        //}
+        //else
+        //{
+        //    base.Roaming();
+        //}
 
     }
 
     public override void Chasing()
     {
-        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
-        {
+        //if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
+        //{
 
-            if (Vector2.Distance(transform.position, detectionZone.GetComponent<DetectionZone>().player.transform.position) < startShootingRange)
-            {
-                currentState = CurrentState.AIMING;
-            }
-            else
-            {
-                base.Chasing();
-            }
+        //    if (Vector2.Distance(transform.position, detectionZone.GetComponent<DetectionZone>().player.transform.position) < startShootingRange)
+        //    {
+        //        currentState = CurrentState.AIMING;
+        //    }
+        //    else
+        //    {
+        //        base.Chasing();
+        //    }
 
-        }
-        else
-        {
-            audioSource.PlayOneShot(lostTargetSound);
-            StartCoroutine(EnableAlert(lostTargetAlert));
-            currentState = CurrentState.ROAMING;
-        }
+        //}
+        //else
+        //{
+        //    audioSource.PlayOneShot(lostTargetSound);
+        //    StartCoroutine(EnableAlert(lostTargetAlert));
+        //    currentState = CurrentState.ROAMING;
+        //}
 
     }
 
     void Aiming()
     {
 
-        target = detectionZone.GetComponent<DetectionZone>().player.transform.position;
+       
 
-        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
-        {
-            if (Vector2.Distance(transform.position, detectionZone.GetComponent<DetectionZone>().player.transform.position) < startShootingRange)
-            {
-                if (lineTimer < aimingTime)
-                {
-                    animator.SetBool("walk", false);
-                    ShowTrayectoryLine();
-                    lineTimer += Time.deltaTime;
-                }
-                else
-                {
-                    lineRenderer.enabled = false;
-                    lineTimer = 0;
-                    currentState = CurrentState.SHOOTING;
+        //if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
+        //{
+        //    if (Vector2.Distance(transform.position, detectionZone.GetComponent<DetectionZone>().player.transform.position) < startShootingRange)
+        //    {
+        //        if (lineTimer < aimingTime)
+        //        {
+        //            animator.SetBool("walk", false);
+        //            ShowTrayectoryLine();
+        //            lineTimer += Time.deltaTime;
+        //        }
+        //        else
+        //        {
+        //            lineRenderer.enabled = false;
+        //            lineTimer = 0;
+        //            currentState = CurrentState.SHOOTING;
 
-                }
-            }
-            else
-            {
-                lineRenderer.enabled = false;
-                lineTimer = 0f;
-                currentState = CurrentState.CHASING;
-            }
-        }
-        else
-        {
-            lineRenderer.enabled = false;
-            lineTimer = 0f;
-            audioSource.PlayOneShot(lostTargetSound);
-            StartCoroutine(EnableAlert(lostTargetAlert));
-            currentState = CurrentState.ROAMING;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        lineRenderer.enabled = false;
+        //        lineTimer = 0f;
+        //        currentState = CurrentState.CHASING;
+        //    }
+        //}
+        //else
+        //{
+        //    lineRenderer.enabled = false;
+        //    lineTimer = 0f;
+        //    audioSource.PlayOneShot(lostTargetSound);
+        //    StartCoroutine(EnableAlert(lostTargetAlert));
+        //    currentState = CurrentState.ROAMING;
 
-        }
+        //}
     }
     void ShowTrayectoryLine()
     {
@@ -166,64 +165,64 @@ public class ShootyIA : Enemy
             lineRenderer.enabled = true;
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, Vector3.zero);
-            Vector3 position2 = detectionZone.GetComponent<DetectionZone>().player.transform.position - transform.position;
+            //Vector3 position2 = detectionZone.GetComponent<DetectionZone>().player.transform.position - transform.position;
             //lineRenderer.SetPosition(1, new Vector3(position2.x / transform.localScale.x, position2.y / transform.localScale.y, position2.z / transform.localScale.z));
             //lineRenderer.SetPosition(1, new Vector3(position2.x, position2.y, position2.z));
             int d = 2;
-            lineRenderer.SetPosition(1, new Vector3(position2.x / d, position2.y / d, position2.z / d));
+            //lineRenderer.SetPosition(1, new Vector3(position2.x / d, position2.y / d, position2.z / d));
 
         }
     }
 
     void Shooting()
     {
-        target = detectionZone.GetComponent<DetectionZone>().player.transform.position;
+       
         ShootOneBullet();
         currentState = CurrentState.RELOADING;
     }
     void ShootOneBullet()
     {
         audioSource.PlayOneShot(shootSound, 0.5f);
-        Vector2 dir = new Vector2(detectionZone.GetComponent<DetectionZone>().player.transform.position.x - transform.position.x, detectionZone.GetComponent<DetectionZone>().player.transform.position.y - transform.position.y);
+       // Vector2 dir = new Vector2(detectionZone.GetComponent<DetectionZone>().player.transform.position.x - transform.position.x, detectionZone.GetComponent<DetectionZone>().player.transform.position.y - transform.position.y);
         GameObject bullet = Instantiate(shootyBullet);
         bullet.transform.position = transform.position;
-        bullet.transform.right = dir;
+       // bullet.transform.right = dir;
     }
 
     void Reloading()
     {
-        target = detectionZone.GetComponent<DetectionZone>().player.transform.position;
-        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
-        {
-            if (Vector2.Distance(transform.position, detectionZone.GetComponent<DetectionZone>().player.transform.position) < startShootingRange)
-            {
-                if (reloadingTimer == 0f)
-                    audioSource.PlayOneShot(reloadingSound, 0.1f);
+       
+        //if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
+        //{
+        //    if (Vector2.Distance(transform.position, detectionZone.GetComponent<DetectionZone>().player.transform.position) < startShootingRange)
+        //    {
+        //        if (reloadingTimer == 0f)
+        //            audioSource.PlayOneShot(reloadingSound, 0.1f);
 
-                reloadingTimer += Time.deltaTime;
+        //        reloadingTimer += Time.deltaTime;
 
-                if (reloadingTimer > reloadingTime)
-                {
-                    reloadingTimer = 0f;
-                    currentState = CurrentState.AIMING;
+        //        if (reloadingTimer > reloadingTime)
+        //        {
+        //            reloadingTimer = 0f;
+        //            currentState = CurrentState.AIMING;
 
-                }
+        //        }
                
-            }
-            else
-            {
-                reloadingTimer = 0f;
-                currentState = CurrentState.CHASING;
-            }
+        //    }
+        //    else
+        //    {
+        //        reloadingTimer = 0f;
+        //        currentState = CurrentState.CHASING;
+        //    }
 
-        }
-        else
-        {
-            reloadingTimer = 0f;
-            audioSource.PlayOneShot(lostTargetSound);
-            StartCoroutine(EnableAlert(lostTargetAlert));
-            currentState = CurrentState.ROAMING;
-        }
+        //}
+        //else
+        //{
+        //    reloadingTimer = 0f;
+        //    audioSource.PlayOneShot(lostTargetSound);
+        //    StartCoroutine(EnableAlert(lostTargetAlert));
+        //    currentState = CurrentState.ROAMING;
+        //}
         
     }
 

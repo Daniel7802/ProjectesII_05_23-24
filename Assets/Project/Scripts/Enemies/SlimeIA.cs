@@ -31,7 +31,7 @@ public class SlimeIA : Enemy
 
     private void Update()
     {
-        FlipX();       
+        FlipX();
 
         switch (currentState)
         {
@@ -52,8 +52,8 @@ public class SlimeIA : Enemy
 
     public override void Movement()
     {
-        Vector2 dir = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
-        Vector2 moveForce = dir.normalized * moveSpeed;
+        Vector3 dir = target.position - transform.position;
+        Vector3 moveForce = dir.normalized * moveSpeed;
 
         waitingTimer += Time.deltaTime;
         if (waitingTimer >= waitingTime)
@@ -67,45 +67,23 @@ public class SlimeIA : Enemy
 
     public override void Roaming()
     {
-        if (detectionZone.GetComponent<DetectionZone>().playerDetected&&RaycastPlayer())
-        {
-            StartCoroutine(EnableAlert(foundTargetAlert));
-            if (!animator.GetBool("jump"))
-                waitingTimer = waitingTime;
-            
-            currentState = CurrentState.CHASING;
-        }
-        else
-        {
-            minWaitingTime = minWaitingTimeRoaming;
-            maxWaitingTime = maxWaitingTimeRoaming;
-            base.Roaming();
-
-        }
+        minWaitingTime = minWaitingTimeRoaming;
+        maxWaitingTime = maxWaitingTimeRoaming;
+        base.Roaming();
     }
-
     public override void Chasing()
     {
-        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
-        {
-            
-            minWaitingTime = minWaitingTimeChasing;
-            maxWaitingTime = maxWaitingTimeChasing;
-            base.Chasing();
-        }
-        else
-        {
-            StartCoroutine(EnableAlert(lostTargetAlert));
-            currentState = CurrentState.ROAMING;
-        }
-       
-
-
+        minWaitingTime = minWaitingTimeChasing;
+        maxWaitingTime = maxWaitingTimeChasing;
+        base.Chasing();
     }
-
     public void SetNewWaitingTime()
     {
         waitingTime = UnityEngine.Random.Range(minWaitingTime, maxWaitingTime);
     }
+    public override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
 
+    }
 }

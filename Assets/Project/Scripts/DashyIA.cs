@@ -34,9 +34,7 @@ public class DashyIA : Enemy
     }
     void Update()
     {
-
         FlipByTarget();
-
 
         switch (currentState)
         {
@@ -51,7 +49,6 @@ public class DashyIA : Enemy
             case CurrentState.RELOADING:
                 Reloading();
                 break;
-
         }
     }
 
@@ -62,52 +59,50 @@ public class DashyIA : Enemy
 
     public override void Roaming()
     {
-        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
-        {
-            StartCoroutine(EnableAlert(foundTargetAlert));
-            currentState = CurrentState.CHASING;
-        }
-        else base.Roaming();
+        //if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
+        //{
+        //    StartCoroutine(EnableAlert(foundTargetAlert));
+        //    currentState = CurrentState.CHASING;
+        //}
+        //else base.Roaming();
     }
 
     public override void Chasing()
     {
-        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
-        {
-            chargingTimer += Time.deltaTime;
-            if (chargingTimer < chargingTime)
-            {
+        //if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
+        //{
+        //    chargingTimer += Time.deltaTime;
+        //    if (chargingTimer < chargingTime)
+        //    {
 
-                Vector2 dir = new Vector2(transform.position.x - detectionZone.GetComponent<DetectionZone>().player.transform.position.x, transform.position.y - detectionZone.GetComponent<DetectionZone>().player.transform.position.y);
-                Vector2 chargingForce = dir.normalized * chargingSpeed;
-                rb2D.AddForce(chargingForce);
-            }
-            else
-            {
-
-                if (!lastPlayerPos)
-                {
-                    target = detectionZone.GetComponent<DetectionZone>().player.transform.position;
-                    lastPlayerPos = true;
-                }
-                moveSpeed = chasingSpeed;
-                Movement();
-                trailRenderer.enabled = true;
-                if (Vector2.Distance(transform.position, target) < 0.5)
-                {
-                    currentState = CurrentState.RELOADING;
-                    chargingTimer = 0;
-                    lastPlayerPos = false;
-                }
-
-            }
-        }
-        else
-        {
-            StartCoroutine(EnableAlert(lostTargetAlert));
-            currentState = CurrentState.ROAMING;
-            chargingTimer = 0;
-        }
+        //        Vector2 dir = new Vector2(transform.position.x - detectionZone.GetComponent<DetectionZone>().player.transform.position.x, transform.position.y - detectionZone.GetComponent<DetectionZone>().player.transform.position.y);
+        //        Vector2 chargingForce = dir.normalized * chargingSpeed;
+        //        rb2D.AddForce(chargingForce);
+        //    }
+        //    else
+        //    {
+        //        if (!lastPlayerPos)
+        //        {
+        //            target = detectionZone.GetComponent<DetectionZone>().player.transform;
+        //            lastPlayerPos = true;
+        //        }
+        //        moveSpeed = chasingSpeed;
+        //        Movement();
+        //        trailRenderer.enabled = true;
+        //        if (Vector2.Distance(transform.position, target.position) < 0.5)
+        //        {
+        //            currentState = CurrentState.RELOADING;
+        //            chargingTimer = 0;
+        //            lastPlayerPos = false;
+        //        }
+        //    }
+        //}
+        //else
+        //{
+        //    StartCoroutine(EnableAlert(lostTargetAlert));
+        //    currentState = CurrentState.ROAMING;
+        //    chargingTimer = 0;
+        //}
     }
 
     void Reloading()
@@ -128,7 +123,6 @@ public class DashyIA : Enemy
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.CompareTag("Player"))
         {
             currentState = CurrentState.RELOADING;
