@@ -13,44 +13,30 @@ public class Enemy : MonoBehaviour
     protected Animator animator;
     protected AudioSource audioSource;
 
-    [SerializeField]
-    protected PlayerDetection playerDetection;
+    [SerializeField] protected PlayerDetection playerDetection;
 
-
-
-    [SerializeField]
-    protected LayerMask hitLayer;
+    [SerializeField] protected LayerMask hitLayer;
 
     public enum CurrentState { ROAMING, CHASING, AIMING, RELOADING, SHOOTING, ICE };
-    [SerializeField]
-    public CurrentState currentState = CurrentState.ROAMING;
+    [SerializeField] public CurrentState currentState = CurrentState.ROAMING;
 
-    protected Transform target;
+    public Transform target;
     protected float distanceToPlayer;
 
     //MOVEMENT
     protected float moveSpeed;
 
     //ROAMING
-    [SerializeField]
-    protected float roamingSpeed;
-    [SerializeField]
-    protected Transform pointA;
-    [SerializeField]
-    protected Transform pointB;
+    [SerializeField] protected float roamingSpeed;
+    [SerializeField] protected Transform pointA;
+    [SerializeField] protected Transform pointB;
 
     //CHASING
     [SerializeField]
     protected float chasingSpeed;
 
-    [SerializeField]
-    public SpriteRenderer foundTargetAlert;
-    [SerializeField]
-    public SpriteRenderer lostTargetAlert;
-
     //hit    
-    [SerializeField]
-    GameObject FreezeParticles;
+    [SerializeField] GameObject freezeParticles;
 
     public bool canFreeze = true;
 
@@ -106,8 +92,9 @@ public class Enemy : MonoBehaviour
         else
         {
             currentState = CurrentState.ROAMING;
+            target = pointA;
         }
-        
+
     }
     public void FlipX()
     {
@@ -127,13 +114,7 @@ public class Enemy : MonoBehaviour
         else spriteRenderer.flipX = true;
     }
 
-    protected IEnumerator EnableAlert(SpriteRenderer sp)
-    {
-        sp.enabled = true;
-        yield return new WaitForSecondsRealtime(0.8f);
-        sp.enabled = false;
 
-    }
     protected IEnumerator FreezeRecover()
     {
         canFreeze = false;
@@ -150,7 +131,7 @@ public class Enemy : MonoBehaviour
     {
         currentState = CurrentState.ICE;
         StartCoroutine(FreezeRecover());
-        GameObject a = Instantiate(FreezeParticles, this.transform.position, Quaternion.identity);
+        GameObject a = Instantiate(freezeParticles, this.transform.position, Quaternion.identity);
         a.transform.SetParent(transform, true);
         GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.6f, 0.9f, 1);
 

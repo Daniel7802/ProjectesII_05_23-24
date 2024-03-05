@@ -69,7 +69,32 @@ public class SlimeIA : Enemy
     {
         minWaitingTime = minWaitingTimeRoaming;
         maxWaitingTime = maxWaitingTimeRoaming;
-        base.Roaming();
+
+        if (playerDetection.chasing && RaycastPlayer())
+        {
+            //if(rb2D.velocity.x < speedToLand)
+            //{
+            //    waitingTimer = waitingTime;
+            //}
+            waitingTimer = waitingTime;
+            currentState = CurrentState.CHASING;
+        }
+        else
+        {
+            moveSpeed = roamingSpeed;
+            Movement();
+
+            if (Vector2.Distance(transform.position, pointA.position) < 0.5f)
+            {
+                target = pointB;
+            }
+
+            if (Vector2.Distance(transform.position, pointB.position) < 0.5f)
+            {
+                target = pointA;
+            }
+        }
+        
     }
     public override void Chasing()
     {

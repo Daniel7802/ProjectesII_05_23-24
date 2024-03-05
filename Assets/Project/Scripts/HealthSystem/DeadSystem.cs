@@ -38,13 +38,13 @@ public class DeadSystem : MonoBehaviour
                 Destroy(_lineRenderer);
                 //EditorApplication.isPaused = true;
             }
-            Enemy enemy = GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.foundTargetAlert.enabled = false;
-                enemy.lostTargetAlert.enabled = false;
+            //Enemy enemy = GetComponent<Enemy>();
+            //if (enemy != null)
+            //{
+            //    enemy.foundTargetAlert.enabled = false;
+            //    enemy.lostTargetAlert.enabled = false;
 
-            }
+            //}
             Light2D light2D = GetComponentInChildren<Light2D>();
 
             if (light2D != null)

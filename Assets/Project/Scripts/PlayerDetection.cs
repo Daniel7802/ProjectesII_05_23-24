@@ -12,14 +12,22 @@ public class PlayerDetection : MonoBehaviour
 
     //chasing
     [SerializeField] private float startChasingDistance = 5f;
-    private float stopChasingDistance;
-    [SerializeField] private float stopChasingRange = 2f;
+    [SerializeField] private float stopChasingDistance = 15f;
+
     public bool chasing = false;
+
+    [SerializeField] private SpriteRenderer foundTargetAlert;
+    [SerializeField] private SpriteRenderer lostTargetAlert;
+    [SerializeField] private float alertTime = 0.8f;
+    private bool found = false;
+
+    [SerializeField] private GameObject roamingPoints;
+
 
 
     private void Start()
     {
-        stopChasingDistance = startChasingDistance + stopChasingRange;
+        
     }
     void Update()
     {
@@ -39,17 +47,39 @@ public class PlayerDetection : MonoBehaviour
         if (playerDetected && Vector2.Distance(transform.position, playerPos.transform.position) < startChasingDistance)
         {
             chasing = true;
+            if (!found)
+            {
+                StartCoroutine(EnableAlert(foundTargetAlert));
+                found = true;
+            }
+
         }
         if (chasing && Vector2.Distance(transform.position, playerPos.transform.position) > stopChasingDistance)
         {
             chasing = false;
+            if (found)
+            {
+                StartCoroutine(EnableAlert(lostTargetAlert));
+                found = false;
+                roamingPoints.transform.position = transform.position;
+                
+            }
+
         }
+    }
+
+    protected IEnumerator EnableAlert(SpriteRenderer sp)
+    {
+        sp.enabled = true;
+        yield return new WaitForSecondsRealtime(alertTime);
+        sp.enabled = false;
+
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);       
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
         Gizmos.DrawWireSphere(transform.position, startChasingDistance);
         Gizmos.DrawWireSphere(transform.position, stopChasingDistance);
     }
