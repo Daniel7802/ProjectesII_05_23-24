@@ -70,7 +70,6 @@ public class Enemy : MonoBehaviour
         Vector2 dir = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
         Vector2 moveForce = dir.normalized * moveSpeed;
         rb2D.AddForce(moveForce, ForceMode2D.Force);
-
     }
 
     public virtual void Roaming()
