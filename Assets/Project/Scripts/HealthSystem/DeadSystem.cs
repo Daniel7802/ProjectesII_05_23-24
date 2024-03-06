@@ -22,7 +22,6 @@ public class DeadSystem : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
-
         _lineRenderer = GetComponent<LineRenderer>();
     }
 

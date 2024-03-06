@@ -24,11 +24,6 @@ public class PlayerDetection : MonoBehaviour
     [SerializeField] private GameObject roamingPoints;
 
 
-
-    private void Start()
-    {
-        
-    }
     void Update()
     {
         // Detecta objetos dentro del radio alrededor del objeto
@@ -79,7 +74,7 @@ public class PlayerDetection : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+        //Gizmos.DrawWireSphere(transform.position, detectionRadius);
         Gizmos.DrawWireSphere(transform.position, startChasingDistance);
         Gizmos.DrawWireSphere(transform.position, stopChasingDistance);
     }

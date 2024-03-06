@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
     public virtual void Movement()
     {
         Vector3 dir = target.position - transform.position;
-        Vector3 moveForce = dir.normalized * moveSpeed;
+        Vector2 moveForce = dir.normalized * moveSpeed;
         rb2D.AddForce(moveForce, ForceMode2D.Force);
     }
 

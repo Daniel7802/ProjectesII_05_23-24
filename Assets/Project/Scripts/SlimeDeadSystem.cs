@@ -1,45 +1,48 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+
 
 public class SlimeDeadSystem : DeadSystem
 {
     [SerializeField] GameObject miniSlime;
-    bool miniSlimesSpawned = false;
-
-    [SerializeField] float spawnForce = 10f;
+    [SerializeField] float miniSlimeSpawnDistance = 2f;
 
     private Transform player;
     private Vector2 vectorBetweenPlayer, vectorSlime1, vectorSlime2;
 
     public override void Dead()
     {
-        base.Dead();
-        SpawnMiniSlimes();
 
-
+        if (!isDead)
+        {
+            _spriteRenderer.enabled = false;
+            _collider.enabled = false;
+            Instantiate(blood, transform.position, Quaternion.identity);
+            SpawnMiniSlimes();
+            StartCoroutine(PlayDeathClipOn(1));
+            isDead = true;
+        }
     }
     void SpawnMiniSlimes()
     {
 
-        if (!miniSlimesSpawned)
-        {
-            GameObject minislime1 = Instantiate(miniSlime, transform.position, Quaternion.identity);
-            GameObject minislime2 = Instantiate(miniSlime, transform.position, Quaternion.identity);
-            
-            minislime1.gameObject.GetComponent<HealthSystem>().TurnInvencible(true);
-            minislime2.gameObject.GetComponent<HealthSystem>().TurnInvencible(true);
+        player = GetComponentInChildren<PlayerDetection>().playerPos;
+        vectorBetweenPlayer = player.transform.position - transform.position;
 
-            player = GetComponent<PlayerDetection>().playerPos;
-            vectorBetweenPlayer = player.transform.position - transform.position;
-            vectorSlime1 = new Vector2(-vectorBetweenPlayer.y, vectorBetweenPlayer.x).normalized * spawnForce;
-            vectorSlime2 = new Vector2(vectorBetweenPlayer.y, -vectorBetweenPlayer.x).normalized * spawnForce;
-            minislime1.gameObject.GetComponent<Rigidbody2D>().AddForce(vectorSlime1, ForceMode2D.Impulse);
-            minislime2.gameObject.GetComponent<Rigidbody2D>().AddForce(vectorSlime2, ForceMode2D.Impulse);
+        vectorSlime1 = new Vector2(-vectorBetweenPlayer.y, vectorBetweenPlayer.x).normalized * miniSlimeSpawnDistance;
+        vectorSlime2 = new Vector2(vectorBetweenPlayer.y, -vectorBetweenPlayer.x).normalized * miniSlimeSpawnDistance;
 
-            miniSlimesSpawned = true;
-        }
+        Instantiate(miniSlime, new Vector2(transform.position.x + vectorSlime1.x, transform.position.y + vectorSlime1.y), Quaternion.identity);
+        Instantiate(miniSlime, new Vector2(transform.position.x + vectorSlime2.x, transform.position.y + vectorSlime2.y), Quaternion.identity);
+
+    }
+    IEnumerator PlayDeathClipOn(float delay)
+    {
+        _audioSource.pitch = deathClipPitch;
+        _audioSource.PlayOneShot(deathSound);
+        yield return new WaitForSecondsRealtime(delay);
+        _audioSource.pitch = 1f;
+        Destroy(gameObject);
     }
 
 

@@ -16,12 +16,12 @@ public class SlimeIA : Enemy
     private float speedToLand = 1f;
 
     //roaming    
-    private float minWaitingTimeRoaming = 2.5f;
-    private float maxWaitingTimeRoaming = 3.5f;
+    private float minWaitingTimeRoaming = 1.5f;
+    private float maxWaitingTimeRoaming = 2f;
 
     //chasing      
     private float minWaitingTimeChasing = 0.8f;
-    private float maxWaitingTimeChasing = 1.3f;
+    private float maxWaitingTimeChasing = 1.2f;
 
     public override void Start()
     {
@@ -52,8 +52,8 @@ public class SlimeIA : Enemy
 
     public override void Movement()
     {
-        Vector3 dir = target.position - transform.position;
-        Vector3 moveForce = dir.normalized * moveSpeed;
+        Vector2 dir = target.position - transform.position;
+        Vector2 moveForce = dir.normalized * moveSpeed;
 
         waitingTimer += Time.deltaTime;
         if (waitingTimer >= waitingTime)
