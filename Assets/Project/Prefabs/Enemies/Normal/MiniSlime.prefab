@@ -14,11 +14,10 @@ GameObject:
   - component: {fileID: 4215412743782275224}
   - component: {fileID: 44803270991347744}
   - component: {fileID: 6269196550853221447}
+  - component: {fileID: 3607174226671211522}
   - component: {fileID: 6238226914675135810}
   - component: {fileID: 9160680943280425905}
   - component: {fileID: 6208089742085827678}
-  - component: {fileID: 6352708676460876648}
-  - component: {fileID: 3607174226671211522}
   m_Layer: 10
   m_Name: MiniSlime
   m_TagString: Enemy
@@ -41,7 +40,7 @@ Transform:
   - {fileID: 353318797735388649}
   - {fileID: 3639647329869702604}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &85886036668043690
 SpriteRenderer:
@@ -179,7 +178,7 @@ MonoBehaviour:
   pointA: {fileID: 8545495258774943699}
   pointB: {fileID: 5652293568163643716}
   chasingSpeed: 15
-  freezeParticles: {fileID: 0}
+  freezeParticles: {fileID: 6096575759060088230, guid: 3e8f2d9c4f8211442a533f620a1b7bd9, type: 3}
   canFreeze: 1
   slimeJumpSound: {fileID: 8300000, guid: a9adc3be9c93df54abdf66972003f3c7, type: 3}
 --- !u!114 &6269196550853221447
@@ -203,6 +202,19 @@ MonoBehaviour:
   damagedTime: 0.125
   knockbackForce: 5
   hitParticles: {fileID: 4124127140682516938, guid: f04bd7e3d755c5545a237a4ac939cd75, type: 3}
+--- !u!114 &3607174226671211522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2998486167879767135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73ab9022abd20a45856f8dedfe21125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 1
 --- !u!114 &6238226914675135810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,31 +348,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6352708676460876648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2998486167879767135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2049c3badedfb0d4b85ef939d4501b91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3607174226671211522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2998486167879767135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c73ab9022abd20a45856f8dedfe21125, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dmg: 1
 --- !u!1001 &42521721442617935
 PrefabInstance:
   m_ObjectHideFlags: 0
