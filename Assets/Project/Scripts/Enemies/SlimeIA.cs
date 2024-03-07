@@ -71,11 +71,7 @@ public class SlimeIA : Enemy
         maxWaitingTime = maxWaitingTimeRoaming;
 
         if (playerDetection.chasing && RaycastPlayer())
-        {
-            //if(rb2D.velocity.x < speedToLand)
-            //{
-            //    waitingTimer = waitingTime;
-            //}
+        {            
             waitingTimer = waitingTime;
             currentState = CurrentState.CHASING;
         }
@@ -100,7 +96,17 @@ public class SlimeIA : Enemy
     {
         minWaitingTime = minWaitingTimeChasing;
         maxWaitingTime = maxWaitingTimeChasing;
-        base.Chasing();
+        if (playerDetection.chasing && RaycastPlayer())
+        {
+            target = playerDetection.playerPos.transform;
+            moveSpeed = chasingSpeed;
+            Movement();
+        }
+        else
+        {
+            currentState = CurrentState.ROAMING;
+            target = pointA;
+        }
     }
     public void SetNewWaitingTime()
     {

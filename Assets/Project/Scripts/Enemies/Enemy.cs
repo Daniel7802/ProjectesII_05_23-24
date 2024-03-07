@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] protected PlayerDetection playerDetection;
 
+
     [SerializeField] protected LayerMask hitLayer;
 
     public enum CurrentState { ROAMING, CHASING, AIMING, RELOADING, SHOOTING, ICE };
@@ -60,25 +61,25 @@ public class Enemy : MonoBehaviour
 
     public virtual void Roaming()
     {
-        if (playerDetection.chasing && RaycastPlayer())
-        {
-            currentState = CurrentState.CHASING;
-        }
-        else
-        {
-            moveSpeed = roamingSpeed;
-            Movement();
+        //if (playerDetection.chasing && RaycastPlayer())
+        //{
+        //    currentState = CurrentState.CHASING;
+        //}
+        //else
+        //{
+        //    moveSpeed = roamingSpeed;
+        //    Movement();
 
-            if (Vector2.Distance(transform.position, pointA.position) < 0.5f)
-            {
-                target = pointB;
-            }
+        //    if (Vector2.Distance(transform.position, pointA.position) < 0.5f)
+        //    {
+        //        target = pointB;
+        //    }
 
-            if (Vector2.Distance(transform.position, pointB.position) < 0.5f)
-            {
-                target = pointA;
-            }
-        }
+        //    if (Vector2.Distance(transform.position, pointB.position) < 0.5f)
+        //    {
+        //        target = pointA;
+        //    }
+        //}
     }
 
     public virtual void Chasing()

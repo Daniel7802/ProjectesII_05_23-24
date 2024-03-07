@@ -7,12 +7,11 @@ using static Unity.VisualScripting.Member;
 
 public class ShootyIA : Enemy
 {
-
+    private ShootyPlayerDetection shootyPlayerDetection;
     //roaming
     private float waitingTime;
     private float minWaitingTime = 1.5f;
     private float maxWaitingTime = 3f;
-
 
     //aiming
     private LineRenderer lineRenderer;
@@ -26,7 +25,7 @@ public class ShootyIA : Enemy
     [SerializeField]
     private GameObject shootyBullet;
     [SerializeField]
-    private float startShootingRange;  
+    private float startShootingRange;
     [SerializeField]
     private AudioClip shootSound;
 
@@ -39,13 +38,12 @@ public class ShootyIA : Enemy
 
     [SerializeField]
     private AudioClip lostTargetSound;
-
     public override void Start()
     {
         base.Start();
         lineRenderer = GetComponent<LineRenderer>();
+        shootyPlayerDetection = playerDetection.GetComponent<ShootyPlayerDetection>();
     }
-
     private void Update()
     {
         FlipByTarget();
@@ -72,30 +70,60 @@ public class ShootyIA : Enemy
                 Reloading();
                 break;
         }
+
+        if (rb2D.velocity.magnitude > 0.5f) animator.SetBool("walk", true);
+        else animator.SetBool("walk", false);
+
     }
     public override void Movement()
     {
-        animator.SetBool("walk", true);
-        base.Movement();
+        Vector3 dir = target.position - transform.position;
+        Vector2 moveForce = dir.normalized * moveSpeed;
+        rb2D.AddForce(moveForce, ForceMode2D.Force);
     }
-
     public override void Roaming()
     {
-        //if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
-        //{
-        //    audioSource.PlayOneShot(foundTargetSound, 0.3f);
-        //    StartCoroutine(EnableAlert(foundTargetAlert));
-        //    currentState = CurrentState.CHASING;
-        //}
-        //else
-        //{
-        //    base.Roaming();
-        //}
+        if (shootyPlayerDetection.chasing && RaycastPlayer())
+        {
+            currentState = CurrentState.CHASING;
+        }
+        else
+        {
+            moveSpeed = roamingSpeed;
+            Movement();
+
+            if (Vector2.Distance(transform.position, pointA.position) < 0.5f)
+            {
+                target = pointB;
+            }
+
+            if (Vector2.Distance(transform.position, pointB.position) < 0.5f)
+            {
+                target = pointA;
+            }
+        }
 
     }
-
     public override void Chasing()
     {
+        if (shootyPlayerDetection.shoot && RaycastPlayer())
+        {
+            currentState = CurrentState.AIMING;
+        }
+        else
+        {
+            if (shootyPlayerDetection.chasing && RaycastPlayer())
+            {
+                target = shootyPlayerDetection.playerPos.transform;
+                moveSpeed = chasingSpeed;
+                Movement();
+            }
+            else
+            {
+                currentState = CurrentState.ROAMING;
+                target = pointA;
+            }
+        }
         //if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
         //{
 
@@ -115,13 +143,9 @@ public class ShootyIA : Enemy
         //    StartCoroutine(EnableAlert(lostTargetAlert));
         //    currentState = CurrentState.ROAMING;
         //}
-
     }
-
     void Aiming()
     {
-
-       
 
         //if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
         //{
@@ -173,25 +197,23 @@ public class ShootyIA : Enemy
 
         }
     }
-
     void Shooting()
     {
-       
+
         ShootOneBullet();
         currentState = CurrentState.RELOADING;
     }
     void ShootOneBullet()
     {
         audioSource.PlayOneShot(shootSound, 0.5f);
-       // Vector2 dir = new Vector2(detectionZone.GetComponent<DetectionZone>().player.transform.position.x - transform.position.x, detectionZone.GetComponent<DetectionZone>().player.transform.position.y - transform.position.y);
+        // Vector2 dir = new Vector2(detectionZone.GetComponent<DetectionZone>().player.transform.position.x - transform.position.x, detectionZone.GetComponent<DetectionZone>().player.transform.position.y - transform.position.y);
         GameObject bullet = Instantiate(shootyBullet);
         bullet.transform.position = transform.position;
-       // bullet.transform.right = dir;
+        // bullet.transform.right = dir;
     }
-
     void Reloading()
     {
-       
+
         //if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
         //{
         //    if (Vector2.Distance(transform.position, detectionZone.GetComponent<DetectionZone>().player.transform.position) < startShootingRange)
@@ -207,7 +229,7 @@ public class ShootyIA : Enemy
         //            currentState = CurrentState.AIMING;
 
         //        }
-               
+
         //    }
         //    else
         //    {
@@ -223,21 +245,12 @@ public class ShootyIA : Enemy
         //    StartCoroutine(EnableAlert(lostTargetAlert));
         //    currentState = CurrentState.ROAMING;
         //}
-        
-    }
 
+    }
     public void SetNewWaitingTime()
     {
         waitingTime = UnityEngine.Random.Range(minWaitingTime, maxWaitingTime);
     }
-
-    
-
-    public override void OnDrawGizmos()
-    {
-        base.OnDrawGizmos();
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, startShootingRange);
-    }
+   
 
 }
