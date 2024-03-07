@@ -8,8 +8,8 @@ public class ShootyPlayerDetection : PlayerDetection
 
     public bool shoot = false;
 
- 
-    protected  void Update()
+
+    protected void Update()
     {
         // Detecta objetos dentro del radio alrededor del objeto
         Collider2D objectDetected = Physics2D.OverlapCircle(transform.position, detectionRadius, playerLayer);
@@ -37,7 +37,7 @@ public class ShootyPlayerDetection : PlayerDetection
         if (chasing && Vector2.Distance(transform.position, playerPos.transform.position) > stopChasingDistance)
         {
             chasing = false;
-           
+
             if (found)
             {
                 StartCoroutine(EnableAlert(lostTargetAlert));
@@ -46,10 +46,14 @@ public class ShootyPlayerDetection : PlayerDetection
             }
         }
 
-        if (chasing && Vector2.Distance(transform.position, playerPos.transform.position) < startShootingDistance)
+        if (Vector2.Distance(transform.position, playerPos.transform.position) < startShootingDistance)
         {
-            chasing = false;
+            
             shoot = true;
+        }
+        else
+        {
+            shoot = false;
         }
     }
     protected override void OnDrawGizmos()

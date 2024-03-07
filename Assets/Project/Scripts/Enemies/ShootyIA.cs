@@ -107,12 +107,16 @@ public class ShootyIA : Enemy
     {
         if (shootyPlayerDetection.chasing && RaycastPlayer())
         {
-            target = shootyPlayerDetection.playerPos.transform;
-            moveSpeed = chasingSpeed;
-            Movement();
-            if (shootyPlayerDetection.shoot)
+
+            if (shootyPlayerDetection.shoot && RaycastPlayer())
             {
                 currentState = CurrentState.AIMING;
+            }
+            else
+            {
+                target = shootyPlayerDetection.playerPos.transform;
+                moveSpeed = chasingSpeed;
+                Movement();
             }
         }
         else
@@ -123,6 +127,7 @@ public class ShootyIA : Enemy
     }
     void Aiming()
     {
+        
         if (shootyPlayerDetection.shoot && RaycastPlayer())
         {
             if (lineTimer < aimingTime)
@@ -142,7 +147,7 @@ public class ShootyIA : Enemy
         {
             lineRenderer.enabled = false;
             lineTimer = 0f;
-            currentState = CurrentState.ROAMING;
+            currentState = CurrentState.CHASING;
         }
     }
     void ShowTrayectoryLine()
@@ -181,7 +186,19 @@ public class ShootyIA : Enemy
         {
             reloadingTimer = 0f;
             shootyPlayerDetection.shoot = false;
-            currentState = CurrentState.ROAMING;
+            if(shootyPlayerDetection.shoot)
+            {
+                currentState = CurrentState.AIMING;
+
+            }else if (shootyPlayerDetection.chasing)
+            {
+                currentState = CurrentState.CHASING;
+            }
+            else
+            {
+                currentState = CurrentState.ROAMING;
+            }
+            
 
         }
     }
