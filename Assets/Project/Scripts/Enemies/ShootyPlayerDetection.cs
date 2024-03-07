@@ -8,7 +8,7 @@ public class ShootyPlayerDetection : PlayerDetection
 
     public bool shoot = false;
 
-    // Update is called once per frame
+ 
     protected  void Update()
     {
         // Detecta objetos dentro del radio alrededor del objeto
@@ -37,7 +37,7 @@ public class ShootyPlayerDetection : PlayerDetection
         if (chasing && Vector2.Distance(transform.position, playerPos.transform.position) > stopChasingDistance)
         {
             chasing = false;
-            shoot = false;
+           
             if (found)
             {
                 StartCoroutine(EnableAlert(lostTargetAlert));
@@ -47,7 +47,8 @@ public class ShootyPlayerDetection : PlayerDetection
         }
 
         if (chasing && Vector2.Distance(transform.position, playerPos.transform.position) < startShootingDistance)
-        {            
+        {
+            chasing = false;
             shoot = true;
         }
     }

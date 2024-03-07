@@ -180,6 +180,7 @@ public class ShootyIA : Enemy
         if (reloadingTimer > reloadingTime)
         {
             reloadingTimer = 0f;
+            shootyPlayerDetection.shoot = false;
             currentState = CurrentState.ROAMING;
 
         }
