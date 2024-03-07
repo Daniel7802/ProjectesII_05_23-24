@@ -178,7 +178,7 @@ MonoBehaviour:
   roamingSpeed: 5
   pointA: {fileID: 187308995421971285}
   pointB: {fileID: 4214873565265302978}
-  chasingSpeed: 10
+  chasingSpeed: 20
   freezeParticles: {fileID: 6096575759060088230, guid: 3e8f2d9c4f8211442a533f620a1b7bd9, type: 3}
   canFreeze: 1
   aimingTime: 1
@@ -555,11 +555,11 @@ PrefabInstance:
       objectReference: {fileID: 4609010258228603739}
     - target: {fileID: 595076626222686625, guid: c837aac57bcbbc245b5b9d1be9ca0d96, type: 3}
       propertyPath: startChasingDistance
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 595076626222686625, guid: c837aac57bcbbc245b5b9d1be9ca0d96, type: 3}
       propertyPath: startShootingDistance
-      value: 12
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4270361737885687093, guid: c837aac57bcbbc245b5b9d1be9ca0d96, type: 3}
       propertyPath: m_RootOrder
