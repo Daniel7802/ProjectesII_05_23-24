@@ -77,7 +77,7 @@ public class ShootyIA : Enemy
     }
     public override void Movement()
     {
-        Vector3 dir = target.position - transform.position;
+        Vector2 dir = target.position - transform.position;
         Vector2 moveForce = dir.normalized * moveSpeed;
         rb2D.AddForce(moveForce, ForceMode2D.Force);
     }
@@ -106,24 +106,25 @@ public class ShootyIA : Enemy
     }
     public override void Chasing()
     {
-        if (shootyPlayerDetection.shoot && RaycastPlayer())
+        if (shootyPlayerDetection.chasing && RaycastPlayer())
         {
-            currentState = CurrentState.AIMING;
+            target = shootyPlayerDetection.playerPos.transform;
+            moveSpeed = chasingSpeed;
+            Movement();
         }
         else
         {
-            if (shootyPlayerDetection.chasing && RaycastPlayer())
-            {
-                target = shootyPlayerDetection.playerPos.transform;
-                moveSpeed = chasingSpeed;
-                Movement();
-            }
-            else
-            {
-                currentState = CurrentState.ROAMING;
-                target = pointA;
-            }
+            currentState = CurrentState.ROAMING;
+            target = pointA;
         }
+        //if (shootyPlayerDetection.shoot && RaycastPlayer())
+        //{
+        //    currentState = CurrentState.AIMING;
+        //}
+        //else
+        //{
+            
+        //}
         //if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
         //{
 

@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class PlayerDetection : MonoBehaviour
 {
-    [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private float detectionRadius = 20f;
+    [SerializeField] protected LayerMask playerLayer;
+    [SerializeField] protected float detectionRadius = 20f;
 
-    private bool playerDetected;
+    protected bool playerDetected;
     public Transform playerPos;
 
     //chasing
-    [SerializeField] private float startChasingDistance = 5f;
-    [SerializeField] private float stopChasingDistance = 15f;
+    [SerializeField] protected float startChasingDistance = 5f;
+    [SerializeField] protected float stopChasingDistance = 15f;
 
     public bool chasing = false;
 
-    [SerializeField] private SpriteRenderer foundTargetAlert;
-    [SerializeField] private SpriteRenderer lostTargetAlert;
-    [SerializeField] private float alertTime = 0.8f;
-    private bool found = false;
+    [SerializeField] protected SpriteRenderer foundTargetAlert;
+    [SerializeField] protected SpriteRenderer lostTargetAlert;
+    [SerializeField] protected float alertTime = 0.8f;
+    protected bool found = false;
 
-    [SerializeField] private GameObject roamingPoints;
+    [SerializeField] protected GameObject roamingPoints;
     protected virtual void Update()
     {
         // Detecta objetos dentro del radio alrededor del objeto
