@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6269196550853221447}
   - component: {fileID: 3607174226671211522}
   - component: {fileID: 6238226914675135810}
+  - component: {fileID: -798784435907739560}
   - component: {fileID: 9160680943280425905}
   - component: {fileID: 6208089742085827678}
   m_Layer: 10
@@ -231,6 +232,19 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: a9adc3be9c93df54abdf66972003f3c7, type: 3}
   deathClipPitch: 0.5
   isDead: 0
+--- !u!114 &-798784435907739560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2998486167879767135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 825905a9ed6a4f749b7265a6933b478c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invTime: 0.3
 --- !u!95 &9160680943280425905
 Animator:
   serializedVersion: 5

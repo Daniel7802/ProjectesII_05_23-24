@@ -5,10 +5,9 @@ using UnityEngine;
 public class SlimeDeadSystem : DeadSystem
 {
     [SerializeField] GameObject miniSlime;
-    [SerializeField] float miniSlimeSpawnDistance = 2f;
+    [SerializeField] float spawnForce = 2f;
 
     private Transform player;
-    private Vector2 vectorBetweenPlayer, vectorSlime1, vectorSlime2;
 
     public override void Dead()
     {
@@ -27,13 +26,24 @@ public class SlimeDeadSystem : DeadSystem
     {
 
         player = GetComponentInChildren<PlayerDetection>().playerPos;
-        vectorBetweenPlayer = player.transform.position - transform.position;
+        Vector2 vectorBetweenPlayer = player.transform.position - transform.position;
+        Vector2 perp = new Vector2(vectorBetweenPlayer.y, -vectorBetweenPlayer.x);
 
-        vectorSlime1 = new Vector2(-vectorBetweenPlayer.y, vectorBetweenPlayer.x).normalized * miniSlimeSpawnDistance;
-        vectorSlime2 = new Vector2(vectorBetweenPlayer.y, -vectorBetweenPlayer.x).normalized * miniSlimeSpawnDistance;
+        GameObject m1 = Instantiate(miniSlime, transform.position, Quaternion.identity);
+        GameObject m2 = Instantiate(miniSlime, transform.position, Quaternion.identity);
 
-        Instantiate(miniSlime, new Vector2(transform.position.x + vectorSlime1.x, transform.position.y + vectorSlime1.y), Quaternion.identity);
-        Instantiate(miniSlime, new Vector2(transform.position.x + vectorSlime2.x, transform.position.y + vectorSlime2.y), Quaternion.identity);
+        HealthSystem hp1 = m1.GetComponent<HealthSystem>();
+        HealthSystem hp2 = m2.GetComponent<HealthSystem>();
+
+        hp1.TurnInvencible(true);
+        hp2.TurnInvencible(true);
+
+        Rigidbody2D rb1 = m1.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb2 = m2.GetComponent<Rigidbody2D>();
+
+        rb1.AddForce(perp.normalized * spawnForce, ForceMode2D.Impulse);
+        rb2.AddForce(-perp.normalized * spawnForce, ForceMode2D.Impulse);
+
 
     }
     IEnumerator PlayDeathClipOn(float delay)

@@ -40,7 +40,7 @@ Transform:
   - {fileID: 3285437157709437007}
   - {fileID: 1645091426031339061}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1110482731424247854
 SpriteRenderer:
@@ -232,7 +232,7 @@ MonoBehaviour:
   deathClipPitch: 0.6
   isDead: 0
   miniSlime: {fileID: 2998486167879767135, guid: de50a09a1528cc943a2df1087bb99a8d, type: 3}
-  miniSlimeSpawnDistance: 2
+  spawnForce: 7
 --- !u!95 &9135118707840236033
 Animator:
   serializedVersion: 5
