@@ -8,11 +8,16 @@ public class PlayerMovement : MonoBehaviour
     ParticleSystem _walkParticles;
     private ParticleSystem.EmissionModule _missionModuleWalk;
 
+    [SerializeField]
+    HealthSystem _healthSystem;
     bool dontWalked = true;
 
     public float speed = 100f;
     public float maxSpeed = 100f;
     public float iceSpeedRecover = 100.0f;
+    
+    Vector3 lastPosition = Vector3.zero;
+    float timeSaveLastPosition = 0;
 
     [SerializeField]
     AudioSource _walkSound;
@@ -66,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_playerController.playerStates != PlayerController.PlayerStates.CINEMATIC)
+        if (_playerController.playerStates == PlayerController.PlayerStates.NONE)
         {
             // Inputs
             movementVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -94,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
             if (playerRb.velocity.x >= 0.1 || playerRb.velocity.y >= 0.1 || playerRb.velocity.x <= -0.1 || playerRb.velocity.y <= -0.1)
             {
                 _missionModuleWalk.enabled = true;
-                if(dontWalked)
+                if (dontWalked)
                 {
                     _walkSound.Play();
                     dontWalked = false;
@@ -105,26 +110,41 @@ public class PlayerMovement : MonoBehaviour
                 _walkSound.Stop();
                 _missionModuleWalk.enabled = false;
                 dontWalked = true;
-            }        
+            }
+
+            timeSaveLastPosition += Time.deltaTime;
+
+            if (timeSaveLastPosition > 2.0f)
+            {
+                timeSaveLastPosition = 0;
+                lastPosition = this.transform.position;
+            }
         }
-        else
+        else if (_playerController.playerStates == PlayerController.PlayerStates.CINEMATIC)
         {
             playerAnimator.SetFloat("Speed", 0);
         }
 
-        if(_playerController.playerStates == PlayerController.PlayerStates.CINEMATIC)
+        else if (_playerController.playerStates == PlayerController.PlayerStates.FALLING)
         {
-            playerRb.isKinematic = true;
+            if(this.transform.localScale.x >0.1 && this.transform.localScale.y > 0.1)
+            {
+                transform.localScale = new Vector3(transform.localScale.x - 0.01f, transform.localScale.y - 0.01f, transform.localScale.z);
+            }
+            else
+            {
+                _playerController.playerStates = PlayerController.PlayerStates.NONE;
+                transform.localScale = new Vector3(2, 2, transform.localScale.z);
+                transform.position = lastPosition;
+                _healthSystem.GetDamage(1);
+            }
         }
-        if (_playerController.playerStates != PlayerController.PlayerStates.CINEMATIC)
-        {
-            playerRb.isKinematic = false;
-        }
+        
     }
 
     private void FixedUpdate()
     {
-        if (_playerController.playerStates != PlayerController.PlayerStates.CINEMATIC)
+        if (_playerController.playerStates == PlayerController.PlayerStates.NONE)
         {
             // Fisicas
             if (!_isDashing)
@@ -159,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(_dashingTime);
         _isDashing = false;
         _dashTrailRenderer.enabled = false;
-    }
+    }    
     IEnumerator DashCoolDown()
     {
         yield return new WaitForSeconds(_dashingCoolDownTime);
