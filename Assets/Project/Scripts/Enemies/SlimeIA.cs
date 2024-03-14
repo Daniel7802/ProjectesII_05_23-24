@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.UIElements.Experimental;
+
 
 
 public class SlimeIA : Enemy
@@ -68,16 +66,16 @@ public class SlimeIA : Enemy
 
     public override void Roaming()
     {
-        minWaitingTime = minWaitingTimeRoaming;
-        maxWaitingTime = maxWaitingTimeRoaming;
-
-        if (playerDetection.distanceToPlayer<startChasingDistance && RaycastPlayer())
-        {            
+        if (playerDetection.distanceToPlayer < startChasingDistance && RaycastPlayer())
+        {
+            StartCoroutine(EnableAlert(foundTargetAlert));
             waitingTimer = waitingTime;
             currentState = CurrentState.CHASING;
         }
         else
         {
+            minWaitingTime = minWaitingTimeRoaming;
+            maxWaitingTime = maxWaitingTimeRoaming;
             moveSpeed = roamingSpeed;
             Movement();
 
@@ -91,32 +89,36 @@ public class SlimeIA : Enemy
                 target = pointA;
             }
         }
-        
+
     }
     public override void Chasing()
     {
 
-        if (playerDetection.distanceToPlayer < startChasingDistance && RaycastPlayer())
+        if (playerDetection.distanceToPlayer > stopChasingDistance)
         {
-            chasing = true;
-            if (!found)
-            {
-                StartCoroutine(EnableAlert(foundTargetAlert));
-                found = true;
-            }
-        }
-        minWaitingTime = minWaitingTimeChasing;
-        maxWaitingTime = maxWaitingTimeChasing;
-        if (playerDetection.chasing && RaycastPlayer())
-        {
-            target = playerDetection.playerTransform.transform;
-            moveSpeed = chasingSpeed;
-            Movement();
-        }
+            StartCoroutine(EnableAlert(lostTargetAlert));
+            roamingPoints.transform.position = transform.position;
+            target = pointA;
+            currentState = CurrentState.ROAMING;            
+        }       
         else
         {
-            currentState = CurrentState.ROAMING;
-            target = pointA;
+            if (RaycastPlayer())
+            {
+                minWaitingTime = minWaitingTimeChasing;
+                maxWaitingTime = maxWaitingTimeChasing;
+                target = playerDetection.playerTransform;
+                moveSpeed = chasingSpeed;
+                Movement();
+            }
+            else
+            {
+
+                StartCoroutine(EnableAlert(lostTargetAlert));
+                roamingPoints.transform.position = transform.position;
+                target = pointA;
+                currentState = CurrentState.ROAMING;
+            }           
         }
     }
     public void SetNewWaitingTime()
@@ -126,6 +128,5 @@ public class SlimeIA : Enemy
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
-
     }
 }

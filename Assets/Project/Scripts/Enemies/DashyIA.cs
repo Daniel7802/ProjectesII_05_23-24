@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class DashyIA : Enemy
@@ -8,18 +7,18 @@ public class DashyIA : Enemy
     private AudioClip buzzSound;
 
     //CHARGING DASH
-    [SerializeField]
-    float chargingSpeed = 1f;
-    [SerializeField]
-    float chargingTime = 1f;
-    public float chargingTimer = 0f;
+    [SerializeField] float chargingSpeed = 1f;
+    [SerializeField] float chargingTime = 1f;
+    float chargingTimer = 0f;
 
     //DASH   
     bool lastPlayerPos = false;
+    [SerializeField] float dashingTime = 2f;
+    float dashingTimer = 0f;
+
 
     //RELOAD DASH   
-    [SerializeField]
-    float reloadingTime = 2f;
+    [SerializeField] float reloadingTime = 2f;
     float reloadingTimer = 0f;
 
     TrailRenderer trailRenderer;
@@ -54,55 +53,106 @@ public class DashyIA : Enemy
 
     public override void Movement()
     {
-        base.Movement();
+        Vector3 dir = target.position - transform.position;
+        Vector2 moveForce = dir.normalized * moveSpeed;
+        rb2D.AddForce(moveForce, ForceMode2D.Force);
     }
 
     public override void Roaming()
     {
-        //if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
-        //{
-        //    StartCoroutine(EnableAlert(foundTargetAlert));
-        //    currentState = CurrentState.CHASING;
-        //}
-        //else base.Roaming();
+        if (playerDetection.distanceToPlayer < startChasingDistance && RaycastPlayer())
+        {
+            StartCoroutine(EnableAlert(foundTargetAlert));
+            currentState = CurrentState.CHASING;
+        }
+        else
+        {
+            moveSpeed = roamingSpeed;
+            Movement();
+
+            if (Vector2.Distance(transform.position, pointA.position) < 0.5f)
+            {
+                target = pointB;
+            }
+
+            if (Vector2.Distance(transform.position, pointB.position) < 0.5f)
+            {
+                target = pointA;
+            }
+        }
     }
 
     public override void Chasing()
     {
-        //if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
-        //{
-        //    chargingTimer += Time.deltaTime;
-        //    if (chargingTimer < chargingTime)
-        //    {
+        if (playerDetection.distanceToPlayer > stopChasingDistance)
+        {
+            trailRenderer.enabled = false;
+            lastPlayerPos = false;
+            chargingTimer = 0;
+            StartCoroutine(EnableAlert(lostTargetAlert));
+            roamingPoints.transform.position = transform.position;
+            target = pointA;
+            currentState = CurrentState.ROAMING;
 
-        //        Vector2 dir = new Vector2(transform.position.x - detectionZone.GetComponent<DetectionZone>().player.transform.position.x, transform.position.y - detectionZone.GetComponent<DetectionZone>().player.transform.position.y);
-        //        Vector2 chargingForce = dir.normalized * chargingSpeed;
-        //        rb2D.AddForce(chargingForce);
-        //    }
-        //    else
-        //    {
-        //        if (!lastPlayerPos)
-        //        {
-        //            target = detectionZone.GetComponent<DetectionZone>().player.transform;
-        //            lastPlayerPos = true;
-        //        }
-        //        moveSpeed = chasingSpeed;
-        //        Movement();
-        //        trailRenderer.enabled = true;
-        //        if (Vector2.Distance(transform.position, target.position) < 0.5)
-        //        {
-        //            currentState = CurrentState.RELOADING;
-        //            chargingTimer = 0;
-        //            lastPlayerPos = false;
-        //        }
-        //    }
-        //}
-        //else
-        //{
-        //    StartCoroutine(EnableAlert(lostTargetAlert));
-        //    currentState = CurrentState.ROAMING;
-        //    chargingTimer = 0;
-        //}
+        }
+        else
+        {
+            if (RaycastPlayer())
+            {
+                chargingTimer += Time.deltaTime;
+                if (chargingTimer < chargingTime)
+                {
+
+                    Vector2 dir = transform.position - playerDetection.playerTransform.position;
+                    Vector2 chargingForce = dir.normalized * chargingSpeed;
+                    rb2D.AddForce(chargingForce);
+                }
+                else
+                {
+                    dashingTimer += Time.deltaTime;
+                    if (!lastPlayerPos)
+                    {
+                        target = playerDetection.playerTransform;
+                        lastPlayerPos = true;
+                    }
+                    if (dashingTimer < dashingTime)
+                    {
+                        trailRenderer.enabled = true;
+                        moveSpeed = chasingSpeed;
+                        Movement();
+                    }
+                    else
+                    {
+                        dashingTimer = 0;
+                        trailRenderer.enabled = false;
+                        lastPlayerPos = false;
+                        chargingTimer = 0;
+                        currentState = CurrentState.RELOADING;
+                    }
+
+
+                    //if (Vector2.Distance(transform.position, target.position) < 0.5)
+                    //{
+                    //    trailRenderer.enabled = false;
+                    //    lastPlayerPos = false;
+                    //    chargingTimer = 0;
+                    //    currentState = CurrentState.RELOADING;
+                    //}
+                }
+            }
+            else
+            {
+                trailRenderer.enabled = false;
+                lastPlayerPos = false;
+                chargingTimer = 0;
+                StartCoroutine(EnableAlert(lostTargetAlert));
+                roamingPoints.transform.position = transform.position;
+                target = pointA;
+                currentState = CurrentState.ROAMING;
+
+            }
+        }
+
     }
 
     void Reloading()
@@ -116,8 +166,8 @@ public class DashyIA : Enemy
         }
         else
         {
-            currentState = CurrentState.ROAMING;
             reloadingTimer = 0;
+            currentState = CurrentState.ROAMING;
         }
     }
 
@@ -125,8 +175,10 @@ public class DashyIA : Enemy
     {
         if (collision.CompareTag("Player"))
         {
-            currentState = CurrentState.RELOADING;
+
+            lastPlayerPos = false;
             chargingTimer = 0;
+            currentState = CurrentState.RELOADING;
         }
     }
 

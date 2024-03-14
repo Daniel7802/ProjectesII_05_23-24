@@ -1,10 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
-using static UnityEngine.UI.Image;
-using Unity.VisualScripting;
-using static UnityEngine.ParticleSystem;
+
 
 public class Enemy : MonoBehaviour
 {
@@ -26,12 +22,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected SpriteRenderer lostTargetAlert;
     [SerializeField] protected float alertTime = 0.8f;
 
-
     //MOVEMENT
     protected float moveSpeed;
 
     //ROAMING
     [SerializeField] protected float roamingSpeed;
+    [SerializeField] protected GameObject roamingPoints;
     [SerializeField] protected Transform pointA;
     [SerializeField] protected Transform pointB;
 
@@ -59,47 +55,16 @@ public class Enemy : MonoBehaviour
 
     public virtual void Movement()
     {
-        Vector3 dir = target.position - transform.position;
-        Vector2 moveForce = dir.normalized * moveSpeed;
-        rb2D.AddForce(moveForce, ForceMode2D.Force);
+        
     }
 
     public virtual void Roaming()
     {
-        //if (playerDetection.chasing && RaycastPlayer())
-        //{
-        //    currentState = CurrentState.CHASING;
-        //}
-        //else
-        //{
-        //    moveSpeed = roamingSpeed;
-        //    Movement();
-
-        //    if (Vector2.Distance(transform.position, pointA.position) < 0.5f)
-        //    {
-        //        target = pointB;
-        //    }
-
-        //    if (Vector2.Distance(transform.position, pointB.position) < 0.5f)
-        //    {
-        //        target = pointA;
-        //    }
-        //}
+       
     }
 
     public virtual void Chasing()
-    {
-        if (playerDetection.chasing && RaycastPlayer())
-        {
-            target = playerDetection.playerTransform.transform;
-            moveSpeed = chasingSpeed;
-            Movement();
-        }
-        else
-        {
-            currentState = CurrentState.ROAMING;
-            target = pointA;
-        }
+    {      
 
     }
     public void FlipX()
@@ -146,6 +111,14 @@ public class Enemy : MonoBehaviour
 
         currentState = CurrentState.ROAMING;
     }
+    protected IEnumerator EnableAlert(SpriteRenderer sp)
+    {
+        sp.enabled = true;
+        yield return new WaitForSecondsRealtime(alertTime);
+        sp.enabled = false;
+    }
+
+ 
 
     public virtual void OnDrawGizmos()
     {

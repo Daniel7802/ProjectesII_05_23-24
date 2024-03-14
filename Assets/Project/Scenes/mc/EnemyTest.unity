@@ -128,6 +128,67 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7657154093076386079, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
   m_PrefabInstance: {fileID: 1529138224}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &82005705
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 932715058}
+    m_Modifications:
+    - target: {fileID: 977670359951109690, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 977670359951109690, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -48.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 977670359951109690, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 64.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 977670359951109690, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.69859445
+      objectReference: {fileID: 0}
+    - target: {fileID: 977670359951109690, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 977670359951109690, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 977670359951109690, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 977670359951109690, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 977670359951109690, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 977670359951109690, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 977670359951109690, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207711718406370829, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
+      propertyPath: m_Name
+      value: Dashy
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
 --- !u!1001 &89552534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,7 +203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1768630766616490778, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5593360346023233113, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
       propertyPath: m_RootOrder
@@ -987,6 +1048,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 416834808553754793, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
   m_PrefabInstance: {fileID: 1497384499}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &739607104 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 977670359951109690, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
+  m_PrefabInstance: {fileID: 82005705}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &746243693 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3671825528741943329, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
@@ -1037,6 +1103,7 @@ Transform:
   m_Children:
   - {fileID: 1406662454}
   - {fileID: 1408021845}
+  - {fileID: 739607104}
   m_Father: {fileID: 1024136003}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
