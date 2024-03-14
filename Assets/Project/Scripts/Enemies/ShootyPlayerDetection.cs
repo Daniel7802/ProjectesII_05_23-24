@@ -16,7 +16,7 @@ public class ShootyPlayerDetection : PlayerDetection
 
         if (objectDetected != null && objectDetected.CompareTag("Player"))
         {
-            playerPos = objectDetected.transform;
+            playerTransform = objectDetected.transform;
             playerDetected = true;
         }
         else
@@ -24,7 +24,7 @@ public class ShootyPlayerDetection : PlayerDetection
             playerDetected = false;
         }
 
-        if (playerDetected && Vector2.Distance(transform.position, playerPos.transform.position) < startChasingDistance)
+        if (playerDetected && Vector2.Distance(transform.position, playerTransform.transform.position) < startChasingDistance)
         {
             chasing = true;
             if (!found)
@@ -34,7 +34,7 @@ public class ShootyPlayerDetection : PlayerDetection
             }
         }
 
-        if (chasing && Vector2.Distance(transform.position, playerPos.transform.position) > stopChasingDistance)
+        if (chasing && Vector2.Distance(transform.position, playerTransform.transform.position) > stopChasingDistance)
         {
             chasing = false;
 
@@ -46,7 +46,7 @@ public class ShootyPlayerDetection : PlayerDetection
             }
         }
 
-        if (Vector2.Distance(transform.position, playerPos.transform.position) < startShootingDistance)
+        if (Vector2.Distance(transform.position, playerTransform.transform.position) < startShootingDistance)
         {
             
             shoot = true;

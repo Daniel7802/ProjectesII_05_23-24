@@ -25,7 +25,7 @@ public class SlimeDeadSystem : DeadSystem
     void SpawnMiniSlimes()
     {
 
-        player = GetComponentInChildren<PlayerDetection>().playerPos;
+        player = GetComponentInChildren<PlayerDetection>().playerTransform;
         Vector2 vectorBetweenPlayer = player.transform.position - transform.position;
         Vector2 perp = new Vector2(vectorBetweenPlayer.y, -vectorBetweenPlayer.x);
 

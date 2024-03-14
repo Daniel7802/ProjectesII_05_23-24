@@ -8,18 +8,19 @@ public class PlayerDetection : MonoBehaviour
     [SerializeField] protected float detectionRadius = 20f;
 
     protected bool playerDetected;
-    public Transform playerPos;
+    public Transform playerTransform;
+    public float distanceToPlayer;
 
-    //chasing
-    [SerializeField] protected float startChasingDistance = 5f;
-    [SerializeField] protected float stopChasingDistance = 15f;
+    ////chasing
+    //[SerializeField] protected float startChasingDistance = 5f;
+    //[SerializeField] protected float stopChasingDistance = 15f;
 
-    public bool chasing = false;
+    //public bool chasing = false;
 
-    [SerializeField] protected SpriteRenderer foundTargetAlert;
-    [SerializeField] protected SpriteRenderer lostTargetAlert;
-    [SerializeField] protected float alertTime = 0.8f;
-    protected bool found = false;
+    //[SerializeField] protected SpriteRenderer foundTargetAlert;
+    //[SerializeField] protected SpriteRenderer lostTargetAlert;
+    //[SerializeField] protected float alertTime = 0.8f;
+    //protected bool found = false;
 
     [SerializeField] protected GameObject roamingPoints;
     protected virtual void Update()
@@ -29,34 +30,36 @@ public class PlayerDetection : MonoBehaviour
 
         if (objectDetected != null && objectDetected.CompareTag("Player"))
         {
-            playerPos = objectDetected.transform;
             playerDetected = true;
+            playerTransform = objectDetected.transform;
+            distanceToPlayer = Vector3.Distance(transform.position,playerTransform.position);
+            
         }
         else
         {
             playerDetected = false;
         }
 
-        if (playerDetected && Vector2.Distance(transform.position, playerPos.transform.position) < startChasingDistance)
-        {
-            chasing = true;
-            if (!found)
-            {
-                StartCoroutine(EnableAlert(foundTargetAlert));
-                found = true;
-            }
-        }
+        //if (playerDetected && Vector2.Distance(transform.position, playerPos.transform.position) < startChasingDistance)
+        //{
+        //    chasing = true;
+        //    if (!found)
+        //    {
+        //        StartCoroutine(EnableAlert(foundTargetAlert));
+        //        found = true;
+        //    }
+        //}
 
-        if (chasing && Vector2.Distance(transform.position, playerPos.transform.position) > stopChasingDistance)
-        {
-            chasing = false;
-            if (found)
-            {
-                StartCoroutine(EnableAlert(lostTargetAlert));
-                found = false;
-                roamingPoints.transform.position = transform.position;
-            }
-        }
+        //if (chasing && Vector2.Distance(transform.position, playerPos.transform.position) > stopChasingDistance)
+        //{
+        //    chasing = false;
+        //    if (found)
+        //    {
+        //        StartCoroutine(EnableAlert(lostTargetAlert));
+        //        found = false;
+        //        roamingPoints.transform.position = transform.position;
+        //    }
+        //}
     }
 
     protected IEnumerator EnableAlert(SpriteRenderer sp)

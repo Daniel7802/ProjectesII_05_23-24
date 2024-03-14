@@ -114,7 +114,7 @@ public class ShootyIA : Enemy
             }
             else
             {
-                target = shootyPlayerDetection.playerPos.transform;
+                target = shootyPlayerDetection.playerTransform.transform;
                 moveSpeed = chasingSpeed;
                 Movement();
             }
@@ -157,7 +157,7 @@ public class ShootyIA : Enemy
             lineRenderer.enabled = true;
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, Vector3.zero);
-            Vector3 position2 = shootyPlayerDetection.playerPos.position - transform.position;
+            Vector3 position2 = shootyPlayerDetection.playerTransform.position - transform.position;
             int d = 2;
             lineRenderer.SetPosition(1, new Vector3(position2.x / d, position2.y / d, position2.z / d));
         }
@@ -170,7 +170,7 @@ public class ShootyIA : Enemy
     void ShootOneBullet()
     {
         audioSource.PlayOneShot(shootSound, 0.5f);
-        Vector2 dir = new Vector2(shootyPlayerDetection.playerPos.position.x - transform.position.x, shootyPlayerDetection.playerPos.position.y - transform.position.y);
+        Vector2 dir = new Vector2(shootyPlayerDetection.playerTransform.position.x - transform.position.x, shootyPlayerDetection.playerTransform.position.y - transform.position.y);
         GameObject bullet = Instantiate(shootyBullet);
         bullet.transform.position = transform.position;
         bullet.transform.right = dir;

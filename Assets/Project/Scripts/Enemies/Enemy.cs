@@ -15,14 +15,17 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] protected PlayerDetection playerDetection;
 
-
-    [SerializeField] protected LayerMask hitLayer;
+    [SerializeField] protected LayerMask raycastHitLayer;
 
     public enum CurrentState { ROAMING, CHASING, AIMING, RELOADING, SHOOTING, ICE };
     [SerializeField] public CurrentState currentState = CurrentState.ROAMING;
 
-    public Transform target;
-    protected float distanceToPlayer;
+    protected Transform target;
+
+    [SerializeField] protected SpriteRenderer foundTargetAlert;
+    [SerializeField] protected SpriteRenderer lostTargetAlert;
+    [SerializeField] protected float alertTime = 0.8f;
+
 
     //MOVEMENT
     protected float moveSpeed;
@@ -33,12 +36,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected Transform pointB;
 
     //CHASING
-    [SerializeField]
-    protected float chasingSpeed;
+    [SerializeField] protected float chasingSpeed;
+    [SerializeField] protected float startChasingDistance = 5f;
+    [SerializeField] protected float stopChasingDistance = 15f;
 
-    //hit    
+    //Hit    
     [SerializeField] GameObject freezeParticles;
 
+    //Ice
     public bool canFreeze = true;
 
 
@@ -86,7 +91,7 @@ public class Enemy : MonoBehaviour
     {
         if (playerDetection.chasing && RaycastPlayer())
         {
-            target = playerDetection.playerPos.transform;
+            target = playerDetection.playerTransform.transform;
             moveSpeed = chasingSpeed;
             Movement();
         }
@@ -124,7 +129,7 @@ public class Enemy : MonoBehaviour
     }
     protected bool RaycastPlayer()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, (playerDetection.playerPos.transform.position - transform.position).normalized, 100, hitLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, (playerDetection.playerTransform.transform.position - transform.position).normalized, 100, raycastHitLayer);
         return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
     }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 
 public class SlimeIA : Enemy
@@ -70,7 +71,7 @@ public class SlimeIA : Enemy
         minWaitingTime = minWaitingTimeRoaming;
         maxWaitingTime = maxWaitingTimeRoaming;
 
-        if (playerDetection.chasing && RaycastPlayer())
+        if (playerDetection.distanceToPlayer<startChasingDistance && RaycastPlayer())
         {            
             waitingTimer = waitingTime;
             currentState = CurrentState.CHASING;
@@ -94,11 +95,21 @@ public class SlimeIA : Enemy
     }
     public override void Chasing()
     {
+
+        if (playerDetection.distanceToPlayer < startChasingDistance && RaycastPlayer())
+        {
+            chasing = true;
+            if (!found)
+            {
+                StartCoroutine(EnableAlert(foundTargetAlert));
+                found = true;
+            }
+        }
         minWaitingTime = minWaitingTimeChasing;
         maxWaitingTime = maxWaitingTimeChasing;
         if (playerDetection.chasing && RaycastPlayer())
         {
-            target = playerDetection.playerPos.transform;
+            target = playerDetection.playerTransform.transform;
             moveSpeed = chasingSpeed;
             Movement();
         }
