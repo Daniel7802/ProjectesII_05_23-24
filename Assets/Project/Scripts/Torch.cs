@@ -14,6 +14,9 @@ public class Torch : MonoBehaviour
     [SerializeField]
     private float time, maxTime;
 
+    [SerializeField]
+    GameObject _lightAround;
+
 
     private void Awake()
     {
@@ -38,9 +41,13 @@ public class Torch : MonoBehaviour
         if(torchActive)
         {
             _missionModule.enabled = true;
+            _lightAround.SetActive(true);
         }
         else
+        {
+            _lightAround.SetActive(false);
             _missionModule.enabled = false;
+        }
     }
 
 
