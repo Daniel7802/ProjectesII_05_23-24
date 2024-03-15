@@ -5,12 +5,12 @@ using UnityEngine;
 public class StartRaceBehaviour : MonoBehaviour
 {
     [SerializeField]
-    private GameObject raceNPC;
-
-    [SerializeField]
     private GameObject eButton;
 
-    public bool raceStarted = false;
+    [SerializeField]
+    private GameObject timerText;
+
+    public bool racing = false;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -20,7 +20,8 @@ public class StartRaceBehaviour : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.E))
             {
-                raceStarted = true;
+                racing = true;
+                timerText.gameObject.SetActive(true);
             }
         }
     }
@@ -28,5 +29,11 @@ public class StartRaceBehaviour : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         eButton.gameObject.SetActive(false);
+    }
+
+    public void RestartRace()
+    {
+        racing = false;
+        timerText.gameObject.SetActive(false);
     }
 }
