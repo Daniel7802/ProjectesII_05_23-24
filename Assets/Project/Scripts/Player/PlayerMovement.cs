@@ -120,6 +120,7 @@ public class PlayerMovement : MonoBehaviour
                 lastPosition = this.transform.position;
             }
         }
+
         else if (_playerController.playerStates == PlayerController.PlayerStates.CINEMATIC)
         {
             playerAnimator.SetFloat("Speed", 0);

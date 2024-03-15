@@ -43,7 +43,7 @@ Transform:
   - {fileID: 146773905997453289}
   - {fileID: 8866195997378222039}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8407512604585491184
 SpriteRenderer:
@@ -206,7 +206,9 @@ MonoBehaviour:
   MaxHealth: 3
   health: 0
   getHit: 0
+  _audioSource: {fileID: 0}
   damageSound: {fileID: 8300000, guid: 243831b253368bc40b4e9a4ca743e590, type: 3}
+  spriteRenderer: {fileID: 8407512604585491184}
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
   damagedTime: 0.125
@@ -239,6 +241,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blood: {fileID: 715038747342358181, guid: 5a7215f0be974bf4fa526f7d7595e908, type: 3}
   deathSound: {fileID: 8300000, guid: f582776eb44ecdc44bf289d689dd73b3, type: 3}
+  _audioSource: {fileID: 0}
+  _spriteRenderer: {fileID: 8407512604585491184}
+  _lineRenderer: {fileID: 0}
   deathClipPitch: 1
   isDead: 0
 --- !u!82 &7488491513844311247
