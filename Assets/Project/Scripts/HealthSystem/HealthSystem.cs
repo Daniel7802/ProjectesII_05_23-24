@@ -63,12 +63,13 @@ public class HealthSystem : MonoBehaviour
 
         if (getHit && !invincible)
         {
+            canGetDamageTimer += Time.deltaTime;
             if (canGetDamageTimer >= canGetDamageMaxTimer)
             {
                 GetDamage(1);
                 canGetDamageTimer = 0.0f;
             }
-            canGetDamageTimer += Time.deltaTime;
+            
         }
         else
         {
