@@ -8,16 +8,12 @@ public class TimerBehaviour : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI timerText;
 
-    float timeElapsed;
+    public float timeElapsed = 45f;
 
     [SerializeField]
     private GameObject raceNPC;
 
     private StartRaceBehaviour raceBehaviour;
-
-    public float minutes;
-    public float seconds;
-    float miliseconds;
 
     private void Start()
     {
@@ -29,11 +25,8 @@ public class TimerBehaviour : MonoBehaviour
     {
         if(raceBehaviour.racing)
         {
-            timeElapsed += Time.deltaTime;
-            minutes = Mathf.FloorToInt(timeElapsed / 60);
-            seconds = Mathf.FloorToInt(timeElapsed % 60);
-            //miliseconds = Mathf.FloorToInt(timeElapsed / 1000);
-            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            timeElapsed -= Time.deltaTime;
+            timerText.text = timeElapsed.ToString("F");
         }
         else
         {
@@ -43,8 +36,6 @@ public class TimerBehaviour : MonoBehaviour
 
     public void RestartTimer()
     {
-        timeElapsed = 0;
-        minutes = 0;
-        seconds = 0;
+        timeElapsed = 45;
     }
 }
