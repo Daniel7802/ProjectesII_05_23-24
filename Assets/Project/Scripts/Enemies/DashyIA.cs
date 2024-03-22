@@ -13,15 +13,14 @@ public class DashyIA : Enemy
 
     //DASH   
     bool lastPlayerPos = false;
-    [SerializeField] float dashingTime = 2f;
-    float dashingTimer = 0f;
-
 
     //RELOAD DASH   
     [SerializeField] float reloadingTime = 2f;
     float reloadingTimer = 0f;
 
     TrailRenderer trailRenderer;
+
+
 
     public override void Start()
     {
@@ -34,6 +33,7 @@ public class DashyIA : Enemy
     void Update()
     {
         FlipByTarget();
+        
 
         switch (currentState)
         {
@@ -99,45 +99,34 @@ public class DashyIA : Enemy
         {
             if (RaycastPlayer())
             {
+                if (!lastPlayerPos)
+                {
+                    target = playerDetection.playerTransform;
+                    lastPlayerPos = true;
+                }
+
                 chargingTimer += Time.deltaTime;
                 if (chargingTimer < chargingTime)
                 {
-
                     Vector2 dir = transform.position - playerDetection.playerTransform.position;
                     Vector2 chargingForce = dir.normalized * chargingSpeed;
                     rb2D.AddForce(chargingForce);
                 }
                 else
-                {
-                    dashingTimer += Time.deltaTime;
-                    if (!lastPlayerPos)
+                {                  
+                    if (Vector2.Distance(transform.position, target.position) < 4)
                     {
-                        target = playerDetection.playerTransform;
-                        lastPlayerPos = true;
-                    }
-                    if (dashingTimer < dashingTime)
-                    {
-                        trailRenderer.enabled = true;
-                        moveSpeed = chasingSpeed;
-                        Movement();
-                    }
-                    else
-                    {
-                        dashingTimer = 0;
                         trailRenderer.enabled = false;
                         lastPlayerPos = false;
                         chargingTimer = 0;
                         currentState = CurrentState.RELOADING;
                     }
-
-
-                    //if (Vector2.Distance(transform.position, target.position) < 0.5)
-                    //{
-                    //    trailRenderer.enabled = false;
-                    //    lastPlayerPos = false;
-                    //    chargingTimer = 0;
-                    //    currentState = CurrentState.RELOADING;
-                    //}
+                    else
+                    {
+                        trailRenderer.enabled = true;
+                        moveSpeed = chasingSpeed;
+                        Movement();
+                    }                   
                 }
             }
             else
@@ -152,7 +141,6 @@ public class DashyIA : Enemy
 
             }
         }
-
     }
 
     void Reloading()
@@ -175,7 +163,6 @@ public class DashyIA : Enemy
     {
         if (collision.CompareTag("Player"))
         {
-
             lastPlayerPos = false;
             chargingTimer = 0;
             currentState = CurrentState.RELOADING;
