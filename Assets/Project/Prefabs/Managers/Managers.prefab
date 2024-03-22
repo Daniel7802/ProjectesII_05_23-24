@@ -104,7 +104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &205920966205821519
 RectTransform:
   m_ObjectHideFlags: 0
@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7967504888315557082
 RectTransform:
   m_ObjectHideFlags: 0
@@ -452,7 +452,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!114 &8667941306581401957
 MonoBehaviour:
@@ -689,7 +689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5542543281021561248
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1127,7 +1127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6049115810527022163
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2266,7 +2266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5559929292719527407
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2950,6 +2950,7 @@ MonoBehaviour:
   - {fileID: 4871566480232168138}
   - {fileID: 2830072817171638565}
   isPaused: 0
+  Player: {fileID: 0}
 --- !u!1 &6094372555583068624
 GameObject:
   m_ObjectHideFlags: 0
@@ -3416,6 +3417,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2127476373466524558}
   - {fileID: 2116687518345098057}
   - {fileID: 357913285331750642}
   - {fileID: 7022046256155980052}
@@ -3423,10 +3425,9 @@ Transform:
   - {fileID: 5968556346213848369}
   - {fileID: 2211572280196652462}
   - {fileID: 3989233125236765910}
-  - {fileID: 2127476373466524558}
   - {fileID: 8471952055554543066}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6453470065070858076
 GameObject:
@@ -4803,7 +4804,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1163797877039579755, guid: e6ad370837dd4354e97ff903c7cc6018, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1293537734008224452, guid: e6ad370837dd4354e97ff903c7cc6018, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083038676772146673, guid: e6ad370837dd4354e97ff903c7cc6018, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -4956,6 +4965,10 @@ PrefabInstance:
       value: 0.3207547
       objectReference: {fileID: 0}
     - target: {fileID: 6215904524721412061, guid: e6ad370837dd4354e97ff903c7cc6018, type: 3}
+      propertyPath: iceBoomerang
+      value: 
+      objectReference: {fileID: 3478655229528685345}
+    - target: {fileID: 6215904524721412061, guid: e6ad370837dd4354e97ff903c7cc6018, type: 3}
       propertyPath: iceBoomerangImage
       value: 
       objectReference: {fileID: 3478655229528685345}
@@ -4983,6 +4996,10 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 7360597491068161803, guid: e6ad370837dd4354e97ff903c7cc6018, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7593333158800445715, guid: e6ad370837dd4354e97ff903c7cc6018, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -4994,6 +5011,10 @@ PrefabInstance:
     - target: {fileID: 7966878585915829884, guid: e6ad370837dd4354e97ff903c7cc6018, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -305.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8120589250070600798, guid: e6ad370837dd4354e97ff903c7cc6018, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

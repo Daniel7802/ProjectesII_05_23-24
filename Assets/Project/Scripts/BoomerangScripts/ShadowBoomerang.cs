@@ -4,28 +4,32 @@ using UnityEngine;
 
 public class ShadowBoomerang : BoomerangThrow
 {
-    // Start is called before the first frame update
-    [SerializeField]
-    private ParticleSystem _particleBlackHole;
     [SerializeField]
     CircleCollider2D _circleCollider;
     [SerializeField]
-    private GameObject _particleBlackHoleGO;
     PlayerMovement _playerMovement;
-    [SerializeField]
-    bool makeEffect = true;
-    [SerializeField]
-    int waterOverlapped = 0;
-    bool canTp { get { return waterOverlapped > 0; } }
-    [SerializeField] private AudioClip tpSound;
 
-    [SerializeField] private float blackHoleForce = 30;
+    [SerializeField]
+    GameObject _blackHole;
+    ParticleSystem _supplySystem;
+
+    bool makeEffect = true;
+
+    int waterOverlapped = 0;
+
+    private float blackHoleForce = 30;
+    bool canTp { get { return waterOverlapped > 0; } }
+    
+    
+    [SerializeField]
+    private AudioClip tpSound;
+
+    
     public override void Start()
     {
 
         base.Start();
         _playerMovement = source.GetComponent<PlayerMovement>();
-        _particleBlackHole = _particleBlackHoleGO.GetComponent<ParticleSystem>();
         _circleCollider.enabled = false;
         type = BoomerangType.SHADOW;
     }
@@ -33,11 +37,7 @@ public class ShadowBoomerang : BoomerangThrow
     new private void Update()
     {
         base.Update();
-        Teleport();
-        if (!coming && isFlying)
-        {
-            _particleBlackHoleGO.transform.position = transform.position;
-        }
+        Teleport();       
     }
 
     void Teleport()
@@ -67,7 +67,8 @@ public class ShadowBoomerang : BoomerangThrow
                     canTouchWall = false;
 
                     _circleCollider.enabled = true;
-                    _particleBlackHole.Play();
+                   GameObject a =  Instantiate(_blackHole, this.transform.position, Quaternion.identity);
+                    _supplySystem = a.GetComponent<ParticleSystem>();
                     makeEffect = false;
                 }
             }
@@ -75,15 +76,14 @@ public class ShadowBoomerang : BoomerangThrow
             if (timer < maxTimer - 0.2f && rightMouse == true)
             {
                 coming = true;
-                _particleBlackHole.Stop();
+               _supplySystem.Stop();
             }
 
             timer -= Time.deltaTime;
         }
         else
         {
-            _particleBlackHole.Stop();
-            //_audioSource.PlayOneShot(goingSound);
+            //_particleBlackHole.Stop();
             coming = true;
         }
     }
@@ -103,7 +103,6 @@ public class ShadowBoomerang : BoomerangThrow
         if (collision.gameObject.CompareTag("Player") && coming)
         {
             makeEffect = true;
-            _particleBlackHole.Stop();
         }
         if (collision.gameObject.CompareTag("Water"))
         {

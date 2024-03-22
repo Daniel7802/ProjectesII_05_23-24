@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using static UnityEngine.ParticleSystem;
 
 public class Torch : MonoBehaviour
@@ -14,13 +15,15 @@ public class Torch : MonoBehaviour
     [SerializeField]
     private float time, maxTime;
 
+    [SerializeField]
+    Light2D _fireLight;
+
 
     private void Awake()
     {
         _particleSystem = GetComponent<ParticleSystem>();
 
         _missionModule = _particleSystem.emission;
-
     }
 
     private void Start()
@@ -37,10 +40,20 @@ public class Torch : MonoBehaviour
 
         if(torchActive)
         {
+            if(_fireLight.intensity < 1)
+            {
+                _fireLight.intensity += 0.01f;
+            }
             _missionModule.enabled = true;
         }
         else
+        {
+            if (_fireLight.intensity > 0)
+            {
+                _fireLight.intensity -= 0.01f;
+            }
             _missionModule.enabled = false;
+        }
     }
 
 

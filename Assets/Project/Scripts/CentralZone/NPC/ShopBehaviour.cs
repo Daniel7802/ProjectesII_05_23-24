@@ -41,12 +41,7 @@ public class ShopBehaviour : MonoBehaviour
         else
         {
             shopCanvas.SetActive(false);
-        }
-
-        if(shopCanvas.activeInHierarchy == false)
-        {
-            pc.playerStates = PlayerController.PlayerStates.NONE;
-        }
+        }        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

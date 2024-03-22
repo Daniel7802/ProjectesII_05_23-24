@@ -13,6 +13,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField]
     public bool getHit;
 
+    [SerializeField]
     protected AudioSource _audioSource;
     [SerializeField] protected AudioClip damageSound;
 
@@ -21,8 +22,8 @@ public class HealthSystem : MonoBehaviour
 
 
     private float canGetDamageTimer = 0f;
-    private float canGetDamageMaxTime = 0.5f;
-
+    private float canGetDamageMaxTimer = 0.5f;
+    [SerializeField]
     protected SpriteRenderer spriteRenderer;
     [SerializeField] protected Material defaultMaterial;
     [SerializeField] protected Material damagedMaterial;
@@ -33,13 +34,11 @@ public class HealthSystem : MonoBehaviour
     public virtual void Awake()
     {
         ds = GetComponent<DeadSystem>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        _audioSource = GetComponent<AudioSource>();
     }
     public virtual void Start()
     {
         getHit = false;
-        canGetDamageTimer = canGetDamageMaxTime;
+        canGetDamageTimer = canGetDamageMaxTimer;
         health = MaxHealth;
     }
     public void Update()
@@ -65,7 +64,7 @@ public class HealthSystem : MonoBehaviour
         if (getHit && !invincible)
         {
             canGetDamageTimer += Time.deltaTime;
-            if (canGetDamageTimer >= canGetDamageMaxTime)
+            if (canGetDamageTimer >= canGetDamageMaxTimer)
             {
                 GetDamage(1);
                 canGetDamageTimer = 0.0f;
@@ -74,7 +73,7 @@ public class HealthSystem : MonoBehaviour
         }
         else
         {
-            canGetDamageTimer = canGetDamageMaxTime;
+            canGetDamageTimer = canGetDamageMaxTimer;
         }
     }
 

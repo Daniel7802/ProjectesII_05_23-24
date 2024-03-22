@@ -9,10 +9,13 @@ public class DeadSystem : MonoBehaviour
 {
     public GameObject blood;
     public AudioClip deathSound;
+    [SerializeField]
     protected AudioSource _audioSource;
+    [SerializeField]
     protected SpriteRenderer _spriteRenderer;
     protected Collider2D _collider;
 
+    [SerializeField]
     protected LineRenderer _lineRenderer;
     [SerializeField] protected float deathClipPitch = 1f;
     public bool isDead = false;
