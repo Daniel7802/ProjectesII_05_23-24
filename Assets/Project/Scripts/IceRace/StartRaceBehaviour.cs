@@ -12,13 +12,13 @@ public class StartRaceBehaviour : MonoBehaviour
 
     public bool racing = false;
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(collision.tag.Equals("Player"))
-        {
-            eButton.gameObject.SetActive(true);
+    private bool canRace = false;
 
-            if(Input.GetKeyDown(KeyCode.E))
+    private void Update()
+    {
+        if (canRace)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 racing = true;
                 timerText.gameObject.SetActive(true);
@@ -26,8 +26,18 @@ public class StartRaceBehaviour : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.tag.Equals("Player"))
+        {
+            canRace = true;
+            eButton.gameObject.SetActive(true);
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
+        canRace= false;
         eButton.gameObject.SetActive(false);
     }
 

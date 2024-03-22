@@ -9,6 +9,8 @@ public class EndRaceBehaviour : MonoBehaviour
 
     private StartRaceBehaviour startRace;
 
+    public bool raceFinished = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class EndRaceBehaviour : MonoBehaviour
         if(collision.tag.Equals("Player"))
         {
             startRace.racing = false;
+            raceFinished = true;
         }
     }
 }
