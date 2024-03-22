@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+
 using UnityEngine;
 
 public class EnemyHealthSystem : HealthSystem
 {
-  
+
     Rigidbody2D rb2D;
     public float knockbackForce;
 
@@ -14,7 +12,7 @@ public class EnemyHealthSystem : HealthSystem
 
     public override void Start()
     {
-      base.Start();
+        base.Start();
         rb2D = GetComponent<Rigidbody2D>();
     }
     public void KnockBack(Vector2 dir)

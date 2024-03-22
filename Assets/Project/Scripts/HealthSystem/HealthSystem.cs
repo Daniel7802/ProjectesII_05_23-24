@@ -21,7 +21,7 @@ public class HealthSystem : MonoBehaviour
 
 
     private float canGetDamageTimer = 0f;
-    private float canGetDamageMaxTimer = 0.5f;
+    private float canGetDamageMaxTime = 0.5f;
 
     protected SpriteRenderer spriteRenderer;
     [SerializeField] protected Material defaultMaterial;
@@ -39,7 +39,7 @@ public class HealthSystem : MonoBehaviour
     public virtual void Start()
     {
         getHit = false;
-        canGetDamageTimer = canGetDamageMaxTimer;
+        canGetDamageTimer = canGetDamageMaxTime;
         health = MaxHealth;
     }
     public void Update()
@@ -64,16 +64,17 @@ public class HealthSystem : MonoBehaviour
 
         if (getHit && !invincible)
         {
-            if (canGetDamageTimer >= canGetDamageMaxTimer)
+            canGetDamageTimer += Time.deltaTime;
+            if (canGetDamageTimer >= canGetDamageMaxTime)
             {
                 GetDamage(1);
                 canGetDamageTimer = 0.0f;
             }
-            canGetDamageTimer += Time.deltaTime;
+            
         }
         else
         {
-            canGetDamageTimer = canGetDamageMaxTimer;
+            canGetDamageTimer = canGetDamageMaxTime;
         }
     }
 
