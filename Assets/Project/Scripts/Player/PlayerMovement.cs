@@ -104,13 +104,20 @@ public class PlayerMovement : MonoBehaviour
                 _walkSound.Stop();
                 _missionModuleWalk.enabled = false;
                 dontWalked = true;
-            }
-
-            
+            }        
         }
         else
         {
             playerAnimator.SetFloat("Speed", 0);
+        }
+
+        if(_playerController.playerStates == PlayerController.PlayerStates.CINEMATIC)
+        {
+            playerRb.isKinematic = true;
+        }
+        if (_playerController.playerStates != PlayerController.PlayerStates.CINEMATIC)
+        {
+            playerRb.isKinematic = false;
         }
     }
 

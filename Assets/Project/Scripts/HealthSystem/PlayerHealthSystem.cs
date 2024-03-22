@@ -8,8 +8,7 @@ public class PlayerHealthSystem : HealthSystem
     [SerializeField]
     GameObject[] hearts;
 
-    [SerializeField]
-    List<GameObject> heartList = new List<GameObject>();
+    public List<GameObject> heartList = new List<GameObject>();
 
     NewBehaviourScript _damageFlash;
     public int counter;

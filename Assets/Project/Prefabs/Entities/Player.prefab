@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1277243566894445860}
   - component: {fileID: 9145842343681718827}
   - component: {fileID: 7490800426209183852}
+  - component: {fileID: 5204449990380883998}
   - component: {fileID: 1911137432474511315}
   - component: {fileID: 1774810771542259340}
   - component: {fileID: 8119343296046956285}
@@ -165,8 +166,41 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  heartList: []
   counter: 0
   isInvincible: 0
+--- !u!114 &5204449990380883998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416834808553754793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b8455d7eaa70043bb83bdbf9bdb2e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRoots: 30
+  extraHearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  voidHearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  currentRootsText:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1911137432474511315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +233,7 @@ MonoBehaviour:
   _iceBoomerang: {fileID: 0}
   shadowBoomerangCollected: 0
   iceBoomerangCollected: 0
+  actualBoomerang: {fileID: 0}
   _boomerangThrow: {fileID: 0}
 --- !u!50 &8119343296046956285
 Rigidbody2D:
@@ -337,7 +372,7 @@ AudioSource:
   m_GameObject: {fileID: 416834808553754793}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8175254453196319869, guid: c142dd72f306a0647a17af513791ef1d, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -5495,7 +5530,7 @@ AudioSource:
   m_GameObject: {fileID: 1237534104159133356}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8175254453196319869, guid: c142dd72f306a0647a17af513791ef1d, type: 2}
   m_audioClip: {fileID: 8300000, guid: 5b5a52b40d85b4045856e466803ee97c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

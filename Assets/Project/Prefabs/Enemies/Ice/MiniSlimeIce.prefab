@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 9160680943280425905}
   - component: {fileID: 6208089742085827678}
   - component: {fileID: 6352708676460876648}
+  - component: {fileID: 927917258043919700}
   m_Layer: 10
   m_Name: MiniSlimeIce
   m_TagString: Enemy
@@ -250,7 +251,7 @@ AudioSource:
   m_GameObject: {fileID: 2998486167879767135}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8175254453196319869, guid: c142dd72f306a0647a17af513791ef1d, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -350,6 +351,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invTime: 0.2
+--- !u!114 &927917258043919700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2998486167879767135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73ab9022abd20a45856f8dedfe21125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 1
 --- !u!1001 &3063810673955164385
 PrefabInstance:
   m_ObjectHideFlags: 0

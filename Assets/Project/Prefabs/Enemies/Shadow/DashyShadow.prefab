@@ -42,7 +42,7 @@ Transform:
   - {fileID: 3575250616126287040}
   - {fileID: 5933175633731579248}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9017467132340843253
 SpriteRenderer:
@@ -202,7 +202,7 @@ MonoBehaviour:
   MaxHealth: 2
   health: 0
   getHit: 0
-  damageSound: {fileID: 8300000, guid: f582776eb44ecdc44bf289d689dd73b3, type: 3}
+  damageSound: {fileID: 8300000, guid: 243831b253368bc40b4e9a4ca743e590, type: 3}
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   damagedMaterial: {fileID: 2100000, guid: 68c67b610f54ba84085b96895a7d7e59, type: 2}
   damagedTime: 0.125
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blood: {fileID: 715038747342358181, guid: 77f214331f940dd438a3c67d27228665, type: 3}
-  deathSound: {fileID: 8300000, guid: 023893b971a434940a9249276697964b, type: 3}
+  deathSound: {fileID: 8300000, guid: 961f8528e1682ae488c1c363aaa94d22, type: 3}
   deathClipPitch: 1
   isDead: 0
 --- !u!82 &3192807541708884154
@@ -246,7 +246,7 @@ AudioSource:
   m_GameObject: {fileID: 6207711718406370829}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8175254453196319869, guid: c142dd72f306a0647a17af513791ef1d, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
