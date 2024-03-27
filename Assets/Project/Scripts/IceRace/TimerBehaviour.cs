@@ -37,5 +37,6 @@ public class TimerBehaviour : MonoBehaviour
     public void RestartTimer()
     {
         timeElapsed = 45;
+        timerText.gameObject.SetActive(false);
     }
 }
