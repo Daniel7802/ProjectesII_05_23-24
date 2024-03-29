@@ -23,7 +23,7 @@ public class TimerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(raceBehaviour.racing)
+        if(raceBehaviour.racing && timeElapsed > 0)
         {
             timeElapsed -= Time.deltaTime;
             timerText.text = timeElapsed.ToString("F");
@@ -38,5 +38,6 @@ public class TimerBehaviour : MonoBehaviour
     {
         timeElapsed = 45;
         timerText.gameObject.SetActive(false);
+        raceBehaviour.racing = false;
     }
 }

@@ -5,10 +5,17 @@ using UnityEngine;
 public class TextDisabler : MonoBehaviour
 {
     [SerializeField]
-    GameObject timerText;
+    GameObject startNPC;
+
+    private StartRaceBehaviour raceBehaviour;
+
+    private void Start()
+    {
+        raceBehaviour = startNPC.GetComponent<StartRaceBehaviour>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        timerText.SetActive(false);
+        raceBehaviour.RestartRace();
     }
 }
