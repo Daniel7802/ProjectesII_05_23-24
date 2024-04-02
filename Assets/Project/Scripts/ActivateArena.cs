@@ -8,10 +8,11 @@ public class ActivateArena : MonoBehaviour
     public GameObject arena;
 
     //spikes
-    private float spikesSpawnSeconds = 0.3f;
+    private float spikesSpawnSeconds = 0.2f;
     public bool spikesShowed = false;
     //public GameObject spikesParent;
-    public List<GameObject> spikes = new List<GameObject>();
+    public List<GameObject> entranceWalls = new List<GameObject>();
+    public List<GameObject> exitWalls = new List<GameObject>();
     bool end = false;
 
     void Update()
@@ -23,7 +24,7 @@ public class ActivateArena : MonoBehaviour
         }
         if (arena.GetComponent<WaveSpawner>().isFinished&&!end)
         {
-            StartCoroutine(DeleteAllSpikes());
+            StartCoroutine(DeleteAllWalls());
             end = true;
         }
 
@@ -31,37 +32,39 @@ public class ActivateArena : MonoBehaviour
 
   
 
-    private IEnumerator ShowSpikes()
+    private IEnumerator ShowAllWalls()
     {
-      
-        for(int i = 0; i< spikes.Count/2; i++)
+        for (int i = 0; i < exitWalls.Count; i++)
         {
-            spikes[i].SetActive(true);
-            spikes[i+ (spikes.Count / 2)].SetActive(true);
-            yield return new WaitForSeconds(spikesSpawnSeconds);
-        }
-        spikesShowed = true;
-    }
-    private IEnumerator DeleteHalfSpikes()
-    {
-       // spikes.Reverse();
-        for (int i = 0; i < spikes.Count / 2; i++)
-        {
-            //spikes[i].SetActive(true);
-            spikes[i + (spikes.Count / 2)].SetActive(false);
+            exitWalls[i].SetActive(true);
             yield return new WaitForSeconds(spikesSpawnSeconds);
         }
 
-    }
-    private IEnumerator DeleteAllSpikes()
-    {
-        // spikes.Reverse();
-        for (int i = 0; i < spikes.Count / 2; i++)
+        for (int i = 0; i< entranceWalls.Count; i++)
         {
-            spikes[i].SetActive(false);
-            spikes[i + (spikes.Count / 2)].SetActive(false);
+            entranceWalls[i].SetActive(true);           
             yield return new WaitForSeconds(spikesSpawnSeconds);
         }
+        
+        spikesShowed = true;
+    }
+ 
+    private IEnumerator DeleteAllWalls()
+    {
+      
+        for (int i = 0; i < exitWalls.Count; i++)
+        {
+            exitWalls[i].SetActive(false);
+
+            yield return new WaitForSeconds(spikesSpawnSeconds);
+        }
+        for (int i = 0; i < entranceWalls.Count; i++)
+        {
+            entranceWalls[i].SetActive(false);
+          
+            yield return new WaitForSeconds(spikesSpawnSeconds);
+        }
+        
 
     }
 
@@ -69,7 +72,7 @@ public class ActivateArena : MonoBehaviour
     {
         if (collision.CompareTag("Player")&&!end)
         {
-            StartCoroutine(ShowSpikes());
+            StartCoroutine(ShowAllWalls());
         }
     }
 }

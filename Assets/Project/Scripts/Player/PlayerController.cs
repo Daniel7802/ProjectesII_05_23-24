@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     // SCRIPT SOLO PARA CONTROLAR LOS ESTADOS DEL PLAYER
 
-    public enum PlayerStates { NONE, CINEMATIC }
+    public enum PlayerStates { NONE, CINEMATIC, FALLING }
     public PlayerStates playerStates;
 
     // Variables de scripts del player

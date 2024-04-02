@@ -18,11 +18,11 @@ public class PlayerHealthSystem : HealthSystem
 
     RespawnSystem _respawnSystem;
 
+    [SerializeField]
     private CinemachineImpulseSource impulseSource;
     // Start is called before the first frame update
     public override void Awake()
     {
-        impulseSource = GetComponent<CinemachineImpulseSource>();   
         base.Awake();
         _respawnSystem = GetComponent<RespawnSystem>();
         _damageFlash = GetComponent<NewBehaviourScript>();

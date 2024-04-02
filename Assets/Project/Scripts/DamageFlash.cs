@@ -8,6 +8,7 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] private Color _healFlashColor = Color.green;
     [SerializeField] private float flashTime = 0.25f;
 
+    [SerializeField]
     private SpriteRenderer _spriteRenderer;
     private Material _material;
     private Coroutine _damageFlashCoroutine;
@@ -15,7 +16,6 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
         _material = _spriteRenderer.material;
     }
 
