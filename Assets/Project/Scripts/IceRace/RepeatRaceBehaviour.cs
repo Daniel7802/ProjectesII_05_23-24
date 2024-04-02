@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class RepeatRaceBehaviour : MonoBehaviour
 {
-    private float goalTime = 10;
+    private float goalTime = 0;
     private bool won = false;
+    private bool canRepeat = false;
 
     private TimerBehaviour timerBehaviour;
     private StartRaceBehaviour startRaceBehaviour;
     private EndRaceBehaviour endRaceBehaviour;
+
+    [SerializeField]
+    private GameObject Player;
 
     [SerializeField]
     private GameObject timerManager;
@@ -43,7 +47,7 @@ public class RepeatRaceBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(timerBehaviour.minutes < 1 && timerBehaviour.seconds < goalTime && endRaceBehaviour.raceFinished)
+        if(timerBehaviour.timeElapsed > 0 && endRaceBehaviour.raceFinished)
         {
             won = true;
         }
@@ -52,16 +56,27 @@ public class RepeatRaceBehaviour : MonoBehaviour
             won = false;
         }
 
-        if(won)
+        if(won && endRaceBehaviour.raceFinished)
         {
             winText.SetActive(true);
             loseText.SetActive(false);
             prize.SetActive(true);
         }
-        else
+        else if(!won && endRaceBehaviour.raceFinished)
         {
             winText.SetActive(false);
             loseText.SetActive(true);
+        }
+
+        if(canRepeat)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Player.transform.position = startPos.position;
+                timerBehaviour.RestartTimer();
+                startRaceBehaviour.RestartRace();
+                endRaceBehaviour.raceFinished = false;
+            }
         }
     }
 
@@ -69,12 +84,12 @@ public class RepeatRaceBehaviour : MonoBehaviour
     {
         if(collision.tag.Equals("Player"))
         {
-            if(!won && Input.GetKeyDown(KeyCode.E))
-            {
-                collision.transform.position = startPos.position;
-                timerBehaviour.RestartTimer();
-                startRaceBehaviour.RestartRace();
-            }
+            canRepeat = true;
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        canRepeat = false;
     }
 }
