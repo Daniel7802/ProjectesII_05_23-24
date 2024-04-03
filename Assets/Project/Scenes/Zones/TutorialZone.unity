@@ -6023,8 +6023,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.13814926, y: 5.3825006, z: 0}
-    m_Extent: {x: 19.63715, y: 21.579899, z: 0}
+    m_Center: {x: 0.13945007, y: 5.3977003, z: 0}
+    m_Extent: {x: 19.63325, y: 21.579899, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -6053,10 +6053,6 @@ PrefabInstance:
       propertyPath: source
       value: 
       objectReference: {fileID: 59969908}
-    - target: {fileID: 5970343758627233069, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
-      propertyPath: _particleBlackHoleGO
-      value: 
-      objectReference: {fileID: 1888907623}
     - target: {fileID: 6657343719683139223, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
       propertyPath: m_Name
       value: ShadowBoomeran
@@ -24687,8 +24683,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.08515072, y: -0.15685034, z: 0}
-    m_Extent: {x: 16.547249, y: 16.04295, z: 0}
+    m_Center: {x: 0.08544922, y: -0.16135025, z: 0}
+    m_Extent: {x: 16.54875, y: 16.03565, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 1.45
@@ -62758,10 +62754,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boomerang
       objectReference: {fileID: 0}
-    - target: {fileID: 6657343719683139223, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6942920568467783688, guid: 118ed42d9a4369542a5a90b8bd81a4b3, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -63292,6 +63284,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2940891072925491256, guid: 56e8a65172b09804593ed3444128bb15, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5630077702080010863, guid: 56e8a65172b09804593ed3444128bb15, type: 3}
       propertyPath: boomerang
       value: 
@@ -63610,11 +63606,6 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5530340961073229090, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
   m_PrefabInstance: {fileID: 10527269}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1888907623 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3280953462656982807, guid: e1d2988602dd4224a99f58c2195ec52d, type: 3}
-  m_PrefabInstance: {fileID: 127386624}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1888907626 stripped
 Transform:
