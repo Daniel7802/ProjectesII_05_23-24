@@ -191,10 +191,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShootyIce
       objectReference: {fileID: 0}
-    - target: {fileID: 2285647051765586022, guid: 82e4842ad901ea148b2bd443a95ec7f4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5855127542648345499, guid: 82e4842ad901ea148b2bd443a95ec7f4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -457,10 +453,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DashyIce
       objectReference: {fileID: 0}
-    - target: {fileID: 6207711718406370829, guid: f8ec05afc47854e45aafa1b30d1362da, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -502,11 +494,6 @@ MonoBehaviour:
   isFire: 0
   mouseHold: 0
   type: 0
---- !u!1 &468669840 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6462376535996120360, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
-  m_PrefabInstance: {fileID: 1508314854}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &598979946
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,7 +590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2285647051765586022, guid: b1103c44549a30e45bed5036bc5f185e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5855127542648345499, guid: b1103c44549a30e45bed5036bc5f185e, type: 3}
       propertyPath: m_RootOrder
@@ -665,10 +652,6 @@ PrefabInstance:
     - target: {fileID: 2998486167879767135, guid: de50a09a1528cc943a2df1087bb99a8d, type: 3}
       propertyPath: m_Name
       value: MiniSlimeIce
-      objectReference: {fileID: 0}
-    - target: {fileID: 2998486167879767135, guid: de50a09a1528cc943a2df1087bb99a8d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9026409311921775863, guid: de50a09a1528cc943a2df1087bb99a8d, type: 3}
       propertyPath: m_RootOrder
@@ -822,7 +805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6207711718406370829, guid: 08a4646cd5f40524d9653fbafe590a3c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -855,10 +838,6 @@ PrefabInstance:
     - target: {fileID: 1768630766616490778, guid: 9f6aa8d767cb2a84aa22382a2dcf5bce, type: 3}
       propertyPath: m_Name
       value: SlimeIce
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768630766616490778, guid: 9f6aa8d767cb2a84aa22382a2dcf5bce, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5593360346023233113, guid: 9f6aa8d767cb2a84aa22382a2dcf5bce, type: 3}
       propertyPath: m_RootOrder
@@ -928,7 +907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2285647051765586022, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5855127542648345499, guid: ba66a98dad2cc1d408c63cafa8732ea6, type: 3}
       propertyPath: m_RootOrder
@@ -1038,7 +1017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1768630766616490778, guid: 7ae89f0749410bd4c9ed81ce46f981b0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5593360346023233113, guid: 7ae89f0749410bd4c9ed81ce46f981b0, type: 3}
       propertyPath: m_RootOrder
@@ -1119,7 +1098,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1361044350
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1399,7 +1378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2998486167879767135, guid: 4f2315fb425e18240985d114e17105d7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9026409311921775863, guid: 4f2315fb425e18240985d114e17105d7, type: 3}
       propertyPath: m_RootOrder
@@ -1474,23 +1453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1768630766616490778, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2126682990834887392, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
-      propertyPath: roamingPoints
-      value: 
-      objectReference: {fileID: 468669840}
-    - target: {fileID: 2126682990834887392, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
-      propertyPath: stopChasingRange
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2126682990834887392, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
-      propertyPath: stopChasingDistance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2126682990834887392, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
-      propertyPath: startChasingDistance
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5593360346023233113, guid: 584db2cc5dfb4d14fbfd5b726c3045d0, type: 3}
       propertyPath: m_RootOrder
@@ -2192,7 +2155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6207711718406370829, guid: 5d0fc51c366591c4e8aaf8d0250d7723, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2213,7 +2176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2998486167879767135, guid: 912d7c1f80c6eb543be00acfd391a535, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9026409311921775863, guid: 912d7c1f80c6eb543be00acfd391a535, type: 3}
       propertyPath: m_RootOrder
