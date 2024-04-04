@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public int currentRoots = 30;
+    [SerializeField]
+    int numberOfRings;
 
     [SerializeField]
     GameObject[] extraHearts;
@@ -15,47 +16,53 @@ public class PlayerInventory : MonoBehaviour
 
     private int extraheartsCounter = 0;
 
-    public TextMeshProUGUI[] currentRootsText;
 
+    [SerializeField]
     private PlayerHealthSystem phs;
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < currentRootsText.Length; i++)
-        {
-            currentRootsText[i].text = currentRoots.ToString();
-        }
-
-        phs = this.GetComponent<PlayerHealthSystem>();
+        numberOfRings = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < currentRootsText.Length; i++)
-        {
-            currentRootsText[i].text = currentRoots.ToString();
-        }
+        
     }
 
     public void IncreaseMaxHearts()
-    {
-        if (currentRoots >= 5)
-        {
-            currentRoots -= 5;
+    {                     
+        phs.MaxHealth++;
+        phs.heartList.Add(extraHearts[extraheartsCounter]);
+        extraHearts[extraheartsCounter].SetActive(true);
+        voidHearts[extraheartsCounter].SetActive(true);
+        extraheartsCounter++;
+        phs.health = phs.MaxHealth;
+        phs.RespawnHeal();        
+    }
 
-            for (int i = 0; i < currentRootsText.Length; i++)
-            {
-                currentRootsText[i].text = currentRoots.ToString();
-            }
-            phs.MaxHealth++;
-            phs.heartList.Add(extraHearts[extraheartsCounter]);
-            extraHearts[extraheartsCounter].SetActive(true);
-            voidHearts[extraheartsCounter].SetActive(true);
-            extraheartsCounter++;
-            phs.health = phs.MaxHealth;
-            phs.RespawnHeal();
+    public void AddRing()
+    {
+        numberOfRings++;
+        if (numberOfRings >= 3)
+        {
+            IncreaseMaxHearts();
+            numberOfRings = 0;
         }
     }
+
+    public void ClearRings()
+    {
+        numberOfRings = 0;
+    }
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Ring"))
+    //    {
+           
+    //    }
+    //}
 }

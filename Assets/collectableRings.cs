@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectAnimation : MonoBehaviour
+public class collectableRings : MonoBehaviour
 {
     private AudioSource _audioSource;
     [SerializeField] private AudioClip _collectedSound;
@@ -70,7 +70,11 @@ public class CollectAnimation : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             target = collision.gameObject;
-            collected = true;
+            if (!collected)
+            {
+                collision.GetComponent<PlayerInventory>().AddRing();
+                collected = true;
+            }
         }
     }
 }

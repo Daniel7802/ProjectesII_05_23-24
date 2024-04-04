@@ -119,7 +119,7 @@ Transform:
   - {fileID: 3119343544426301203}
   - {fileID: 5154806393814922854}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &881231961002693264
 SpriteRenderer:
@@ -190,7 +190,7 @@ MonoBehaviour:
   cantTurnOff: 1
   time: 0
   maxTime: 12
-  _lightAround: {fileID: 8777297931298647474}
+  _fireLight: {fileID: 4174987841030393315}
 --- !u!61 &7070681258078019785
 BoxCollider2D:
   m_ObjectHideFlags: 0
