@@ -23,7 +23,7 @@ public class EndActivation : MonoBehaviour
             {
                 _audioSource.PlayOneShot(breakSound);
                 soundPlayed = true;
-                endCollider.SetActive(true);
+                //endCollider.SetActive(true);
             }
 
         }
