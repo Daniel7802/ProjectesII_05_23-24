@@ -26,12 +26,11 @@ public class RespawnSystem : MonoBehaviour
         //Time.fixedDeltaTime = Time.timeScale * 0.5f; 
         FadeInOutManager.instance.Fadein();
         StartCoroutine(Respawn());
+
     }
     IEnumerator Respawn()
     {
         yield return new WaitWhile(delegate { return FadeInOutManager.instance.fadeIn; });
-        //Time.fixedDeltaTime = Time.timeScale * 2;
-
         transform.position = checkpointPos1;
         _healthSystem.RespawnHeal();
         canvasDead.gameObject.SetActive(true);
