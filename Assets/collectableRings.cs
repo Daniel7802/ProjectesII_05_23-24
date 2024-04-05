@@ -15,6 +15,9 @@ public class collectableRings : MonoBehaviour
 
     GameObject target;
 
+    [SerializeField] float height = 1.5f;
+    [SerializeField] float speed = 30f;
+
     [SerializeField]
     PlayerInventory _playerInvetory;
 
@@ -73,7 +76,7 @@ public class collectableRings : MonoBehaviour
             target = collision.gameObject;
             if (!collected)
             {
-                collision.GetComponent<PlayerInventory>().AddRing();
+                _playerInvetory.AddRing();
                 collected = true;
             }
         }

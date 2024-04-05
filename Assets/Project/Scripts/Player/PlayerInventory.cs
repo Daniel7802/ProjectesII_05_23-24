@@ -60,7 +60,7 @@ public class PlayerInventory : MonoBehaviour
         }
         else
         {
-           // ringAnimator.SetTrigger("show");
+            ringAnimator.SetTrigger("show");
             Color nuevoColor = ringsImage[numberOfRings - 1].color;
             nuevoColor.a = 1f;
             ringsImage[numberOfRings - 1].color = nuevoColor;
