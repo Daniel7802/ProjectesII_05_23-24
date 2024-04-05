@@ -94,8 +94,17 @@ public class Enemy : MonoBehaviour
     }
     protected bool RaycastPlayer()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, (playerDetection.playerTransform.transform.position - transform.position).normalized, 100, raycastHitLayer);
-        return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
+        if(playerDetection.playerTransform != null)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, (playerDetection.playerTransform.position - transform.position).normalized, 100, raycastHitLayer);
+            return hit.rigidbody != null && hit.rigidbody.CompareTag("Player");
+
+        }
+        else
+        {
+            return false;
+        }
+      
     }
 
     public IEnumerator Ice()
