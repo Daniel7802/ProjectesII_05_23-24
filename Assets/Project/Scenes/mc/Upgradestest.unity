@@ -1074,6 +1074,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: healthRing (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1262905598223575527, guid: 3b80bd496a32b2d4eb39560734e9f88d, type: 3}
+      propertyPath: _playerInvetory
+      value: 
+      objectReference: {fileID: 1972119286}
     - target: {fileID: 8376845399404012944, guid: 3b80bd496a32b2d4eb39560734e9f88d, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -2109,6 +2113,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: healthRing (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1262905598223575527, guid: 3b80bd496a32b2d4eb39560734e9f88d, type: 3}
+      propertyPath: _playerInvetory
+      value: 
+      objectReference: {fileID: 1972119286}
     - target: {fileID: 8376845399404012944, guid: 3b80bd496a32b2d4eb39560734e9f88d, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -2325,6 +2333,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
   m_PrefabInstance: {fileID: 1497384499}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1972119286 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5204449990380883998, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
+  m_PrefabInstance: {fileID: 1497384499}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726980654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b8455d7eaa70043bb83bdbf9bdb2e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2023673116 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 135970787943305078, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
@@ -2910,6 +2929,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: healthRing
       objectReference: {fileID: 0}
+    - target: {fileID: 1262905598223575527, guid: 3b80bd496a32b2d4eb39560734e9f88d, type: 3}
+      propertyPath: _playerInvetory
+      value: 
+      objectReference: {fileID: 1972119286}
     - target: {fileID: 8376845399404012944, guid: 3b80bd496a32b2d4eb39560734e9f88d, type: 3}
       propertyPath: m_RootOrder
       value: 4
