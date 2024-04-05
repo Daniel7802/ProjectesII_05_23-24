@@ -1036,32 +1036,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6942920568467783688, guid: a42d0a09aebdd9f4ba350eba1770768e, type: 3}
   m_PrefabInstance: {fileID: 7195052811244089}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &802873503 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8075190302885600438, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
+--- !u!95 &802873505 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1480648035527310460, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
   m_PrefabInstance: {fileID: 1529138224}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &802873505
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 802873503}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1ae6344c85c6bc04da7dc1279e2e0260, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &863116997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1962,14 +1941,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406933370}
     m_Modifications:
-    - target: {fileID: 2227590545655766383, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -154
-      objectReference: {fileID: 0}
-    - target: {fileID: 2320715670155110307, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2482186467191001227, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -2018,10 +1989,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
-    - target: {fileID: 6406515936867723127, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8594461078434584592, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
       propertyPath: Player
       value: 
@@ -2041,10 +2008,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8075190302885600438, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 802873505}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
 --- !u!4 &1531142465 stripped
 Transform:
