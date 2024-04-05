@@ -15,9 +15,10 @@ public class collectableRings : MonoBehaviour
 
     GameObject target;
 
-    [SerializeField] float height = 1.5f;
-    [SerializeField] float speed = 30f;
+    [SerializeField]
+    PlayerInventory _playerInvetory;
 
+    [SerializeField]
     private Vector3 startPosition;
     private float idleVelocity = 2.0f;
     private float idleDistance = 0.2f;

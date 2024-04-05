@@ -10,6 +10,9 @@ public class PlayerInventory : MonoBehaviour
     int numberOfRings;
 
     [SerializeField]
+    Animator ringAnimator;
+
+    [SerializeField]
     List<Image> ringsImage;
 
     [SerializeField]
@@ -53,10 +56,11 @@ public class PlayerInventory : MonoBehaviour
         if (numberOfRings >= 3)
         {
             IncreaseMaxHearts();
-            numberOfRings = 0;
+            ClearRings();
         }
         else
         {
+           // ringAnimator.SetTrigger("show");
             Color nuevoColor = ringsImage[numberOfRings - 1].color;
             nuevoColor.a = 1f;
             ringsImage[numberOfRings - 1].color = nuevoColor;
