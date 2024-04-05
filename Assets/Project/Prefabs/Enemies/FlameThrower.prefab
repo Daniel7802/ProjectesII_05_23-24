@@ -448,10 +448,10 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.1
+      time: 0
       value: 1
-      inSlope: -10.0039835
-      outSlope: -10.0039835
+      inSlope: -2.0008
+      outSlope: -2.0008
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -459,8 +459,8 @@ AudioSource:
     - serializedVersion: 3
       time: 0.2
       value: 0.5
-      inSlope: -2.5009959
-      outSlope: -2.5009959
+      inSlope: -0.5002
+      outSlope: -0.5002
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -605,7 +605,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.028969765, y: 3.0749435}
+  m_Offset: {x: 0.028969765, y: 1.696392}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -616,7 +616,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.67169, y: 7.149887}
+  m_Size: {x: 0.67169, y: 4.392784}
   m_EdgeRadius: 0
 --- !u!114 &7964759829463926059
 MonoBehaviour:
