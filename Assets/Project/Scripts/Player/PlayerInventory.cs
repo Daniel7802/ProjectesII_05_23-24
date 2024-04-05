@@ -21,7 +21,10 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     GameObject[] voidHearts;
 
+
     private int extraheartsCounter = 0;
+
+    Color alpha;
 
 
     [SerializeField]
@@ -31,6 +34,7 @@ public class PlayerInventory : MonoBehaviour
     void Start()
     {
         numberOfRings = 0;
+        alpha = ringsImage[0].color;
     }
 
     // Update is called once per frame
@@ -70,6 +74,10 @@ public class PlayerInventory : MonoBehaviour
     public void ClearRings()
     {
         numberOfRings = 0;
+        foreach(Image img in ringsImage)
+        {
+            img.color = alpha;
+        }
     }
 
     //private void OnTriggerEnter2D(Collider2D collision)
