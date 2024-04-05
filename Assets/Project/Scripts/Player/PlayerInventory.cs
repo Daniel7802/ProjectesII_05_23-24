@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour
 {
     [SerializeField]
     int numberOfRings;
+
+    [SerializeField]
+    List<Image> ringsImage;
 
     [SerializeField]
     GameObject[] extraHearts;
@@ -50,6 +54,12 @@ public class PlayerInventory : MonoBehaviour
         {
             IncreaseMaxHearts();
             numberOfRings = 0;
+        }
+        else
+        {
+            Color nuevoColor = ringsImage[numberOfRings - 1].color;
+            nuevoColor.a = 1f;
+            ringsImage[numberOfRings - 1].color = nuevoColor;
         }
     }
 
