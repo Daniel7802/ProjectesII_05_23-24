@@ -25,7 +25,6 @@ public class GoldenRootCollectAnimation : CollectAnimation
         {
             if (collected)
             {
-                pi.currentRoots++;
             }
         }
     }

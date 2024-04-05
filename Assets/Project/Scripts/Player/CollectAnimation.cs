@@ -7,7 +7,7 @@ public class CollectAnimation : MonoBehaviour
     private AudioSource _audioSource;
     [SerializeField] private AudioClip _collectedSound;
     private bool collectedSoundPlayed = false;
-    protected bool collected = false;
+    public bool collected = false;
 
     [SerializeField] float collectedTime = 2f;
     [SerializeField] float pickUpTime = 2f;
