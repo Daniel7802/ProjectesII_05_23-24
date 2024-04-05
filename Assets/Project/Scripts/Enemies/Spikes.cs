@@ -5,6 +5,8 @@ using UnityEngine;
 public class Spikes : MonoBehaviour
 {
     Animator _animator;
+    SpriteRenderer _spriteRenderer;
+   
     [SerializeField] private float secondsToActivate = 1f;
     [SerializeField] private float secondsToDesactivate = 1f;
     public bool activated = false;
@@ -15,8 +17,10 @@ public class Spikes : MonoBehaviour
    
     void Start()
     {
+        _spriteRenderer = GetComponent<SpriteRenderer>();   
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+
     }
 
 
@@ -30,13 +34,13 @@ public class Spikes : MonoBehaviour
         {
             _animator.SetBool("activated", false);
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            StartCoroutine(ActivateRedAlert());
             StartCoroutine(ActivateSpikes());
         }
     }  
@@ -47,11 +51,15 @@ public class Spikes : MonoBehaviour
             StartCoroutine(DesactivateSpikes());
         }
     }
-
+    IEnumerator ActivateRedAlert()
+    {
+        _spriteRenderer.color = Color.red;
+        yield return new WaitForSecondsRealtime(secondsToActivate);
+        _spriteRenderer.color = Color.white;
+    }
     IEnumerator ActivateSpikes()
     {
-        yield return new WaitForSecondsRealtime(secondsToActivate);
-       
+        yield return new WaitForSecondsRealtime(secondsToActivate);       
         if(!activated)
         {
             _audioSource.PlayOneShot(_spikesUp);
