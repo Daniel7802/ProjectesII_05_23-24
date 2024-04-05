@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &103630906594184047
 SpriteRenderer:
@@ -253,9 +253,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed9a58ee2162ed48a72f3737f56470b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collectedSound: {fileID: 8300000, guid: 071c36c9f75a50a4ab847260d36b0eb5, type: 3}
+  _collectedSound: {fileID: 8300000, guid: f22dd8587d57a354980e5e48f6c00e7b, type: 3}
   collected: 0
   collectedTime: 2
   pickUpTime: 2
   height: 1.5
   speed: 30
+  _playerInvetory: {fileID: 0}
+  startPosition: {x: 0, y: 0, z: 0}
