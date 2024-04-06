@@ -95,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetFloat("Horizontal", movementVectorNormalized.x);
             playerAnimator.SetFloat("Vertical", movementVectorNormalized.y);
             playerAnimator.SetFloat("Speed", movementVectorNormalized.sqrMagnitude);
+            playerAnimator.SetBool("Rolling", _isDashing);
 
             if (playerRb.velocity.x >= 0.1 || playerRb.velocity.y >= 0.1 || playerRb.velocity.x <= -0.1 || playerRb.velocity.y <= -0.1)
             {
