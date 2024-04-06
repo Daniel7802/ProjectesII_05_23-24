@@ -47,7 +47,8 @@ public class ShootyIA : Enemy
                 break;
 
             case CurrentState.SHOOTING:
-                Shooting();
+                
+                //Shooting();
                 break;
 
             case CurrentState.RELOADING:
@@ -105,7 +106,7 @@ public class ShootyIA : Enemy
         }
         else
         {
-            if(RaycastPlayer())
+            if (RaycastPlayer())
             {
                 target = playerDetection.playerTransform;
                 moveSpeed = chasingSpeed;
@@ -114,12 +115,12 @@ public class ShootyIA : Enemy
             else
             {
                 audioSource.PlayOneShot(lostTargetSound);
-            StartCoroutine(EnableAlert(lostTargetAlert));
-            roamingPoints.transform.position = transform.position;
-            target = pointA;
-            currentState = CurrentState.ROAMING;
+                StartCoroutine(EnableAlert(lostTargetAlert));
+                roamingPoints.transform.position = transform.position;
+                target = pointA;
+                currentState = CurrentState.ROAMING;
             }
-            
+
         }
 
     }
@@ -129,6 +130,8 @@ public class ShootyIA : Enemy
         {
             lineRenderer.enabled = false;
             lineTimer = 0f;
+           
+
             currentState = CurrentState.CHASING;
         }
         else
@@ -137,6 +140,9 @@ public class ShootyIA : Enemy
             {
                 if (lineTimer < aimingTime)
                 {
+                  
+
+
                     ShowTrayectoryLine();
                     lineTimer += Time.deltaTime;
                 }
@@ -144,13 +150,19 @@ public class ShootyIA : Enemy
                 {
                     lineRenderer.enabled = false;
                     lineTimer = 0f;
+
+                    animator.SetBool("Shoot", true);
                     currentState = CurrentState.SHOOTING;
+
+
                 }
             }
             else
             {
                 lineRenderer.enabled = false;
                 lineTimer = 0f;
+            
+
                 audioSource.PlayOneShot(lostTargetSound);
                 StartCoroutine(EnableAlert(lostTargetAlert));
                 roamingPoints.transform.position = transform.position;
@@ -158,6 +170,7 @@ public class ShootyIA : Enemy
                 currentState = CurrentState.ROAMING;
             }
         }
+
     }
     void ShowTrayectoryLine()
     {
@@ -173,9 +186,15 @@ public class ShootyIA : Enemy
     }
     void Shooting()
     {
+
+
+
         target = playerDetection.playerTransform;
         ShootOneBullet();
+        animator.SetBool("Shoot", false);
+
         currentState = CurrentState.RELOADING;
+
     }
     void ShootOneBullet()
     {

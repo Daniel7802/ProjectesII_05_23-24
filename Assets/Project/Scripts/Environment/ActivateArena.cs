@@ -8,7 +8,7 @@ public class ActivateArena : MonoBehaviour
     public GameObject arena;
 
     //spikes
-    private float spikesSpawnSeconds = 0.2f;
+    private float spikesSpawnSeconds = 0.1f;
     public bool spikesShowed = false;
     //public GameObject spikesParent;
     public List<GameObject> entranceWalls = new List<GameObject>();
@@ -58,12 +58,12 @@ public class ActivateArena : MonoBehaviour
 
             yield return new WaitForSeconds(spikesSpawnSeconds);
         }
-        for (int i = 0; i < entranceWalls.Count; i++)
-        {
-            entranceWalls[i].SetActive(false);
+        //for (int i = 0; i < entranceWalls.Count; i++)
+        //{
+        //    entranceWalls[i].SetActive(false);
           
-            yield return new WaitForSeconds(spikesSpawnSeconds);
-        }
+        //    yield return new WaitForSeconds(spikesSpawnSeconds);
+        //}
         
 
     }
