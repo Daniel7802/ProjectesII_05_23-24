@@ -21,7 +21,7 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     GameObject[] voidHearts;
 
-    private int keys = 2;
+    private int keys = 0;
 
     private int extraheartsCounter = 0;
 
