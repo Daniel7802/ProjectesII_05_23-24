@@ -315,8 +315,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 8, y: 56}
-  m_SizeDelta: {x: 506.2085, y: 42.2268}
+  m_AnchoredPosition: {x: 77, y: 198}
+  m_SizeDelta: {x: 399.8575, y: 38.113}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4469394708287121349
 CanvasRenderer:
@@ -348,15 +348,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Pulsa ESPACIO para continuar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2d34bbe180bdef04998b8571e722197e, type: 2}
+  m_sharedMaterial: {fileID: 8730636896167141701, guid: 2d34bbe180bdef04998b8571e722197e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -636,14 +636,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 03c74260e13f6c941b823f51f04bdeba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 633f3ed68f2385042b1b0c926871d500, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -988,7 +988,7 @@ RectTransform:
   m_GameObject: {fileID: 6339026107043030029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.6395559, y: 1.6395559, z: 1.6395559}
+  m_LocalScale: {x: 1.0317825, y: 1.0317825, z: 1.0317825}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8064091141974163872}
@@ -996,7 +996,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -564.9, y: 131.4}
+  m_AnchoredPosition: {x: -540, y: 134}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2999158871033934952
@@ -1103,8 +1103,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 92.9246, y: 151.55}
-  m_SizeDelta: {x: 1095.4087, y: 140.29}
+  m_AnchoredPosition: {x: 116.7364, y: 121.068665}
+  m_SizeDelta: {x: 1019.2938, y: 79.3293}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6501275897939068145
 CanvasRenderer:
@@ -1136,15 +1136,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2d34bbe180bdef04998b8571e722197e, type: 2}
+  m_sharedMaterial: {fileID: 8730636896167141701, guid: 2d34bbe180bdef04998b8571e722197e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1161,8 +1161,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1239,7 +1239,7 @@ Transform:
   - {fileID: 2738885448562898708}
   - {fileID: 8146660305317583617}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &302009581388410275
 MonoBehaviour:
@@ -1508,13 +1508,13 @@ MonoBehaviour:
     text: "Detr\xE1s de esta puerta se encuentra el \xE1rbol de la vida que est\xE1
       muriendo poco a poco y solo t\xFA puedes salvarlo."
   - character: 1
-    text: "Para abrir la puerta, necesitar\xE1s encontrar las 3 llaves que se encuentran
+    text: "Para abrir la puerta, necesitar\xE1s encontrar las 2 llaves que se encuentran
       una en cada zona de este mundo."
   - character: 1
-    text: "Durante el viaje te ir\xE1s encontrando estas ra\xEDces doradas, si recoges
-      unas cuantas podr\xE9 intercambi\xE1rtelas por maravillosas mejoras."
+    text: "Durante el viaje te ir\xE1s encontrando estos anillos de poder, cada vez
+      que recojas 3 se te sumara una vida extra"
   - character: 1
-    text: "Cuando tengas las 3 llaves ven a hablar conmigo. \xA1Buena suerte!"
+    text: "Cuando tengas las 2 llaves ven a hablar conmigo. \xA1Buena suerte!"
   - character: 1
     text: "Cuando tengas las 3 llaves ven a hablar conmigo. \xA1Buena suerte!"
   - character: 2
@@ -1745,7 +1745,7 @@ RectTransform:
   m_GameObject: {fileID: 8696639260386736744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.6395559, y: 1.6395559, z: 1.6395559}
+  m_LocalScale: {x: 1.0317825, y: 1.0317825, z: 1.0317825}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8064091141974163872}
@@ -1753,7 +1753,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -564.9, y: 131.4}
+  m_AnchoredPosition: {x: -540, y: 134}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6780143337419383519
@@ -1822,7 +1822,7 @@ RectTransform:
   m_GameObject: {fileID: 8836452357117427703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.6395559, y: 1.6395559, z: 1.6395559}
+  m_LocalScale: {x: 1.0317825, y: 1.0317825, z: 1.0317825}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8064091141974163872}
@@ -1830,7 +1830,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -564.9, y: 131.4}
+  m_AnchoredPosition: {x: -540, y: 134}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8052584731041086216
