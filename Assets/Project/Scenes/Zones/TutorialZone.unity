@@ -175,10 +175,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4934152572183162058, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5443055419998888902, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
       propertyPath: boomerang
       value: 
@@ -199,14 +195,6 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 59969908}
-    - target: {fileID: 8980616342957585597, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
-      propertyPath: boomerang
-      value: 
-      objectReference: {fileID: 1702083033}
-    - target: {fileID: 8980616342957585597, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
-      propertyPath: shadowBoomerang
-      value: 
-      objectReference: {fileID: 1217497808}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6266,8 +6254,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.13934994, y: 5.3957005, z: 0}
-    m_Extent: {x: 19.636349, y: 21.5823, z: 0}
+    m_Center: {x: 0.14519978, y: 5.3883495, z: 0}
+    m_Extent: {x: 19.6321, y: 21.58185, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -30411,8 +30399,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.09224987, y: -0.15014982, z: 0}
-    m_Extent: {x: 16.55265, y: 16.03735, z: 0}
+    m_Center: {x: 0.09554958, y: -0.15429974, z: 0}
+    m_Extent: {x: 16.54955, y: 16.0447, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 1.45
