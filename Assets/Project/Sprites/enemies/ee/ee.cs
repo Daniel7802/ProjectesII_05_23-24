@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EEA : MonoBehaviour
+public class EE : MonoBehaviour
 {
     [SerializeField] GameObject pl;
     [SerializeField] GameObject eea;
@@ -15,7 +15,7 @@ public class EEA : MonoBehaviour
         {
             eea.SetActive(false);
         }
-        if (ee && Input.GetKeyDown(KeyCode.Escape))
+        if (ee && Input.GetKeyDown(KeyCode.End))
         {
             pl.transform.position = exitPos.position;
             ee = false;
