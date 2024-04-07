@@ -43,6 +43,11 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void EndGame()
+    {
+        FadeInOutManager.instance.Fadein();
+    }
+
     private IEnumerator StartGameCorrotine(string a)
     {
         Debug.Log("Waiting for loadScene");
