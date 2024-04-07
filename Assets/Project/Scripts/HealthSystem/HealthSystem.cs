@@ -79,7 +79,7 @@ public class HealthSystem : MonoBehaviour
 
     public void GetDamage(int amount)
     {
-        if (!ds.isDead)
+        if (health > 0)
         {
             _audioSource.PlayOneShot(damageSound);
             health -= amount;
