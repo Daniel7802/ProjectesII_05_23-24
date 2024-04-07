@@ -6,23 +6,22 @@ public class Key : MonoBehaviour
 {
     public bool taken;
 
-    private winManagerWithKeys wm;
+    [SerializeField]
+    private GameObject player;
 
-    //[SerializeField]
-    //GameObject winManager;
+    private PlayerInventory pI;
     
     void Start()
     {
         taken = false;
-        //wm = winManager.GetComponent<winManagerWithKeys>();
+        pI = player.GetComponent<PlayerInventory>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
             taken = true;
-            
-            //wm.counter++;
+            pI.IncreaseKeys();
         }
     }
 }
