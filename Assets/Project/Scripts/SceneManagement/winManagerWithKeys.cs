@@ -3,35 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class winManagerWithKeys : KeyManagers
+public class winManagerWithKeys : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] keysHUD;
+    GameObject player;
 
     [SerializeField]
-    GameObject keyManager;
+    GameObject[] keysOnHud;
 
-    public int counter = 0;
+    [SerializeField]
+    GameObject finishGameButton;
+
+    private PlayerInventory pI;
 
     private void Start()
     {
+        pI = player.GetComponent<PlayerInventory>();
     }
 
-    public override void Update()
+    private void Update()
     {
-        for (int i = 0; i < key.Length; i++)
+        if(pI.CheckKeys() == 1)
         {
-            activeMechanisme = key[i].taken;
+            keysOnHud[0].SetActive(true);
         }
-
-        if (activeMechanisme)
+        else if(pI.CheckKeys() == 2)
         {
-            SceneManager.LoadScene("MainMenu");
-        }
-
-        for(int i = 0; i < counter; i++)
-        {
-            keysHUD[i].SetActive(true);
+            keysOnHud[1].SetActive(true);
+            finishGameButton.SetActive(true);
         }
     }
 }

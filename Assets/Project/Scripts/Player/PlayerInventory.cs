@@ -21,6 +21,7 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     GameObject[] voidHearts;
 
+    private int keys = 0;
 
     private int extraheartsCounter = 0;
 
@@ -35,12 +36,6 @@ public class PlayerInventory : MonoBehaviour
     {
         numberOfRings = 0;
         alpha = ringsImage[0].color;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void IncreaseMaxHearts()
@@ -78,6 +73,16 @@ public class PlayerInventory : MonoBehaviour
         {
             img.color = alpha;
         }
+    }
+
+    public void IncreaseKeys()
+    {
+        keys++;
+    }
+
+    public int CheckKeys()
+    {
+        return keys;
     }
 
     //private void OnTriggerEnter2D(Collider2D collision)

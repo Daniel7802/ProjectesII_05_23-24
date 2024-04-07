@@ -141,7 +141,11 @@ public class PlayerMovement : MonoBehaviour
                 _healthSystem.GetDamage(1);
             }
         }
-        
+
+        if (_playerController.playerStates == PlayerController.PlayerStates.CINEMATIC)
+        {
+            _walkSound.Stop();
+        }
     }
 
     private void FixedUpdate()
