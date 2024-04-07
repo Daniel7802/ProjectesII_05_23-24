@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class BoomerangCollectMovement : MonoBehaviour
 {
-    [SerializeField] float height = 1.8f;
-    [SerializeField] float newScale = 0.7f;
-    [SerializeField] float speed = 30f;
+    
     private Vector3 startPosition;
     private float idleVelocity = 2.0f;
     private float idleDistance = 0.2f;

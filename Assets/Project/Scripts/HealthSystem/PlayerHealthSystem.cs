@@ -34,7 +34,7 @@ public class PlayerHealthSystem : HealthSystem
         }
     }
 
-    public void Update()
+    public override void Update()
     {
         if(isInvincible)
         {

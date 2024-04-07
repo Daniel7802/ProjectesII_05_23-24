@@ -41,7 +41,7 @@ public class HealthSystem : MonoBehaviour
         canGetDamageTimer = canGetDamageMaxTimer;
         health = MaxHealth;
     }
-    public void Update()
+    public  virtual void Update()
     {
         if (isDamaged)
         {
