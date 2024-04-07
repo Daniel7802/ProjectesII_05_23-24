@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class winManagerWithKeys : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class winManagerWithKeys : MonoBehaviour
     GameObject[] keysOnHud;
 
     [SerializeField]
-    GameObject finishGameButton;
+    Button finishGameButton;
 
     private PlayerInventory pI;
 
@@ -30,7 +31,7 @@ public class winManagerWithKeys : MonoBehaviour
         else if(pI.CheckKeys() == 2)
         {
             keysOnHud[1].SetActive(true);
-            finishGameButton.SetActive(true);
+            finishGameButton.interactable = true;
         }
     }
 }
