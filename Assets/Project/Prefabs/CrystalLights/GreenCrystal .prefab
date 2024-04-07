@@ -116,7 +116,7 @@ Transform:
   m_Children:
   - {fileID: 7561344234933969149}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5836199322495834393
 SpriteRenderer:
@@ -184,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _light: {fileID: 3625696509167277733}
   _bigCrystal: 1
+  _valueToDark: 0
 --- !u!61 &8320228081787801521
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -228,7 +229,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1.4746723, y: 0.51303864}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.001
 --- !u!61 &4367532308966250712
 BoxCollider2D:
   m_ObjectHideFlags: 0

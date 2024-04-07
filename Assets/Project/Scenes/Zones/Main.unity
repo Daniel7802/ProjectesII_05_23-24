@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4dd68f571a6e3c4db752096c3149729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasgroup: {fileID: 1658755149}
+  canvasgroup: {fileID: 509386141}
   fadeIn: 0
   fadeOut: 0
   timeToFade: 3
@@ -1273,6 +1273,11 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6868092240893891015, guid: 048c66179e3de69498ea2069e1a9575a, type: 3}
   m_PrefabInstance: {fileID: 2089280592}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &509386141 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 8829818418821521179, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
+  m_PrefabInstance: {fileID: 1443836744}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &598775353
 GameObject:
@@ -2738,6 +2743,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 726980654}
+    - target: {fileID: 3842605761486771901, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5443055419998888902, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
       propertyPath: boomerang
       value: 
@@ -4163,10 +4172,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8512507245014509482, guid: 31f998b99701e4a4887708bcd0264dd3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 828381032}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31f998b99701e4a4887708bcd0264dd3, type: 3}
 --- !u!1001 &2089280592
 PrefabInstance:
@@ -43863,8 +43869,8 @@ Transform:
   m_LocalScale: {x: 0.77, y: 0.61, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1972119281}
-  m_RootOrder: -1
+  m_Father: {fileID: 0}
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2136051129
 SpriteRenderer:
