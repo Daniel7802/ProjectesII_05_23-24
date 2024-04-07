@@ -10,11 +10,21 @@ public class StartRaceBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject timerText;
 
+    [SerializeField]
+    private GameObject player;
+
     public bool racing = false;
 
     private bool canRace = false;
 
     [SerializeField] private List<GameObject> raceObjects = new List<GameObject>();
+
+    private PlayerController playerController;
+
+    private void Start()
+    {
+        playerController = player.GetComponent<PlayerController>();
+    }
 
     private void Update()
     {
@@ -34,7 +44,7 @@ public class StartRaceBehaviour : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.tag.Equals("Player"))
+        if(collision.tag.Equals("Player") && playerController.playerStates != PlayerController.PlayerStates.CINEMATIC)
         {
             canRace = true;
             eButton.gameObject.SetActive(true);
@@ -43,7 +53,7 @@ public class StartRaceBehaviour : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        canRace= false;
+        canRace = false;
         eButton.gameObject.SetActive(false);
     }
 

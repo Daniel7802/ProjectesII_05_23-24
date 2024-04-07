@@ -418,15 +418,6 @@ public class CinematicManager : MonoBehaviour
                 }
 
                 commandIndex++;
-
-                //if (PlayerAimController._instance.controllerType == PlayerAimController.ControllerType.MOUSE)
-                //{
-                //    instructionsText[0].gameObject.SetActive(false);
-                //}
-                //else
-                //{
-                //    instructionsText[1].gameObject.SetActive(false);
-                //}
             }
             else
             {
