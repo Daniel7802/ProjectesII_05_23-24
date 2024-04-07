@@ -9,6 +9,8 @@ public class RespawnSystem : MonoBehaviour
     [SerializeField]
     Canvas canvasDead;
 
+    [SerializeField]
+    GameObject _player;
     public Vector2 checkpointPos1;
     PlayerHealthSystem _healthSystem;
 
@@ -31,7 +33,7 @@ public class RespawnSystem : MonoBehaviour
     IEnumerator Respawn()
     {
         yield return new WaitWhile(delegate { return FadeInOutManager.instance.fadeIn; });
-        transform.position = checkpointPos1;
+        _player.transform.position = checkpointPos1;
         _healthSystem.RespawnHeal();
         canvasDead.gameObject.SetActive(true);
     }
