@@ -70,8 +70,8 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0.76
-  m_PointLightOuterRadius: 8.91
+  m_PointLightInnerRadius: 2.6
+  m_PointLightOuterRadius: 11
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -116,7 +116,7 @@ Transform:
   m_Children:
   - {fileID: 7561344234933969149}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5836199322495834393
 SpriteRenderer:
@@ -184,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _light: {fileID: 3625696509167277733}
   _bigCrystal: 1
+  _valueToDark: 0.001
 --- !u!61 &8320228081787801521
 BoxCollider2D:
   m_ObjectHideFlags: 0
