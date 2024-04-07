@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public int currentRoots = 30;
+    [SerializeField]
+    int numberOfRings;
+
+    [SerializeField]
+    Animator ringAnimator;
+
+    [SerializeField]
+    List<Image> ringsImage;
 
     [SerializeField]
     GameObject[] extraHearts;
@@ -13,49 +21,75 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     GameObject[] voidHearts;
 
+    private int keys = 0;
+
     private int extraheartsCounter = 0;
 
-    public TextMeshProUGUI[] currentRootsText;
+    Color alpha;
 
+
+    [SerializeField]
     private PlayerHealthSystem phs;
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < currentRootsText.Length; i++)
-        {
-            currentRootsText[i].text = currentRoots.ToString();
-        }
-
-        phs = this.GetComponent<PlayerHealthSystem>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        for (int i = 0; i < currentRootsText.Length; i++)
-        {
-            currentRootsText[i].text = currentRoots.ToString();
-        }
+        numberOfRings = 0;
+        alpha = ringsImage[0].color;
     }
 
     public void IncreaseMaxHearts()
-    {
-        if (currentRoots >= 5)
-        {
-            currentRoots -= 5;
+    {                     
+        phs.MaxHealth++;
+        phs.heartList.Add(extraHearts[extraheartsCounter]);
+        extraHearts[extraheartsCounter].SetActive(true);
+        voidHearts[extraheartsCounter].SetActive(true);
+        extraheartsCounter++;
+        phs.health = phs.MaxHealth;
+        phs.RespawnHeal();        
+    }
 
-            for (int i = 0; i < currentRootsText.Length; i++)
-            {
-                currentRootsText[i].text = currentRoots.ToString();
-            }
-            phs.MaxHealth++;
-            phs.heartList.Add(extraHearts[extraheartsCounter]);
-            extraHearts[extraheartsCounter].SetActive(true);
-            voidHearts[extraheartsCounter].SetActive(true);
-            extraheartsCounter++;
-            phs.health = phs.MaxHealth;
-            phs.RespawnHeal();
+    public void AddRing()
+    {
+        numberOfRings++;
+        if (numberOfRings >= 3)
+        {
+            IncreaseMaxHearts();
+            ClearRings();
+        }
+        else
+        {
+            ringAnimator.SetTrigger("show");
+            Color nuevoColor = ringsImage[numberOfRings - 1].color;
+            nuevoColor.a = 1f;
+            ringsImage[numberOfRings - 1].color = nuevoColor;
         }
     }
+
+    public void ClearRings()
+    {
+        numberOfRings = 0;
+        foreach(Image img in ringsImage)
+        {
+            img.color = alpha;
+        }
+    }
+
+    public void IncreaseKeys()
+    {
+        keys++;
+    }
+
+    public int CheckKeys()
+    {
+        return keys;
+    }
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Ring"))
+    //    {
+           
+    //    }
+    //}
 }

@@ -9,6 +9,8 @@ public class RespawnSystem : MonoBehaviour
     [SerializeField]
     Canvas canvasDead;
 
+    [SerializeField]
+    GameObject _player;
     public Vector2 checkpointPos1;
     PlayerHealthSystem _healthSystem;
 
@@ -26,13 +28,12 @@ public class RespawnSystem : MonoBehaviour
         //Time.fixedDeltaTime = Time.timeScale * 0.5f; 
         FadeInOutManager.instance.Fadein();
         StartCoroutine(Respawn());
+
     }
     IEnumerator Respawn()
     {
         yield return new WaitWhile(delegate { return FadeInOutManager.instance.fadeIn; });
-        //Time.fixedDeltaTime = Time.timeScale * 2;
-
-        transform.position = checkpointPos1;
+        _player.transform.position = checkpointPos1;
         _healthSystem.RespawnHeal();
         canvasDead.gameObject.SetActive(true);
     }

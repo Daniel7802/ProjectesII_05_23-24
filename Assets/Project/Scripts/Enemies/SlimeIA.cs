@@ -1,7 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+
 
 
 public class SlimeIA : Enemy
@@ -16,12 +15,12 @@ public class SlimeIA : Enemy
     private float speedToLand = 1f;
 
     //roaming    
-    private float minWaitingTimeRoaming = 2.5f;
-    private float maxWaitingTimeRoaming = 3.5f;
+    private float minWaitingTimeRoaming = 1.5f;
+    private float maxWaitingTimeRoaming = 2f;
 
     //chasing      
     private float minWaitingTimeChasing = 0.8f;
-    private float maxWaitingTimeChasing = 1.3f;
+    private float maxWaitingTimeChasing = 1.2f;
 
     public override void Start()
     {
@@ -31,7 +30,7 @@ public class SlimeIA : Enemy
 
     private void Update()
     {
-        FlipX();       
+        FlipX();
 
         switch (currentState)
         {
@@ -52,7 +51,7 @@ public class SlimeIA : Enemy
 
     public override void Movement()
     {
-        Vector2 dir = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
+        Vector2 dir = target.position - transform.position;
         Vector2 moveForce = dir.normalized * moveSpeed;
 
         waitingTimer += Time.deltaTime;
@@ -67,45 +66,67 @@ public class SlimeIA : Enemy
 
     public override void Roaming()
     {
-        if (detectionZone.GetComponent<DetectionZone>().playerDetected&&RaycastPlayer())
+        if (playerDetection.distanceToPlayer < startChasingDistance && RaycastPlayer())
         {
             StartCoroutine(EnableAlert(foundTargetAlert));
-            if (!animator.GetBool("jump"))
-                waitingTimer = waitingTime;
-            
+            waitingTimer = waitingTime;
             currentState = CurrentState.CHASING;
         }
         else
         {
             minWaitingTime = minWaitingTimeRoaming;
             maxWaitingTime = maxWaitingTimeRoaming;
-            base.Roaming();
+            moveSpeed = roamingSpeed;
+            Movement();
 
+            if (Vector2.Distance(transform.position, pointA.position) < 0.5f)
+            {
+                target = pointB;
+            }
+
+            if (Vector2.Distance(transform.position, pointB.position) < 0.5f)
+            {
+                target = pointA;
+            }
         }
-    }
 
+    }
     public override void Chasing()
     {
-        if (detectionZone.GetComponent<DetectionZone>().playerDetected && RaycastPlayer())
-        {
-            
-            minWaitingTime = minWaitingTimeChasing;
-            maxWaitingTime = maxWaitingTimeChasing;
-            base.Chasing();
-        }
-        else
+
+        if (playerDetection.distanceToPlayer > stopChasingDistance)
         {
             StartCoroutine(EnableAlert(lostTargetAlert));
-            currentState = CurrentState.ROAMING;
+            roamingPoints.transform.position = transform.position;
+            target = pointA;
+            currentState = CurrentState.ROAMING;            
+        }       
+        else
+        {
+            if (RaycastPlayer())
+            {
+                minWaitingTime = minWaitingTimeChasing;
+                maxWaitingTime = maxWaitingTimeChasing;
+                target = playerDetection.playerTransform;
+                moveSpeed = chasingSpeed;
+                Movement();
+            }
+            else
+            {
+
+                StartCoroutine(EnableAlert(lostTargetAlert));
+                roamingPoints.transform.position = transform.position;
+                target = pointA;
+                currentState = CurrentState.ROAMING;
+            }           
         }
-       
-
-
     }
-
     public void SetNewWaitingTime()
     {
         waitingTime = UnityEngine.Random.Range(minWaitingTime, maxWaitingTime);
     }
-
+    public override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+    }
 }

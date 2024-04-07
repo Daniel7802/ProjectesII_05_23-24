@@ -8,39 +8,45 @@ public class DamageSystem : MonoBehaviour
     [SerializeField]
     protected int dmg;
 
-    public virtual void  OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent<HealthSystem>(out HealthSystem hs))
         {
-            if(collision.tag != "Player")
-            {            
-                hs.GetDamage(dmg); 
+            if (collision.tag != "Player")
+            {
+                hs.GetDamage(dmg);
             }
 
-            if(collision.gameObject.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs) && collision.tag.Equals("Player") && this.tag != "Boomerang")
+            if (collision.gameObject.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs) && collision.tag.Equals("Player") && this.tag != "Boomerang")
             {
 
-                if(phs.isInvincible == false && phs.health > 0 && phs.health <= phs.MaxHealth)
-                {     
-                    phs.turnInvincible();                   
+                if (phs.isInvincible == false && phs.health > 0 && phs.health <= phs.MaxHealth)
+                {
+                    phs.turnInvincible();
                     phs.GetDamage(dmg);
                     phs.deleteHeart();
                 }
             }
         }
-       
+
     }
     public virtual void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs) && collision.tag.Equals("Player") && this.tag == "Fire")
+        if (this.tag == "Fire" || this.tag == "Enemy")
         {
-            if (phs.isInvincible == false && phs.health > 0 && phs.health <= phs.MaxHealth)
+            if (collision.gameObject.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs))
             {
+                if (phs.isInvincible == false && phs.health > 0 && phs.health <= phs.MaxHealth)
+                {
 
-                phs.turnInvincible();
-                phs.GetDamage(dmg);
-                phs.deleteHeart();
+                    phs.turnInvincible();
+                    phs.GetDamage(dmg);
+                    phs.deleteHeart();
+                }
             }
+
         }
+
+        
     }
 }

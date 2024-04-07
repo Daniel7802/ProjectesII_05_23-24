@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 394967167ddd10c4597b4ef6998791c9, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 25
   rb2D: {fileID: 6533029916758261950}
-  lifeTime: 1
+  lifeTime: 2
   fireballParticles: {fileID: 715038747342358181, guid: 7242285fe5269af47a40a47f6e7de1a6, type: 3}
 --- !u!114 &2818218184552519878
 MonoBehaviour:
@@ -346,7 +346,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.645
+  m_FalloffIntensity: 1
   m_Color: {r: 1, g: 0.39305976, b: 0, a: 1}
   m_Intensity: 1.43
   m_LightVolumeIntensity: 1

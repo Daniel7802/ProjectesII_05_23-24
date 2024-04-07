@@ -113,6 +113,7 @@ public class CinematicManager : MonoBehaviour
 
     [Header("Sound"), SerializeField]
     private AudioClip typeSound;
+    private AudioSource _audioSource;
 
     [SerializeField]
     Transform Dialog;
@@ -137,6 +138,8 @@ public class CinematicManager : MonoBehaviour
         dialogTextC = dialogText.GetComponent<TextMeshProUGUI>();
 
         gameCameraC = gameCamera.GetComponent<GameCamera>();
+
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -170,7 +173,7 @@ public class CinematicManager : MonoBehaviour
                 if (firstTime)
                 {
                     dialogTextC.text = string.Empty;
-                    StartDialogue();
+                    //StartDialogue();
                     firstTime = false;
                 }
 
@@ -239,7 +242,8 @@ public class CinematicManager : MonoBehaviour
                 }
                 else if (command.id == CinematicCommandId.wait)
                 {
-                    float time = Single.Parse(command.param1);
+                    StopAllCoroutines();
+                    float time = Single.Parse(command.param1) + Time.deltaTime;
                     waiting = true;
                     waitTimer = time;
                 }
@@ -254,14 +258,15 @@ public class CinematicManager : MonoBehaviour
                     showingDialog = true;
                     dialogIndex = index;
                     Dialog.gameObject.SetActive(true);
+                    StartDialogue();
                 }
                 else if (command.id == CinematicCommandId.setCameraPosition)
                 {
-                    //int index = Int32.Parse(command.param1);
+                    int index = Int32.Parse(command.param1);
 
                     //gameCamera.position = Vector3.MoveTowards(gameCamera.position, cameraPositions[index].position, 3 * Time.deltaTime);
 
-                    //gameCamera.position = cameraPositions[index].position;
+                    gameCamera.position = cameraPositions[index].position;
                     ////gameCamera.rotation = cameraPositions[index].rotation;
                 }
                 else if (command.id == CinematicCommandId.setCameraSize)
@@ -304,7 +309,7 @@ public class CinematicManager : MonoBehaviour
                 else if (command.id == CinematicCommandId.fadeInEffect)
                 {
                     FadeInOutManager.instance.Fadein();
-                    Debug.Log("Works");
+                    Dialog.gameObject.SetActive(false);
                 }
                 else if (command.id == CinematicCommandId.fadeOutEffect)
                 {
@@ -379,8 +384,8 @@ public class CinematicManager : MonoBehaviour
             dialogTextC.text += c;
             if (textSpeed != 0 && isCinematicMode)
                 //AudioManager._instance.Play2dOneShotSound(typeSound, 0.3f, 0.5f, 1.5f);
-
-                yield return new WaitForSeconds(textSpeed);
+                _audioSource.PlayOneShot(typeSound);
+            yield return new WaitForSeconds(textSpeed);
         }
     }
     private void NextLine()
@@ -389,7 +394,7 @@ public class CinematicManager : MonoBehaviour
         {
             dialogIndex++;
             dialogTextC.text = string.Empty;
-            StartCoroutine(TypeLine());
+            //StartCoroutine(TypeLine());
         }
     }
 
@@ -413,15 +418,6 @@ public class CinematicManager : MonoBehaviour
                 }
 
                 commandIndex++;
-
-                //if (PlayerAimController._instance.controllerType == PlayerAimController.ControllerType.MOUSE)
-                //{
-                //    instructionsText[0].gameObject.SetActive(false);
-                //}
-                //else
-                //{
-                //    instructionsText[1].gameObject.SetActive(false);
-                //}
             }
             else
             {

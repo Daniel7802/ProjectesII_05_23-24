@@ -9,20 +9,19 @@ public class DeadSystem : MonoBehaviour
 {
     public GameObject blood;
     public AudioClip deathSound;
+    [SerializeField]
     protected AudioSource _audioSource;
+    [SerializeField]
     protected SpriteRenderer _spriteRenderer;
     protected Collider2D _collider;
-
+   
     protected LineRenderer _lineRenderer;
     [SerializeField] protected float deathClipPitch = 1f;
     public bool isDead = false;
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
-
         _lineRenderer = GetComponent<LineRenderer>();
     }
 
@@ -38,13 +37,13 @@ public class DeadSystem : MonoBehaviour
                 Destroy(_lineRenderer);
                 //EditorApplication.isPaused = true;
             }
-            Enemy enemy = GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.foundTargetAlert.enabled = false;
-                enemy.lostTargetAlert.enabled = false;
+            //Enemy enemy = GetComponent<Enemy>();
+            //if (enemy != null)
+            //{
+            //    enemy.foundTargetAlert.enabled = false;
+            //    enemy.lostTargetAlert.enabled = false;
 
-            }
+            //}
             Light2D light2D = GetComponentInChildren<Light2D>();
 
             if (light2D != null)
