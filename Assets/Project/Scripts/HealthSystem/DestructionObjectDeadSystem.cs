@@ -17,7 +17,7 @@ public class DestructionObjectDeadSystem : DeadSystem
     {
         if(collision.CompareTag("Player"))
         {
-           if(collision.GetComponent<PlayerMovement>()._isDashing)
+           if(collision.GetComponentInParent<PlayerMovement>()._isDashing)
             Dead();
         }
     }
