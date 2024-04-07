@@ -180,7 +180,7 @@ public class ShootyIA : Enemy
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, Vector3.zero);
             Vector2 position2 = playerDetection.playerTransform.position - transform.position;
-            int d = 2;
+            int d = 4;
             lineRenderer.SetPosition(1, new Vector2(position2.x / d, position2.y / d));
         }
     }

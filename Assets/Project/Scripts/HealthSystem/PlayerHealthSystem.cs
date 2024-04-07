@@ -11,6 +11,7 @@ public class PlayerHealthSystem : HealthSystem
     public List<GameObject> heartList = new List<GameObject>();
 
     NewBehaviourScript _damageFlash;
+    DeadSystem _deadSystem;
     public int counter;
 
     public bool isInvincible = false;
@@ -26,6 +27,7 @@ public class PlayerHealthSystem : HealthSystem
         base.Awake();
         _respawnSystem = GetComponent<RespawnSystem>();
         _damageFlash = GetComponent<NewBehaviourScript>();
+        _deadSystem = GetComponent<DeadSystem>();
         counter = MaxHealth;
 
         for(int i = 0; i < MaxHealth; i++)
@@ -60,6 +62,7 @@ public class PlayerHealthSystem : HealthSystem
         {
             heartList[i].SetActive(true);
         }
+        _deadSystem.isDead = false;
     }
 
     public void turnInvincible()
