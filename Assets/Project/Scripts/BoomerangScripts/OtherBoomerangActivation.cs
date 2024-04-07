@@ -6,8 +6,6 @@ using UnityEngine;
 public class OtherBoomerangActivation : MonoBehaviour
 {
     [SerializeField]
-    GameObject boomerangManager;
-
     private BoomerangManager bm;
 
     [SerializeField] private GameObject helpText;
@@ -15,7 +13,6 @@ public class OtherBoomerangActivation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bm = boomerangManager.GetComponent<BoomerangManager>();
         helpText.SetActive(false);
     }
 

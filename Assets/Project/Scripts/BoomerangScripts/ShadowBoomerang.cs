@@ -83,7 +83,6 @@ public class ShadowBoomerang : BoomerangThrow
         }
         else
         {
-            //_particleBlackHole.Stop();
             coming = true;
         }
     }

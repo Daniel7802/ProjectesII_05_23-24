@@ -40,8 +40,6 @@ public class HealthSystem : MonoBehaviour
         getHit = false;
         canGetDamageTimer = canGetDamageMaxTimer;
         health = MaxHealth;
-       // _audioSource = GetComponent<AudioSource>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public void Update()
     {
