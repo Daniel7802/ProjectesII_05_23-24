@@ -14,6 +14,8 @@ public class StartRaceBehaviour : MonoBehaviour
 
     private bool canRace = false;
 
+    [SerializeField] private List<GameObject> raceObjects = new List<GameObject>();
+
     private void Update()
     {
         if (canRace)
@@ -22,6 +24,10 @@ public class StartRaceBehaviour : MonoBehaviour
             {
                 racing = true;
                 timerText.gameObject.SetActive(true);
+                foreach(GameObject o in raceObjects)
+                {
+                    o.SetActive(true);
+                }
             }
         }
     }
