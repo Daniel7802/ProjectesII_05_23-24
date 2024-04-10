@@ -14,17 +14,34 @@ public class TorchIceManager : MonoBehaviour
     [SerializeField]
     public bool activeMechanisme;
 
+    [SerializeField]
+    private bool hasSoundOnDestroy;
+
+    [SerializeField]
+    private AudioSource _audioSource;
+
+    [SerializeField]
+    private AudioClip _destroySound;
+
+    SpriteRenderer sp;
+    bool soundPlayed = false;
+
+    private void Start()
+    {
+        sp = GetComponent<SpriteRenderer>();
+    }
+
     void Update()
     {
         for (int i = 0; i < activeTorch.Length; i++)
         {
-            if (activeTorch[i].torchActive)
+            if (activeTorch[i].isActive)
                 activated++;
-        }       
-      
+        }
+
         for (int i = 0; i < nonActiveTorch.Length; i++)
         {
-            if (!nonActiveTorch[i].torchActive)
+            if (!nonActiveTorch[i].isActive)
                 nonActivated++;
         }
         if (nonActivated == nonActiveTorch.Length && activated == activeTorch.Length)
@@ -39,7 +56,22 @@ public class TorchIceManager : MonoBehaviour
 
         if (activeMechanisme)
         {
-            Destroy(gameObject);
+            StartCoroutine(PlaySoundAndDestroy());
         }
+
+
+    }
+    IEnumerator PlaySoundAndDestroy()
+    {
+        sp.enabled = false;
+        if(!soundPlayed)
+        {
+            _audioSource.PlayOneShot(_destroySound);
+            soundPlayed = true;
+        }
+        yield return new WaitForSecondsRealtime(1f);
+        Destroy(gameObject);
+
     }
 }
+

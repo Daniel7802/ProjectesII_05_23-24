@@ -34,7 +34,7 @@ public class DamageSystem : MonoBehaviour
     {
         if (this.tag == "Fire" || this.tag == "Enemy")
         {
-            if (collision.gameObject.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs))
+            if (collision.gameObject.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs) && collision.tag.Equals("Player") && this.tag != "Boomerang")
             {
                 if (phs.isInvincible == false && phs.health > 0 && phs.health <= phs.MaxHealth)
                 {
@@ -48,5 +48,43 @@ public class DamageSystem : MonoBehaviour
         }
 
         
+    }
+    public virtual void OnCollisionEnter2D(Collision2D collision) 
+    {
+        if (this.tag == "Fire" || this.tag == "Enemy")
+        {
+            if (collision.gameObject.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs) && collision.gameObject.tag.Equals("Player") && this.tag != "Boomerang")
+            {
+                if (phs.isInvincible == false && phs.health > 0 && phs.health <= phs.MaxHealth)
+                {
+
+                    phs.turnInvincible();
+                    phs.GetDamage(dmg);
+                    phs.deleteHeart();
+                }
+            }
+
+        }
+
+
+    }
+    public virtual void OnCollisionStay2D(Collision2D collision)
+    {
+
+        if (this.tag == "Fire" || this.tag == "Enemy")
+        {
+            if (collision.gameObject.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs) && collision.gameObject.tag.Equals("Player") && this.tag != "Boomerang")
+            {
+                if (phs.isInvincible == false && phs.health > 0 && phs.health <= phs.MaxHealth)
+                {
+
+                    phs.turnInvincible();
+                    phs.GetDamage(dmg);
+                    phs.deleteHeart();
+                }
+            }
+
+        }
+
     }
 }

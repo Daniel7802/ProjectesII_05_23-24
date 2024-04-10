@@ -289,14 +289,20 @@ public class BoomerangThrow : MonoBehaviour
         {
             if (type == BoomerangType.NORMAL)
             {
-                if (torch.torchActive)
+                if (torch.isActive)
                     isFire = true;
-                else if (!torch.torchActive && isFire)
-                    torch.torchActive = true;
+                else if (!torch.isActive && isFire)
+                {
+                    torch.isActive = true;
+                    torch.PlayOnSound();
+                }
             }
-            else if (type == BoomerangType.ICE && !torch.masterTorch)
+            else if (type == BoomerangType.ICE && !torch.masterTorch && torch.isActive)
             {
-                torch.torchActive = false;
+
+                torch.isActive = false;
+                torch.PlayOffSound();
+
             }
 
         }
