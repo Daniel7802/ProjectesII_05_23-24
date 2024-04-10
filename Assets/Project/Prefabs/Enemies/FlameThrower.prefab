@@ -408,7 +408,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   needsActivator: 0
   flameThrowerParticles: {fileID: 248297462522363161}
-  boxCollider: {fileID: 2876175596758441062}
+  boxCollider: {fileID: 7144734904221063879}
+  boxCollider2: {fileID: 0}
   hotEffect: {fileID: 2407075976921684150}
   smokeParticles: {fileID: 672789792041120383}
   _flameSound: {fileID: 8300000, guid: bc8cd7644be6b7a4ea02c749ef3dfd19, type: 3}
@@ -548,7 +549,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4787754052634054292}
-  - component: {fileID: 2876175596758441062}
+  - component: {fileID: 7144734904221063879}
   - component: {fileID: 7964759829463926059}
   m_Layer: 0
   m_Name: Collider
@@ -572,7 +573,7 @@ Transform:
   m_Father: {fileID: 3341342134744978636}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2876175596758441062
+--- !u!61 &7144734904221063879
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -604,7 +605,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.028969765, y: 1.696392}
+  m_Offset: {x: -0.013740033, y: 1.6624544}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -615,7 +616,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.67169, y: 4.392784}
+  m_Size: {x: 0.203125, y: 3.940209}
   m_EdgeRadius: 0
 --- !u!114 &7964759829463926059
 MonoBehaviour:
