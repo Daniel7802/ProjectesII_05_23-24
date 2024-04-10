@@ -51,7 +51,7 @@ public class TorchManager : MonoBehaviour
 
     IEnumerator PlaySoundAndDestroy()
     {
-        sp.enabled = false;
+       if(sp!=null)sp.enabled = false;
         if (!soundPlayed)
         {
             _audioSource.PlayOneShot(_destroySound);
