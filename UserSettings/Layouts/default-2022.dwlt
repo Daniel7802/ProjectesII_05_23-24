@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 371}
   m_MaxSize: {x: 10000, y: 10000}
@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 577
     height: 340
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 97
+  controlID: 105
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 188
+  controlID: 187
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 83
+  controlID: 91
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 84
+  controlID: 92
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -240,8 +240,8 @@ MonoBehaviour:
     y: 0
     width: 362
     height: 607
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -321,8 +321,8 @@ MonoBehaviour:
     y: 0
     width: 445
     height: 947
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -776,9 +776,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 34.017887, y: -65.848274, z: 3.0990465}
+    m_Target: {x: 18.493454, y: -53.23796, z: -0.3633135}
     speed: 2
-    m_Value: {x: 34.017887, y: -65.848274, z: 3.0990465}
+    m_Value: {x: 18.493454, y: -53.23796, z: -0.3633135}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -828,9 +828,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 44.663605
+    m_Target: 57.345257
     speed: 2
-    m_Value: 44.663605
+    m_Value: 57.345257
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -891,10 +891,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 91}
-      m_SelectedIDs: 5657ffff
-      m_LastClickedID: -43178
-      m_ExpandedIDs: 6e48ffff7a48ffff8648ffff9248ffff9e48ffffaa48ffffb648ffffc248ffffce48ffffda48ffffe648ffffea48ffff9249fffff249ffffaa55ffff006cffff3c71ffffdccbffffb0d8ffff56e8ffffc4e9ffffc8e9fffff6faffffe2cc00001ccd000076cd000074ce000010ec0000
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 08c8ffff7cc9ffff74d2ffff16dbffffb8eaffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1342,9 +1342,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 88c39aea5dd44d746a5625e4dbfbfca7, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: c1e679da0a74bc14e86b2a7364364950, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 293353021055076424, guid: 88c39aea5dd44d746a5625e4dbfbfca7, type: 2}
+  - m_Target: {fileID: -7201239647386515405, guid: c1e679da0a74bc14e86b2a7364364950, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -1500,7 +1500,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Project/Scripts/IceRace
+    - Assets/Project/Scripts/Traps
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1508,16 +1508,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Project/Scripts/IceRace
+  - Assets/Project/Scripts/Traps
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\marcc\source\repos\ProjectesII_05_23-24
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 389}
-    m_SelectedIDs: fcc80000
-    m_LastClickedID: 51452
-    m_ExpandedIDs: 00000000ecc40000eec40000f0c40000f2c40000f4c40000f6c40000f8c40000fac40000fcc40000fec4000000c5000002c5000004c50000e4c800001ac9000038c9000000ca9a3b
+    scrollPos: {x: 0, y: 400}
+    m_SelectedIDs: 08d80000
+    m_LastClickedID: 55304
+    m_ExpandedIDs: 00000000c2d30000c4d30000c6d30000c8d30000cad30000ccd30000ced30000d0d30000d2d30000d4d30000d6d30000d8d30000dad30000dcd30000ded30000e0d30000bed7000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1545,7 +1545,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ecc40000eec40000f0c40000f2c40000f4c40000f6c40000f8c40000fac40000fcc40000fec4000000c5000002c5000004c50000
+    m_ExpandedIDs: 00000000c2d30000c4d30000c6d30000c8d30000cad30000ccd30000ced30000d0d30000d2d30000d4d30000d6d30000d8d30000dad30000dcd30000ded30000e0d30000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

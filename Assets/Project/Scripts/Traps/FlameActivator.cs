@@ -9,14 +9,14 @@ public class FlameActivator : MonoBehaviour
     private void Start()
     {
         ownBoxCollider = GetComponent<BoxCollider2D>();
-        flameThrower.active = false;
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            flameThrower.ActiveTrap();
+            flameThrower.ActivateTrap();
             ownBoxCollider.enabled = false;
         }
 

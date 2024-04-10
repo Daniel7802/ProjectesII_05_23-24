@@ -5,16 +5,16 @@ using UnityEngine;
 public class FlameThrower : MonoBehaviour
 {
     public bool needsActivator;
-    public bool active;
+    bool isActive = false;
     [SerializeField] private ParticleSystem flameThrowerParticles;
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private GameObject hotEffect;
     [SerializeField] private ParticleSystem smokeParticles;
     [SerializeField] private AudioClip _flameSound;
 
-    bool freezed = false;
-    [SerializeField] private float coldTime = 4f;
-    private float coldTimer;
+  
+    [SerializeField] private float freezedTime = 4f;
+
     [SerializeField] private GameObject coldEffect;
     [SerializeField] private ParticleSystem iceParticles;
     [SerializeField] private AudioClip _iceSound;
@@ -25,67 +25,63 @@ public class FlameThrower : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
         if (needsActivator)
-        {           
+        {
+            isActive = false;
             boxCollider.enabled = false;
             hotEffect.SetActive(false);
             coldEffect.SetActive(false);
-            active = false;
+        
         }
         else
         {
-            ActiveTrap();
+            ActivateTrap();
         }
     }
-
-    private void Update()
-    {                   
-        if(freezed)
-        {
-            coldTimer += Time.deltaTime;
-            if (coldTimer > coldTime)
-            {
-                ActiveTrap();
-                
-            }
-        }
-          
-    }
-    public void ActiveTrap()
+  
+    public void ActivateTrap()
     {
-        freezed = false;
-        coldEffect.SetActive(false);      
-        coldTimer = 0;
-
-        active = true;       
-
-        _audioSource.clip = _flameSound;
-        _audioSource.loop = true;
-        _audioSource.Play();       
+        isActive = true;       
+               
         flameThrowerParticles.Play();
         boxCollider.enabled = true;
         hotEffect.SetActive(true);
         smokeParticles.Play();
+
+        _audioSource.clip = _flameSound;
+        _audioSource.loop = true;
+        _audioSource.Play();
     }
-    public void Freeze()
+    public void DesactivateTrap()
     {
-        active = false;
+        isActive = false;
+
         flameThrowerParticles.Stop();
         boxCollider.enabled = false;
         hotEffect.SetActive(false);
         smokeParticles.Stop();
         _audioSource.loop = false;
+        _audioSource.Stop();
 
-        freezed = true;
+    }
+
+    private IEnumerator Freezee()
+    {
+        DesactivateTrap();        
         coldEffect.SetActive(true);
         iceParticles.Play();
-        _audioSource.PlayOneShot(_iceSound,20);
+        _audioSource.PlayOneShot(_iceSound, 20);
+
+        yield return new WaitForSecondsRealtime(freezedTime);
+
+        coldEffect.SetActive(false);
+        ActivateTrap();
     }
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponentInParent<IceBoomerang>() && active)
+        if (collision.GetComponentInParent<IceBoomerang>()&& isActive)
         {
-            Freeze();
+           StartCoroutine(Freezee());
         }
     }
 }

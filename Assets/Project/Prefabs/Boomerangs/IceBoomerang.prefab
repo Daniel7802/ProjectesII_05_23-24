@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986b05acc8a940b468467d51f73abeaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bt: {fileID: 0}
+  bt: {fileID: 3607568608243761146}
   dmg: 1
 --- !u!1 &1659877879554466870
 GameObject:
@@ -325,8 +325,8 @@ LineRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 0, g: 0.3921569, b: 0.82745105, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 0.6901961}
-      key2: {r: 0.8078432, g: 0.45882356, b: 0.27450982, a: 0}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0.8078432, g: 0.45882356, b: 0.27450982, a: 0.6901961}
       key3: {r: 1, g: 1, b: 1, a: 0.38039216}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -341,8 +341,8 @@ LineRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 41056
-      atime2: 65535
+      atime1: 65535
+      atime2: 42212
       atime3: 65535
       atime4: 0
       atime5: 0
@@ -351,7 +351,7 @@ LineRenderer:
       m_Mode: 0
       m_ColorSpace: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 3
+      m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
@@ -543,6 +543,8 @@ MonoBehaviour:
   goingSound: {fileID: 8300000, guid: 0cf4ebdb3a4a05b47bb59aee3b292c12, type: 3}
   source: {fileID: 0}
   _particleSystemFire: {fileID: 4457561754502436840}
+  _torchOnSound: {fileID: 8300000, guid: 465decd61af00a54c8ab1e444e37e40c, type: 3}
+  _torchOffSound: {fileID: 8300000, guid: a941ede3bdaaaa74596f5e2a91540ea7, type: 3}
   going: 0
   coming: 0
   knockback: 0

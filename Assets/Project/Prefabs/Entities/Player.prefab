@@ -5104,7 +5104,7 @@ GameObject:
   - component: {fileID: 4390428517133563190}
   m_Layer: 6
   m_Name: WalkSound
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5232,7 +5232,7 @@ GameObject:
   - component: {fileID: 1618399427992367549}
   m_Layer: 6
   m_Name: Trail
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5377,7 +5377,7 @@ GameObject:
   - component: {fileID: 6346159970916474795}
   m_Layer: 6
   m_Name: BoomerangManager
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5413,8 +5413,8 @@ MonoBehaviour:
   _boomerang: {fileID: 0}
   _shadowBoomerang: {fileID: 0}
   _iceBoomerang: {fileID: 0}
-  shadowBoomerangCollected: 0
-  iceBoomerangCollected: 0
+  shadowBoomerangCollected: 1
+  iceBoomerangCollected: 1
   actualBoomerang: {fileID: 0}
   _boomerangThrow: {fileID: 0}
 --- !u!1 &4570880800235730678
@@ -5429,7 +5429,7 @@ GameObject:
   - component: {fileID: 4954384627279798137}
   m_Layer: 0
   m_Name: shadowCircle
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5513,7 +5513,7 @@ GameObject:
   - component: {fileID: 2728466036947715892}
   m_Layer: 6
   m_Name: Light 2D
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5572,7 +5572,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 6
+  m_PointLightOuterRadius: 2
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -5698,6 +5698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasDead: {fileID: 0}
+  _player: {fileID: 416834808553754793}
   checkpointPos1: {x: 0, y: 0}
 --- !u!61 &5810907069646147762
 BoxCollider2D:
@@ -5809,7 +5810,7 @@ GameObject:
   - component: {fileID: 7400606570983725942}
   m_Layer: 6
   m_Name: AudioSource
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5938,7 +5939,7 @@ GameObject:
   - component: {fileID: 5477070470880891401}
   m_Layer: 16
   m_Name: FallBox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
