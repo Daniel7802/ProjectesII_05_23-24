@@ -29,12 +29,6 @@ public class BoomerangThrow : MonoBehaviour
     private ParticleSystem _particleSystemFire;
     private ParticleSystem.EmissionModule _missionModuleFire;
 
-
-    [SerializeField]
-    private AudioClip _torchOnSound;
-    [SerializeField]
-    private AudioClip _torchOffSound;
-
     private float rotationSpeed, minDistance, maxDistance, distance, throwDuration;
     protected float maxTimer = 3.0f, maxTimerAttack = 0.01f;
     protected float timer, timerTrail, attackTimer;
@@ -295,24 +289,19 @@ public class BoomerangThrow : MonoBehaviour
         {
             if (type == BoomerangType.NORMAL)
             {
-                if (torch.torchActive)
+                if (torch.isActive)
                     isFire = true;
-                else if (!torch.torchActive && isFire)
+                else if (!torch.isActive && isFire)
                 {
-                    torch.torchActive = true;
-                    torch._audioSource.PlayOneShot(_torchOnSound);
-                    
+                    torch.isActive = true;
+                    torch.PlayOnSound();
                 }
-                
-
             }
-            else if (type == BoomerangType.ICE && !torch.masterTorch)
+            else if (type == BoomerangType.ICE && !torch.masterTorch && torch.isActive)
             {
-                
-                torch.torchActive = false;
-                torch._audioSource.PlayOneShot(_torchOffSound);
 
-
+                torch.isActive = false;
+                torch.PlayOffSound();
 
             }
 

@@ -7,10 +7,10 @@ using static UnityEngine.ParticleSystem;
 public class Torch : MonoBehaviour
 {
     ParticleSystem _particleSystem;
-    private ParticleSystem.EmissionModule _missionModule;
+    private EmissionModule _missionModule;
 
     [SerializeField]
-    public bool torchActive, masterTorch, infiniteTime;
+    public bool isActive, masterTorch, infiniteTime;
 
     [SerializeField]
     private float time, maxTime;
@@ -19,6 +19,10 @@ public class Torch : MonoBehaviour
     Light2D _fireLight;
 
     public AudioSource _audioSource;
+    [SerializeField]
+    private AudioClip _torchOnSound;
+    [SerializeField]
+    private AudioClip _torchOffSound;
 
 
     private void Awake()
@@ -35,12 +39,12 @@ public class Torch : MonoBehaviour
     }
     void Update()
     {
-        if (torchActive && !masterTorch)
+        if (isActive && !masterTorch)
         {
             TimerFire();
         }
 
-        if (torchActive)
+        if (isActive)
         {
             if (_fireLight.intensity < 1)
             {
@@ -72,10 +76,20 @@ public class Torch : MonoBehaviour
         }
         else
         {
-            torchActive = false;
+            isActive = false;
             time = maxTime;
         }
     }
 
-  
+    public void PlayOnSound()
+    {
+        _audioSource.PlayOneShot(_torchOnSound);
+    }
+    public void PlayOffSound()
+    {
+        _audioSource.PlayOneShot(_torchOffSound);
+
+    }
+
+
 }

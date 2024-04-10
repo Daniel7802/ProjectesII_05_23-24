@@ -15,7 +15,7 @@ public class FireBall : Bullet
 
         if (collision.gameObject.TryGetComponent<Torch>(out Torch torch) )
         {            
-            torch.torchActive = true;
+            torch.isActive = true;
             Instantiate(fireballParticles, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }

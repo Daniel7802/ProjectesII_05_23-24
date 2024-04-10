@@ -21,7 +21,7 @@ public class TorchPlate : MonoBehaviour
     {
         for (int i = 0; i < _torch.Length; i++)
         {
-            if (_torch[i].torchActive)
+            if (_torch[i].isActive)
                 activated++;
         }
         if (activated == _torch.Length)
