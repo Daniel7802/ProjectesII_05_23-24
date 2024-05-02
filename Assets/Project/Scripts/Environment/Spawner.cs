@@ -17,8 +17,7 @@ public class Spawner : MonoBehaviour
 
     public void Spawn()
     {
-        GameObject enemyInst = Instantiate(enemy, this.transform.position, Quaternion.identity);
-       
+        GameObject enemyInst = Instantiate(enemy, this.transform.position, Quaternion.identity);       
         Destroy(this);
     }
 }
