@@ -7,6 +7,9 @@ public class GodMode : MonoBehaviour
     [SerializeField] 
     GameObject player;
 
+    [SerializeField]
+    GameObject godModeCanvas;
+
     private PlayerHealthSystem phs;
     private BoomerangManager bm;
 
@@ -25,20 +28,32 @@ public class GodMode : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            phs.health = 100;
+            if(godModeCanvas.activeInHierarchy)
+            {
+                godModeCanvas.SetActive(false);
+            }
+            else if(!godModeCanvas.activeInHierarchy)
+            {
+                godModeCanvas.SetActive(true);
+            }
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            phs.RespawnHeal();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             player.transform.position = locations[0].transform.position;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             player.transform.position = locations[1].transform.position;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha8))
         {
             player.transform.position = locations[2].transform.position;
         }
