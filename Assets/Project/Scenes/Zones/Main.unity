@@ -1006,7 +1006,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 278909586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.47998, y: 51.140015, z: -17}
+  m_LocalPosition: {x: -32.200012, y: 45.399994, z: -17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1620,7 +1620,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430092304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.47998, y: 51.140015, z: 0}
+  m_LocalPosition: {x: -32.200012, y: 45.399994, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2825,11 +2825,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8592275167556148878, guid: 2f540635d9e62644e8bb93686f4139ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.47998
+      value: -32.200012
       objectReference: {fileID: 0}
     - target: {fileID: 8592275167556148878, guid: 2f540635d9e62644e8bb93686f4139ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 51.140015
+      value: 45.399994
       objectReference: {fileID: 0}
     - target: {fileID: 8592275167556148878, guid: 2f540635d9e62644e8bb93686f4139ee, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4175,7 +4175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4934152572183162058, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -53
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5443055419998888902, guid: e170d4c8b7efc6142a632b282a19aa1b, type: 3}
       propertyPath: boomerang
@@ -4248,11 +4248,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8376845399404012944, guid: 3b80bd496a32b2d4eb39560734e9f88d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -115.1
+      value: -116.57
       objectReference: {fileID: 0}
     - target: {fileID: 8376845399404012944, guid: 3b80bd496a32b2d4eb39560734e9f88d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14
+      value: -13.73
       objectReference: {fileID: 0}
     - target: {fileID: 8376845399404012944, guid: 3b80bd496a32b2d4eb39560734e9f88d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4473,11 +4473,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -676.68
+      value: -694.4
       objectReference: {fileID: 0}
     - target: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 324.14
+      value: 318.4
       objectReference: {fileID: 0}
     - target: {fileID: 930333622301758238, guid: 6671bfff90607a34aa6006e3e4f71544, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5155,6 +5155,18 @@ PrefabInstance:
       propertyPath: pl
       value: 
       objectReference: {fileID: 726980654}
+    - target: {fileID: 1752672502031780785, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[6].second.m_AnimationSpeed
+      value: 10.000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752672502031780785, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[7].second.m_AnimationSpeed
+      value: 10.000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752672502031780785, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[9].second.m_AnimationSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1966550744788613089, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -5337,10 +5349,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2139142581}
     m_Modifications:
-    - target: {fileID: 103630906594184047, guid: 3b80bd496a32b2d4eb39560734e9f88d, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 391536825912907802, guid: 3b80bd496a32b2d4eb39560734e9f88d, type: 3}
       propertyPath: m_Name
       value: healthRing (1)
