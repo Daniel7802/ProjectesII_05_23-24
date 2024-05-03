@@ -25,7 +25,7 @@ public class EnemyHealthSystem : HealthSystem
 
         if (collision.gameObject.TryGetComponent<DamageBoomerang>(out DamageBoomerang boomerang))
         {
-            Debug.Log("klklklkklk");
+           
             Vector2 dir = transform.position - collision.transform.position;
             KnockBack(dir);
 

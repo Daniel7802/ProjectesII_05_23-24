@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class collectableRings : MonoBehaviour
 {
@@ -18,18 +19,19 @@ public class collectableRings : MonoBehaviour
     [SerializeField] float height = 1.5f;
     [SerializeField] float speed = 30f;
 
-    [SerializeField]
-    PlayerInventory _playerInvetory;
+    [SerializeField] PlayerInventory _playerInvetory;
 
-    [SerializeField]
-    private Vector3 startPosition;
+    [SerializeField] private Vector3 startPosition;
     private float idleVelocity = 2.0f;
     private float idleDistance = 0.2f;
+
+    [SerializeField] GameObject ringLight;
 
     public virtual void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         startPosition = transform.position;
+
     }
 
     // Update is called once per frame
@@ -59,6 +61,7 @@ public class collectableRings : MonoBehaviour
             {
                 collected = false;
                 collectedTimer = 0f;
+                //ringLight.SetActive(false);
                 Destroy(gameObject);
             }
         }
