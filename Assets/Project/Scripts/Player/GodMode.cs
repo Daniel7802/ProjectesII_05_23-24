@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GodMode : MonoBehaviour
@@ -8,7 +9,13 @@ public class GodMode : MonoBehaviour
     GameObject player;
 
     [SerializeField]
+    private GameObject playerHealthSystem;
+
+    [SerializeField]
     GameObject godModeCanvas;
+
+    [SerializeField]
+    private TextMeshProUGUI godEnabledText;
 
     private PlayerHealthSystem phs;
     private BoomerangManager bm;
@@ -19,13 +26,22 @@ public class GodMode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        phs = player.GetComponent<PlayerHealthSystem>();
+        phs = playerHealthSystem.GetComponent<PlayerHealthSystem>();
         bm = player.GetComponent<BoomerangManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(phs.isGod)
+        {
+            godEnabledText.text = "ON";
+        }
+        else if (!phs.isGod)
+        {
+            godEnabledText.text = "OFF";
+        }
+
         if (Input.GetKeyDown(KeyCode.G))
         {
             if(godModeCanvas.activeInHierarchy)
@@ -40,7 +56,14 @@ public class GodMode : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            phs.RespawnHeal();
+            if(phs.isGod)
+            {
+                phs.isGod = false;
+            }
+            else if (!phs.isGod)
+            {
+                phs.isGod = true;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha6))

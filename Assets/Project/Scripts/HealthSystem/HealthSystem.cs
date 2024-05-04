@@ -16,10 +16,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField]
     protected AudioSource _audioSource;
     [SerializeField] protected AudioClip damageSound;
-
-
     private bool invincible = false;
-
 
     private float canGetDamageTimer = 0f;
     private float canGetDamageMaxTimer = 0.5f;
@@ -69,7 +66,6 @@ public class HealthSystem : MonoBehaviour
                 GetDamage(1);
                 canGetDamageTimer = 0.0f;
             }
-            
         }
         else
         {

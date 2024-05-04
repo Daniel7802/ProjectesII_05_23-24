@@ -19,12 +19,12 @@ public class DamageSystem : MonoBehaviour
 
             if (collision.gameObject.TryGetComponent<PlayerHealthSystem>(out PlayerHealthSystem phs) && collision.tag.Equals("Player") && this.tag != "Boomerang")
             {
-
-                if (phs.isInvincible == false && phs.health > 0 && phs.health <= phs.MaxHealth)
+                if (!phs.isInvincible && phs.health > 0 && phs.health <= phs.MaxHealth && !phs.isGod)
                 {
                     phs.turnInvincible();
                     phs.GetDamage(dmg);
                     phs.deleteHeart();
+                    Debug.Log("ESTA PASANDO");
                 }
             }
         }
