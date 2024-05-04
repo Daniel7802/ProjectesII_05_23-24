@@ -4670,11 +4670,11 @@ PrefabInstance:
       objectReference: {fileID: 726980654}
     - target: {fileID: 1752672502031780785, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[2].second.m_AnimationSpeed
-      value: 10
+      value: 10.000001
       objectReference: {fileID: 0}
     - target: {fileID: 1752672502031780785, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[4].second.m_AnimationSpeed
-      value: 10.000001
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1752672502031780785, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[6].second.m_AnimationSpeed
@@ -4689,12 +4689,16 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1752672502031780785, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[10].second.m_AnimationSpeed
+      value: 10.000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752672502031780785, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[14].second.m_AnimationSpeed
-      value: 10
+      value: 10.000001
       objectReference: {fileID: 0}
     - target: {fileID: 1752672502031780785, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[16].second.m_AnimationSpeed
-      value: 10.000001
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1966550744788613089, guid: 78ea40839ecfeb14b94f154ab434d3e2, type: 3}
       propertyPath: m_RootOrder
@@ -5091,6 +5095,38 @@ PrefabInstance:
       propertyPath: Characters.Array.data[8]
       value: 
       objectReference: {fileID: 2066008769}
+    - target: {fileID: 302009581388410275, guid: 31f998b99701e4a4887708bcd0264dd3, type: 3}
+      propertyPath: keyboardDialogs.Array.data[1].text
+      value: "Lo creas o no, est\xE1s aqu\xED para salvar nuestro mundo, eres el
+        elegido."
+      objectReference: {fileID: 0}
+    - target: {fileID: 302009581388410275, guid: 31f998b99701e4a4887708bcd0264dd3, type: 3}
+      propertyPath: keyboardDialogs.Array.data[2].text
+      value: "Detr\xE1s de esta puerta se encuentra el \xE1rbol de la vida que est\xE1
+        muriendo poco a poco, y solo t\xFA puedes salvarlo."
+      objectReference: {fileID: 0}
+    - target: {fileID: 302009581388410275, guid: 31f998b99701e4a4887708bcd0264dd3, type: 3}
+      propertyPath: keyboardDialogs.Array.data[4].text
+      value: "Durante el viaje te ir\xE1s encontrando estos anillos de poder, cada
+        vez que recojas 3 se te sumar\xE1 una vida extra"
+      objectReference: {fileID: 0}
+    - target: {fileID: 302009581388410275, guid: 31f998b99701e4a4887708bcd0264dd3, type: 3}
+      propertyPath: keyboardDialogs.Array.data[7].text
+      value: "\xA1\xA1Eh t\xFA, para un momento!!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 302009581388410275, guid: 31f998b99701e4a4887708bcd0264dd3, type: 3}
+      propertyPath: keyboardDialogs.Array.data[8].text
+      value: "\xBFQuieres hacerte m\xE1s fuerte? Te propongo un trato."
+      objectReference: {fileID: 0}
+    - target: {fileID: 302009581388410275, guid: 31f998b99701e4a4887708bcd0264dd3, type: 3}
+      propertyPath: keyboardDialogs.Array.data[9].text
+      value: "Delante de ti tienes un camino helado lleno de obst\xE1culos, si llegas
+        al final antes de que se acabe el tiempo te dar\xE9 una recompensa."
+      objectReference: {fileID: 0}
+    - target: {fileID: 302009581388410275, guid: 31f998b99701e4a4887708bcd0264dd3, type: 3}
+      propertyPath: keyboardDialogs.Array.data[10].text
+      value: "Ac\xE9rcate a m\xED y pulsa \"E\" cuando est\xE9s listo."
+      objectReference: {fileID: 0}
     - target: {fileID: 302009581388410275, guid: 31f998b99701e4a4887708bcd0264dd3, type: 3}
       propertyPath: sequences.Array.data[1].commands.Array.size
       value: 13
