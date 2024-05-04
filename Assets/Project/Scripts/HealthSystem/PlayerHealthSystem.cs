@@ -16,6 +16,8 @@ public class PlayerHealthSystem : HealthSystem
     public bool isInvincible = false;
     private float timer = 1f;
 
+    public bool isGod = false;
+
     RespawnSystem _respawnSystem;
 
     [SerializeField]
