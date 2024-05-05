@@ -287,7 +287,7 @@ public class CinematicManager : MonoBehaviour
                     int objectIndex = Int32.Parse(command.param1);
                     int positionIndex = Int32.Parse(command.param2);
 
-                    Characters[objectIndex].transform.position = characterPositions[positionIndex].position;
+                    Characters[objectIndex].transform.position = new Vector3(characterPositions[positionIndex].position.x, characterPositions[positionIndex].position.y, 0);
                 }
                 else if (command.id == CinematicCommandId.setPlayerFacing)
                 {
