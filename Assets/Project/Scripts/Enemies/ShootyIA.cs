@@ -56,7 +56,7 @@ public class ShootyIA : Enemy
                 break;
         }
 
-        if (rb2D.velocity.magnitude > 0.5f) animator.SetBool("walk", true);
+        if (rb2D.velocity.magnitude > 0.2f) animator.SetBool("walk", true);
         else animator.SetBool("walk", false);
 
     }
