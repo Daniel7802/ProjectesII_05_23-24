@@ -92,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4021796722321378499}
   audioSource: {fileID: 7605805782576486966}
-  closingSound: {fileID: 8300000, guid: 39b6c61cb9dbb784c811c9b23d1983bf, type: 3}
+  closingSound: {fileID: 8300000, guid: 2f4d1874d199fab42a6f37da0ea8bee2, type: 3}
   sp: {fileID: 9084337272123505442}
 --- !u!1 &5337875649493610363
 GameObject:
@@ -123,7 +123,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5337875649493610363}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -136.79422, y: 32.70524, z: 1.1108761}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
@@ -259,11 +259,15 @@ MonoBehaviour:
   torch:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   activated: 0
   destroyObjectWhenActivated: 0
   hasSoundOnDestroy: 0
   _audioSource: {fileID: 7605805782576486966}
-  _destroySound: {fileID: 8300000, guid: 39b6c61cb9dbb784c811c9b23d1983bf, type: 3}
+  _destroySound: {fileID: 8300000, guid: 2f4d1874d199fab42a6f37da0ea8bee2, type: 3}
 --- !u!82 &7605805782576486966
 AudioSource:
   m_ObjectHideFlags: 0
