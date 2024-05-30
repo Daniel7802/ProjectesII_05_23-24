@@ -56,14 +56,7 @@ public class GodMode : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if(phs.isGod)
-            {
-                phs.isGod = false;
-            }
-            else if (!phs.isGod)
-            {
-                phs.isGod = true;
-            }
+            phs.RespawnHeal();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha6))
