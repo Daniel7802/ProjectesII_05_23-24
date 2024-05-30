@@ -14,9 +14,6 @@ public class GodMode : MonoBehaviour
     [SerializeField]
     GameObject godModeCanvas;
 
-    [SerializeField]
-    private TextMeshProUGUI godEnabledText;
-
     private PlayerHealthSystem phs;
     private BoomerangManager bm;
 
@@ -33,15 +30,6 @@ public class GodMode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(phs.isGod)
-        {
-            godEnabledText.text = "ON";
-        }
-        else if (!phs.isGod)
-        {
-            godEnabledText.text = "OFF";
-        }
-
         if (Input.GetKeyDown(KeyCode.G))
         {
             if(godModeCanvas.activeInHierarchy)
