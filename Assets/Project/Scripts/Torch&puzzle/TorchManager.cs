@@ -6,10 +6,13 @@ public class TorchManager : MonoBehaviour
 {
     [SerializeField]
     private Torch[] torch;
-    int activated = 0;
+    int torchesActivated = 0;
+
+ 
+    public bool activated;
 
     [SerializeField]
-    private bool activeMechanisme;
+    private bool destroyObjectWhenActivated;
 
     [SerializeField]
     private bool hasSoundOnDestroy;
@@ -32,18 +35,18 @@ public class TorchManager : MonoBehaviour
         for (int i = 0; i < torch.Length; i++)
         {
             if (torch[i].isActive)
-                activated++;
+                torchesActivated++;
         }
-        if (activated == torch.Length)
+        if (torchesActivated == torch.Length)
         {
-            activeMechanisme = true;
+            activated = true;
         }
         else
         {
-            activated = 0;
+            torchesActivated = 0;
         }
 
-        if (activeMechanisme)
+        if (activated)
         {
             StartCoroutine(PlaySoundAndDestroy());
         }
@@ -51,14 +54,21 @@ public class TorchManager : MonoBehaviour
 
     IEnumerator PlaySoundAndDestroy()
     {
-       if(sp!=null)sp.enabled = false;
+        if(destroyObjectWhenActivated&&sp!=null)
+        {
+            sp.enabled = false;
+        }
         if (!soundPlayed)
         {
             _audioSource.PlayOneShot(_destroySound);
             soundPlayed = true;
         }
         yield return new WaitForSecondsRealtime(1f);
-        Destroy(gameObject);
+        if(destroyObjectWhenActivated)
+        {
+            Destroy(gameObject);
+        }
+       
 
     }
 }

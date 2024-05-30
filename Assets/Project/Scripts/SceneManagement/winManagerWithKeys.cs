@@ -24,11 +24,11 @@ public class winManagerWithKeys : MonoBehaviour
 
     private void Update()
     {
-        if(pI.CheckKeys() == 1)
+        if(pI.CheckKeys() == 2)
         {
             keysOnHud[0].SetActive(true);
         }
-        else if(pI.CheckKeys() == 2)
+        else if(pI.CheckKeys() >= 3)
         {
             keysOnHud[1].SetActive(true);
             finishGameButton.interactable = true;

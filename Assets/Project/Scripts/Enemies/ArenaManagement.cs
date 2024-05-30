@@ -1,53 +1,56 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour
-{   
-    public GameObject spawnAlert; // Prefab del signo de alerta
+{
+    [SerializeField] private Button restartButton;
+    public bool restart = false;
+    public GameObject spawnAlert;
 
     public List<EnemyWave> waves = new List<EnemyWave>();
     private int currentWaveIndex = -1;
     private List<GameObject> spawnedEnemies = new List<GameObject>();
-    public bool isFinished = false; 
-
+    public bool isFinished = false;
 
     private void Start()
     {
         StartCoroutine(StartNextWaveWithDelay());
-    }    
-    
+    }
+    private void Update()
+    {
+        restartButton.onClick.AddListener(ResetArena);
+    }
+
     private IEnumerator StartNextWaveWithDelay()
     {
-        
         while (true)
         {
-            yield return new WaitUntil(() => AreAllWaveEnemiesDead());
 
-            // Lista para almacenar las instancias de los signos de alerta
+            yield return new WaitUntil(() => AllWaveEnemiesDead());
+
             List<GameObject> alertSigns = new List<GameObject>();
 
-            if (currentWaveIndex + 1 < waves.Count) // Verificar si hay más oleadas
+            if (currentWaveIndex + 1 < waves.Count)
             {
-                // Instanciar un signo de alerta en la posición de cada enemigo de la próxima oleada
                 foreach (var enemyInfo in waves[currentWaveIndex + 1].enemiesToSpawn)
                 {
                     GameObject alertSign = Instantiate(spawnAlert, enemyInfo.spawn.position, Quaternion.identity);
-
-                    alertSigns.Add(alertSign); // Añadir a la lista
+                    alertSigns.Add(alertSign);
                 }
 
-                yield return new WaitForSeconds(2f); // Esperar 2 segundos con los signos de alerta activos
+                yield return new WaitForSeconds(2f);
 
-                // Desactivar y destruir los signos de alerta
                 foreach (var sign in alertSigns)
                 {
                     Destroy(sign);
                 }
             }
 
-            yield return new WaitForSeconds(0f); // Tiempo adicional de espera si es necesario
+            yield return new WaitForSeconds(0f);
             StartNextWave();
         }
     }
@@ -63,7 +66,6 @@ public class WaveSpawner : MonoBehaviour
         else
         {
             isFinished = true;
-            //Debug.Log("Todas las oleadas completadas.");
         }
     }
 
@@ -76,14 +78,26 @@ public class WaveSpawner : MonoBehaviour
             {
                 spawnedEnemies.Add(spawnedEnemy);
             }
-            
         }
     }
 
-    private bool AreAllWaveEnemiesDead()
+    private bool AllWaveEnemiesDead()
     {
         spawnedEnemies.RemoveAll(enemy => enemy == null);
         return spawnedEnemies.Count == 0;
     }
-   
+
+    void ResetArena()
+    {
+        restart = true;
+        foreach (GameObject enemy in spawnedEnemies)
+        {
+            if (enemy != null)
+                Destroy(enemy);
+        }
+        spawnedEnemies.Clear();
+        currentWaveIndex = -1;
+        isFinished = false;
+        StartCoroutine(StartNextWaveWithDelay());
+    }
 }

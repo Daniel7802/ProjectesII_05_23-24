@@ -14,23 +14,31 @@ public class ActivateArena : MonoBehaviour
     public List<GameObject> entranceWalls = new List<GameObject>();
     public List<GameObject> exitWalls = new List<GameObject>();
     bool end = false;
+    bool activation = false;
 
     void Update()
     {
+       
         if (spikesShowed)
         {
             arena.SetActive(true);
             spikesShowed = false;
         }
-        if (arena.GetComponent<WaveSpawner>().isFinished&&!end)
+        if (arena.GetComponent<WaveSpawner>().isFinished && !end)
         {
             StartCoroutine(DeleteAllWalls());
             end = true;
         }
+        if (arena.GetComponent<WaveSpawner>().restart)
+        {
+            
+            StartCoroutine(DeleteEntranceWalls());
 
+            
+        }
     }
 
-  
+
 
     private IEnumerator ShowAllWalls()
     {
@@ -48,7 +56,8 @@ public class ActivateArena : MonoBehaviour
         
         spikesShowed = true;
     }
- 
+   
+
     private IEnumerator DeleteAllWalls()
     {
       
@@ -58,21 +67,40 @@ public class ActivateArena : MonoBehaviour
 
             yield return new WaitForSeconds(spikesSpawnSeconds);
         }
-        //for (int i = 0; i < entranceWalls.Count; i++)
-        //{
-        //    entranceWalls[i].SetActive(false);
-          
-        //    yield return new WaitForSeconds(spikesSpawnSeconds);
-        //}
-        
+
+        for (int i = 0; i < entranceWalls.Count; i++)
+        {
+            entranceWalls[i].SetActive(false);
+            yield return new WaitForSeconds(spikesSpawnSeconds);
+        }
 
     }
+    private IEnumerator DeleteEntranceWalls()
+    {
 
+       
+
+        for (int i = 0; i < entranceWalls.Count; i++)
+        {
+            entranceWalls[i].SetActive(false);
+            yield return new WaitForSeconds(spikesSpawnSeconds);
+        }
+
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")&&!end)
         {
             StartCoroutine(ShowAllWalls());
+            activation = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            
+            activation = false;
         }
     }
 }
